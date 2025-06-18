@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈 시스템</title>
+    <!-- Bootstrap CSS 링크 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 기본 body 스타일 */
+        body { padding-top: 20px; }
+        /* 정답과 오답 텍스트 색상 */
+        .correct-answer { color: green; }
+        .incorrect-answer { color: red; }
+        /* 축하 애니메이션 키프레임 */
+        @keyframes celebrate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        /* 다시 시도 애니메이션 키프레임 */
+        @keyframes tryAgain {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+        /* 축하 애니메이션 적용 클래스 */
+        .celebration { animation: celebrate 1s ease-in-out infinite; }
+        /* 다시 시도 애니메이션 적용 클래스 */
+        .try-again { animation: tryAgain 0.5s ease-in-out 3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">퀴즈 시스템</h2>
+        
+        <!-- 네비게이션 탭 -->
+        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="create-tab" data-bs-toggle="tab" data-bs-target="#create" type="button" role="tab" aria-controls="create" aria-selected="true">퀴즈 생성</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="solve-tab" data-bs-toggle="tab" data-bs-target="#solve" type="button" role="tab" aria-controls="solve" aria-selected="false">문제 풀이</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="results-tab" data-bs-toggle="tab" data-bs-target="#results" type="button" role="tab" aria-controls="results" aria-selected="false">답변자 목록</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="ranking-tab" data-bs-toggle="tab" data-bs-target="#ranking" type="button" role="tab" aria-controls="ranking" aria-selected="false">랭킹</button>
+            </li>
+        </ul>
+        
+        <!-- 탭 내용 -->
+        <div class="tab-content" id="myTabContent">
+            <!-- 퀴즈 생성 탭 -->
+            <div class="tab-pane fade show active" id="create" role="tabpanel" aria-labelledby="create-tab">
+                <!-- 퀴즈 정보 입력 섹션 -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">퀴즈 정보</h3>
+                        <input type="text" class="form-control mb-2" id="quizTitle" placeholder="퀴즈 제목">
+                        <textarea class="form-control mb-2" id="quizDescription" placeholder="퀴즈 설명" rows="3"></textarea>
+                        <input type="number" class="form-control mb-2" id="questionCount" placeholder="문제 수" min="1" max="10">
+                        <button id="autoGenerateQuiz" class="btn btn-secondary">퀴즈 자동 생성</button>
+                    </div>
+                </div>
+                
+                <!-- 문제 추가 섹션 -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">문제 추가</h3>
+                        <textarea class="form-control mb-2" id="question" placeholder="문제" rows="3"></textarea>
+                        <select class="form-select mb-2" id="difficulty">
+                            <option value="1">1단계 (단답형)</option>
+                            <option value="2">2단계 (복합형)</option>
+                            <option value="3">3단계 (논술형)</option>
+                        </select>
+                        <textarea class="form-control mb-2" id="answer" placeholder="답변" rows="3"></textarea>
+                        <button id="addQuestion" class="btn btn-primary">문제 추가</button>
+                    </div>
+                </div>
+                
+                <!-- 추가된 문제 목록 -->
+                <div id="questionList" class="mb-4"></div>
+                
+                <!-- 퀴즈 저장 버튼 -->
+                <button id="saveQuiz" class="btn btn-success">퀴즈 저장</button>
+            </div>
+            
+            <!-- 문제 풀이 탭 -->
+            <div class="tab-pane fade" id="solve" role="tabpanel" aria-labelledby="solve-tab">
+                <h3>퀴즈 풀기</h3>
+                <select id="quizSelect" class="form-select mb-3"></select>
+                <button id="startQuiz" class="btn btn-primary">퀴즈 시작</button>
+                <div id="quizArea" class="mt-3"></div>
+            </div>
+            
+            <!-- 답변자 목록 탭 -->
+            <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="results-tab">
+                <h3>답변자 목록</h3>
+                <div class="mb-3">
+                    <button class="btn btn-outline-primary" id="showAllResults">전체</button>
+                    <select id="resultQuizSelect" class="form-select d-inline-block w-auto">
+                        <option value="">퀴즈 선택</option>
+                    </select>
+                </div>
+                <div id="resultsList"></div>
+                <nav aria-label="답변자 목록 페이지네이션">
+                    <ul class="pagination" id="resultsPagination"></ul>
+                </nav>
+            </div>
+
+            <!-- 랭킹 탭 -->
+            <div class="tab-pane fade" id="ranking" role="tabpanel" aria-labelledby="ranking-tab">
+                <h3>랭킹</h3>
+                <div class="mb-3">
+                    <button class="btn btn-outline-primary" id="showAllRanking">전체</button>
+                    <select id="rankingQuizSelect" class="form-select d-inline-block w-auto">
+                        <option value="">퀴즈 선택</option>
+                    </select>
+                </div>
+                <div id="rankingList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 관련 JavaScript 파일 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+    <script>
+        // 전역 변수 선언
+        let quizzes = []; // 모든 퀴즈를 저장하는 배열
+        let currentQuiz = { title: '', description: '', questions: [] }; // 현재 작업 중인 퀴즈
+        let results = []; // 퀴즈 결과를 저장하는 배열
+        let autoQuizCount = 0; // 자동 생성된 퀴즈의 수를 추적
+
+        // 페이지 로드 시 로컬 스토리지에서 데이터 불러오기
+        window.addEventListener('load', function() {
+            const savedQuizzes = localStorage.getItem('quizzes');
+            const savedResults = localStorage.getItem('results');
+            const savedAutoQuizCount = localStorage.getItem('autoQuizCount');
+
+            if (savedQuizzes) {
+                quizzes = JSON.parse(savedQuizzes);
+                updateQuizSelects();
+            }
+            if (savedResults) {
+                results = JSON.parse(savedResults);
+                updateResultsList();
+                updateRankingList();
+            }
+            if (savedAutoQuizCount) {
+                autoQuizCount = parseInt(savedAutoQuizCount);
+            }
+        });
+
+        // 데이터를 로컬 스토리지에 저장하는 함수
+        function saveToLocalStorage() {
+            localStorage.setItem('quizzes', JSON.stringify(quizzes));
+            localStorage.setItem('results', JSON.stringify(results));
+            localStorage.setItem('autoQuizCount', autoQuizCount.toString());
+        }
+
+        // 퀴즈 자동 생성 기능
+        document.getElementById('autoGenerateQuiz').addEventListener('click', function() {
+            // 미리 정의된 랜덤 질문 목록
+            const randomQuestions = [
+                { question: "대한민국의 수도는?", answer: "서울" },
+                { question: "1 + 1 = ?", answer: "2" },
+                { question: "물의 화학식은?", answer: "H2O" },
+                { question: "태양계에서 가장 큰 행성은?", answer: "목성" },
+                { question: "세계에서 가장 긴 강은?", answer: "나일강" }
+            ];
+            
+            // 사용자가 입력한 문제 수 가져오기 (기본값 5)
+            const questionCount = parseInt(document.getElementById('questionCount').value) || 5;
+            autoQuizCount++; // 자동 생성 퀴즈 카운트 증가
+            
+            // 현재 퀴즈 정보 설정
+            currentQuiz.title = `자동 생성된 퀴즈 #${autoQuizCount}`;
+            currentQuiz.description = "이 퀴즈는 자동으로 생성되었습니다.";
+            // 랜덤 질문에서 필요한 만큼 선택하고 난이도 랜덤 부여
+            currentQuiz.questions = randomQuestions.slice(0, questionCount).map(q => ({
+                ...q,
+                difficulty: Math.floor(Math.random() * 3) + 1
+            }));
+            
+            // UI 업데이트
+            document.getElementById('quizTitle').value = currentQuiz.title;
+            document.getElementById('quizDescription').value = currentQuiz.description;
+            updateQuestionList();
+            
+            saveToLocalStorage(); // 로컬 스토리지에 저장
+        });
+
+        // 문제 추가 기능
+        document.getElementById('addQuestion').addEventListener('click', function() {
+            // 사용자 입력 가져오기
+            const question = document.getElementById('question').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const answer = document.getElementById('answer').value;
+            
+            // 입력 검증
+            if (question && answer) {
+                currentQuiz.questions.push({ question, difficulty, answer });
+                updateQuestionList();
+                clearQuestionInputs();
+            } else {
+                alert('문제와 답변을 모두 입력해주세요.');
+            }
+        });
+
+        // 퀴즈 저장 기능
+        document.getElementById('saveQuiz').addEventListener('click', function() {
+            // 퀴즈 제목과 설명 가져오기
+            currentQuiz.title = document.getElementById('quizTitle').value;
+            currentQuiz.description = document.getElementById('quizDescription').value;
+            
+            // 퀴즈 유효성 검사
+            if (currentQuiz.title && currentQuiz.questions.length > 0) {
+                quizzes.push({ ...currentQuiz }); // 깊은 복사를 통해 새로운 객체로 저장
+                alert('퀴즈가 저장되었습니다.');
+                resetQuizCreation();
+                updateQuizSelects();
+                saveToLocalStorage(); // 로컬 스토리지에 저장
+                console.log('저장된 퀴즈:', quizzes);
+            } else {
+                alert('퀴즈 제목과 최소 1개의 문제가 필요합니다.');
+            }
+        });
+
+        // 퀴즈 시작 기능
+        document.getElementById('startQuiz').addEventListener('click', function() {
+            const selectedQuizIndex = document.getElementById('quizSelect').value;
+            if (selectedQuizIndex !== '') {
+                const quiz = quizzes[selectedQuizIndex];
+                showQuiz(quiz);
+            } else {
+                alert('퀴즈를 선택해주세요.');
+            }
+        });
+
+        // 퀴즈 표시 및 제출 처리 함수
+        function showQuiz(quiz) {
+            const quizArea = document.getElementById('quizArea');
+            // 퀴즈 폼 HTML 생성
+            quizArea.innerHTML = `
+                <h4>${quiz.title}</h4>
+                <p>${quiz.description}</p>
+                <form id="quizForm">
+                    <div class="mb-3">
+                        <label for="userName" class="form-label">이름</label>
+                        <input type="text" class="form-control" id="userName" required>
+                    </div>
+                    ${quiz.questions.map((q, i) => `
+                        <div class="mb-3">
+                            <label class="form-label">문제 ${i + 1}: ${q.question}</label>
+                            <textarea class="form-control" name="answer${i}" rows="3" required></textarea>
+                        </div>
+                    `).join('')}
+                    <button type="submit" class="btn btn-primary">제출</button>
+                </form>
+            `;
+
+            // 퀴즈 제출 이벤트 리스너
+            document.getElementById('quizForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const userName = document.getElementById('userName').value;
+                const answers = quiz.questions.map((_, i) => this[`answer${i}`].value);
+                submitQuiz(quiz, userName, answers);
+            });
+        }
+
+        // 퀴즈 제출 처리 함수
+        function submitQuiz(quiz, userName, answers) {
+            // 정답 확인 및 점수 계산
+            const correctAnswers = quiz.questions.map(q => q.answer);
+            const score = answers.reduce((acc, answer, index) => {
+                return acc + (answer.trim().toLowerCase() === correctAnswers[index].trim().toLowerCase() ? 1 : 0);
+            }, 0);
+            const totalScore = Math.round((score / quiz.questions.length) * 100);
+
+            // 결과 객체 생성 및 저장
+            const result = {
+                quizTitle: quiz.title,
+                userName: userName,
+                answers: answers,
+                score: totalScore,
+                submitTime: new Date().toLocaleString()
+            };
+            results.push(result);
+            
+            // 결과 표시
+            const quizArea = document.getElementById('quizArea');
+            if (totalScore === 100) {
+                quizArea.innerHTML = `
+                    <div class="alert alert-success celebration" role="alert">
+                        <h4 class="alert-heading">축하합니다!</h4>
+                        <p>모든 문제를 맞추셨습니다! 🎉🎊</p>
+                        <p>점수: ${totalScore}점</p>
+                    </div>
+                `;
+            } else {
+                quizArea.innerHTML = `
+                    <div class="alert alert-warning try-again" role="alert">
+                        <h4 class="alert-heading">아쉽습니다.</h4>
+                        <p>더 노력해보세요! 다음에는 더 잘할 수 있을 거예요. 💪</p>
+                        <p>점수: ${totalScore}점</p>
+                    </div>
+                `;
+            }
+            
+            saveToLocalStorage(); // 로컬 스토리지에 저장
+            
+            updateResultsList();
+            updateRankingList();
+        }
+
+        // 결과 목록 업데이트
+        function updateResultsList(selectedQuiz = '') {
+            const resultsPerPage = 10;
+            const resultsList = document.getElementById('resultsList');
+            const pagination = document.getElementById('resultsPagination');
+            
+            const filteredResults = selectedQuiz ? results.filter(r => r.quizTitle === selectedQuiz) : results;
+            
+            const pageCount = Math.ceil(filteredResults.length / resultsPerPage);
+            
+            function showPage(page) {
+                const start = (page - 1) * resultsPerPage;
+                const end = start + resultsPerPage;
+                const pageResults = filteredResults.slice(start, end);
+                
+                resultsList.innerHTML = pageResults.map(r => `
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">${r.userName}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${r.quizTitle} - ${r.submitTime}</h6>
+                            <p class="card-text">점수: ${r.score}점</p>
+                            ${r.answers.map((a, i) => `
+                                <p><strong>문제 ${i + 1}:</strong> ${a}</p>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+                
+                pagination.innerHTML = `
+                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${page - 1}">이전</a>
+                    </li>
+                    ${Array.from({length: pageCount}, (_, i) => i + 1).map(p => `
+                        <li class="page-item ${p === page ? 'active' : ''}">
+                            <a class="page-link" href="#" data-page="${p}">${p}</a>
+                        </li>
+                    `).join('')}
+                    <li class="page-item ${page === pageCount ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${page + 1}">다음</a>
+                    </li>
+                `;
+            }
+            
+            showPage(1);
+            
+            pagination.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (e.target.tagName === 'A') {
+                    const page = parseInt(e.target.getAttribute('data-page'));
+                    if (page > 0 && page <= pageCount) {
+                        showPage(page);
+                    }
+                }
+            });
+        }
+
+        // 랭킹 목록 업데이트
+        function updateRankingList(selectedQuiz = '') {
+            const rankingList = document.getElementById('rankingList');
+            
+            const filteredResults = selectedQuiz ? results.filter(r => r.quizTitle === selectedQuiz) : results;
+            
+            const sortedResults = filteredResults.sort((a, b) => b.score - a.score);
+            
+            rankingList.innerHTML = sortedResults.map((r, index) => `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">${index + 1}위: ${r.userName}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${r.quizTitle}</h6>
+                        <p class="card-text">점수: ${r.score}점</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 유틸리티 함수들
+        function updateQuestionList() {
+            const questionList = document.getElementById('questionList');
+            questionList.innerHTML = currentQuiz.questions.map((q, i) => `
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">문제 ${i + 1}</h5>
+                        <p class="card-text">${q.question}</p>
+                        <p class="card-text"><small class="text-muted">난이도: ${q.difficulty}</small></p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearQuestionInputs() {
+            document.getElementById('question').value = '';
+            document.getElementById('answer').value = '';
+        }
+
+        function resetQuizCreation() {
+            document.getElementById('quizTitle').value = '';
+            document.getElementById('quizDescription').value = '';
+            currentQuiz = { title: '', description: '', questions: [] };
+            updateQuestionList();
+        }
+
+        function updateQuizSelects() {
+            const quizSelect = document.getElementById('quizSelect');
+            const resultQuizSelect = document.getElementById('resultQuizSelect');
+            const rankingQuizSelect = document.getElementById('rankingQuizSelect');
+            const options = quizzes.map((q, i) => `<option value="${i}">${q.title}</option>`).join('');
+            
+            quizSelect.innerHTML = `<option value="">퀴즈 선택</option>${options}`;
+            resultQuizSelect.innerHTML = `<option value="">모든 퀴즈</option>${options}`;
+            rankingQuizSelect.innerHTML = `<option value="">모든 퀴즈</option>${options}`;
+            
+            console.log('퀴즈 목록 업데이트됨:', quizzes);
+        }
+
+        // 결과 필터링
+        document.getElementById('resultQuizSelect').addEventListener('change', updateResultsList);
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>타로 챗봇</title>
+    <style>
+      /* ... (CSS 스타일 코드) ... */
+    </style>
+  </head>
+  <body>
+    <h1>타로 챗봇</h1>
+    <div class="chat-container" id="chat-container">
+      {% if name %}
+      <div class="bot-message">
+        <p>{{ name }}님, 질문해주셔서 감사합니다.</p>
+        <p>질문: {{ question }}</p>
+        <p>뽑힌 카드: {{ drawn_card }}</p>
+        <p>해석: {{ interpretation }}</p>
+      </div>
+      {% else %}
+      <div class="bot-message">
+        <p>안녕하세요! 타로 챗봇입니다.</p>
+      </div>
+      {% endif %}
+    </div>
+    <form method="POST" id="input-form">
+      <input type="hidden" id="step" name="step" value="{{ step }}" />
+      <div id="question-container">
+        {% if step == 1 %}
+        <label for="name">이름:</label><br />
+        <input type="text" id="name" name="name" /><br /><br />
+        {% elif step == 2 %}
+        <label for="gender">성별 (선택 사항):</label><br />
+        <input type="text" id="gender" name="gender" /><br /><br />
+        {% elif step == 3 %}
+        <label for="age">나이 (선택 사항):</label><br />
+        <input type="text" id="age" name="age" /><br /><br />
+        {% elif step == 4 %}
+        <label for="job">하고 있는 일 (선택 사항):</label><br />
+        <input type="text" id="job" name="job" /><br /><br />
+        {% elif step == 5 %}
+        <label for="question">오늘의 고민이나 질문:</label><br />
+        <textarea id="question" name="question"></textarea><br /><br />
+        {% endif %}
+      </div>
+      <button type="submit">다음</button>
+    </form>
+  </body>
+</html>

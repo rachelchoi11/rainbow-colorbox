@@ -1,0 +1,38 @@
+def greet():
+    print("안녕하세요! 타로 챗봇입니다.")
+    name = input("이름을 알려주세요: ")
+    gender = input("성별을 알려주세요 (선택 사항): ")
+    age = input("나이를 알려주세요 (선택 사항): ")
+    job = input("하고 있는 일을 알려주세요 (선택 사항): ")
+    question = input("오늘의 고민이나 질문을 입력해주세요: ")
+    print(f"\n{name}님, 질문해주셔서 감사합니다.")
+    print(f"질문: {question}")
+    return question
+
+def draw_card():
+    # 여기에서 타로 카드를 랜덤으로 선택하는 로직이 들어갈 거예요.
+    # 아직은 간단하게 '마이너 펜타클 2' 카드를 뽑았다고 가정합니다.
+    print("\n마스터가 카드를 뽑았습니다...")
+    drawn_card = "마이너 펜타클 2"
+    return drawn_card
+
+def interpret_card(card):
+    # 여기에서 뽑힌 카드에 대한 해석을 제공하는 로직이 들어갈 거예요.
+    # 아직은 간단하게 '마이너 펜타클 2' 카드에 대한 기본적인 의미를 알려줍니다.
+    if card == "마이너 펜타클 2":
+        interpretation = "당신은 여러 가지 책임을 동시에 저글링하고 있을 수 있습니다. 균형을 유지하고 우선순위를 정하는 것이 중요합니다."
+    else:
+        interpretation = "아직 이 카드에 대한 해석이 준비되지 않았습니다."
+    return interpretation
+
+def main():
+    greet()
+    question = greet() # greet() 함수에서 질문을 이미 받았으므로 다시 호출할 필요는 없습니다.
+    drawn_card = draw_card()
+    interpretation = interpret_card(drawn_card)
+    print(f"뽑힌 카드: {drawn_card}")
+    print(f"해석: {interpretation}")
+    print("\n오늘의 타로 상담이었습니다.")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>악보 쇼핑몰</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 400px;
+        }
+        .sheet-music-item {
+            text-align: center;
+        }
+        .sheet-music-item img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">악보 쇼핑몰</h1>
+        
+        <div class="menu text-center mb-4">
+            <button class="btn btn-primary me-2" onclick="showShopPage()">쇼핑</button>
+            <button class="btn btn-secondary me-2" onclick="showUploadPage()">악보 업로드</button>
+            <button class="btn btn-info" onclick="showPrivacyPage()">개인정보 처리방침</button>
+        </div>
+
+        <div id="shopPage">
+            <div class="swiper-container">
+                <div class="swiper-wrapper" id="sheetMusicList"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <div id="uploadPage" style="display:none;">
+            <h2 class="mb-3">새 악보 추가</h2>
+            <form id="addSheetMusicForm">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="title" placeholder="제목" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" id="description" placeholder="설명"></textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" id="price" placeholder="가격" required>
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" id="discount" placeholder="할인률 (%)" min="0" max="100">
+                </div>
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="image" accept="image/*" required>
+                </div>
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="pdf" accept=".pdf" required>
+                </div>
+                <button type="submit" class="btn btn-primary">추가</button>
+            </form>
+        </div>
+
+        <div id="privacyPage" style="display:none;">
+            <h2 class="mb-4">개인정보 처리방침</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h3>1. 개인정보의 처리 목적</h3>
+                    <p>당사는 다음의 목적을 위하여 개인정보를 처리하고 있으며, 다음의 목적 이외의 용도로는 이용하지 않습니다.</p>
+                    <ul>
+                        <li>고객 가입의사 확인, 고객에 대한 서비스 제공에 따른 본인 식별·인증</li>
+                        <li>상품 구매 및 대금 결제</li>
+                        <li>고객 서비스 제공 및 불만처리</li>
+                    </ul>
+
+                    <h3>2. 개인정보의 처리 및 보유 기간</h3>
+                    <p>당사는 법령에 따른 개인정보 보유·이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의 받은 개인정보 보유·이용기간 내에서 개인정보를 처리·보유합니다.</p>
+
+                    <h3>3. 개인정보의 제3자 제공</h3>
+                    <p>당사는 정보주체의 동의, 법률의 특별한 규정 등 개인정보 보호법 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.</p>
+
+                    <h3>4. 정보주체의 권리·의무 및 그 행사방법</h3>
+                    <p>이용자는 개인정보주체로서 다음과 같은 권리를 행사할 수 있습니다.</p>
+                    <ul>
+                        <li>개인정보 열람요구</li>
+                        <li>오류 등이 있을 경우 정정 요구</li>
+                        <li>삭제요구</li>
+                        <li>처리정지 요구</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        let sheetMusicData = [];
+
+        function displaySheetMusic() {
+            const sheetMusicList = document.getElementById('sheetMusicList');
+            sheetMusicList.innerHTML = '';
+            sheetMusicData.forEach(sheet => {
+                const sheetElement = document.createElement('div');
+                sheetElement.className = 'swiper-slide';
+                sheetElement.innerHTML = `
+                    <div class="sheet-music-item">
+                        <img src="${sheet.image}" alt="${sheet.title}">
+                        <h3>${sheet.title}</h3>
+                        <p>가격: ${sheet.price}원</p>
+                        <button class="btn btn-primary" onclick="buySheetMusic(${sheet.id})">구매</button>
+                    </div>
+                `;
+                sheetMusicList.appendChild(sheetElement);
+            });
+
+            // Swiper 초기화
+            new Swiper('.swiper-container', {
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+            });
+        }
+
+        function showShopPage() {
+            document.getElementById('shopPage').style.display = 'block';
+            document.getElementById('uploadPage').style.display = 'none';
+            document.getElementById('privacyPage').style.display = 'none';
+        }
+
+        function showUploadPage() {
+            document.getElementById('shopPage').style.display = 'none';
+            document.getElementById('uploadPage').style.display = 'block';
+            document.getElementById('privacyPage').style.display = 'none';
+        }
+
+        function showPrivacyPage() {
+            document.getElementById('shopPage').style.display = 'none';
+            document.getElementById('uploadPage').style.display = 'none';
+            document.getElementById('privacyPage').style.display = 'block';
+        }
+
+        document.getElementById('addSheetMusicForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const price = document.getElementById('price').value;
+            const image = document.getElementById('image').files[0];
+            const sheetMusic = document.getElementById('pdf').files[0];
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const newSheet = {
+                    id: sheetMusicData.length + 1,
+                    title: title,
+                    price: parseInt(price),
+                    image: event.target.result,
+                    sheetMusic: URL.createObjectURL(sheetMusic)
+                };
+
+                sheetMusicData.push(newSheet);
+                saveSheetMusicData();
+                displaySheetMusic();
+                showShopPage();
+                alert('악보가 성공적으로 업로드되었습니다.');
+            };
+            reader.readAsDataURL(image);
+        });
+
+        function saveSheetMusicData() {
+            localStorage.setItem('sheetMusicData', JSON.stringify(sheetMusicData));
+        }
+
+        function loadSheetMusicData() {
+            const savedData = localStorage.getItem('sheetMusicData');
+            if (savedData) {
+                sheetMusicData = JSON.parse(savedData);
+            }
+        }
+
+        // 페이지 로드 시 저장된 데이터 불러오기
+        loadSheetMusicData();
+        displaySheetMusic();
+    </script>
+</body>
+</html>
