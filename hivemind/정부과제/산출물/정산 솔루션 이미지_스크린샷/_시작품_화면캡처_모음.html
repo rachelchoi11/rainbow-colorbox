@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>시작품 화면 캡처 모음</title>
+<style>
+  :root{--ink:#161616;--gray:#565656;--mut:#7a7a7a;--line:#111;--bd:#b9b9b9;--hd:#ececec;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    color:var(--ink);background:#f0f0f0;font-size:12px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .doc{max-width:840px;margin:22px auto;background:#fff;padding:40px 44px 44px;border:1px solid #d6d6d6}
+  .head{text-align:center;position:relative;border-bottom:2.5px solid var(--line);padding-bottom:14px;margin-bottom:14px}
+  .docno{position:absolute;top:0;right:0;font-size:10.5px;color:var(--gray);text-align:right;line-height:1.5}
+  .kicker{font-size:11px;color:var(--gray)}
+  .head h1{font-size:22px;font-weight:800;letter-spacing:.05em;margin:8px 0 2px}
+  .head .sub{font-size:11.5px;color:var(--gray)}
+  .intro{font-size:11px;color:var(--gray);border:1px solid var(--bd);background:#fafafa;padding:9px 13px;margin-bottom:14px;line-height:1.6}
+  .grp{font-size:12px;font-weight:800;margin:16px 0 8px;padding:5px 10px;background:var(--ink);color:#fff;letter-spacing:.03em}
+  figure{margin:0 0 14px;break-inside:avoid;page-break-inside:avoid}
+  figcaption{font-size:11px;font-weight:700;color:var(--ink);background:var(--hd);border:1px solid var(--bd);border-bottom:none;padding:6px 11px}
+  figcaption span{color:var(--mut);font-weight:600}
+  .frame{border:1px solid var(--bd);padding:0;line-height:0;background:#fff}
+  .frame img{width:100%;display:block}
+  .foot{margin-top:16px;border-top:1px solid var(--bd);padding-top:9px;font-size:10px;color:var(--mut);line-height:1.6}
+  @media print{body{background:#fff}.doc{border:none;margin:0;max-width:none;padding:12mm 12mm}}
+</style>
+</head>
+<body>
+<article class="doc">
+  <div class="head">
+    <div class="docno">문서번호 : SCR-2026-001<br>발 급 일 : 2026. 07.</div>
+    <div class="kicker">2026년 출판콘텐츠 기술개발 지원 사업 · 자유과제 · 제출서류 ③ 기술수준 증빙 (첨부 ⑤)</div>
+    <h1>시작품 화면 캡처 모음</h1>
+    <div class="sub">AI+RPA 기반 웹소설·웹툰 멀티플랫폼 매출·작가 인세 정산 자동화 시스템 개발</div>
+  </div>
+  <div class="intro">배포 운영 중인 실험실 시작품(정산 표준화·매칭·정산 웹 애플리케이션)의 실제 운영 화면. 유통 플랫폼 31개 · 431,296행 실데이터를 처리하며, 아래 화면은 시험 운영 상태를 캡처한 것임. (TRL 5단계 SW 증빙 — 시험 운영 화면)</div>
+
+  <div class="grp">Ⅰ. 정산 집계·조회</div>
+  <figure><figcaption>화면 01. 정산 요약 대시보드 <span>— 처리 규모·완전매칭률·검증 현황</span></figcaption><div class="frame"><img src="정산요약.png"></div></figure>
+  <figure><figcaption>화면 02. 통계 분석</figcaption><div class="frame"><img src="통계분석.png"></div></figure>
+  <figure><figcaption>화면 03. 유통사별 정산 <span>— 플랫폼 전수 집계</span></figcaption><div class="frame"><img src="유통사별정산.png"></div></figure>
+  <figure><figcaption>화면 04. 작가별 정산</figcaption><div class="frame"><img src="작가별정산.png"></div></figure>
+  <figure><figcaption>화면 05. 작품별 정산</figcaption><div class="frame"><img src="작품별정산.png"></div></figure>
+  <figure><figcaption>화면 06. 작가·작품 통합 검색</figcaption><div class="frame"><img src="통합검색.png"></div></figure>
+
+  <div class="grp">Ⅱ. 미매칭 처리</div>
+  <figure><figcaption>화면 07. 미매칭 보드 <span>— AI 제안·외부 도서 DB 조회</span></figcaption><div class="frame"><img src="미매칭보드.png"></div></figure>
+  <figure><figcaption>화면 08. 미매칭 보드 <span>— 단서 없는 단독작</span></figcaption><div class="frame"><img src="미매칭 보드_단서없음.png"></div></figure>
+  <figure><figcaption>화면 09. 미매칭 결정 이력 <span>— 감사 추적·복원</span></figcaption><div class="frame"><img src="미매칭 결정 히스토리.png"></div></figure>
+
+  <div class="grp">Ⅲ. 매칭 오류 연구소 (자동 탐지 8종)</div>
+  <figure><figcaption>화면 10. 연구소 E1 <span>— 동명이작 과병합</span></figcaption><div class="frame"><img src="연구소_E1.png"></div></figure>
+  <figure><figcaption>화면 11. 연구소 E3 <span>— 레이블 표기변형</span></figcaption><div class="frame"><img src="연구소_E3.png"></div></figure>
+  <figure><figcaption>화면 12. 연구소 E4 <span>— backfill 오귀속</span></figcaption><div class="frame"><img src="연구소_E4.png"></div></figure>
+  <figure><figcaption>화면 13. 연구소 E5 <span>— 번들/구독 오분류</span></figcaption><div class="frame"><img src="연구소_E5.png"></div></figure>
+  <figure><figcaption>화면 14. 연구소 E6 <span>— 단행본/연재 오판</span></figcaption><div class="frame"><img src="연구소_E6.png"></div></figure>
+  <figure><figcaption>화면 15. 연구소 E7 <span>— 권/회차 과분리</span></figcaption><div class="frame"><img src="연구소_E7.png"></div></figure>
+  <figure><figcaption>화면 16. 연구소 E8 <span>— 합계 검증 사각</span></figcaption><div class="frame"><img src="연구소_E8.png"></div></figure>
+  <figure><figcaption>화면 17. 연구소 E9 <span>— 정산액 추정오차</span></figcaption><div class="frame"><img src="연구소_E9.png"></div></figure>
+
+  <div class="grp">Ⅳ. 정산서 수집·표준화</div>
+  <figure><figcaption>화면 18. 정산서 업로드 <span>— 형식 자동판별·표준화 파이프라인</span></figcaption><div class="frame"><img src="정산서 업로드.png"></div></figure>
+
+  <div class="foot">본 화면은 배포 시작품의 시험 운영 상태를 캡처한 것으로, TRL 5단계(시작품 제작 및 성능평가 완료)의 소프트웨어 시험 운영 증빙임. 표시된 데이터는 2026년 1~4월 실제 정산 데이터임.</div>
+</article>
+</body>
+</html>

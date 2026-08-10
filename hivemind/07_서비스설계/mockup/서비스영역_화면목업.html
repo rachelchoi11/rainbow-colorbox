@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>정산 솔루션 — 서비스 영역 화면 목업 (v1.0)</title>
+<style>
+  /* Zoom-inspired global SaaS design system */
+  :root{
+    --blue:#0B5CFF; --blue-d:#0847CC; --blue-l:#E8F0FF; --blue-l2:#F2F7FF;
+    --ink:#131619; --ink2:#3B424B; --muted:#6E7680;
+    --line:#E7EAF1; --bg:#F5F8FD; --ok:#12805C; --ok-l:#E4F5EE; --warn:#B0740F; --warn-l:#FBF1DF;
+    --sh:0 1px 2px rgba(19,32,64,.05),0 2px 8px rgba(19,32,64,.05); --sh-lg:0 6px 24px rgba(19,32,64,.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Inter","Pretendard","Apple SD Gothic Neo","Noto Sans KR",-apple-system,sans-serif;color:var(--ink);background:var(--bg);font-size:13px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+  /* topbar — 화이트 헤더 */
+  .top{height:60px;background:#fff;color:var(--ink);display:flex;align-items:center;padding:0 26px;gap:14px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line)}
+  .top .logo{font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--ink)}
+  .top .logo b{color:var(--blue)}
+  .top .env{font-size:11px;color:var(--blue);background:var(--blue-l);border:none;border-radius:20px;padding:4px 11px;font-weight:600}
+  .top .sp{flex:1}
+  .top .role{display:flex;gap:8px;align-items:center;color:var(--muted)}
+  .top select{background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:12.5px;font-weight:600;box-shadow:var(--sh)}
+  .top .user{font-size:12px;color:var(--muted);background:var(--bg);padding:6px 12px;border-radius:20px}
+  /* layout */
+  .wrap{display:flex;min-height:calc(100vh - 60px)}
+  .side{width:222px;background:#fff;border-right:1px solid var(--line);padding:16px 12px;flex-shrink:0}
+  .side .grp{font-size:11px;color:var(--muted);padding:10px 12px 8px;letter-spacing:.02em;font-weight:600}
+  .side a{display:flex;align-items:center;gap:10px;padding:10px 12px;color:var(--ink2);cursor:pointer;font-size:13px;border-radius:10px;margin-bottom:2px;transition:all .12s}
+  .side a:hover{background:var(--blue-l2)}
+  .side a.on{background:var(--blue-l);color:var(--blue);font-weight:700}
+  .side .ic{width:18px;text-align:center;opacity:.9}
+  .main{flex:1;padding:28px 34px;overflow:auto}
+  h1{font-size:23px;color:var(--ink);margin-bottom:4px;letter-spacing:-.02em;font-weight:800}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:22px}
+  /* cards */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--sh)}
+  .card .k{font-size:12px;color:var(--muted);font-weight:500}
+  .card .v{font-size:26px;font-weight:800;color:var(--ink);margin-top:6px;letter-spacing:-.02em}
+  .card .d{font-size:11.5px;margin-top:4px}
+  .up{color:var(--ok)} .dn{color:#C2362F}
+  /* panel */
+  .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:18px;box-shadow:var(--sh)}
+  .panel h2{font-size:15px;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:9px;font-weight:700}
+  .panel h2 .tag{font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-l);border:none;border-radius:20px;padding:3px 10px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;color:var(--muted);font-weight:600;background:transparent;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;font-size:11.5px}
+  td{padding:11px 12px;border-bottom:1px solid #F0F2F7;vertical-align:middle}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr:hover td{background:var(--blue-l2)}
+  .pill{font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;display:inline-block}
+  .p-ok{background:var(--ok-l);color:var(--ok)} .p-warn{background:var(--warn-l);color:var(--warn)} .p-mut{background:#EEF1F6;color:var(--muted)} .p-navy{background:var(--blue-l);color:var(--blue)}
+  .btn{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:0 1px 2px rgba(11,92,255,.25);transition:all .12s}
+  .btn:hover{background:var(--blue-d)}
+  .btn.ghost{background:#fff;color:var(--blue);border:1px solid #C5D6FF;box-shadow:none}
+  .btn.gold{background:var(--ink);color:#fff;box-shadow:none}
+  .row{display:flex;gap:16px} .row>*{flex:1}
+  /* dropzone */
+  .drop{border:2px dashed #C5D2E6;border-radius:16px;padding:34px;text-align:center;color:var(--muted);background:var(--blue-l2)}
+  .drop b{color:var(--blue)}
+  .sel{padding:9px 11px;border:1px solid var(--line);border-radius:10px;font-size:12.5px;min-width:160px;background:#fff}
+  /* steps */
+  .steps{display:flex;gap:0;margin:10px 0 6px}
+  .step{flex:1;text-align:center;font-size:11.5px;color:var(--muted);position:relative;padding-top:26px}
+  .step:before{content:"";position:absolute;top:7px;left:50%;width:100%;height:2px;background:var(--line)}
+  .step:first-child:before{display:none}
+  .step .dot{position:absolute;top:2px;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--line)}
+  .step.done{color:var(--blue)} .step.done .dot{background:var(--blue);border-color:var(--blue)} .step.done:before{background:var(--blue)}
+  .step.cur{color:var(--blue);font-weight:800} .step.cur .dot{background:#fff;border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-l)}
+  .screen{display:none} .screen.on{display:block}
+  .note{font-size:11.5px;color:var(--muted);margin-top:10px}
+  .stmt{max-width:580px;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh-lg)}
+  .stmt .hd{background:linear-gradient(135deg,#0B5CFF,#2D8CFF);color:#fff;padding:18px 20px}
+  .stmt .hd .t{font-weight:800;font-size:15px} .stmt .hd .s{font-size:11.5px;color:#D6E4FF;margin-top:2px}
+  .stmt .bd{padding:18px 20px}
+  .kv{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);font-size:12.5px}
+  .kv.total{border-bottom:none;font-weight:800;color:var(--blue);font-size:16px;padding-top:12px}
+  .mockbadge{position:fixed;right:16px;bottom:16px;background:var(--ink);color:#fff;font-size:11px;padding:8px 14px;border-radius:20px;opacity:.9;box-shadow:var(--sh-lg)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="logo">HIVE <b>MIND</b></div>
+  <span class="env">서비스 영역 목업 · v1.0</span>
+  <div class="sp"></div>
+  <div class="role">
+    <span style="font-size:11px;color:#9fb0c9">관점</span>
+    <select id="roleSel" onchange="switchRole(this.value)">
+      <option value="pub">출판사 (매드햇)</option>
+      <option value="author">작가 (김작가)</option>
+      <option value="op">운영사 (하이브마인드)</option>
+    </select>
+  </div>
+  <div class="user">정산 2025-11</div>
+</div>
+
+<div class="wrap">
+  <nav class="side" id="side"></nav>
+  <div class="main" id="main"></div>
+</div>
+
+<div class="mockbadge">🎨 화면 목업 — 실제 데이터/동작 아님</div>
+
+<script>
+// ── 더미 데이터 (데모 시나리오 재사용) ──
+const NAV = {
+  pub: [
+    ["현황","dash","▣"],
+    ["정산서 업로드","upload","⬆"],
+    ["유통사별 정산","bydist","▤"],
+    ["작가별 정산","byauthor","👤"],
+    ["미매칭 보드 · 연구소","unmatched","🔎"],
+    ["계약관리","contract","📄"],
+    ["작가 명세서","stmt","🧾"],
+    ["월 정산 확정","confirm","🔒"],
+  ],
+  author: [ ["내 정산 현황","adash","▣"], ["월별 명세서","astmt","🧾"] ],
+  op: [ ["테넌트 관리","tenants","🏢"], ["레이블 마스터","labels","🏷"], ["매칭 마스터(규칙)","norm","🔧"], ["구독 관리","subs","💳"] ],
+};
+const won = n => n.toLocaleString('ko-KR')+"원";
+
+const SCREENS = {
+  // ───────── 출판사 ─────────
+  dash: `<h1>정산 현황</h1><div class="sub">매드햇 · 2025년 11월 정산 (작성중)</div>
+    <div class="cards">
+      <div class="card"><div class="k">이번달 정산총액</div><div class="v">1.19억</div><div class="d up">▲ 전월 +6.4%</div></div>
+      <div class="card"><div class="k">지급 대상 작가</div><div class="v">128명</div><div class="d">명세서 발행 대기</div></div>
+      <div class="card"><div class="k">완전매칭률</div><div class="v">99.5%</div><div class="d up">미매칭 0.08%</div></div>
+      <div class="card"><div class="k">월 정산 상태</div><div class="v" style="font-size:15px">작성중</div><div class="d warn">확정 전</div></div>
+    </div>
+    <div class="panel"><h2>월 정산 진행 <span class="tag">상태머신</span></h2>
+      <div class="steps">
+        <div class="step done"><span class="dot"></span>업로드</div>
+        <div class="step done"><span class="dot"></span>표준화·매칭</div>
+        <div class="step cur"><span class="dot"></span>미매칭 검토</div>
+        <div class="step"><span class="dot"></span>정산 계산</div>
+        <div class="step"><span class="dot"></span>확정(잠금)</div>
+        <div class="step"><span class="dot"></span>명세서 발행</div>
+      </div>
+      <div class="note">확정 시 매칭·정산률·MG잔액·세율이 스냅샷으로 동결되어 이후에도 명세서가 변하지 않습니다.</div>
+    </div>
+    <div class="panel"><h2>최근 업로드 <span class="tag">거래처 31 중 29 등록</span></h2>
+      <table><tr><th>유통사</th><th>기간</th><th class="num">행</th><th class="num">정산액</th><th>상태</th></tr>
+      <tr><td>카카오페이지</td><td>2025-11</td><td class="num">1,845</td><td class="num">49,890,369</td><td><span class="pill p-ok">표준화 완료</span></td></tr>
+      <tr><td>네이버시리즈</td><td>2025-11</td><td class="num">6,168</td><td class="num">48,524,939</td><td><span class="pill p-ok">표준화 완료</span></td></tr>
+      <tr><td>예스24 (B2B·B2C·연재)</td><td>2025-11</td><td class="num">2,080</td><td class="num">9,176,606</td><td><span class="pill p-ok">표준화 완료</span></td></tr>
+      <tr><td style="color:#b4232f">교보문고</td><td>2025-11</td><td class="num">—</td><td class="num">—</td><td><span class="pill p-warn">미등록 · 노티</span></td></tr>
+      </table></div>`,
+
+  upload: `<h1>정산서 업로드</h1><div class="sub">유통사에서 받은 정산서 파일을 올리면 자동 표준화·매칭됩니다.</div>
+    <div class="panel"><h2>파일 업로드</h2>
+      <div style="display:flex;gap:12px;margin-bottom:12px;align-items:center">
+        <label>정산월</label><input class="sel" value="2025-11">
+        <label>플랫폼</label>
+        <select class="sel"><option>자동 판별(파일 내용)</option><option>카카오페이지</option><option>네이버시리즈</option><option>예스24</option><option>직접 지정…</option></select>
+        <span class="note">※ 파일명에 플랫폼이 없으면 내용 지문으로 판별, 실패 시 수동 지정</span>
+      </div>
+      <div class="drop">📥 <b>파일을 여기에 끌어다 놓기</b> 또는 클릭하여 선택<br><span style="font-size:11px">xls·xlsx·csv·zip · 여러 개 동시 업로드</span></div>
+      <div style="margin-top:12px"><button class="btn">표준화 실행</button> <button class="btn ghost">거래처 등록 현황</button></div>
+    </div>
+    <div class="panel"><h2>이번달 업로드 이력</h2>
+      <table><tr><th>파일</th><th>플랫폼</th><th>기간</th><th>상태</th><th>비고</th></tr>
+      <tr><td>카카오페이지_2025-11_CP월정산내역.xlsx</td><td>카카오페이지</td><td>2025-11</td><td><span class="pill p-ok">완료</span></td><td>구양식 자동 인식</td></tr>
+      <tr><td>B2B_List_…(예스24 11월).xlsx</td><td>예스24 B2B</td><td>2025-11</td><td><span class="pill p-ok">완료</span></td><td>정산액 직접 제공</td></tr>
+      <tr><td>20251101.xlsx</td><td>네이버시리즈</td><td>2025-11</td><td><span class="pill p-navy">일별→월집계</span></td><td>일매출 대체</td></tr>
+      </table></div>`,
+
+  bydist: `<h1>유통사별 정산</h1><div class="sub">2025년 11월 · 유통사 31곳</div>
+    <div class="panel"><h2>유통사별 집계 <span class="tag">합계행 대사 PASS</span></h2>
+      <table><tr><th>유통사</th><th class="num">행</th><th class="num">매출</th><th class="num">정산액</th><th>정산근거</th></tr>
+      <tr><td>카카오페이지</td><td class="num">1,845</td><td class="num">71,271,955</td><td class="num">49,890,369</td><td><span class="pill p-mut">제공값</span></td></tr>
+      <tr><td>네이버시리즈</td><td class="num">6,168</td><td class="num">69,321,341</td><td class="num">48,524,939</td><td><span class="pill p-warn">계산[(합계−수수료)×0.7]</span></td></tr>
+      <tr><td>예스24</td><td class="num">2,080</td><td class="num">13,109,437</td><td class="num">9,176,606</td><td><span class="pill p-mut">제공값</span></td></tr>
+      <tr><td>리디</td><td class="num">1,281</td><td class="num">—</td><td class="num">3,754,120</td><td><span class="pill p-warn">계산[판매+취소]</span></td></tr>
+      </table></div>`,
+
+  byauthor: `<h1>작가별 정산</h1><div class="sub">2025년 11월 · 계약 정산률·선인세(MG)·세액 반영</div>
+    <div class="panel"><h2>작가별 지급 내역</h2>
+      <table><tr><th>작가</th><th>레이블</th><th class="num">정산액</th><th class="num">MG상계</th><th class="num">세액(3.3%)</th><th class="num">지급액</th><th>상태</th></tr>
+      <tr><td>김작가</td><td>매드햇</td><td class="num">145,000</td><td class="num">100,000</td><td class="num">4,785</td><td class="num"><b>40,215</b></td><td><span class="pill p-warn">MG 상계중</span></td></tr>
+      <tr><td>이작가</td><td>매드햇</td><td class="num">30,000</td><td class="num">0</td><td class="num">990</td><td class="num"><b>29,010</b></td><td><span class="pill p-ok">지급대상</span></td></tr>
+      <tr><td>박작가</td><td>젤리빈</td><td class="num">2,180,400</td><td class="num">0</td><td class="num">71,953</td><td class="num"><b>2,108,447</b></td><td><span class="pill p-ok">지급대상</span></td></tr>
+      <tr><td style="color:var(--warn)">최작가</td><td>매드햇</td><td class="num">512,000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill p-warn">계약 미확정</span></td></tr>
+      </table>
+      <div class="note">※ '계약 미확정' 작품은 정산률이 없어 명세서 발행 보류 — 계약관리에서 입력 필요</div></div>`,
+
+  unmatched: `<h1>미매칭 보드 · 매칭 연구소</h1><div class="sub">작품·작가가 자동 매칭되지 않은 항목 검토 (감사추적 기록)</div>
+    <div class="row">
+    <div class="panel"><h2>미매칭 항목 <span class="tag">266건 · 정산액 0.08%</span></h2>
+      <table><tr><th>제목</th><th>유통사</th><th class="num">정산액</th><th>AI 제안</th></tr>
+      <tr><td>회귀한 대장장이 (완결)</td><td>원스토리</td><td class="num">1,624,000</td><td><span class="pill p-navy">번들분리 제안</span></td></tr>
+      <tr><td>검은 반지 外</td><td>예스24</td><td class="num">157,000</td><td><span class="pill p-mut">단독작</span></td></tr>
+      </table>
+      <div style="margin-top:10px"><button class="btn ghost">전체 선택</button> <button class="btn">선택 승인</button></div></div>
+    <div class="panel"><h2>연구소 · 동명이작 자동 탐지 <span class="tag">116건</span></h2>
+      <table><tr><th>작품명</th><th>충돌</th><th>상태</th></tr>
+      <tr><td>부장님 왜 이러세요</td><td>주황연/리체북스 ↔ 창작집단뻘/BOOK19</td><td><span class="pill p-warn">검토중</span></td></tr>
+      <tr><td>장강삼협</td><td>레이블 누락(청어람)</td><td><span class="pill p-navy">규칙반영 대기</span></td></tr>
+      </table></div>
+    </div>`,
+
+  contract: `<h1>계약관리</h1><div class="sub">작품·작가·정산률·선인세 — 명세서 계산의 입력 (정식 버전)</div>
+    <div class="panel"><h2>작품별 계약 <span class="tag">일괄 등록(CSV)</span></h2>
+      <table><tr><th>작품</th><th>저자(공저)</th><th class="num">정산률</th><th>선인세(MG)</th><th>유효기간</th><th>카테고리</th></tr>
+      <tr><td>느바1</td><td>김작가</td><td class="num">70%</td><td>작가 100,000</td><td>2025-01~</td><td>웹소설/무협</td></tr>
+      <tr><td>느바3 (공저)</td><td>김작가 40% · 이작가 30%</td><td class="num">70%</td><td>—</td><td>2025-01~</td><td>웹소설/로맨스</td></tr>
+      <tr><td>느바2</td><td>이작가</td><td class="num">60%</td><td>작품 500,000</td><td>2025-01~</td><td>웹소설/판타지</td></tr>
+      <tr><td style="color:var(--warn)">신규작품 A</td><td>—</td><td class="num">—</td><td>—</td><td>—</td><td><span class="pill p-warn">입력 필요(노티)</span></td></tr>
+      </table>
+      <div style="margin-top:10px"><button class="btn">계약 추가</button> <button class="btn ghost">CSV 일괄 등록</button></div></div>`,
+
+  stmt: `<h1>작가 명세서</h1><div class="sub">2025년 11월 · 김작가 (매드햇 발행) — 미리보기</div>
+    <div class="stmt">
+      <div class="hd"><div class="t">2025년 11월 정산 명세서</div><div class="s">발행: 매드햇 · 작가: 김작가</div></div>
+      <div class="bd">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px">플랫폼별 매출 → 정산액(정산률 70%)</div>
+        <div class="kv"><span>네이버시리즈</span><span>70,000원</span></div>
+        <div class="kv"><span>카카오페이지</span><span>75,000원</span></div>
+        <div class="kv"><span>정산액 합계</span><span>145,000원</span></div>
+        <div class="kv"><span>선인세(MG) 상계</span><span>− 100,000원</span></div>
+        <div class="kv"><span>소득세(3%)·주민세(0.3%)</span><span>− 4,785원</span></div>
+        <div class="kv total"><span>지급액</span><span>40,215원</span></div>
+      </div>
+    </div>
+    <div style="margin-top:12px"><button class="btn">명세서 발행</button> <button class="btn ghost">xlsx</button> <button class="btn ghost">PDF</button></div>`,
+
+  confirm: `<h1>월 정산 확정</h1><div class="sub">확정하면 계산 입력이 동결(freeze)되고 수정이 잠깁니다.</div>
+    <div class="panel"><h2>2025년 11월 정산</h2>
+      <div class="steps">
+        <div class="step done"><span class="dot"></span>업로드</div>
+        <div class="step done"><span class="dot"></span>매칭</div>
+        <div class="step done"><span class="dot"></span>미매칭 검토</div>
+        <div class="step cur"><span class="dot"></span>정산 계산</div>
+        <div class="step"><span class="dot"></span>확정(잠금)</div>
+        <div class="step"><span class="dot"></span>발행</div>
+      </div>
+      <table style="margin-top:10px"><tr><th>항목</th><th class="num">값</th></tr>
+      <tr><td>정산 대상 작가</td><td class="num">128명</td></tr>
+      <tr><td>지급 총액</td><td class="num">1.08억원</td></tr>
+      <tr><td>계약 미확정(발행 보류)</td><td class="num" style="color:var(--warn)">3건</td></tr>
+      </table>
+      <div style="margin-top:12px"><button class="btn gold">🔒 이 달 정산 확정</button> <span class="note">확정 후 유통사 수정본이 오면 '정정 정산(delta)'으로 처리</span></div></div>`,
+
+  // ───────── 작가 ─────────
+  adash: `<h1>내 정산 현황</h1><div class="sub">김작가 · 계약 출판사 2곳(매드햇·리체북스) 통합</div>
+    <div class="cards">
+      <div class="card"><div class="k">이번달 지급 예정</div><div class="v">40,215원</div><div class="d warn">MG 상계중</div></div>
+      <div class="card"><div class="k">선인세(MG) 잔액</div><div class="v">0원</div><div class="d up">이번달 전액 상계</div></div>
+      <div class="card"><div class="k">누적 지급(2025)</div><div class="v">2.84백만</div><div class="d"></div></div>
+      <div class="card"><div class="k">계약 작품</div><div class="v">3편</div><div class="d">매드햇 2 · 리체북스 1</div></div>
+    </div>
+    <div class="panel"><h2>월별 지급 추이</h2>
+      <table><tr><th>정산월</th><th>발행 출판사</th><th class="num">정산액</th><th class="num">지급액</th><th>명세서</th></tr>
+      <tr><td>2025-11</td><td>매드햇</td><td class="num">145,000</td><td class="num">40,215</td><td><span class="pill p-navy">열람</span></td></tr>
+      <tr><td>2025-10</td><td>매드햇</td><td class="num">132,000</td><td class="num">127,644</td><td><span class="pill p-navy">열람</span></td></tr>
+      </table>
+      <div class="note">※ 계약 조건(정산률 등)은 표시되지 않으며 결과 금액만 열람됩니다.</div></div>`,
+
+  astmt: `<h1>월별 명세서</h1><div class="sub">김작가 · 2025년 11월</div>
+    <div class="stmt">
+      <div class="hd"><div class="t">2025년 11월 정산 명세서</div><div class="s">발행: 매드햇</div></div>
+      <div class="bd">
+        <div class="kv"><span>네이버시리즈</span><span>70,000원</span></div>
+        <div class="kv"><span>카카오페이지</span><span>75,000원</span></div>
+        <div class="kv"><span>정산액 합계</span><span>145,000원</span></div>
+        <div class="kv"><span>선인세 상계</span><span>− 100,000원</span></div>
+        <div class="kv"><span>원천징수(3.3%)</span><span>− 4,785원</span></div>
+        <div class="kv total"><span>실지급액</span><span>40,215원</span></div>
+      </div>
+    </div>
+    <div style="margin-top:12px"><button class="btn ghost">PDF 다운로드</button> <button class="btn ghost">이의 제기</button></div>`,
+
+  // ───────── 운영사 ─────────
+  tenants: `<h1>테넌트 관리</h1><div class="sub">하이브마인드 운영 · 전 테넌트 (접근은 감사 기록)</div>
+    <div class="panel"><h2>출판사·유통대행</h2>
+      <table><tr><th>테넌트</th><th>유형</th><th>플랜</th><th class="num">작가</th><th class="num">이번달 정산</th><th>상태</th></tr>
+      <tr><td>매드햇</td><td><span class="pill p-navy">출판사</span></td><td>정식</td><td class="num">128</td><td class="num">1.08억</td><td><span class="pill p-ok">active</span></td></tr>
+      <tr><td>청어람</td><td><span class="pill p-navy">출판사</span></td><td>라이트</td><td class="num">86</td><td class="num">1.06억</td><td><span class="pill p-ok">active</span></td></tr>
+      <tr><td>하이브마인드 유통대행</td><td><span class="pill p-warn">유통대행</span></td><td>—</td><td class="num">—</td><td class="num">11.8억</td><td><span class="pill p-ok">active</span></td></tr>
+      </table></div>`,
+
+  labels: `<h1>레이블 마스터</h1><div class="sub">레이블 → 출판사 매핑 = 정산 귀속의 단일 진실원천</div>
+    <div class="panel"><h2>레이블 매핑 <span class="tag">'출판사별 레이블명' 시드</span></h2>
+      <table><tr><th>레이블(정산서 표기)</th><th>정규화</th><th>귀속 출판사</th></tr>
+      <tr><td>매드햇 / 매드햇(주)</td><td>매드햇</td><td>매드햇</td></tr>
+      <tr><td>젤리빈</td><td>젤리빈</td><td>매드햇</td></tr>
+      <tr><td>청어람 / 청어람미디어</td><td>청어람</td><td>청어람</td></tr>
+      <tr><td style="color:var(--warn)">리체북스</td><td>리체북스</td><td><span class="pill p-warn">미등록</span></td></tr>
+      </table>
+      <div class="note">※ 유통대행이 취합한 파일은 이 매핑으로 출판사별로 자동 귀속·분배됩니다(파일 소유 ≠ 정산 귀속).</div></div>`,
+
+  norm: `<h1>매칭 마스터 (규칙)</h1><div class="sub">전역 = 정규화 규칙만 공유 · 실제 작품-작가 매핑은 테넌트별 격리(프라이버시)</div>
+    <div class="panel"><h2>전역 정규화 규칙</h2>
+      <table><tr><th>종류</th><th>규칙</th><th>비고</th></tr>
+      <tr><td>제목 정규화</td><td>[단행본]·[e북] 태그 제거, 권수 통합</td><td>E1</td></tr>
+      <tr><td>작가 정규화</td><td>한자·영문 병기 통합(필환(筆煥)=필환)</td><td>E2</td></tr>
+      </table>
+      <div class="note">※ 작품-작가-레이블 실매핑은 각 출판사 테넌트에만 저장 — 경쟁 출판사 간 데이터 비노출.</div></div>`,
+
+  subs: `<h1>구독 관리</h1><div class="sub">2-track 상품 · 라이트(취합) / 정식(계약·발행)</div>
+    <div class="panel"><h2>구독 현황</h2>
+      <table><tr><th>출판사</th><th>플랜</th><th>월 구독료</th><th>갱신일</th></tr>
+      <tr><td>매드햇</td><td><span class="pill p-navy">정식</span></td><td>—</td><td>2026-01-01</td></tr>
+      <tr><td>청어람</td><td><span class="pill p-mut">라이트</span></td><td>—</td><td>2026-01-01</td></tr>
+      </table></div>`,
+};
+
+let role = 'pub';
+function switchRole(r){ role=r; renderNav(); const first=NAV[r][0][1]; show(first); }
+function renderNav(){
+  const grpName = {pub:'출판사 · 매드햇', author:'작가 · 김작가', op:'운영사 · 하이브마인드'}[role];
+  let h = `<div class="grp">${grpName}</div>`;
+  NAV[role].forEach(([label,id,ic],i)=>{ h += `<a data-id="${id}" onclick="show('${id}')"><span class="ic">${ic}</span>${label}</a>`; });
+  document.getElementById('side').innerHTML = h;
+}
+function show(id){
+  document.getElementById('main').innerHTML = SCREENS[id] || '<h1>준비중</h1>';
+  document.querySelectorAll('.side a').forEach(a=>a.classList.toggle('on', a.dataset.id===id));
+}
+renderNav(); show('dash');
+</script>
+</body>
+</html>

@@ -1,0 +1,6166 @@
+
+<html>
+<head>
+<title>인터넷 e-Book 판매통계 리포트</title>
+<meta http-equiv=Content-Type content='text/html; charset=euc-kr'>
+<style type=text/css>
+<!--
+a:link          { color: #000000; text-decoration: none }
+a:active        { color: #000000; text-decoration: none }
+a:visited       { color: #000000; text-decoration: none }
+a:hover         { color: #66CCFF; text-decoration: none}
+td              { font-family: "굴림"; font-size: 9pt;}
+A.right:link {	COLOR: black; FONT-SIZE: 9pt; TEXT-DECORATION: none; }
+A.right:visited {	COLOR: black; FONT-SIZE: 9pt; TEXT-DECORATION: none; }
+A.right:active {	COLOR: black; FONT-SIZE: 9pt; TEXT-DECORATION: none; }
+A.right:hover {	COLOR: blue; FONT-SIZE: 8pt; TEXT-DECORATION: none;}
+
+.border {border:1px solid #FF9933;text-align:center;}
+.borderBottom {border-bottom:1px solid #666666;text-align:center;}
+
+.bg{background:#A4C639;height:23px;text-align:center;}
+.center {text-align:center; border:1px solid #FF9933;text-align:center;}
+.right {text-align:right; border:1px solid #FF9933;text-align:center;}
+.width {width:900px;}
+#mainTable3 {text-align:center;width:930px;}
+#mainTable3 .date{background:gray; height:23px;color:#ffffff;text-align:center;}
+.css {display:none;}
+.paddLeft{padding-left:20px;}
+.rightPadd {text-align:right;padding-right:20px;}
+.right {text-align:right;}
+.td1 {width:40%;}
+.td2 {width:20%;}
+.td3 {width:20%;}
+.td4 {width:20%;}
+.report {height:25px;background:#ededed;}
+#reportTable tr td{border:1px solid #ddd;}
+#reportFoot {text-align:center;border-bottom:1px solid #000;}
+-->
+</style>
+</head>
+
+<body bgcolor=#FFFFFF>
+<div id="mainDiv">
+	<table id="mainTable3">
+		<colgroup>
+			<col width="10%"/>
+			<col width="10%"/>
+			<col width="10%"/>
+			<col />
+			<col width="18%"/>
+			<col width="6%"/>
+			<col width="6%"/>
+			<col width="7%"/>
+			<col width="9%"/>
+			<col width="8%"/>
+		</colgroup>
+		<thead>
+		<tr>
+			<th class="bg">서비스일</th>
+			<th class="bg">분류명</th>
+			<th class="bg">소분류</th>
+			<th class="bg">제목</th>
+			<th class="bg">저자</th>
+			<th class="bg">가격</th>
+			<th class="bg">개수</th>
+			<th class="bg">합계</th>
+			<th class="bg">소득액</th>
+			<th class="bg">번호</th>
+		</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">신드롬</td>
+				<td class="border">[BL] 너로 기울다 1</td>
+				<td class="border">고기조아</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D250550</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">신드롬</td>
+				<td class="border">[BL] 너로 기울다 2 (완결)</td>
+				<td class="border">고기조아</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D250551</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드필로우</td>
+				<td class="border">[BL] 다방, 유정 (외전)</td>
+				<td class="border">낯선잠</td>
+				<td class="right">1,600.0</td>
+				<td class="center">1</td>
+				<td class="right">1,600.0</td>
+				<td class='right'>1,120.0</td>
+
+				<td class="right">D197192</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드필로우</td>
+				<td class="border">[BL] 다방, 유정 1권</td>
+				<td class="border">낯선잠</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">D197187</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드필로우</td>
+				<td class="border">[BL] 다방, 유정 2권</td>
+				<td class="border">낯선잠</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">D197188</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드필로우</td>
+				<td class="border">[BL] 다방, 유정 3권</td>
+				<td class="border">낯선잠</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">D197189</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드필로우</td>
+				<td class="border">[BL] 다방, 유정 4권</td>
+				<td class="border">낯선잠</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">D197190</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드필로우</td>
+				<td class="border">[BL] 다방, 유정 5권 (완결)</td>
+				<td class="border">낯선잠</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">D197191</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20211111</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페로체</td>
+				<td class="border">[BL] 보모가 사랑할 때 외전</td>
+				<td class="border">모리미</td>
+				<td class="right">500.0</td>
+				<td class="center">1</td>
+				<td class="right">500.0</td>
+				<td class='right'>350.0</td>
+
+				<td class="right">N012019</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">신드롬</td>
+				<td class="border">[BL] 부서질 때까지</td>
+				<td class="border">조앤</td>
+				<td class="right">2,000.0</td>
+				<td class="center">1</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D235719</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페일블루</td>
+				<td class="border">[BL] 샤워 중 휴대용 xx</td>
+				<td class="border">청정한마음</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D233257</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">[BL] 소꿉친구한테 고백하고 튀었다가 따먹혔다</td>
+				<td class="border">몬몬</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D236434</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250829</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">[BL] 아버지가 보는 앞에서 조폭에게</td>
+				<td class="border">밍go</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D081455</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260131</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">블래이</td>
+				<td class="border">[BL] 어린 채무자에게 홀린 조폭 아저씨 (외전)</td>
+				<td class="border">오뮤악</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D216448</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20190309</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도서출판 쉼표</td>
+				<td class="border">[BL] 엉덩이주의보</td>
+				<td class="border">YUN짱</td>
+				<td class="right">4,500.0</td>
+				<td class="center">1</td>
+				<td class="right">4,500.0</td>
+				<td class='right'>3,150.0</td>
+
+				<td class="right">E269188</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">신드롬</td>
+				<td class="border">[BL] 연리지 (외전)</td>
+				<td class="border">야차</td>
+				<td class="right">1,400.0</td>
+				<td class="center">1</td>
+				<td class="right">1,400.0</td>
+				<td class='right'>980.0</td>
+
+				<td class="right">D241611</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">신드롬</td>
+				<td class="border">[BL] 연리지 1권</td>
+				<td class="border">야차</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D241609</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">신드롬</td>
+				<td class="border">[BL] 연리지 2권 (완결)</td>
+				<td class="border">야차</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D241610</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">블래이</td>
+				<td class="border">[BL] 오지랖이 나를 찌른다</td>
+				<td class="border">해다음</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D225400</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">[BL] 저기요, 이 엉덩이 뭐예요</td>
+				<td class="border">오디밭농장주</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D233226</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20241204</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페일블루</td>
+				<td class="border">[BL] 조폭 아저씨는 애기한테 관심이 없다</td>
+				<td class="border">초코치치</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">k431034</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페일블루</td>
+				<td class="border">[BL] 조폭 아저씨도 사랑을 한다 (외전)</td>
+				<td class="border">별미</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right"></td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">유즈비</td>
+				<td class="border">[BL] 포춘리스(Fortuneless) 1권</td>
+				<td class="border">한윤</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D234061</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페일블루</td>
+				<td class="border">[BL] 품 안의 자식</td>
+				<td class="border">다보시네</td>
+				<td class="right">1,800.0</td>
+				<td class="center">1</td>
+				<td class="right">1,800.0</td>
+				<td class='right'>1,260.0</td>
+
+				<td class="right">D233258</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20221021</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도서출판 쉼표</td>
+				<td class="border">가르쳐 줘 1권</td>
+				<td class="border">이리안</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">N200503</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20221021</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도서출판 쉼표</td>
+				<td class="border">가르쳐 줘 2권 (완결)</td>
+				<td class="border">이리안</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">N200504</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260117</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">가임기 부부 (개정판) (외전)</td>
+				<td class="border">금단</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D210545</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">인첸티드</td>
+				<td class="border">가짜 공녀에게 복수를 1</td>
+				<td class="border">KHana</td>
+				<td class="right">0.0</td>
+				<td class="center">1</td>
+				<td class="right">0.0</td>
+				<td class='right'>0.0</td>
+
+				<td class="right">k291784</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">감금 로맨스는 처음이라 (삽화본)</td>
+				<td class="border">설이영</td>
+				<td class="right">3,300.0</td>
+				<td class="center">14</td>
+				<td class="right">46,200.0</td>
+				<td class='right'>32,340.0</td>
+
+				<td class="right">D229921</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260131</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">감금해 주세요, 아저씨 (삽화본)</td>
+				<td class="border">오예다</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D216444</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260131</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">감금해 주세요, 아저씨 (외전)</td>
+				<td class="border">오예다</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D216445</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230106</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">감히 도망치다 1권</td>
+				<td class="border">로즈페이퍼</td>
+				<td class="right">2,900.0</td>
+				<td class="center">2</td>
+				<td class="right">5,800.0</td>
+				<td class='right'>4,060.0</td>
+
+				<td class="right">N232234</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230106</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">감히 도망치다 2권</td>
+				<td class="border">로즈페이퍼</td>
+				<td class="right">2,900.0</td>
+				<td class="center">1</td>
+				<td class="right">2,900.0</td>
+				<td class='right'>2,030.0</td>
+
+				<td class="right">N232235</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230106</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">감히 도망치다 3권 (완결)</td>
+				<td class="border">로즈페이퍼</td>
+				<td class="right">2,900.0</td>
+				<td class="center">1</td>
+				<td class="right">2,900.0</td>
+				<td class='right'>2,030.0</td>
+
+				<td class="right">N232236</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">갑자기 찾아온 불청객</td>
+				<td class="border">한별찌</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240539</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260220</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레토북스</td>
+				<td class="border">개인적인 스캔들 1권</td>
+				<td class="border">클람</td>
+				<td class="right">3,100.0</td>
+				<td class="center">1</td>
+				<td class="right">3,100.0</td>
+				<td class='right'>2,170.0</td>
+
+				<td class="right">D225470</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260220</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레토북스</td>
+				<td class="border">개인적인 스캔들 2권</td>
+				<td class="border">클람</td>
+				<td class="right">3,100.0</td>
+				<td class="center">1</td>
+				<td class="right">3,100.0</td>
+				<td class='right'>2,170.0</td>
+
+				<td class="right">D225471</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260220</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레토북스</td>
+				<td class="border">개인적인 스캔들 3권 (완결)</td>
+				<td class="border">클람</td>
+				<td class="right">3,100.0</td>
+				<td class="center">1</td>
+				<td class="right">3,100.0</td>
+				<td class='right'>2,170.0</td>
+
+				<td class="right">D225472</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">첫문장</td>
+				<td class="border">거래는 취소 못 해</td>
+				<td class="border">잘될사람</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D137977</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">겨울의 석류 1권</td>
+				<td class="border">권세연</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D244296</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">겨울의 석류 2권</td>
+				<td class="border">권세연</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D244297</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">겨울의 석류 3권</td>
+				<td class="border">권세연</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D244298</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">겨울의 석류 4권 (완결)</td>
+				<td class="border">권세연</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D244299</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로제토</td>
+				<td class="border">결혼을 원해? 1권</td>
+				<td class="border">무하</td>
+				<td class="right">3,100.0</td>
+				<td class="center">1</td>
+				<td class="right">3,100.0</td>
+				<td class='right'>2,170.0</td>
+
+				<td class="right">D249867</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로제토</td>
+				<td class="border">결혼을 원해? 2권 (완결)</td>
+				<td class="border">무하</td>
+				<td class="right">3,100.0</td>
+				<td class="center">1</td>
+				<td class="right">3,100.0</td>
+				<td class='right'>2,170.0</td>
+
+				<td class="right">D249868</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20210526</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">하트퀸</td>
+				<td class="border">계략적, 파혼 1권</td>
+				<td class="border">송재린</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">E780914</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20210526</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">하트퀸</td>
+				<td class="border">계략적, 파혼 2권 (완결)</td>
+				<td class="border">송재린</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">E780915</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레토북스</td>
+				<td class="border">계약 결혼이 망할 것 같다 1권</td>
+				<td class="border">테리은</td>
+				<td class="right">3,700.0</td>
+				<td class="center">3</td>
+				<td class="right">11,100.0</td>
+				<td class='right'>7,770.0</td>
+
+				<td class="right">D241268</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레토북스</td>
+				<td class="border">계약 결혼이 망할 것 같다 2권</td>
+				<td class="border">테리은</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D241269</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레토북스</td>
+				<td class="border">계약 결혼이 망할 것 같다 3권 (완결)</td>
+				<td class="border">테리은</td>
+				<td class="right">3,700.0</td>
+				<td class="center">3</td>
+				<td class="right">11,100.0</td>
+				<td class='right'>7,770.0</td>
+
+				<td class="right">D241270</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260113</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">계약 남편의 능욕법</td>
+				<td class="border">옥슈슈</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D203015</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">계약 남편의 능욕법 (외전)</td>
+				<td class="border">옥슈슈</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240502</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20220627</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">계획된 아내 (외전)</td>
+				<td class="border">아슈크림</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">N114380</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20221223</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">계획된 아내 (특별 외전)</td>
+				<td class="border">아슈크림</td>
+				<td class="right">900.0</td>
+				<td class="center">1</td>
+				<td class="right">900.0</td>
+				<td class='right'>630.0</td>
+
+				<td class="right">N220609</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20220627</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">계획된 아내 1권</td>
+				<td class="border">아슈크림</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">N114378</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20220627</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">계획된 아내 2권 (완결)</td>
+				<td class="border">아슈크림</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">N114379</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">곱게 키운 어린 신부 (외전)</td>
+				<td class="border">눈물점</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D250079</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230426</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">누디나잇</td>
+				<td class="border">관계자 외 삽입 금지</td>
+				<td class="border">타잔마누라</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">k075409</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">괴롭혀주세요, 주인님</td>
+				<td class="border">우윳빛탕후루</td>
+				<td class="right">1,300.0</td>
+				<td class="center">1</td>
+				<td class="right">1,300.0</td>
+				<td class='right'>910.0</td>
+
+				<td class="right">D224291</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">괴이를 소환했을 뿐인데 암컷이 되어버림</td>
+				<td class="border">몽일백</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D240503</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260220</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">교수님의 암캐 조련 수업</td>
+				<td class="border">물레방앗간</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D224343</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260116</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">그 비서를 혼내는 법</td>
+				<td class="border">숨숨</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D197508</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">그 비서의 남다른 취향 1권</td>
+				<td class="border">리버 진</td>
+				<td class="right">4,000.0</td>
+				<td class="center">4</td>
+				<td class="right">16,000.0</td>
+				<td class='right'>11,200.0</td>
+
+				<td class="right">D225430</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">그 비서의 남다른 취향 2권 (완결)</td>
+				<td class="border">리버 진</td>
+				<td class="right">4,000.0</td>
+				<td class="center">2</td>
+				<td class="right">8,000.0</td>
+				<td class='right'>5,600.0</td>
+
+				<td class="right">D225431</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260107</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도파민</td>
+				<td class="border">그 여자의 방에는 세 남자가 있다</td>
+				<td class="border">드문</td>
+				<td class="right">3,300.0</td>
+				<td class="center">1</td>
+				<td class="right">3,300.0</td>
+				<td class='right'>2,310.0</td>
+
+				<td class="right">D187096</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260107</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도파민</td>
+				<td class="border">그 여자의 방에는 세 남자가 있다 (외전)</td>
+				<td class="border">드문</td>
+				<td class="right">800.0</td>
+				<td class="center">1</td>
+				<td class="right">800.0</td>
+				<td class='right'>560.0</td>
+
+				<td class="right">D187097</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">기간제 부부 1</td>
+				<td class="border">찐구르미</td>
+				<td class="right">3,000.0</td>
+				<td class="center">5</td>
+				<td class="right">15,000.0</td>
+				<td class='right'>10,500.0</td>
+
+				<td class="right">D250547</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">기간제 부부 2 (완결)</td>
+				<td class="border">찐구르미</td>
+				<td class="right">3,000.0</td>
+				<td class="center">4</td>
+				<td class="right">12,000.0</td>
+				<td class='right'>8,400.0</td>
+
+				<td class="right">D250548</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250514</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">기처, 아내를 버리다 1권</td>
+				<td class="border">박록주</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D011897</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250514</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">기처, 아내를 버리다 2권</td>
+				<td class="border">박록주</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D011898</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250514</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">기처, 아내를 버리다 3권 (완결)</td>
+				<td class="border">박록주</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D011899</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">나쁜 아저씨 1권</td>
+				<td class="border">국문과김수석</td>
+				<td class="right">3,100.0</td>
+				<td class="center">1</td>
+				<td class="right">3,100.0</td>
+				<td class='right'>2,170.0</td>
+
+				<td class="right">D228005</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">나쁜 아저씨 2권 (완결)</td>
+				<td class="border">국문과김수석</td>
+				<td class="right">3,100.0</td>
+				<td class="center">2</td>
+				<td class="right">6,200.0</td>
+				<td class='right'>4,340.0</td>
+
+				<td class="right">D228006</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">나의 절륜한 의붓오빠</td>
+				<td class="border">김누추</td>
+				<td class="right">1,100.0</td>
+				<td class="center">2</td>
+				<td class="right">2,200.0</td>
+				<td class='right'>1,540.0</td>
+
+				<td class="right">D240514</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">난교 브라더 샤워</td>
+				<td class="border">옥슈슈</td>
+				<td class="right">1,200.0</td>
+				<td class="center">2</td>
+				<td class="right">2,400.0</td>
+				<td class='right'>1,680.0</td>
+
+				<td class="right">D224281</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230303</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">해피북스투유</td>
+				<td class="border">난잡하고 불순한</td>
+				<td class="border">얀yan</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">k017804</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251229</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">남의 남편 2권 (완결)</td>
+				<td class="border">차가울(미캉)</td>
+				<td class="right">3,900.0</td>
+				<td class="center">1</td>
+				<td class="right">3,900.0</td>
+				<td class='right'>2,730.0</td>
+
+				<td class="right">D187105</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">남친 아빠한테 당하는 절정 레시피 (외전1)</td>
+				<td class="border">혼밥</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D236439</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260120</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">남편 무서운 줄 모르고 (삽화본)</td>
+				<td class="border">송태린</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D207964</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">남편 엿 먹이기 (삽화본)</td>
+				<td class="border">도방울</td>
+				<td class="right">2,500.0</td>
+				<td class="center">10</td>
+				<td class="right">25,000.0</td>
+				<td class='right'>17,500.0</td>
+
+				<td class="right">D229916</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260116</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">남편 친구들의 공용 제수씨</td>
+				<td class="border">킷씨</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D197507</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">남편을 죽인 자와 XX</td>
+				<td class="border">살떡장수</td>
+				<td class="right">1,400.0</td>
+				<td class="center">1</td>
+				<td class="right">1,400.0</td>
+				<td class='right'>980.0</td>
+
+				<td class="right">D240513</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">밤새던</td>
+				<td class="border">남편의 첫사랑 1권</td>
+				<td class="border">이채원</td>
+				<td class="right">3,300.0</td>
+				<td class="center">12</td>
+				<td class="right">39,600.0</td>
+				<td class='right'>27,720.0</td>
+
+				<td class="right">D226738</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">밤새던</td>
+				<td class="border">남편의 첫사랑 2권 (완결)</td>
+				<td class="border">이채원</td>
+				<td class="right">3,300.0</td>
+				<td class="center">11</td>
+				<td class="right">36,300.0</td>
+				<td class='right'>25,410.0</td>
+
+				<td class="right">D226739</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">남편이 보는 앞에서 난교 파티</td>
+				<td class="border">배란기사무실</td>
+				<td class="right">1,000.0</td>
+				<td class="center">5</td>
+				<td class="right">5,000.0</td>
+				<td class='right'>3,500.0</td>
+
+				<td class="right">D240515</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">남편이 일란성 쌍둥이라 생긴 일</td>
+				<td class="border">갸굴</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D224292</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260113</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">남편이 전 남친을 질투해요; 1권</td>
+				<td class="border">눈물점</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D203002</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">남편이 전 남친을 질투해요; 2권 (완결)</td>
+				<td class="border">눈물점</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D236441</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240824</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">납치범의 정액 변기 1권</td>
+				<td class="border">진리타</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">k381538</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240824</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">납치범의 정액 변기 2권 (완결)</td>
+				<td class="border">진리타</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">k381539</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230315</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">슈미즈</td>
+				<td class="border">내 남자가 된 친구 오빠</td>
+				<td class="border">김유란</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">k022508</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260320</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">슈미즈</td>
+				<td class="border">내 서방은 누구입니까</td>
+				<td class="border">김유란</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D244964</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">내 이름을 부른 공작님</td>
+				<td class="border">에비아문</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D240543</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로제토</td>
+				<td class="border">내 침대에 남편이 많아졌다 1권</td>
+				<td class="border">하얀도토리</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">D249935</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250822</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">너에게 매달려 1권</td>
+				<td class="border">아일라</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D080759</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">넣어주세요 아빠</td>
+				<td class="border">필로우</td>
+				<td class="right">1,000.0</td>
+				<td class="center">4</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D240538</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드클립</td>
+				<td class="border">노예 경매장에 버려진 악녀에 빙의했다 1</td>
+				<td class="border">세크메트</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D234977</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드클립</td>
+				<td class="border">노예 경매장에 버려진 악녀에 빙의했다 2</td>
+				<td class="border">세크메트</td>
+				<td class="right">1,100.0</td>
+				<td class="center">3</td>
+				<td class="right">3,300.0</td>
+				<td class='right'>2,310.0</td>
+
+				<td class="right">D234978</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260226</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">늑대 인간의 애완 암컷</td>
+				<td class="border">핫썸머</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D224349</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">늑대님이 시키는 거라면 무엇이든 1권</td>
+				<td class="border">디써텀</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D238279</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">늑대님이 시키는 거라면 무엇이든 2권 (완결)</td>
+				<td class="border">디써텀</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D238280</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260129</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">능욕 샵 : 무슨 짓이든 이루어Dream 1권. 납치 편</td>
+				<td class="border">능욕해줌</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D203067</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260129</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">능욕 샵 : 무슨 짓이든 이루어Dream 2권. 공중변소 편</td>
+				<td class="border">능욕해줌</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D203068</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">능욕 샵 : 무슨 짓이든 이루어Dream 3권. 면접 편</td>
+				<td class="border">능욕해줌</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D224314</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">능욕 샵 : 무슨 짓이든 이루어Dream 4권. 전철 편</td>
+				<td class="border">능욕해줌</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D224315</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">능욕 샵 : 무슨 짓이든 이루어Dream 5권. 클럽 편</td>
+				<td class="border">능욕해줌</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D240565</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260326</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">능욕 샵 : 무슨 짓이든 이루어Dream 6권. 로판 편</td>
+				<td class="border">능욕해줌</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240566</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260202</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">밤새던</td>
+				<td class="border">다른 여자는 없어(19세 개정판) 1권</td>
+				<td class="border">이채원</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D071801</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260202</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">밤새던</td>
+				<td class="border">다른 여자는 없어(19세 개정판) 2권 (완결)</td>
+				<td class="border">이채원</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D071802</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">다정한 나의 오해에게 1권</td>
+				<td class="border">폴리타</td>
+				<td class="right">2,700.0</td>
+				<td class="center">1</td>
+				<td class="right">2,700.0</td>
+				<td class='right'>1,890.0</td>
+
+				<td class="right">D233243</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">다정한 나의 오해에게 2권 (완결)</td>
+				<td class="border">폴리타</td>
+				<td class="right">2,700.0</td>
+				<td class="center">1</td>
+				<td class="right">2,700.0</td>
+				<td class='right'>1,890.0</td>
+
+				<td class="right">D233244</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20210616</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">마롱</td>
+				<td class="border">다정한 빌런 - 외전</td>
+				<td class="border">피오렌티</td>
+				<td class="right">1,600.0</td>
+				<td class="center">2</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">E819336</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20210616</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">마롱</td>
+				<td class="border">다정한 빌런 1권</td>
+				<td class="border">피오렌티</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">E819331</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20210616</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">마롱</td>
+				<td class="border">다정한 빌런 2권</td>
+				<td class="border">피오렌티</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">E819332</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20210616</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">마롱</td>
+				<td class="border">다정한 빌런 3권</td>
+				<td class="border">피오렌티</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">E819333</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20210616</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">마롱</td>
+				<td class="border">다정한 빌런 4권</td>
+				<td class="border">피오렌티</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">E819334</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20210616</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">마롱</td>
+				<td class="border">다정한 빌런 5권 (완결)</td>
+				<td class="border">피오렌티</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">E819335</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20211104</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">마롱</td>
+				<td class="border">다정한 빌런 특별 외전</td>
+				<td class="border">피오렌티</td>
+				<td class="right">2,200.0</td>
+				<td class="center">1</td>
+				<td class="right">2,200.0</td>
+				<td class='right'>1,540.0</td>
+
+				<td class="right">N012185</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251029</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">다정한 친구 오빠</td>
+				<td class="border">데일리</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D157991</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">달래나 보지</td>
+				<td class="border">나무딸기</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D224331</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260323</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">사막여우</td>
+				<td class="border">당신의 죽음을 찬미하며 1권</td>
+				<td class="border">청연우</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">D248215</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260323</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">사막여우</td>
+				<td class="border">당신의 죽음을 찬미하며 3권 (완결)</td>
+				<td class="border">청연우</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">D248217</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240621</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">닿지 못한 사이 1권</td>
+				<td class="border">차오름(죠니)</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">k321444</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">대공님의 야설 작가</td>
+				<td class="border">악취</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D240481</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">대표님 책상 위에서</td>
+				<td class="border">리첼리토</td>
+				<td class="right">2,800.0</td>
+				<td class="center">1</td>
+				<td class="right">2,800.0</td>
+				<td class='right'>1,960.0</td>
+
+				<td class="right">D225435</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240710</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">대표님의 그 취향</td>
+				<td class="border">찐소흔</td>
+				<td class="right">2,000.0</td>
+				<td class="center">1</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">k334677</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240710</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">대표님의 그 취향 (외전)</td>
+				<td class="border">찐소흔</td>
+				<td class="right">1,400.0</td>
+				<td class="center">1</td>
+				<td class="right">1,400.0</td>
+				<td class='right'>980.0</td>
+
+				<td class="right">k334678</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260116</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">대표님이 내게 집착한다</td>
+				<td class="border">숨숨</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D197495</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250929</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">대학 후배가 잠든 사이에</td>
+				<td class="border">수면박사</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D113226</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251014</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">더티 레코딩 (삽화본)</td>
+				<td class="border">얌미</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D145023</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250822</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">더티 웨딩 1권</td>
+				<td class="border">리버 진</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D080750</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250822</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">더티 웨딩 2권</td>
+				<td class="border">리버 진</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D080751</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250822</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">더티 웨딩 3권 (완결)</td>
+				<td class="border">리버 진</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D080752</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260110</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">도둑질 방지 구멍 교육</td>
+				<td class="border">셔벗</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D196537</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">동생 친구와 어쩌다</td>
+				<td class="border">갸굴</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D236432</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251221</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">하트퀸</td>
+				<td class="border">뒤바뀐 남편 1권</td>
+				<td class="border">리키</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D107173</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251221</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">하트퀸</td>
+				<td class="border">뒤바뀐 남편 2권 (완결)</td>
+				<td class="border">리키</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D107174</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">라푼젤을 위하여 (외전)</td>
+				<td class="border">고기조아</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D250553</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">롤플레이 : 경매</td>
+				<td class="border">간주</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D113206</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">마님과 꽃순이의 남편</td>
+				<td class="border">한달식비</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D233231</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240202</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">마지막 스캔들 1권</td>
+				<td class="border">안해원</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">k212411</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240202</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">마지막 스캔들 2권</td>
+				<td class="border">안해원</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">k212412</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230504</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">만져도 돼? (외전증보판)</td>
+				<td class="border">차가울(미캉)</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">k079465</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251017</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">망가뜨려서라도</td>
+				<td class="border">희랑</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D151147</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250822</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">망한 사랑 1권</td>
+				<td class="border">정은동</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">D080753</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250822</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">망한 사랑 2권</td>
+				<td class="border">정은동</td>
+				<td class="right">3,400.0</td>
+				<td class="center">2</td>
+				<td class="right">6,800.0</td>
+				<td class='right'>4,760.0</td>
+
+				<td class="right">D080754</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250822</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">망한 사랑 3권 (완결)</td>
+				<td class="border">정은동</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">D080755</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230614</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">먹어봐요, 김대리 (외전 삽화본)</td>
+				<td class="border">오대리</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">k104170</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250620</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">며느리는 시아버지에게 야외XX 당합니다만</td>
+				<td class="border">라일락곰젤리</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D025216</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">모략 혼인 1권</td>
+				<td class="border">박록주</td>
+				<td class="right">2,500.0</td>
+				<td class="center">2</td>
+				<td class="right">5,000.0</td>
+				<td class='right'>3,500.0</td>
+
+				<td class="right">D229917</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">모략 혼인 2권 (완결)</td>
+				<td class="border">박록주</td>
+				<td class="right">2,500.0</td>
+				<td class="center">2</td>
+				<td class="right">5,000.0</td>
+				<td class='right'>3,500.0</td>
+
+				<td class="right">D229918</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260223</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">사막여우</td>
+				<td class="border">모르는 아내 1권</td>
+				<td class="border">소낙연</td>
+				<td class="right">3,100.0</td>
+				<td class="center">5</td>
+				<td class="right">15,500.0</td>
+				<td class='right'>10,850.0</td>
+
+				<td class="right">D221965</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260223</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">사막여우</td>
+				<td class="border">모르는 아내 2권</td>
+				<td class="border">소낙연</td>
+				<td class="right">3,100.0</td>
+				<td class="center">5</td>
+				<td class="right">15,500.0</td>
+				<td class='right'>10,850.0</td>
+
+				<td class="right">D221966</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260223</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">사막여우</td>
+				<td class="border">모르는 아내 3권 (완결)</td>
+				<td class="border">소낙연</td>
+				<td class="right">3,100.0</td>
+				<td class="center">6</td>
+				<td class="right">18,600.0</td>
+				<td class='right'>13,020.0</td>
+
+				<td class="right">D221967</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260331</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로즈벨벳</td>
+				<td class="border">몸정맘정</td>
+				<td class="border">조은조</td>
+				<td class="right">3,600.0</td>
+				<td class="center">1</td>
+				<td class="right">3,600.0</td>
+				<td class='right'>2,520.0</td>
+
+				<td class="right">D237165</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20191115</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">해피북스투유</td>
+				<td class="border">몸종</td>
+				<td class="border">금나루</td>
+				<td class="right">3,300.0</td>
+				<td class="center">1</td>
+				<td class="right">3,300.0</td>
+				<td class='right'>2,310.0</td>
+
+				<td class="right">E422447</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20191122</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">무례한 키스</td>
+				<td class="border">정희경</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">191002032</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250320</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">무자비한 신에게 바쳐지다</td>
+				<td class="border">필로우</td>
+				<td class="right">2,700.0</td>
+				<td class="center">1</td>
+				<td class="right">2,700.0</td>
+				<td class='right'>1,890.0</td>
+
+				<td class="right">B027714</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">무제한 인형 뽑기하고 가세요 1권</td>
+				<td class="border">용2용2</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D233232</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">무제한 인형 뽑기하고 가세요 2권 (완결)</td>
+				<td class="border">용2용2</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D233233</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">피오렛</td>
+				<td class="border">미인흉맹 14권 (완결)</td>
+				<td class="border">목수유</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D248410</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">피오렛</td>
+				<td class="border">미인흉맹 1권</td>
+				<td class="border">목수유</td>
+				<td class="right">0.0</td>
+				<td class="center">1</td>
+				<td class="right">0.0</td>
+				<td class='right'>0.0</td>
+
+				<td class="right">D248397</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">피오렛</td>
+				<td class="border">미인흉맹 2권</td>
+				<td class="border">목수유</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D248398</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">피오렛</td>
+				<td class="border">미인흉맹 3권</td>
+				<td class="border">목수유</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D248399</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">피오렛</td>
+				<td class="border">미인흉맹 4권</td>
+				<td class="border">목수유</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D248400</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">피오렛</td>
+				<td class="border">미인흉맹 5권</td>
+				<td class="border">목수유</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D248401</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">밀크 플레이(삽화본)</td>
+				<td class="border">문정민</td>
+				<td class="right">2,500.0</td>
+				<td class="center">55</td>
+				<td class="right">137,500.0</td>
+				<td class='right'>96,250.0</td>
+
+				<td class="right">D243654</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">발정난 개들을 위한 난교타운 9</td>
+				<td class="border">강초초</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240463</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240216</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">밤새는 줄 모르고 1</td>
+				<td class="border">로즈페이퍼</td>
+				<td class="right">2,800.0</td>
+				<td class="center">1</td>
+				<td class="right">2,800.0</td>
+				<td class='right'>1,960.0</td>
+
+				<td class="right">k248818</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260323</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">시계토끼</td>
+				<td class="border">백사의 연인 1권</td>
+				<td class="border">한소요</td>
+				<td class="right">2,000.0</td>
+				<td class="center">1</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D198896</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260323</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">시계토끼</td>
+				<td class="border">백사의 연인 2권 (완결)</td>
+				<td class="border">한소요</td>
+				<td class="right">2,000.0</td>
+				<td class="center">2</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D198897</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260124</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">뱀 굴에 머리를 집어넣었을 때</td>
+				<td class="border">세크메트</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D216011</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260110</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">뱀 삼촌과 은밀하게</td>
+				<td class="border">과줄</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D197068</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260116</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">뱀신부</td>
+				<td class="border">강차윤</td>
+				<td class="right">1,300.0</td>
+				<td class="center">1</td>
+				<td class="right">1,300.0</td>
+				<td class='right'>910.0</td>
+
+				<td class="right">D197471</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260116</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">뱀신부 (외전)</td>
+				<td class="border">강차윤</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D197472</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250801</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드클립</td>
+				<td class="border">뱀의 던전에 감금당했다</td>
+				<td class="border">치피치피</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D078626</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260116</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">벌받는 비서님</td>
+				<td class="border">패각</td>
+				<td class="right">1,100.0</td>
+				<td class="center">2</td>
+				<td class="right">2,200.0</td>
+				<td class='right'>1,540.0</td>
+
+				<td class="right">D197500</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">벗어날 수 없는</td>
+				<td class="border">푸른이연</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D233227</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20221123</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">일랑</td>
+				<td class="border">벙커의 개</td>
+				<td class="border">지렁띠</td>
+				<td class="right">1,500.0</td>
+				<td class="center">1</td>
+				<td class="right">1,500.0</td>
+				<td class='right'>1,050.0</td>
+
+				<td class="right">N206775</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20231215</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">일랑</td>
+				<td class="border">벙커의 개 : 도망자들</td>
+				<td class="border">지렁띠</td>
+				<td class="right">3,600.0</td>
+				<td class="center">1</td>
+				<td class="right">3,600.0</td>
+				<td class='right'>2,520.0</td>
+
+				<td class="right">k203180</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260324</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">벽에 갇힌 며느리 자랑하는 시아버지</td>
+				<td class="border">쫀득한쿠키</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D240561</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260303</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">피오렛</td>
+				<td class="border">병약한 황자를 치료했더니 미친 집착이 시작되었다 4권 (완결)</td>
+				<td class="border">헤르츠</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D195116</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251114</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">본부장님과 지하철 능욕 플레이</td>
+				<td class="border">자앗</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D167454</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로제토</td>
+				<td class="border">부부 표류기 1권</td>
+				<td class="border">관람차</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D139034</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로제토</td>
+				<td class="border">부부 표류기 2권 (완결)</td>
+				<td class="border">관람차</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D139035</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">인첸티드</td>
+				<td class="border">북부 드래곤을 용서합니다 1</td>
+				<td class="border">진빛</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D235714</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">인첸티드</td>
+				<td class="border">북부 드래곤을 용서합니다 3</td>
+				<td class="border">진빛</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">D235716</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">분명 또 그럴 거야</td>
+				<td class="border">한달식비</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D236436</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">분홍빛 조개 구두</td>
+				<td class="border">우야담</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240511</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20220720</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">하트퀸</td>
+				<td class="border">불온한 계약 결혼(개정판) 1권</td>
+				<td class="border">강하</td>
+				<td class="right">3,300.0</td>
+				<td class="center">1</td>
+				<td class="right">3,300.0</td>
+				<td class='right'>2,310.0</td>
+
+				<td class="right">N100669</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20220720</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">하트퀸</td>
+				<td class="border">불온한 계약 결혼(개정판) 3권 (완결)</td>
+				<td class="border">강하</td>
+				<td class="right">4,100.0</td>
+				<td class="center">1</td>
+				<td class="right">4,100.0</td>
+				<td class='right'>2,870.0</td>
+
+				<td class="right">N100671</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240301</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">해피북스투유</td>
+				<td class="border">불온한 세자저하 (외전증보판)  2권</td>
+				<td class="border">금나루</td>
+				<td class="right">3,900.0</td>
+				<td class="center">1</td>
+				<td class="right">3,900.0</td>
+				<td class='right'>2,730.0</td>
+
+				<td class="right">k253512</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240301</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">해피북스투유</td>
+				<td class="border">불온한 세자저하 (외전증보판) 1권</td>
+				<td class="border">금나루</td>
+				<td class="right">3,900.0</td>
+				<td class="center">1</td>
+				<td class="right">3,900.0</td>
+				<td class='right'>2,730.0</td>
+
+				<td class="right">k253511</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">비 오는 날 전용 구멍 1권</td>
+				<td class="border">묘묘</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D113204</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">비 오는 날 전용 구멍 2권 (완결)</td>
+				<td class="border">묘묘</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D113205</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251125</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">비서 감금 (삽화본)</td>
+				<td class="border">문정민</td>
+				<td class="right">2,500.0</td>
+				<td class="center">7</td>
+				<td class="right">17,500.0</td>
+				<td class='right'>12,250.0</td>
+
+				<td class="right">D161354</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260117</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">비서는 벗어날 수 없다 1 (개정판)</td>
+				<td class="border">강차윤</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D197539</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260117</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">비서는 벗어날 수 없다 2 (개정판)</td>
+				<td class="border">강차윤</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D197540</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로제토</td>
+				<td class="border">빚 프롤로그</td>
+				<td class="border">조나페</td>
+				<td class="right">0.0</td>
+				<td class="center">1</td>
+				<td class="right">0.0</td>
+				<td class='right'>0.0</td>
+
+				<td class="right">D249940</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">사랑하지 않을 사이 1권</td>
+				<td class="border">얀yan</td>
+				<td class="right">3,600.0</td>
+				<td class="center">4</td>
+				<td class="right">14,400.0</td>
+				<td class='right'>10,080.0</td>
+
+				<td class="right">D244289</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">사랑하지 않을 사이 2권 (완결)</td>
+				<td class="border">얀yan</td>
+				<td class="right">3,600.0</td>
+				<td class="center">3</td>
+				<td class="right">10,800.0</td>
+				<td class='right'>7,560.0</td>
+
+				<td class="right">D244290</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">삼촌한테 따먹히고 싶어</td>
+				<td class="border">데일리</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240459</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250924</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">새아빠 그거랑 XX도 따먹기</td>
+				<td class="border">임금님풀</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D131875</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251217</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">새아빠는 단골손님</td>
+				<td class="border">타락푸딩</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D186564</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">새아빠의 임신 수업</td>
+				<td class="border">야뮬</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D243535</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250822</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드필로우</td>
+				<td class="border">생각보다 따뜻한 아저씨</td>
+				<td class="border">사라다</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D093621</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260329</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드필로우</td>
+				<td class="border">생각보다 따뜻한 아저씨 (외전 2)</td>
+				<td class="border">사라다</td>
+				<td class="right">1,500.0</td>
+				<td class="center">2</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D225742</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20241018</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">서툰 욕망</td>
+				<td class="border">조앤</td>
+				<td class="right">3,500.0</td>
+				<td class="center">2</td>
+				<td class="right">7,000.0</td>
+				<td class='right'>4,900.0</td>
+
+				<td class="right">k406198</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">선을 넘은 밤</td>
+				<td class="border">푸른이연</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D236433</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260108</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도서출판 쉼표</td>
+				<td class="border">설익은 재회 1권</td>
+				<td class="border">실리체</td>
+				<td class="right">3,600.0</td>
+				<td class="center">1</td>
+				<td class="right">3,600.0</td>
+				<td class='right'>2,520.0</td>
+
+				<td class="right">D201791</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260108</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도서출판 쉼표</td>
+				<td class="border">설익은 재회 2권</td>
+				<td class="border">실리체</td>
+				<td class="right">3,600.0</td>
+				<td class="center">1</td>
+				<td class="right">3,600.0</td>
+				<td class='right'>2,520.0</td>
+
+				<td class="right">D201792</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260108</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도서출판 쉼표</td>
+				<td class="border">설익은 재회 3권 (완결)</td>
+				<td class="border">실리체</td>
+				<td class="right">3,600.0</td>
+				<td class="center">1</td>
+				<td class="right">3,600.0</td>
+				<td class='right'>2,520.0</td>
+
+				<td class="right">D201793</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260114</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">하트퀸</td>
+				<td class="border">섬광 1권</td>
+				<td class="border">한태양</td>
+				<td class="right">2,900.0</td>
+				<td class="center">1</td>
+				<td class="right">2,900.0</td>
+				<td class='right'>2,030.0</td>
+
+				<td class="right">D093343</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260114</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">하트퀸</td>
+				<td class="border">섬광 2권 (완결)</td>
+				<td class="border">한태양</td>
+				<td class="right">2,900.0</td>
+				<td class="center">1</td>
+				<td class="right">2,900.0</td>
+				<td class='right'>2,030.0</td>
+
+				<td class="right">D093344</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251015</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">섹시한 상사 1권</td>
+				<td class="border">도영</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D144716</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251015</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">섹시한 상사 2권 (완결)</td>
+				<td class="border">도영</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D144717</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">소꿉친구 공작님과 술 먹고 사고 쳤는데요</td>
+				<td class="border">복사꽃</td>
+				<td class="right">1,300.0</td>
+				<td class="center">4</td>
+				<td class="right">5,200.0</td>
+				<td class='right'>3,640.0</td>
+
+				<td class="right">D236438</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20241005</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">소꿉친구 아빠</td>
+				<td class="border">단섬</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">k399166</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도파민</td>
+				<td class="border">소꿉친구는 싯가예요</td>
+				<td class="border">예달피</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D225403</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">소꿉친구에게 XXX를 잡혔다</td>
+				<td class="border">비아란</td>
+				<td class="right">1,400.0</td>
+				<td class="center">4</td>
+				<td class="right">5,600.0</td>
+				<td class='right'>3,920.0</td>
+
+				<td class="right">D238289</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260110</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">소꿉친구의 비밀 몽둥이 (외전2)</td>
+				<td class="border">레인클</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D202986</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">소파 밑에 끼인 채, 아들 친구들에게 1권</td>
+				<td class="border">능욕해줌</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D240529</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">소파 밑에 끼인 채, 아들 친구들에게 2권 (완결)</td>
+				<td class="border">능욕해줌</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D240530</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">속된 에이린 아가씨의 유혹</td>
+				<td class="border">펠로아</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240464</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250404</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">속물주의 (외전)</td>
+				<td class="border">금단</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">B042353</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레테나잇</td>
+				<td class="border">수상한 어플을 클릭했더니 첫사랑이 나왔다</td>
+				<td class="border">호드래곤</td>
+				<td class="right">1,000.0</td>
+				<td class="center">4</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D241271</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">수인들의 씨받이가 됐다</td>
+				<td class="border">오일잘도는기계</td>
+				<td class="right">1,800.0</td>
+				<td class="center">2</td>
+				<td class="right">3,600.0</td>
+				<td class='right'>2,520.0</td>
+
+				<td class="right">D224311</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230503</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도서출판 쉼표</td>
+				<td class="border">쉬운 관계 1권</td>
+				<td class="border">시월이</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">N100649</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251119</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">쉬운 비서 1권</td>
+				<td class="border">은서정</td>
+				<td class="right">2,700.0</td>
+				<td class="center">1</td>
+				<td class="right">2,700.0</td>
+				<td class='right'>1,890.0</td>
+
+				<td class="right">D161349</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251119</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">쉬운 비서 2권 (완결)</td>
+				<td class="border">은서정</td>
+				<td class="right">2,700.0</td>
+				<td class="center">1</td>
+				<td class="right">2,700.0</td>
+				<td class='right'>1,890.0</td>
+
+				<td class="right">D161350</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">시아주버님과 함께 임신의 방에 감금</td>
+				<td class="border">우야담</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240522</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">셀레나</td>
+				<td class="border">시한부 신의 가짜 반려가 되었다 1권</td>
+				<td class="border">디엔에이</td>
+				<td class="right">3,100.0</td>
+				<td class="center">1</td>
+				<td class="right">3,100.0</td>
+				<td class='right'>2,170.0</td>
+
+				<td class="right">D238282</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">셀레나</td>
+				<td class="border">시한부 신의 가짜 반려가 되었다 7권 (완결)</td>
+				<td class="border">디엔에이</td>
+				<td class="right">3,100.0</td>
+				<td class="center">1</td>
+				<td class="right">3,100.0</td>
+				<td class='right'>2,170.0</td>
+
+				<td class="right">D238288</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260323</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">달밤</td>
+				<td class="border">신참례 외전</td>
+				<td class="border">마뇽</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D243511</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260131</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">싱클레어 저택의 성처리 노예 미아 3권</td>
+				<td class="border">팁</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D216428</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">아빠랑 오빠랑 자려고 최면에 걸린 척했다</td>
+				<td class="border">수면박사</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D240531</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251112</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">아저씨와 부장님 1권</td>
+				<td class="border">아티초크</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D167423</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251112</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">아저씨와 부장님 2권 (완결)</td>
+				<td class="border">아티초크</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D167424</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">아저씨와 약속을 어겨서</td>
+				<td class="border">아조물대</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D233245</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">아저씨의 구멍 조교</td>
+				<td class="border">잡식동물</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D224282</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250315</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">블랙로즈</td>
+				<td class="border">악랄한 결혼 1권</td>
+				<td class="border">차선희</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">B031142</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250315</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">블랙로즈</td>
+				<td class="border">악랄한 결혼 2권 (완결)</td>
+				<td class="border">차선희</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">B031143</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250917</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">안전한 날이라서</td>
+				<td class="border">눈물점</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D085996</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260131</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">알파 코스프레 (삽화본)</td>
+				<td class="border">김나든</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D216440</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251217</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">썸데이</td>
+				<td class="border">애인 노릇 1권</td>
+				<td class="border">노지아</td>
+				<td class="right">3,300.0</td>
+				<td class="center">1</td>
+				<td class="right">3,300.0</td>
+				<td class='right'>2,310.0</td>
+
+				<td class="right">D186834</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251217</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">썸데이</td>
+				<td class="border">애인 노릇 2권 (완결)</td>
+				<td class="border">노지아</td>
+				<td class="right">3,300.0</td>
+				<td class="center">1</td>
+				<td class="right">3,300.0</td>
+				<td class='right'>2,310.0</td>
+
+				<td class="right">D186835</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251014</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">약혼자 몰래 원나잇을 했더니</td>
+				<td class="border">타락감자</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D145015</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">스토리야</td>
+				<td class="border">약혼자의 대리인에게 집착하게 되었다 1권</td>
+				<td class="border">릴리아</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D229922</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">스토리야</td>
+				<td class="border">약혼자의 대리인에게 집착하게 되었다 5권 (완결)</td>
+				<td class="border">릴리아</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D229926</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">약혼자의 삼촌과 결혼했다</td>
+				<td class="border">비아란</td>
+				<td class="right">1,200.0</td>
+				<td class="center">4</td>
+				<td class="right">4,800.0</td>
+				<td class='right'>3,360.0</td>
+
+				<td class="right">D228007</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260107</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도파민</td>
+				<td class="border">양밥 (삽화본) 1권</td>
+				<td class="border">가령</td>
+				<td class="right">4,000.0</td>
+				<td class="center">10</td>
+				<td class="right">40,000.0</td>
+				<td class='right'>28,000.0</td>
+
+				<td class="right">D197198</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260107</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도파민</td>
+				<td class="border">양밥 (삽화본) 2권 (완결)</td>
+				<td class="border">가령</td>
+				<td class="right">4,000.0</td>
+				<td class="center">8</td>
+				<td class="right">32,000.0</td>
+				<td class='right'>22,400.0</td>
+
+				<td class="right">D197199</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260107</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">도파민</td>
+				<td class="border">양밥 (삽화본) 외전</td>
+				<td class="border">가령</td>
+				<td class="right">1,100.0</td>
+				<td class="center">4</td>
+				<td class="right">4,400.0</td>
+				<td class='right'>3,080.0</td>
+
+				<td class="right">D197200</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">에덴</td>
+				<td class="border">조앤</td>
+				<td class="right">3,500.0</td>
+				<td class="center">4</td>
+				<td class="right">14,000.0</td>
+				<td class='right'>9,800.0</td>
+
+				<td class="right">D250556</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260317</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">여동생 성인 만들기</td>
+				<td class="border">갸굴</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240537</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">여비서의 안마기가 너무 대물인 건에 대하여</td>
+				<td class="border">노옹축</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D250083</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260206</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">역하렘 능욕 게임에 빙의했다 1권</td>
+				<td class="border">자앗</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D223008</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260206</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">역하렘 능욕 게임에 빙의했다 2권 (완결)</td>
+				<td class="border">자앗</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D223009</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230710</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">연애 이혼 (특별 외전)</td>
+				<td class="border">반지영</td>
+				<td class="right">300.0</td>
+				<td class="center">1</td>
+				<td class="right">300.0</td>
+				<td class='right'>210.0</td>
+
+				<td class="right">k118742</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20211118</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">연애 이혼 1권</td>
+				<td class="border">반지영</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">N012024</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20211118</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">연애 이혼 2권 (완결)</td>
+				<td class="border">반지영</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">N012025</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20211118</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">연애 이혼 외전</td>
+				<td class="border">반지영</td>
+				<td class="right">800.0</td>
+				<td class="center">1</td>
+				<td class="right">800.0</td>
+				<td class='right'>560.0</td>
+
+				<td class="right">N012026</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">연하남 잡으러 왔는데요</td>
+				<td class="border">연폭</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D244291</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250206</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">해피북스투유</td>
+				<td class="border">열망의 밑바닥 1권</td>
+				<td class="border">얀yan</td>
+				<td class="right">3,600.0</td>
+				<td class="center">1</td>
+				<td class="right">3,600.0</td>
+				<td class='right'>2,520.0</td>
+
+				<td class="right">k418769</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250206</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">해피북스투유</td>
+				<td class="border">열망의 밑바닥 2권 (완결)</td>
+				<td class="border">얀yan</td>
+				<td class="right">3,600.0</td>
+				<td class="center">1</td>
+				<td class="right">3,600.0</td>
+				<td class='right'>2,520.0</td>
+
+				<td class="right">k418770</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260303</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">옆집 누나의 물복숭아</td>
+				<td class="border">오감초</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D220726</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251112</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">예비 신랑 형이랑 XX 1권</td>
+				<td class="border">코피나</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D167439</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251113</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">예비 신랑 형이랑 XX 2권 (완결)</td>
+				<td class="border">코피나</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D167440</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">오빠 친구의 나쁜 짓</td>
+				<td class="border">타락감자</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D225399</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">오빠가 빌린 렌탈 메이드</td>
+				<td class="border">란배</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D233255</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">오빠랑 노모럴 씬 촬영</td>
+				<td class="border">옥슈슈</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D243540</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260317</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">오빠의 절친들과 침대에서 빵야빵야</td>
+				<td class="border">농막쥐</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240535</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250821</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">오빠집이 비어서 1권</td>
+				<td class="border">태소영</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">D084313</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250821</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">오빠집이 비어서 2권</td>
+				<td class="border">태소영</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">D084314</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250821</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">오빠집이 비어서 3권</td>
+				<td class="border">태소영</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">D084315</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250821</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">오빠집이 비어서 4권 (완결)</td>
+				<td class="border">태소영</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">D084316</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">완전한 몸종</td>
+				<td class="border">김앵장</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D233237</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240831</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">운명처럼 너였다</td>
+				<td class="border">조앤</td>
+				<td class="right">3,500.0</td>
+				<td class="center">1</td>
+				<td class="right">3,500.0</td>
+				<td class='right'>2,450.0</td>
+
+				<td class="right">k382296</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">유기농 우유 착유 회사 : 면접 편</td>
+				<td class="border">옥슈슈</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D240541</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">유실 1권</td>
+				<td class="border">별보라</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">k148641</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">유실 2권</td>
+				<td class="border">별보라</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">k148642</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">유실 3권</td>
+				<td class="border">별보라</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">k148643</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">유이린은 사랑하는 아저씨의 집에서</td>
+				<td class="border">빅라쿤</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240485</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251217</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">유이린은 조폭 아저씨들 전용 목욕탕에서</td>
+				<td class="border">빅라쿤</td>
+				<td class="right">1,500.0</td>
+				<td class="center">1</td>
+				<td class="right">1,500.0</td>
+				<td class='right'>1,050.0</td>
+
+				<td class="right">D185423</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240907</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">리체북스앤미디어</td>
+				<td class="border">은밀한 재택근무 4권 (완결)</td>
+				<td class="border">주황연</td>
+				<td class="right">3,200.0</td>
+				<td class="center">1</td>
+				<td class="right">3,200.0</td>
+				<td class='right'>2,240.0</td>
+
+				<td class="right">k328720</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20231202</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">음란물 속에 빠져버렸다 1</td>
+				<td class="border">금테리</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">k200844</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">음란물 속에 빠져버렸다 2 (완결)</td>
+				<td class="border">금테리</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D240478</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260206</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">음란한 뒷계정 독서낭독회 - 팬미팅</td>
+				<td class="border">필로우</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D223034</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230704</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">마롱</td>
+				<td class="border">이담의 시간 1권</td>
+				<td class="border">류재현</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">k118573</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페리윙클</td>
+				<td class="border">이번 생은 글렀어요, 공작님 1권</td>
+				<td class="border">늘그대</td>
+				<td class="right">3,300.0</td>
+				<td class="center">2</td>
+				<td class="right">6,600.0</td>
+				<td class='right'>4,620.0</td>
+
+				<td class="right">D234083</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페리윙클</td>
+				<td class="border">이번 생은 글렀어요, 공작님 2권</td>
+				<td class="border">늘그대</td>
+				<td class="right">3,300.0</td>
+				<td class="center">1</td>
+				<td class="right">3,300.0</td>
+				<td class='right'>2,310.0</td>
+
+				<td class="right">D234084</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페리윙클</td>
+				<td class="border">이번 생은 글렀어요, 공작님 3권</td>
+				<td class="border">늘그대</td>
+				<td class="right">3,300.0</td>
+				<td class="center">1</td>
+				<td class="right">3,300.0</td>
+				<td class='right'>2,310.0</td>
+
+				<td class="right">D234085</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260313</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">페리윙클</td>
+				<td class="border">이번 생은 글렀어요, 공작님 4권 (완결)</td>
+				<td class="border">늘그대</td>
+				<td class="right">3,300.0</td>
+				<td class="center">2</td>
+				<td class="right">6,600.0</td>
+				<td class='right'>4,620.0</td>
+
+				<td class="right">D234086</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">이상성욕 어플에서 오빠를 만났다</td>
+				<td class="border">포도콜라</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240456</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">이웃집 연하남의 유혹 1권</td>
+				<td class="border">베리벨</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D113182</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">이웃집 연하남의 유혹 2권 (완결)</td>
+				<td class="border">베리벨</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D113183</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">일등석에서 VIP들과 1권</td>
+				<td class="border">렉렉</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240460</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">일등석에서 VIP들과 2권</td>
+				<td class="border">렉렉</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240461</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">일등석에서 VIP들과 3권 (완결)</td>
+				<td class="border">렉렉</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240462</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251112</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">잉첩 1권</td>
+				<td class="border">별보라</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D161338</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">자는데 아저씨가 들어와서</td>
+				<td class="border">윤서해</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D240510</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">잘 대준다는 존잘 걸레 오빠 1권</td>
+				<td class="border">눈물점</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D224280</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">잘 대준다는 존잘 걸레 오빠 2권</td>
+				<td class="border">눈물점</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D250078</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260126</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">잠든 척, 아빠 친구들한테 돌려 박히기</td>
+				<td class="border">수면박사</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D203065</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">잡아먹히는 계약 결혼 1권</td>
+				<td class="border">상림(메리J)</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D225405</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">잡아먹히는 계약 결혼 2권 (완결)</td>
+				<td class="border">상림(메리J)</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D225406</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">재벌가 도련님의 매맞이 하녀가 되었다</td>
+				<td class="border">박음질</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D240466</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">전 남친 형의 맛 1권</td>
+				<td class="border">황소금</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D113184</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250926</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">전 남친 형의 맛 2권 (완결)</td>
+				<td class="border">황소금</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D113185</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260320</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">전 남친을 호텔에서 마주쳤다 (삽화본)</td>
+				<td class="border">사이프러스</td>
+				<td class="right">2,700.0</td>
+				<td class="center">3</td>
+				<td class="right">8,100.0</td>
+				<td class='right'>5,670.0</td>
+
+				<td class="right">D243655</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">전 남친이 내 구멍에 집착한다[삽화본]</td>
+				<td class="border">아리송한</td>
+				<td class="right">1,200.0</td>
+				<td class="center">5</td>
+				<td class="right">6,000.0</td>
+				<td class='right'>4,200.0</td>
+
+				<td class="right">D240457</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260220</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">전남편 책상 아래서 (삽화본)</td>
+				<td class="border">리첼리토</td>
+				<td class="right">2,800.0</td>
+				<td class="center">3</td>
+				<td class="right">8,400.0</td>
+				<td class='right'>5,880.0</td>
+
+				<td class="right">D225447</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">절대 집착 2권 (완결)</td>
+				<td class="border">비오뎅</td>
+				<td class="right">2,800.0</td>
+				<td class="center">1</td>
+				<td class="right">2,800.0</td>
+				<td class='right'>1,960.0</td>
+
+				<td class="right">D240521</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">절륜한 여우귀의 신부가 되면 1</td>
+				<td class="border">배무청</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D233235</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">절륜한 여우귀의 신부가 되면 2</td>
+				<td class="border">배무청</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D240458</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260220</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">정략결혼 부부의 삽질</td>
+				<td class="border">도파민</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D224342</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250821</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">정크? 정크! (Junk? Junk!) (외전)</td>
+				<td class="border">오로지</td>
+				<td class="right">2,000.0</td>
+				<td class="center">1</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D084340</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250821</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">정크? 정크! (Junk? Junk!) 1권</td>
+				<td class="border">오로지</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D084338</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250821</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">정크? 정크! (Junk? Junk!) 2권 (완결)</td>
+				<td class="border">오로지</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D084339</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260206</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드로즈</td>
+				<td class="border">젖 짜주는 세자</td>
+				<td class="border">조시큰</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D223002</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260116</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">젖 흘리는 하녀</td>
+				<td class="border">외홍건</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D197473</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260116</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">젖 흘리는 하녀 (외전)</td>
+				<td class="border">외홍건</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D197474</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260220</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드클립</td>
+				<td class="border">제발, 이 마차에 타주세요!</td>
+				<td class="border">썸머초</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D216648</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260224</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">조각가인데 왜 제가 벗나요?</td>
+				<td class="border">하트봉</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D225449</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">조폭들과 무인도에 갇혔다</td>
+				<td class="border">란배</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D228003</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">조폭들의 전용 X집이 된 친구 딸</td>
+				<td class="border">수면박사</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D240573</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240831</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">죽어도 오늘</td>
+				<td class="border">조앤</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">k382318</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">죽일 듯이 1권</td>
+				<td class="border">신해</td>
+				<td class="right">3,700.0</td>
+				<td class="center">3</td>
+				<td class="right">11,100.0</td>
+				<td class='right'>7,770.0</td>
+
+				<td class="right">D225417</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">죽일 듯이 2권 (완결)</td>
+				<td class="border">신해</td>
+				<td class="right">3,700.0</td>
+				<td class="center">5</td>
+				<td class="right">18,500.0</td>
+				<td class='right'>12,950.0</td>
+
+				<td class="right">D225418</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251217</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">썸데이</td>
+				<td class="border">준비된 인형 1권</td>
+				<td class="border">최유려</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D186840</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251217</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">썸데이</td>
+				<td class="border">준비된 인형 2권 (완결)</td>
+				<td class="border">최유려</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D186841</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20190824</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">이지콘텐츠</td>
+				<td class="border">지금, 사랑할 시간 (합본, 전2권)</td>
+				<td class="border">배정숙</td>
+				<td class="right">5,000.0</td>
+				<td class="center">1</td>
+				<td class="right">5,000.0</td>
+				<td class='right'>3,500.0</td>
+
+				<td class="right">E243704</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230224</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">달밤</td>
+				<td class="border">짐승의 집 1권</td>
+				<td class="border">페일핑크</td>
+				<td class="right">1,500.0</td>
+				<td class="center">1</td>
+				<td class="right">1,500.0</td>
+				<td class='right'>1,050.0</td>
+
+				<td class="right">k032503</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230224</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">달밤</td>
+				<td class="border">짐승의 집 2권 (완결)</td>
+				<td class="border">페일핑크</td>
+				<td class="right">1,500.0</td>
+				<td class="center">1</td>
+				<td class="right">1,500.0</td>
+				<td class='right'>1,050.0</td>
+
+				<td class="right">k032504</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260123</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">집착하는 새아버지</td>
+				<td class="border">월천백</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D203056</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">리즈</td>
+				<td class="border">짝사랑을 끝내려고 무리했다가</td>
+				<td class="border">강차윤</td>
+				<td class="right">3,300.0</td>
+				<td class="center">3</td>
+				<td class="right">9,900.0</td>
+				<td class='right'>6,930.0</td>
+
+				<td class="right">D223050</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260210</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">오넷</td>
+				<td class="border">착각하지 마세요 1권</td>
+				<td class="border">수레국화꽃말</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D202816</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260210</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">오넷</td>
+				<td class="border">착각하지 마세요 2권 (완결)</td>
+				<td class="border">수레국화꽃말</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">D202817</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251204</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">찬란한 로맨스</td>
+				<td class="border">주니</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D180804</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260110</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">처녀 경매장에서 난교 파티</td>
+				<td class="border">자앗</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D196494</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260320</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">최면 주파수로 쓰레기 상사를 조교하다가</td>
+				<td class="border">수면박사</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D240554</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230224</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">달밤</td>
+				<td class="border">취중음담</td>
+				<td class="border">마뇽</td>
+				<td class="right">2,000.0</td>
+				<td class="center">1</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">k032508</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">달밤</td>
+				<td class="border">취중음담 외전</td>
+				<td class="border">마뇽</td>
+				<td class="right">1,000.0</td>
+				<td class="center">4</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">D234980</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20230327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">치타는 뒤로도 노팅한다</td>
+				<td class="border">오뮤악</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">k036624</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251217</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">친구 남편의 노리개</td>
+				<td class="border">코듀로이</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D186572</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260310</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">친애하는 나의 손녀 딸</td>
+				<td class="border">애셋</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D233236</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">친절하게 설명해주는 변태 마법사</td>
+				<td class="border">꿀촉촉보</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D240512</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">쾌감 만세 절정 마사지</td>
+				<td class="border">윤서해</td>
+				<td class="right">1,000.0</td>
+				<td class="center">3</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D240523</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260312</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">키스로 봉인 해제</td>
+				<td class="border">님도르신</td>
+				<td class="right">3,000.0</td>
+				<td class="center">1</td>
+				<td class="right">3,000.0</td>
+				<td class='right'>2,100.0</td>
+
+				<td class="right">D229919</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260323</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">타락한 인어의 물거품을</td>
+				<td class="border">진가이</td>
+				<td class="right">1,700.0</td>
+				<td class="center">1</td>
+				<td class="right">1,700.0</td>
+				<td class='right'>1,190.0</td>
+
+				<td class="right">D240557</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260220</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">폭설 정사</td>
+				<td class="border">탄단지</td>
+				<td class="right">1,100.0</td>
+				<td class="center">2</td>
+				<td class="right">2,200.0</td>
+				<td class='right'>1,540.0</td>
+
+				<td class="right">D224339</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20250215</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">하녀의 사랑스러운 개들 1권</td>
+				<td class="border">찐소흔</td>
+				<td class="right">2,500.0</td>
+				<td class="center">1</td>
+				<td class="right">2,500.0</td>
+				<td class='right'>1,750.0</td>
+
+				<td class="right">B010926</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260327</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드클립</td>
+				<td class="border">하얀 마녀는 오두막에 사로잡혔습니다</td>
+				<td class="border">바난느</td>
+				<td class="right">1,800.0</td>
+				<td class="center">1</td>
+				<td class="right">1,800.0</td>
+				<td class='right'>1,260.0</td>
+
+				<td class="right">D234979</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251112</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">할아버지와 사랑이 넘치는 XX마스</td>
+				<td class="border">필로우</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D167437</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20231023</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">합의 관계 2권</td>
+				<td class="border">은서정</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">k185989</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20231023</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">플로린</td>
+				<td class="border">합의 관계 3권</td>
+				<td class="border">은서정</td>
+				<td class="right">4,000.0</td>
+				<td class="center">1</td>
+				<td class="right">4,000.0</td>
+				<td class='right'>2,800.0</td>
+
+				<td class="right">k185990</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20241026</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">혐오하는 알파 남사친과</td>
+				<td class="border">애착인형</td>
+				<td class="right">3,400.0</td>
+				<td class="center">1</td>
+				<td class="right">3,400.0</td>
+				<td class='right'>2,380.0</td>
+
+				<td class="right">k410719</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">형보다 잘해</td>
+				<td class="border">도민아</td>
+				<td class="right">2,500.0</td>
+				<td class="center">3</td>
+				<td class="right">7,500.0</td>
+				<td class='right'>5,250.0</td>
+
+				<td class="right">D225424</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260205</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">호랑이골에는 범서방이 산다</td>
+				<td class="border">갓파</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D223042</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">호랑이와 시루, 떡</td>
+				<td class="border">꿀방울</td>
+				<td class="right">1,200.0</td>
+				<td class="center">1</td>
+				<td class="right">1,200.0</td>
+				<td class='right'>840.0</td>
+
+				<td class="right">D225426</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260117</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">혼나는 암캐</td>
+				<td class="border">숨숨</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D197535</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260206</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">혼맥</td>
+				<td class="border">조앤</td>
+				<td class="right">3,500.0</td>
+				<td class="center">2</td>
+				<td class="right">7,000.0</td>
+				<td class='right'>4,900.0</td>
+
+				<td class="right">D221409</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260325</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">모던</td>
+				<td class="border">혼맥 (외전)</td>
+				<td class="border">조앤</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D250555</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260117</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">황녀님과 쓰레기 기사들</td>
+				<td class="border">불닭뽀끼</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D197542</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260205</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">루어</td>
+				<td class="border">황녀님과 쓰레기 기사들 (외전)</td>
+				<td class="border">불닭뽀끼</td>
+				<td class="right">1,100.0</td>
+				<td class="center">1</td>
+				<td class="right">1,100.0</td>
+				<td class='right'>770.0</td>
+
+				<td class="right">D223036</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260113</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">회사에서 들켰다</td>
+				<td class="border">꿀촉촉보</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D203017</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20240308</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">효도는 구멍으로</td>
+				<td class="border">러브이따</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">k252731</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">후궁정원: 버려진 꽃을 주웠습니다</td>
+				<td class="border">유사월</td>
+				<td class="right">2,400.0</td>
+				<td class="center">1</td>
+				<td class="right">2,400.0</td>
+				<td class='right'>1,680.0</td>
+
+				<td class="right">D228000</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260110</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로제토</td>
+				<td class="border">후원자의 계략 1권</td>
+				<td class="border">봄땅</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D200657</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260110</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로제토</td>
+				<td class="border">후원자의 계략 2권 (완결)</td>
+				<td class="border">봄땅</td>
+				<td class="right">3,700.0</td>
+				<td class="center">1</td>
+				<td class="right">3,700.0</td>
+				<td class='right'>2,590.0</td>
+
+				<td class="right">D200658</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251014</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">후회 없는 선택이었다 1권</td>
+				<td class="border">차해솔</td>
+				<td class="right">2,800.0</td>
+				<td class="center">1</td>
+				<td class="right">2,800.0</td>
+				<td class='right'>1,960.0</td>
+
+				<td class="right">D145016</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20251014</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">래이니북스</td>
+				<td class="border">후회 없는 선택이었다 2권 (완결)</td>
+				<td class="border">차해솔</td>
+				<td class="right">2,800.0</td>
+				<td class="center">1</td>
+				<td class="right">2,800.0</td>
+				<td class='right'>1,960.0</td>
+
+				<td class="right">D145017</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260311</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레드립</td>
+				<td class="border">S급 가이드에게 집착하다 살해당하는 에스퍼입니다</td>
+				<td class="border">허니푸딩</td>
+				<td class="right">2,300.0</td>
+				<td class="center">2</td>
+				<td class="right">4,600.0</td>
+				<td class='right'>3,220.0</td>
+
+				<td class="right">D228004</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">SM 항공사의 승무원 수치플 테스트</td>
+				<td class="border">김앵장</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D243539</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260214</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">희우</td>
+				<td class="border">XX 실험 09 1권</td>
+				<td class="border">두꺼비</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D224328</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">젤리빈</td>
+				<td class="border">XX 친구였는데요</td>
+				<td class="border">희랑</td>
+				<td class="right">1,000.0</td>
+				<td class="center">1</td>
+				<td class="right">1,000.0</td>
+				<td class='right'>700.0</td>
+
+				<td class="right">D243508</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">XX를 보는 여자 1</td>
+				<td class="border">The블랙</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D243533</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">로튼로즈</td>
+				<td class="border">XX를 보는 여자 2</td>
+				<td class="border">The블랙</td>
+				<td class="right">1,000.0</td>
+				<td class="center">2</td>
+				<td class="right">2,000.0</td>
+				<td class='right'>1,400.0</td>
+
+				<td class="right">D243534</td>
+			</tr>
+			
+			<tr>
+				<td class="border">20260319</td>
+				<td class="border">
+					스토린랩
+				</td>
+				<td class="border">레이어드</td>
+				<td class="border">XX의 요정</td>
+				<td class="border">비비랑</td>
+				<td class="right">1,500.0</td>
+				<td class="center">1</td>
+				<td class="right">1,500.0</td>
+				<td class='right'>1,050.0</td>
+
+				<td class="right">D244292</td>
+			</tr>
+			
+		</tbody>
+		<tfoot>
+			<tr id='footTotal'>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>	<td class='border'>	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'><b>소득액: </b></td>
+	<td class='border'><b>1,011,780</b></td>
+</tr>
+<tr>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'><b>	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+	<td class='border'>&nbsp;</td>
+</tr>
+
+		</tfoot>
+	</table>
+</div>
+</body>
+</html>
+

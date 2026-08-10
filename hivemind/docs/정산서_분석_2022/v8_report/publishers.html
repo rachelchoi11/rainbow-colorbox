@@ -1,0 +1,2027 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Publishers · v8 Report</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+       margin: 0; padding: 0; background: #f5f7fa; color: #1f2937; line-height: 1.55; }
+header { background: #1e3a8a; color: #fff; padding: 24px 32px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+header h1 { margin: 0; font-size: 24px; }
+header .meta { margin-top: 6px; font-size: 13px; opacity: 0.85; }
+nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0 32px; position: sticky; top: 0; z-index: 100;
+      overflow-x: auto; white-space: nowrap; }
+nav a { display: inline-block; padding: 14px 16px; color: #374151; text-decoration: none; font-size: 14px; border-bottom: 3px solid transparent; }
+nav a:hover, nav a.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+main { max-width: 1280px; margin: 0 auto; padding: 24px 32px 80px; }
+section { background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+section h2 { margin: 0 0 16px; font-size: 18px; color: #111827; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi-card { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 18px; border-radius: 8px; border-left: 4px solid #2563eb; }
+.kpi-card.positive { border-left-color: #059669; }
+.kpi-card.warning { border-left-color: #d97706; }
+.kpi-card.danger { border-left-color: #dc2626; }
+.kpi-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 22px; font-weight: 700; color: #111827; margin-top: 4px; }
+.kpi-sub { font-size: 12px; color: #6b7280; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+th { background: #f9fafb; text-align: left; padding: 10px 12px; font-weight: 600; border-bottom: 2px solid #e5e7eb; position: sticky; top: 56px; cursor: pointer; user-select: none; }
+th:hover { background: #f3f4f6; }
+th.num { text-align: right; }
+td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:hover td { background: #fefce8; }
+.amount-pos { color: #111827; }
+.amount-neg { color: #dc2626; font-weight: 600; }
+.search-input { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; width: 320px; margin-bottom: 12px; }
+.footer-note { text-align: center; color: #6b7280; font-size: 12px; padding: 24px; }
+.category-tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+.cat-normal { background: #dcfce7; color: #14532d; }
+.cat-unset { background: #fef3c7; color: #78350f; }
+.cat-biznum { background: #fee2e2; color: #7f1d1d; }
+.cat-biznum-mapped { background: #dbeafe; color: #1e3a8a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 정산내역 통합 리포트 v8 · Publishers</h1>
+  <div class="meta">출판사 라벨 분류 · 정상 / 미지정 / 사업자번호 (매핑·미매핑)</div>
+</header>
+<nav><a href="index.html" class="">대시보드</a> <a href="publishers.html" class="active">📚 Publishers</a> <a href="anomaly.html" class="">⚠️ Anomaly</a> <a href="unresolved.html" class="">미매칭</a> <a href="skipped.html" class="">스킵 파일</a> <a href="duplicates.html" class="">중복 log</a> <a href="evolution.html" class="">라운드 진화</a> <a href="month-01.html" class="">1월</a> <a href="month-02.html" class="">2월</a> <a href="month-03.html" class="">3월</a> <a href="month-04.html" class="">4월</a> <a href="month-05.html" class="">5월</a> <a href="month-06.html" class="">6월</a> <a href="month-07.html" class="">7월</a> <a href="month-08.html" class="">8월</a> <a href="month-09.html" class="">9월</a> <a href="month-10.html" class="">10월</a> <a href="month-11.html" class="">11월</a> <a href="month-12.html" class="">12월</a></nav>
+<main>
+<section>
+<h2>📚 Publishers (출판사) 분류 요약</h2>
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-label">전체 퍼블리셔</div>
+    <div class="kpi-value">224</div>
+    <div class="kpi-sub">유니크 라벨 기준</div>
+  </div>
+  <div class="kpi-card positive">
+    <div class="kpi-label">정상 출판사명</div>
+    <div class="kpi-value">222</div>
+    <div class="kpi-sub">텍스트 라벨</div>
+  </div>
+  <div class="kpi-card warning">
+    <div class="kpi-label">미지정 / (미상)</div>
+    <div class="kpi-value">2</div>
+    <div class="kpi-sub">권리자 정보 부재</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">사업자번호 (매핑됨)</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">BIZNUM_MAP 적용</div>
+  </div>
+  <div class="kpi-card danger">
+    <div class="kpi-label">사업자번호 (미매핑)</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">매핑 사전 확장 필요</div>
+  </div>
+  <div class="kpi-card positive">
+    <div class="kpi-label">총 마스터 수</div>
+    <div class="kpi-value">26,953</div>
+    <div class="kpi-sub">출판사 라벨 단위 마스터</div>
+  </div>
+  <div class="kpi-card positive">
+    <div class="kpi-label">총 정산액 (clean)</div>
+    <div class="kpi-value">₩13,239,674,004</div>
+    <div class="kpi-sub">anomaly 제외 메인</div>
+  </div>
+</div>
+</section><section>
+<h2><span class="category-tag cat-normal">정상 출판사명</span> &mdash; 222개 · ₩8,749,126,292 (Top 10)</h2>
+<table class="sortable">
+<thead><tr><th>출판사명</th><th class="num">마스터</th><th class="num">행 수</th><th class="num">정산액</th><th>등장 월</th><th>샘플 책 (Top 3)</th></tr></thead>
+<tbody><tr>
+  <td><strong>스토리위즈</strong></td>
+  <td class="num">6,309</td>
+  <td class="num">382,182</td>
+  <td class="num" data-sortkey="4884323172.893122">₩4,884,323,173</td>
+  <td>1,2,3,4,5,6,7,8,9,10,11,12</td>
+  <td><small>회귀의 전설; 갓 오브 블랙필드; 디버프 마스터</small></td>
+</tr><tr>
+  <td><strong>0.55</strong></td>
+  <td class="num">128</td>
+  <td class="num">1,737</td>
+  <td class="num" data-sortkey="1544180003.6581268">₩1,544,180,004</td>
+  <td>1,2,3,4,5</td>
+  <td><small>회귀의 전설; 오늘의 운세; 마왕의 딸로 태어났습니다</small></td>
+</tr><tr>
+  <td><strong>울트라미디어</strong></td>
+  <td class="num">3</td>
+  <td class="num">5</td>
+  <td class="num" data-sortkey="1000171674.0">₩1,000,171,674</td>
+  <td>1,9,12</td>
+  <td><small>특약콘텐츠; 피치 소르베; 특약콘텐츠</small></td>
+</tr><tr>
+  <td><strong>에필로그</strong></td>
+  <td class="num">2,387</td>
+  <td class="num">57,017</td>
+  <td class="num" data-sortkey="253030908.66999996">₩253,030,909</td>
+  <td>1,2,3,4,5,6,7,8,9,10,11,12</td>
+  <td><small>진짜 사나이; 법보다 주먹 [개정판]; 악당의 리턴</small></td>
+</tr><tr>
+  <td><strong>0.7</strong></td>
+  <td class="num">150</td>
+  <td class="num">2,070</td>
+  <td class="num" data-sortkey="156305506.60000002">₩156,305,507</td>
+  <td>1,2,3,4</td>
+  <td><small>[BL] 나의 시고르자브종; 황녀, 미친 꽃으로 피어나다; 돌아온 막내 영애님을 조심하세요</small></td>
+</tr><tr>
+  <td><strong>도서출판 태랑</strong></td>
+  <td class="num">2,002</td>
+  <td class="num">14,600</td>
+  <td class="num" data-sortkey="142432577.79">₩142,432,578</td>
+  <td>4,5,6,7,8,9,10,11,12</td>
+  <td><small>결혼의 함정 [선공개]; 우리야, 이리온; 사랑을 놓치고</small></td>
+</tr><tr>
+  <td><strong>블레슈(Blesshuu)</strong></td>
+  <td class="num">237</td>
+  <td class="num">5,969</td>
+  <td class="num" data-sortkey="135499361.67900005">₩135,499,362</td>
+  <td>7,8,9,10,11,12</td>
+  <td><small>구원, 그 잔혹함에 대하여 [선공개]; 모르는 남자와 결혼했다; 돌아온 막내 영애님을 조심하세요</small></td>
+</tr><tr>
+  <td><strong>밀리오리지널</strong></td>
+  <td class="num">712</td>
+  <td class="num">31,148</td>
+  <td class="num" data-sortkey="94894341.7">₩94,894,342</td>
+  <td>2,3,4,5,6,7,8,9,10,11,12</td>
+  <td><small>낯선 밤에 마주친; 너만 보면 두근두근; 설국연가</small></td>
+</tr><tr>
+  <td><strong>0.6</strong></td>
+  <td class="num">2</td>
+  <td class="num">56</td>
+  <td class="num" data-sortkey="69526600.0">₩69,526,600</td>
+  <td>4,5</td>
+  <td><small>간신이 나라를 살림; 간신이 나라를 살림</small></td>
+</tr><tr>
+  <td><strong>블레슈</strong></td>
+  <td class="num">13</td>
+  <td class="num">259</td>
+  <td class="num" data-sortkey="59089811.83">₩59,089,812</td>
+  <td>4,5,6,7</td>
+  <td><small>구원, 그 잔혹함에 대하여 [선공개]; 다정할수록 불순한 [외전 선공개]; 구원, 그 잔혹함에 대하여 [선공개]</small></td>
+</tr></tbody>
+</table>
+</section><section>
+<h2><span class="category-tag cat-unset">미지정 / (미상)</span> &mdash; 2개 · ₩4,490,547,712 (Top 10)</h2>
+<table class="sortable">
+<thead><tr><th>출판사명</th><th class="num">마스터</th><th class="num">행 수</th><th class="num">정산액</th><th>등장 월</th><th>샘플 책 (Top 3)</th></tr></thead>
+<tbody><tr>
+  <td><strong>(미지정)</strong></td>
+  <td class="num">9,606</td>
+  <td class="num">22,066</td>
+  <td class="num" data-sortkey="4490544626.669826">₩4,490,544,627</td>
+  <td>1,2,3,4,5,6,7,8,9,10,11,12</td>
+  <td><small>나를바꿔줘_앱; 속도위반 대표님과 계약 아내; 데드라이프_앱</small></td>
+</tr><tr>
+  <td><strong>(미상-biznum)</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="3085.0">₩3,085</td>
+  <td>12</td>
+  <td><small>착한 언니는 없다</small></td>
+</tr></tbody>
+</table>
+</section><section>
+<h2>📋 전체 퍼블리셔 리스트 (224개)</h2>
+<p style="color:#6b7280;font-size:13px">정산액 내림차순 정렬 · 컬럼 헤더 클릭으로 정렬 · 검색창에 입력으로 실시간 필터</p>
+<input type="text" class="search-input" data-target="#allpub" placeholder="🔍 출판사명·카테고리·샘플 책 검색">
+<table id="allpub" class="sortable">
+<thead><tr><th>카테고리</th><th>출판사명</th><th class="num">마스터</th><th class="num">행 수</th><th class="num">정산액</th><th class="num">등장 월</th><th>샘플 책</th></tr></thead>
+<tbody><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>스토리위즈</strong></td>
+  <td class="num">6,309</td>
+  <td class="num">382,182</td>
+  <td class="num" data-sortkey="4884323172.893122">₩4,884,323,173</td>
+  <td class="num">1~12 (12)</td>
+  <td><small>회귀의 전설; 갓 오브 블랙필드</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-unset">미지정</span></td>
+  <td><strong>(미지정)</strong></td>
+  <td class="num">9,606</td>
+  <td class="num">22,066</td>
+  <td class="num" data-sortkey="4490544626.669826">₩4,490,544,627</td>
+  <td class="num">1~12 (12)</td>
+  <td><small>나를바꿔줘_앱; 속도위반 대표님과 계약 아내</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0.55</strong></td>
+  <td class="num">128</td>
+  <td class="num">1,737</td>
+  <td class="num" data-sortkey="1544180003.6581268">₩1,544,180,004</td>
+  <td class="num">1~5 (5)</td>
+  <td><small>회귀의 전설; 오늘의 운세</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>울트라미디어</strong></td>
+  <td class="num">3</td>
+  <td class="num">5</td>
+  <td class="num" data-sortkey="1000171674.0">₩1,000,171,674</td>
+  <td class="num">1~12 (3)</td>
+  <td><small>특약콘텐츠; 피치 소르베</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>에필로그</strong></td>
+  <td class="num">2,387</td>
+  <td class="num">57,017</td>
+  <td class="num" data-sortkey="253030908.66999996">₩253,030,909</td>
+  <td class="num">1~12 (12)</td>
+  <td><small>진짜 사나이; 법보다 주먹 [개정판]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0.7</strong></td>
+  <td class="num">150</td>
+  <td class="num">2,070</td>
+  <td class="num" data-sortkey="156305506.60000002">₩156,305,507</td>
+  <td class="num">1~4 (4)</td>
+  <td><small>[BL] 나의 시고르자브종; 황녀, 미친 꽃으로 피어나다</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>도서출판 태랑</strong></td>
+  <td class="num">2,002</td>
+  <td class="num">14,600</td>
+  <td class="num" data-sortkey="142432577.79">₩142,432,578</td>
+  <td class="num">4~12 (9)</td>
+  <td><small>결혼의 함정 [선공개]; 우리야, 이리온</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>블레슈(Blesshuu)</strong></td>
+  <td class="num">237</td>
+  <td class="num">5,969</td>
+  <td class="num" data-sortkey="135499361.67900005">₩135,499,362</td>
+  <td class="num">7~12 (6)</td>
+  <td><small>구원, 그 잔혹함에 대하여 [선공개]; 모르는 남자와 결혼했다</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>밀리오리지널</strong></td>
+  <td class="num">712</td>
+  <td class="num">31,148</td>
+  <td class="num" data-sortkey="94894341.7">₩94,894,342</td>
+  <td class="num">2~12 (11)</td>
+  <td><small>낯선 밤에 마주친; 너만 보면 두근두근</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0.6</strong></td>
+  <td class="num">2</td>
+  <td class="num">56</td>
+  <td class="num" data-sortkey="69526600.0">₩69,526,600</td>
+  <td class="num">4~5 (2)</td>
+  <td><small>간신이 나라를 살림; 간신이 나라를 살림</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>블레슈</strong></td>
+  <td class="num">13</td>
+  <td class="num">259</td>
+  <td class="num" data-sortkey="59089811.83">₩59,089,812</td>
+  <td class="num">4~7 (4)</td>
+  <td><small>구원, 그 잔혹함에 대하여 [선공개]; 다정할수록 불순한 [외전 선공개]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>더컴퍼니</strong></td>
+  <td class="num">1,103</td>
+  <td class="num">13,360</td>
+  <td class="num" data-sortkey="54953935.38">₩54,953,935</td>
+  <td class="num">1~12 (12)</td>
+  <td><small>집착의 맛; 하루하루</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0.8</strong></td>
+  <td class="num">12</td>
+  <td class="num">72</td>
+  <td class="num" data-sortkey="38189470.0">₩38,189,470</td>
+  <td class="num">3~5 (2)</td>
+  <td><small>마왕의 딸로 태어났습니다 (Aku Lahir Sebagai Anak Ra; 마왕의 아이를 키우는 법 (How to Raise the Devil&#x27;s </small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>어울림출판사</strong></td>
+  <td class="num">584</td>
+  <td class="num">16,152</td>
+  <td class="num" data-sortkey="37127506.35">₩37,127,506</td>
+  <td class="num">1~1 (1)</td>
+  <td><small>신촌역 마법사는 악기제작자; 투신전기</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>주식회사 스토리위즈</strong></td>
+  <td class="num">22</td>
+  <td class="num">6,391</td>
+  <td class="num" data-sortkey="36309495.863">₩36,309,496</td>
+  <td class="num">1~12 (12)</td>
+  <td><small>다크메이지; 데이몬</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>e온누리</strong></td>
+  <td class="num">140</td>
+  <td class="num">11,807</td>
+  <td class="num" data-sortkey="35688895.39000001">₩35,688,895</td>
+  <td class="num">1~1 (1)</td>
+  <td><small>검은 늑대; 조선대혁명</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>앰퍼샌드B</strong></td>
+  <td class="num">73</td>
+  <td class="num">1,020</td>
+  <td class="num" data-sortkey="27595093.950000003">₩27,595,094</td>
+  <td class="num">7~12 (6)</td>
+  <td><small>나의 시고르자브종; 나의 시고르자브종 [BL]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>케이티(스토리위즈)</strong></td>
+  <td class="num">2</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="24134400.0">₩24,134,400</td>
+  <td class="num">11~12 (2)</td>
+  <td><small>로드 오브 머니(무장); 로드 오브 머니(무장)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>스튜디오 온</strong></td>
+  <td class="num">4</td>
+  <td class="num">109</td>
+  <td class="num" data-sortkey="22630238.29">₩22,630,238</td>
+  <td class="num">6~9 (4)</td>
+  <td><small>트리거 17화; 트리거 22화</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>블러쉬</strong></td>
+  <td class="num">1,226</td>
+  <td class="num">7,943</td>
+  <td class="num" data-sortkey="22605537.570000004">₩22,605,538</td>
+  <td class="num">3~12 (10)</td>
+  <td><small>[BL] 하루하루 1권; [BL] 익스클루시브(Exclusive) 1권</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>태랑</strong></td>
+  <td class="num">752</td>
+  <td class="num">5,151</td>
+  <td class="num" data-sortkey="15588246.6">₩15,588,247</td>
+  <td class="num">4~12 (9)</td>
+  <td><small>[세트] [BL] SOTUS S (외전 포함) (총3권/완결); 거짓말 2 (완결)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>785.06</strong></td>
+  <td class="num">1</td>
+  <td class="num">15</td>
+  <td class="num" data-sortkey="12702391.0">₩12,702,391</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Les aventures de la fille du Roi Démon</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>622.54</strong></td>
+  <td class="num">1</td>
+  <td class="num">14</td>
+  <td class="num" data-sortkey="11421544.0">₩11,421,544</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Les aventures de la fille du Roi Démon</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>만화가족</strong></td>
+  <td class="num">32</td>
+  <td class="num">32</td>
+  <td class="num" data-sortkey="7688228.2">₩7,688,228</td>
+  <td class="num">1~12 (3)</td>
+  <td><small>공유하는 집; 애증과 애정 사이</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>474.02</strong></td>
+  <td class="num">1</td>
+  <td class="num">14</td>
+  <td class="num" data-sortkey="7146744.0">₩7,146,744</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Tochter des Teufels</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>535.77</strong></td>
+  <td class="num">1</td>
+  <td class="num">13</td>
+  <td class="num" data-sortkey="6586862.0">₩6,586,862</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Tochter des Teufels</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>스토리아크</strong></td>
+  <td class="num">59</td>
+  <td class="num">2,553</td>
+  <td class="num" data-sortkey="6300819.97">₩6,300,820</td>
+  <td class="num">4~12 (9)</td>
+  <td><small>사냥꾼은 마왕이 되기 싫다 [독점]; 소울슈터 [독점]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>쉬라즈</strong></td>
+  <td class="num">417</td>
+  <td class="num">2,335</td>
+  <td class="num" data-sortkey="6055559.008000001">₩6,055,559</td>
+  <td class="num">3~12 (10)</td>
+  <td><small>집착의 맛 1권; 밤의 제물</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>밀리의서재</strong></td>
+  <td class="num">36</td>
+  <td class="num">2,454</td>
+  <td class="num" data-sortkey="5534470.0">₩5,534,470</td>
+  <td class="num">1~11 (5)</td>
+  <td><small>너만 보면 두근두근; 설국연가</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1</strong></td>
+  <td class="num">2</td>
+  <td class="num">15</td>
+  <td class="num" data-sortkey="4548561.0">₩4,548,561</td>
+  <td class="num">3~5 (2)</td>
+  <td><small>공주전쟁 (Pertarungan Para Putri); 공주전쟁 (Pertarungan Para Putri)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>e-온누리</strong></td>
+  <td class="num">16</td>
+  <td class="num">400</td>
+  <td class="num" data-sortkey="2427334.0">₩2,427,334</td>
+  <td class="num">1~5 (5)</td>
+  <td><small>철검록; 1874 대혁명</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>엠스토리허브</strong></td>
+  <td class="num">13</td>
+  <td class="num">343</td>
+  <td class="num" data-sortkey="2008581.9764100907">₩2,008,582</td>
+  <td class="num">1~12 (9)</td>
+  <td><small>레이디 스칼렛; 레이디 스칼렛</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>428.94</strong></td>
+  <td class="num">3</td>
+  <td class="num">6</td>
+  <td class="num" data-sortkey="1685123.8199999998">₩1,685,124</td>
+  <td class="num">10~12 (3)</td>
+  <td><small>Un amour de yakuza; Un amour de yakuza</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>컨텐츠헤라</strong></td>
+  <td class="num">4</td>
+  <td class="num">58</td>
+  <td class="num" data-sortkey="1597546.0">₩1,597,546</td>
+  <td class="num">5~9 (2)</td>
+  <td><small>백스테이지 키스신; 내 남편의 스토커</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>밀리의 서재</strong></td>
+  <td class="num">80</td>
+  <td class="num">195</td>
+  <td class="num" data-sortkey="1583180.0">₩1,583,180</td>
+  <td class="num">1~6 (5)</td>
+  <td><small>낯선 밤에 마주친 [완]; 낯선 밤에 마주친</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>아크스튜디오</strong></td>
+  <td class="num">16</td>
+  <td class="num">131</td>
+  <td class="num" data-sortkey="1565072.0">₩1,565,072</td>
+  <td class="num">1~5 (5)</td>
+  <td><small>사냥꾼은 마왕이 되기 싫다 [독점]; 소울슈터 [독점]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>올콘텐츠앤브이알</strong></td>
+  <td class="num">21</td>
+  <td class="num">767</td>
+  <td class="num" data-sortkey="1362939.3000000005">₩1,362,939</td>
+  <td class="num">5~11 (5)</td>
+  <td><small>보스 오빠, 살살!; 지금은 여장중!</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>(주)컨텐츠헤라</strong></td>
+  <td class="num">1</td>
+  <td class="num">654</td>
+  <td class="num" data-sortkey="1278590.0">₩1,278,590</td>
+  <td class="num">1~1 (1)</td>
+  <td><small>사신전설</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>히즈노블</strong></td>
+  <td class="num">29</td>
+  <td class="num">91</td>
+  <td class="num" data-sortkey="971798.0">₩971,798</td>
+  <td class="num">4~12 (9)</td>
+  <td><small>반하는 세계 [BL]; 다정한 내일을 위한 새벽 [BL]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>Y</strong></td>
+  <td class="num">40</td>
+  <td class="num">115</td>
+  <td class="num" data-sortkey="750970.0">₩750,970</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>우리 집 악마 새끼 [BL]; 폭군의 공물 [BL]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>북큐브</strong></td>
+  <td class="num">2</td>
+  <td class="num">104</td>
+  <td class="num" data-sortkey="723880.0">₩723,880</td>
+  <td class="num">1~1 (1)</td>
+  <td><small>도폐풍운록; 선유문주</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>쉬즈노블</strong></td>
+  <td class="num">77</td>
+  <td class="num">144</td>
+  <td class="num" data-sortkey="707123.0">₩707,123</td>
+  <td class="num">4~12 (9)</td>
+  <td><small>완벽한 이상형 [외전증보판]; 어딜 봐요? [외전증보판]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>421344</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="702240.0">₩702,240</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>별빛 아래 우리 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>25.35</strong></td>
+  <td class="num">1</td>
+  <td class="num">16</td>
+  <td class="num" data-sortkey="691844.0">₩691,844</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Baiser en coulisses</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>28.87</strong></td>
+  <td class="num">1</td>
+  <td class="num">15</td>
+  <td class="num" data-sortkey="662194.0">₩662,194</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Baiser en coulisses</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>㈜케이티</strong></td>
+  <td class="num">140</td>
+  <td class="num">1,281</td>
+  <td class="num" data-sortkey="636097.0">₩636,097</td>
+  <td class="num">1~12 (7)</td>
+  <td><small>753867; 753868</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>357025.2</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="595042.0">₩595,042</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>별빛 아래 우리 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>케이티</strong></td>
+  <td class="num">34</td>
+  <td class="num">39</td>
+  <td class="num" data-sortkey="575754.5291200001">₩575,755</td>
+  <td class="num">1~5 (4)</td>
+  <td><small>갓 오브 블랙필드 [2부 공개]; 갓 오브 블랙필드 [2부 공개]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>스토리위드</strong></td>
+  <td class="num">11</td>
+  <td class="num">63</td>
+  <td class="num" data-sortkey="504570.0">₩504,570</td>
+  <td class="num">3~11 (8)</td>
+  <td><small>정절보다 절정; [e북]정절보다 절정</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>263499.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="439166.0">₩439,166</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>별빛 아래 우리 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>투니드엔터테인먼트</strong></td>
+  <td class="num">1</td>
+  <td class="num">21</td>
+  <td class="num" data-sortkey="380040.0">₩380,040</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>개천고 세계편</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>218173.2</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="363622.0">₩363,622</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>악역이지만, 남주는 꼬시지 않아요 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>비엘스토리</strong></td>
+  <td class="num">36</td>
+  <td class="num">231</td>
+  <td class="num" data-sortkey="296700.2">₩296,700</td>
+  <td class="num">3~12 (10)</td>
+  <td><small>[BL] 달보드레 1; [BL] 피할 수 없으면 즐겨라(체험판) 1</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>-</strong></td>
+  <td class="num">1</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="274890.0">₩274,890</td>
+  <td class="num">9~9 (1)</td>
+  <td><small>RS 합계</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>203.89</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="272265.0">₩272,265</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Chunhyang sous les abysses</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>어울림</strong></td>
+  <td class="num">31</td>
+  <td class="num">168</td>
+  <td class="num" data-sortkey="271060.0">₩271,060</td>
+  <td class="num">1~3 (3)</td>
+  <td><small>[e북]레지스; 대한제국 2012</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>104697.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="228256.0">₩228,256</td>
+  <td class="num">2~2 (1)</td>
+  <td><small>별빛 아래 우리</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>스토리위즈2</strong></td>
+  <td class="num">38</td>
+  <td class="num">38</td>
+  <td class="num" data-sortkey="198240.0">₩198,240</td>
+  <td class="num">4~5 (2)</td>
+  <td><small>익스클루시브(Exclusive); 법보다 주먹</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>115390.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="192318.0">₩192,318</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>계약연애, 오늘부터 1일 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>100228.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="167048.0">₩167,048</td>
+  <td class="num">7~7 (1)</td>
+  <td><small>악역이지만, 남주는 꼬시지 않아요 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>마야마루</strong></td>
+  <td class="num">8</td>
+  <td class="num">15</td>
+  <td class="num" data-sortkey="150080.0">₩150,080</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>[세트] 갓 오브 블랙필드 (개정판) (총32권/완결); 그라운드의 지배자 03</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>케이티블라이스</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="147140.0">₩147,140</td>
+  <td class="num">4~5 (2)</td>
+  <td><small>공작가의 남루한 신부; 회귀의 전설</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>청어람출판사</strong></td>
+  <td class="num">8</td>
+  <td class="num">11</td>
+  <td class="num" data-sortkey="141120.0">₩141,120</td>
+  <td class="num">1~9 (7)</td>
+  <td><small>만능서생; 등룡기</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>134112</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="134112.0">₩134,112</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>공주전쟁</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>125136</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="125136.0">₩125,136</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>악역이지만, 남주는 꼬시지 않아요</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>74852.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="124754.0">₩124,754</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>악역이지만, 남주는 꼬시지 않아요 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>88.48</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="119025.0">₩119,025</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>YOUTH</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>80.06</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="106908.0">₩106,908</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>YOUTH</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>63281.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="105469.0">₩105,469</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>별빛 아래 우리 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>60887.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="101479.0">₩101,479</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>계약연애, 오늘부터 1일 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>53146.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="88578.0">₩88,578</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>최애에게 들켜버렸다 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2022.10.06</strong></td>
+  <td class="num">7</td>
+  <td class="num">9</td>
+  <td class="num" data-sortkey="88020.0">₩88,020</td>
+  <td class="num">9~9 (1)</td>
+  <td><small>갓 오브 블랙필드 [2부 공개]; 스포트라이트</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>19152</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="75432.0">₩75,432</td>
+  <td class="num">2~2 (1)</td>
+  <td><small>공주전쟁</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>41176.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="68628.0">₩68,628</td>
+  <td class="num">7~7 (1)</td>
+  <td><small>최애에게 들켜버렸다 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>러브스토리</strong></td>
+  <td class="num">9</td>
+  <td class="num">52</td>
+  <td class="num" data-sortkey="64435.0">₩64,435</td>
+  <td class="num">6~12 (7)</td>
+  <td><small>침대 위의 짐승; 침대 위의 짐승</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>(주)스토리위즈</strong></td>
+  <td class="num">2</td>
+  <td class="num">6</td>
+  <td class="num" data-sortkey="59940.0">₩59,940</td>
+  <td class="num">2~2 (1)</td>
+  <td><small>법보다 주먹; 바보가 만드는 멋진 세상</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>케이티블라이스2</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="56351.0">₩56,351</td>
+  <td class="num">4~5 (2)</td>
+  <td><small>로드 오브 머니; 간신이 나라를 살림</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>구디</strong></td>
+  <td class="num">1</td>
+  <td class="num">17</td>
+  <td class="num" data-sortkey="56100.0">₩56,100</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>커피여우 김삼월</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>32.22</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="43343.0">₩43,343</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Le Jardin aux fleurs pourpres</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>22503.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="37506.0">₩37,506</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>악역이지만, 남주는 꼬시지 않아요 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>22024.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="36708.0">₩36,708</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>백스테이지 키스신 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>27.47</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="36682.0">₩36,682</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Le Jardin aux fleurs pourpres</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>케이툰</strong></td>
+  <td class="num">1</td>
+  <td class="num">3</td>
+  <td class="num" data-sortkey="36600.0">₩36,600</td>
+  <td class="num">9~9 (1)</td>
+  <td><small>개천고 세계편</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>19630.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="32718.0">₩32,718</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>공주전쟁 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>18832.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="31388.0">₩31,388</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>공주전쟁 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>도사출판 태랑</strong></td>
+  <td class="num">4</td>
+  <td class="num">5</td>
+  <td class="num" data-sortkey="31339.0">₩31,339</td>
+  <td class="num">8~10 (3)</td>
+  <td><small>스타의 연애 (외전증보 개정판); On the air</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2022-06-01 ~ 2022-06-30</strong></td>
+  <td class="num">13</td>
+  <td class="num">14</td>
+  <td class="num" data-sortkey="29660.0">₩29,660</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>위드 카일러; [BL] 마지막 춤은, 악인과 함께</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>MSTORYHUB</strong></td>
+  <td class="num">1</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="28445.2">₩28,445</td>
+  <td class="num">1~1 (1)</td>
+  <td><small>레이디 스칼렛</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>28248</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="28248.0">₩28,248</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>최애에게 들켜버렸다</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>4149.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">3</td>
+  <td class="num" data-sortkey="27701.0">₩27,701</td>
+  <td class="num">11~11 (1)</td>
+  <td><small>달콤한 결혼</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>15960</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="26600.0">₩26,600</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>폭군의 눈물 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>15321.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="25536.0">₩25,536</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>백스테이지 키스신 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>쉬라즈(SHIRAZ)</strong></td>
+  <td class="num">8</td>
+  <td class="num">20</td>
+  <td class="num" data-sortkey="25288.0">₩25,288</td>
+  <td class="num">5~11 (5)</td>
+  <td><small>호랑아기씨&lt;세트구매&gt;; 악마 귀환</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>14523.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="24206.0">₩24,206</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>최애에게 들켜버렸다 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>14443.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="24073.0">₩24,073</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>달콤한 결혼 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>14284.2</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="23807.0">₩23,807</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>계약연애, 오늘부터 1일 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>13725.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="22876.0">₩22,876</td>
+  <td class="num">7~7 (1)</td>
+  <td><small>별빛 아래 우리 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>12927.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="21546.0">₩21,546</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>공주전쟁 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>11970</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="19950.0">₩19,950</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>폭군의 눈물 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>11012.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="18354.0">₩18,354</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>백스테이지 키스신 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>9735.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="16226.0">₩16,226</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>보스오빠, 살살! 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>케이티3</strong></td>
+  <td class="num">5</td>
+  <td class="num">5</td>
+  <td class="num" data-sortkey="15540.0">₩15,540</td>
+  <td class="num">4~5 (2)</td>
+  <td><small>컬러 러쉬; 아저씨, 내 기분 왜 이래요?</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>8937.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="14896.0">₩14,896</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>최애에게 들켜버렸다 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0</strong></td>
+  <td class="num">40</td>
+  <td class="num">70</td>
+  <td class="num" data-sortkey="13873.0">₩13,873</td>
+  <td class="num">5~12 (6)</td>
+  <td><small>A Table; 천년의 사랑</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>어울림출판사(컨텐츠헤라)</strong></td>
+  <td class="num">3</td>
+  <td class="num">17</td>
+  <td class="num" data-sortkey="13070.0">₩13,070</td>
+  <td class="num">1~1 (1)</td>
+  <td><small>[e북]대한의 노호; [e북]은영</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>6450.5</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="12901.0">₩12,901</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>괴물아기[글로벌 전용] 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>5426.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="12236.0">₩12,236</td>
+  <td class="num">2~2 (1)</td>
+  <td><small>최애에게 들켜버렸다</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>7022.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="11704.0">₩11,704</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>보스오빠, 살살! 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>6942.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="11571.0">₩11,571</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>달콤한 결혼</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2793</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="11172.0">₩11,172</td>
+  <td class="num">3~12 (2)</td>
+  <td><small>괴물아기[글로벌 전용] 언어별; 옹주의 호위무사 [글로벌 전용]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>6384</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="10640.0">₩10,640</td>
+  <td class="num">7~7 (1)</td>
+  <td><small>백스테이지 키스신 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>마루&amp;마야</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="10080.0">₩10,080</td>
+  <td class="num">2~3 (2)</td>
+  <td><small>그라운드의 지배자 01; [세트] 강호유정 (총6권/완결)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>7.34</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="9874.0">₩9,874</td>
+  <td class="num">5~6 (2)</td>
+  <td><small>Les sous-doués de la Mode; A Table</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2022-05-01 ~ 2022-05-31</strong></td>
+  <td class="num">6</td>
+  <td class="num">7</td>
+  <td class="num" data-sortkey="9850.0">₩9,850</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>[BL] 우리 집 악마 새끼; 신룡전설</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2022-04-01 ~ 2022-04-30</strong></td>
+  <td class="num">7</td>
+  <td class="num">10</td>
+  <td class="num" data-sortkey="9800.0">₩9,800</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>법보다 주먹 [외전포함]; [BL] 피할 수 없으면 즐겨라 [단행본]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>서울비주얼웍스(컨텐츠헤라제공)</strong></td>
+  <td class="num">9</td>
+  <td class="num">19</td>
+  <td class="num" data-sortkey="9200.0">₩9,200</td>
+  <td class="num">1~1 (1)</td>
+  <td><small>CROSS and CRIME (크로스 앤드 크라임); 1부 5처 ~내가 인기 있는 이유~</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>5266.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="8778.0">₩8,778</td>
+  <td class="num">7~7 (1)</td>
+  <td><small>계약연애, 오늘부터 1일 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>4947.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="8246.0">₩8,246</td>
+  <td class="num">7~7 (1)</td>
+  <td><small>달콤한 결혼 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>7920</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="7920.0">₩7,920</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>요괴님은 수련중</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>6600</strong></td>
+  <td class="num">1</td>
+  <td class="num">3</td>
+  <td class="num" data-sortkey="7920.0">₩7,920</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>달콤한 키스</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>4309.2</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="7182.0">₩7,182</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>보스오빠, 살살!</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>3830.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="6384.0">₩6,384</td>
+  <td class="num">2~2 (1)</td>
+  <td><small>폐하, 옥체 보존하세요!</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2992.5</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="5985.0">₩5,985</td>
+  <td class="num">7~7 (1)</td>
+  <td><small>괴물아기[글로벌 전용] 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2022.05.06</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="5280.0">₩5,280</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>진짜 사나이!; 더 캡틴</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2327.5</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="4655.0">₩4,655</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>괴물아기[글로벌 전용] 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2194.5</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="4389.0">₩4,389</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>옹주의 호위무사 [글로벌 전용] 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2394</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="3990.0">₩3,990</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>계약연애, 오늘부터 1일 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>3630</strong></td>
+  <td class="num">2</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="3630.0">₩3,630</td>
+  <td class="num">8~10 (2)</td>
+  <td><small>달콤한 그와 결혼했습니다; 어쩌다 계약 아내</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2.64</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="3525.0">₩3,525</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Alien Beauty</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-unset">미지정</span></td>
+  <td><strong>(미상-biznum)</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="3085.0">₩3,085</td>
+  <td class="num">12~12 (1)</td>
+  <td><small>착한 언니는 없다</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1755.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="2926.0">₩2,926</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>폭군의 눈물 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>798</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="2926.0">₩2,926</td>
+  <td class="num">6~7 (2)</td>
+  <td><small>천년의 사랑; 옹주의 호위무사 [글로벌 전용] 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1320</strong></td>
+  <td class="num">2</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="2640.0">₩2,640</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>폭군의 눈물; 내 남편의 스토커</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1516.2</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="2527.0">₩2,527</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>그 남자의 사랑방식</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1436.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="2394.0">₩2,394</td>
+  <td class="num">7~7 (1)</td>
+  <td><small>공주전쟁 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2376</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="2376.0">₩2,376</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>폐하, 옥체 보존하세요!</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>thecompany0025</strong></td>
+  <td class="num">2</td>
+  <td class="num">3</td>
+  <td class="num" data-sortkey="2283.76">₩2,284</td>
+  <td class="num">5~6 (2)</td>
+  <td><small>우리 집 악마 새끼; [e북]우리 집 악마 새끼</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>638.4</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="2128.0">₩2,128</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>백스테이지 키스신 언어별; 달콤한 결혼 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>399</strong></td>
+  <td class="num">2</td>
+  <td class="num">3</td>
+  <td class="num" data-sortkey="1995.0">₩1,995</td>
+  <td class="num">9~11 (2)</td>
+  <td><small>옹주의 호위무사 [글로벌 전용]; 옹주의 호위무사 [글로벌 전용]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>957.6</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="1596.0">₩1,596</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>폭군의 눈물 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1584</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="1584.0">₩1,584</td>
+  <td class="num">9~9 (1)</td>
+  <td><small>폐하, 옥체 보존하세요!</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>877.8</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="1463.0">₩1,463</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>폐하, 옥체 보존하세요!</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>718.2</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="1197.0">₩1,197</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>계약연애, 오늘부터 1일</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>4832112020081</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="1050.0">₩1,050</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>폐하, 옥체 보존하세요!</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>660</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="990.0">₩990</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>그남자의 사랑방식</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0.67</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="901.0">₩901</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Alien Beauty</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>792</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="792.0">₩792</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>별빛 아래 우리</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>180.61</strong></td>
+  <td class="num">3</td>
+  <td class="num">6</td>
+  <td class="num" data-sortkey="541.83">₩542</td>
+  <td class="num">10~12 (3)</td>
+  <td><small>Wenn ein Yakuza-Boss liebt; Wenn ein Yakuza-Boss liebt</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>159.6</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="532.0">₩532</td>
+  <td class="num">6~7 (2)</td>
+  <td><small>달콤한 그와 결혼했습니다; 보스오빠, 살살! 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>319.2</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="532.0">₩532</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>최애에게 들켜버렸다 언어별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>239.4</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="399.0">₩399</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>결혼전쟁</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0.29</strong></td>
+  <td class="num">3</td>
+  <td class="num">3</td>
+  <td class="num" data-sortkey="390.0">₩390</td>
+  <td class="num">5~6 (2)</td>
+  <td><small>Peinture Millénaire; Chunhyang sous les abysses</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>300</strong></td>
+  <td class="num">4</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="280.0">₩280</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>아래층에 전남편이 산다; 집착 상사</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>264</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="264.0">₩264</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>백스테이지 키스신</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>132</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="132.0">₩132</td>
+  <td class="num">8~8 (1)</td>
+  <td><small>결혼전쟁</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>8820</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="120.0">₩120</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>막상막하</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>더 컴퍼니</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="92.0">₩92</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>[BL] 모어 댄 블루(More than BLUE) [완]; [BL] 소년연애담 [완]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>중국IB</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">3~3 (1)</td>
+  <td><small>이세계 소환은 두 번째라구요; 연애 2분의 1</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>thecompany0033</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~5 (2)</td>
+  <td><small>더티독 (외전); 더티독 (외전)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>nabit0066</strong></td>
+  <td class="num">3</td>
+  <td class="num">3</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~6 (3)</td>
+  <td><small>신들의 성소 (외전); 신들의 성소 (외전)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>nabit0001</strong></td>
+  <td class="num">4</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~7 (4)</td>
+  <td><small>[BL] More than BLUE(모어 댄 블루); [BL] More than BLUE(모어 댄 블루)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>lsbl0014</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>네이처 너처 (Nature Nurture)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>nabit0069</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>엠프티(Empty) (외전)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>thecompany0035</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>역천활음강시(逆天活陰强屍) (연재)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>lsbl0016</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>사냥꾼 (외전)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>thecompany0039</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~4 (1)</td>
+  <td><small>베르사유의 장미 (외전)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>nabit0009</strong></td>
+  <td class="num">2</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~5 (2)</td>
+  <td><small>[BL] 뉴욕 키스 스캔들 (연재); [BL] 뉴욕 키스 스캔들 (연재)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>nabit0068</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">4~5 (2)</td>
+  <td><small>우아한 곡선 (외전); 우아한 곡선 (외전)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>nabit0021</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>그을린 신기루</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>46.36</strong></td>
+  <td class="num">1</td>
+  <td class="num">13</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Küsse hinter den Kulissen</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>332.49</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Le Retour de la Légende</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>110.69</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>À première vue</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>25.54</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>Par-delà les cases</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>7.21</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">5~5 (1)</td>
+  <td><small>School Water</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>ls0145</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>아침이 오지 않아도</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>lsbl0008</strong></td>
+  <td class="num">1</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>[외전][BL]피할 수 없으면 즐겨라</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>lsbl0011</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>[BL] 사냥꾼</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>thecompany0044</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>마왕의 구원자 (외전증보판)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>thecompany0041</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>형님의 남자</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>38.42</strong></td>
+  <td class="num">1</td>
+  <td class="num">14</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Küsse hinter den Kulissen</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>212.52</strong></td>
+  <td class="num">1</td>
+  <td class="num">3</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Le Retour de la Légende</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>16.72</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>À première vue</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0.43</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Les sous-doués de la Mode</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>7.43</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>School Water</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>0.2</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">6~6 (1)</td>
+  <td><small>Peinture Millénaire</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>150</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>분홍의 작약; 칼의 기억</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>570</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>낯선 밤에 마주친; 이차적 일탈</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1200</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>아저씨, 내 기분 왜 이래요?; 본능에 눈뜨다 [개정증보판]</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>11640</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>회귀의 전설</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>3090</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>디버프 마스터</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>5220</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>공작가의 남루한 신부</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>19890</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>갓 오브 블랙필드</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>3030</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>최종 보스 : 빛을 향해 달리는 그림자</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>4800</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>형사의 게임</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>600</strong></td>
+  <td class="num">7</td>
+  <td class="num">7</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>레이드 만물상점; 돌아온 막내 영애님을 조심하세요</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>930</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>아스트로(ASTRO): 별</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>810</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>밤의 제물</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>120</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>꽃처럼 너를 안는다; 월급 주는 남편</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>270</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>연애의 시작</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1950</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>바스락</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1350</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>이 비서 다리 좀 치워</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>330</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>로드 오브 머니; 구애</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>60</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>중독; 가장 완벽한 인질</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>7380</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>다정할수록 불순한</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>3150</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>대표님께 매우 진심인 편</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1590</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>나의 시고르자브종</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>900</strong></td>
+  <td class="num">4</td>
+  <td class="num">4</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>도폐풍운록; 위대한 가문의 망나니가 되다</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1650</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>신을 죽이러 갑니다; 그 알파 내 오메가 만들기</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1290</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>기사가문 망나니는 10클래스</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>5640</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>게이트 헌터</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2490</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>궁성</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>360</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>썸원; 남이 되어 주세요</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>180</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>그땐 미처</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1830</strong></td>
+  <td class="num">2</td>
+  <td class="num">2</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>내 사랑 스토커; 아빠는 마교대장</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>2520</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>욕과 정이 깨어날 때</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>1410</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>사랑, 흘러간다</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>5760</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>결혼의 함정</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>840</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>시크릿 맨 (개정증보판)</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>30</strong></td>
+  <td class="num">6</td>
+  <td class="num">6</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>그땐 그랬었다; 위층 아이 아빠</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>3480</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>혼자서는 못 해요</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>33450</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>신입사원이 이렇게 일을 잘했다고?</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>6840</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>강호, 미치다</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>90</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">10~10 (1)</td>
+  <td><small>이별하기 좋은 계절</small></td>
+</tr><tr>
+  <td><span class="category-tag cat-normal">정상</span></td>
+  <td><strong>더 간지</strong></td>
+  <td class="num">1</td>
+  <td class="num">1</td>
+  <td class="num" data-sortkey="0.0">₩0</td>
+  <td class="num">12~12 (1)</td>
+  <td><small>오고 있나요?</small></td>
+</tr></tbody>
+</table>
+</section>
+</main>
+<div class="footer-note">데이터: v8 (R10 anomaly 격리 + BIZNUM 정규화) · 5컬럼·raw·PII 미포함</div>
+<script>
+document.querySelectorAll('table.sortable').forEach(tbl => {
+  const headers = tbl.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const tbody = tbl.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isNum = th.classList.contains('num');
+      const asc = th.dataset.sort !== 'asc';
+      rows.sort((a, b) => {
+        let va = a.cells[idx].dataset.sortkey || a.cells[idx].textContent;
+        let vb = b.cells[idx].dataset.sortkey || b.cells[idx].textContent;
+        if (isNum) { va = parseFloat(va) || 0; vb = parseFloat(vb) || 0; return asc ? va - vb : vb - va; }
+        return asc ? va.localeCompare(vb, 'ko') : vb.localeCompare(va, 'ko');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      headers.forEach(h => h.dataset.sort = '');
+      th.dataset.sort = asc ? 'asc' : 'desc';
+    });
+  });
+});
+document.querySelectorAll('.search-input').forEach(input => {
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    const tbl = document.querySelector(input.dataset.target || 'table');
+    const tbody = tbl ? tbl.querySelector('tbody') : null;
+    if (!tbody) return;
+    tbody.querySelectorAll('tr').forEach(tr => {
+      const text = tr.textContent.toLowerCase();
+      tr.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

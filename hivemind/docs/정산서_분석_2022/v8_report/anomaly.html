@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Anomaly 격리 · v8 Report</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+       margin: 0; padding: 0; background: #f5f7fa; color: #1f2937; line-height: 1.55; }
+header { background: #1e3a8a; color: #fff; padding: 24px 32px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+header h1 { margin: 0; font-size: 24px; }
+header .meta { margin-top: 6px; font-size: 13px; opacity: 0.85; }
+nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0 32px; position: sticky; top: 0; z-index: 100;
+      overflow-x: auto; white-space: nowrap; }
+nav a { display: inline-block; padding: 14px 16px; color: #374151; text-decoration: none; font-size: 14px; border-bottom: 3px solid transparent; }
+nav a:hover, nav a.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+main { max-width: 1280px; margin: 0 auto; padding: 24px 32px 80px; }
+section { background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+section h2 { margin: 0 0 16px; font-size: 18px; color: #111827; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+section h3 { margin: 24px 0 12px; font-size: 15px; color: #374151; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi-card { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 18px; border-radius: 8px; border-left: 4px solid #2563eb; }
+.kpi-card.positive { border-left-color: #059669; }
+.kpi-card.warning { border-left-color: #d97706; }
+.kpi-card.danger { border-left-color: #dc2626; }
+.kpi-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 22px; font-weight: 700; color: #111827; margin-top: 4px; }
+.kpi-sub { font-size: 12px; color: #6b7280; margin-top: 4px; }
+.alert-grid { display: grid; gap: 12px; }
+.alert { padding: 16px 20px; border-radius: 6px; border-left: 4px solid; background: #fef2f2; }
+.alert.critical { border-color: #dc2626; background: #fee2e2; }
+.alert.high { border-color: #ea580c; background: #fed7aa; }
+.alert.medium { border-color: #ca8a04; background: #fef3c7; }
+.alert.fixed { border-color: #16a34a; background: #dcfce7; }
+.alert-title { font-weight: 700; font-size: 14px; color: #7f1d1d; }
+.alert.fixed .alert-title { color: #14532d; }
+.alert-body { font-size: 13px; color: #4b5563; margin-top: 6px; }
+.alert-meta { font-size: 11px; color: #6b7280; margin-top: 6px; font-family: monospace; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+th { background: #f9fafb; text-align: left; padding: 10px 12px; font-weight: 600; border-bottom: 2px solid #e5e7eb; position: sticky; top: 56px; cursor: pointer; user-select: none; }
+th:hover { background: #f3f4f6; }
+th.num { text-align: right; }
+td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:hover td { background: #fefce8; }
+.amount-pos { color: #111827; }
+.amount-neg { color: #dc2626; font-weight: 600; }
+.search-input { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; width: 320px; margin-bottom: 12px; }
+.month-summary { display: flex; gap: 24px; margin-bottom: 12px; font-size: 13px; color: #4b5563; flex-wrap: wrap; }
+.month-summary strong { color: #111827; }
+.chart-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; font-size: 13px; }
+.chart-row .label { min-width: 110px; }
+.chart-row .bar-bg { flex: 1; background: #e5e7eb; height: 16px; border-radius: 3px; position: relative; }
+.chart-row .bar-fg { background: #2563eb; height: 100%; border-radius: 3px; transition: width 0.3s; }
+.chart-row .bar-fg.warning { background: #d97706; }
+.chart-row .bar-fg.danger { background: #dc2626; }
+.chart-row .value { min-width: 140px; text-align: right; font-variant-numeric: tabular-nums; color: #374151; }
+.footer-note { text-align: center; color: #6b7280; font-size: 12px; padding: 24px; }
+.summary-list { list-style: disc; padding-left: 20px; font-size: 14px; line-height: 1.7; }
+.month-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 12px; }
+.month-card { background: #f9fafb; border-radius: 6px; padding: 12px; text-decoration: none; color: inherit; transition: all 0.15s; border: 1px solid #e5e7eb; }
+.month-card:hover { background: #eff6ff; border-color: #2563eb; }
+.month-card .m-label { font-size: 14px; font-weight: 700; color: #1e3a8a; }
+.month-card .m-amount { font-size: 13px; margin-top: 4px; }
+.month-card .m-count { font-size: 11px; color: #6b7280; margin-top: 2px; }
+.evolution-table th, .evolution-table td { text-align: center; }
+.evolution-table td.metric { text-align: left; font-weight: 600; }
+.row-count-info { font-size: 12px; color: #6b7280; margin-top: 8px; font-style: italic; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 정산내역 통합 리포트 v8 · Anomaly 격리</h1>
+  <div class="meta">41 마스터 · ₩1,004,317,102</div>
+</header>
+<nav><a href="index.html" class="">대시보드</a> <a href="anomaly.html" class="active">⚠️ Anomaly</a> <a href="unresolved.html" class="">미매칭</a> <a href="skipped.html" class="">스킵 파일</a> <a href="duplicates.html" class="">중복 log</a> <a href="evolution.html" class="">라운드 진화</a> <a href="month-01.html" class="">1월</a> <a href="month-02.html" class="">2월</a> <a href="month-03.html" class="">3월</a> <a href="month-04.html" class="">4월</a> <a href="month-05.html" class="">5월</a> <a href="month-06.html" class="">6월</a> <a href="month-07.html" class="">7월</a> <a href="month-08.html" class="">8월</a> <a href="month-09.html" class="">9월</a> <a href="month-10.html" class="">10월</a> <a href="month-11.html" class="">11월</a> <a href="month-12.html" class="">12월</a></nav>
+<main>
+<section>
+<h2>⚠️ R10 Anomaly 격리 — 메인 데이터에서 제외</h2>
+<div class="alert critical">
+  <div class="alert-title">41건 격리 · 합계 ₩1,004,317,102</div>
+  <div class="alert-body">회사·법인·기관·서비스 키워드 사전 + (미상)+(미지정)+≥10M+둥근숫자 패턴으로 자동 식별. 콘텐츠 작품명이 아닌 회사명·사업명이 책 마스터로 잘못 등록된 항목입니다. 사용자 spot check 후 해석 권장 (오분류 가능성 존재).</div>
+</div>
+<input type="text" class="search-input" data-target="#anomalytbl" placeholder="🔍 책·작가·출판사·사유 실시간 검색">
+<table id="anomalytbl" class="sortable">
+<thead><tr><th>월</th><th>책 (raw)</th><th>작가</th><th>출판사</th><th class="num">정산액 합계</th><th class="num">raw 건수</th><th>격리 사유</th></tr></thead>
+<tbody><tr>
+  <td>12</td>
+  <td><strong>디원씽</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="180000000.0">₩180,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>프라다코리아</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="176400000.0">₩176,400,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;코리아&#x27;</small></td>
+</tr><tr>
+  <td>10,12</td>
+  <td><strong>애착인형</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="100000000.0">₩100,000,000</td>
+  <td class="num">2</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>노이즈컴백</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="60000000.0">₩60,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>볼보자동자코리아</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="42000000.0">₩42,000,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;코리아&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>염라의숨결</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="40000000.0">₩40,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><strong>유브레인커뮤니케이션즈</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="36000000.0">₩36,000,000</td>
+  <td class="num">2</td>
+  <td><small>키워드 &#x27;브레인&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>제이슨그룹</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="31000000.0">₩31,000,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;그룹&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>광주관광재단</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="29000000.0">₩29,000,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;재단&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>대구문화예술진흥원</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="24900000.0">₩24,900,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;예술진흥원&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>넥스브레인</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="23000000.0">₩23,000,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;브레인&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>주식회사 워니프레임</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="21000000.0">₩21,000,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;주식회사&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>관세청</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="20000000.0">₩20,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>주식회사 디그리드인터렉티브</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="19800000.0">₩19,800,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;주식회사&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>주식회사 데이그린</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="19000000.0">₩19,000,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;주식회사&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>현대지비에프엠에스(주)</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="19000000.0">₩19,000,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;(주)&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>이랜드월드</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="19000000.0">₩19,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>한국수자원공사</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="19000000.0">₩19,000,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;공사&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>한국교통안전공단</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="19000000.0">₩19,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>롯데쇼핑(주)</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="18700000.0">₩18,700,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;(주)&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>큐티즈주식회사</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="18480000.0">₩18,480,000</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;주식회사&#x27;</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>산림청 국립수목원</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="16000000.0">₩16,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>1,10,12</td>
+  <td><strong>부기영화</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="12000000.0">₩12,000,000</td>
+  <td class="num">3</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>에프앤에프</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="11000000.0">₩11,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>짐싸</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="11000000.0">₩11,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><strong>현대그린푸드</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="11000000.0">₩11,000,000</td>
+  <td class="num">1</td>
+  <td><small>(미상)+(미지정)+≥10M+둥근숫자</small></td>
+</tr><tr>
+  <td>1,12</td>
+  <td><strong>레디엔터테인먼트</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="4800000.0">₩4,800,000</td>
+  <td class="num">3</td>
+  <td><small>키워드 &#x27;엔터테인먼트&#x27;</small></td>
+</tr><tr>
+  <td>1,12</td>
+  <td><strong>사회복지법인 사회복지공동모금회</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="2727276.0">₩2,727,276</td>
+  <td class="num">5</td>
+  <td><small>키워드 &#x27;법인&#x27;</small></td>
+</tr><tr>
+  <td>5,6,7,8,9,10,11,12</td>
+  <td><strong>[e북]환영합니다 마이클 본부장님</strong></td>
+  <td>퍼리딩딩</td>
+  <td>도서출판 태랑</td>
+  <td class="num amount-pos" data-sortkey="181024.6">₩181,025</td>
+  <td class="num">22</td>
+  <td><small>키워드 &#x27;본부&#x27;</small></td>
+</tr><tr>
+  <td>10,11,12</td>
+  <td><strong>환영합니다 마이클 본부장님 [BL][단행본]</strong></td>
+  <td>퍼리딩딩</td>
+  <td>도서출판 태랑</td>
+  <td class="num amount-pos" data-sortkey="145095.0">₩145,095</td>
+  <td class="num">9</td>
+  <td><small>키워드 &#x27;본부&#x27;</small></td>
+</tr><tr>
+  <td>1,2,3,5,7,8</td>
+  <td><strong>판타지 코리아</strong></td>
+  <td>흑표</td>
+  <td>어울림출판사</td>
+  <td class="num amount-pos" data-sortkey="81660.0">₩81,660</td>
+  <td class="num">18</td>
+  <td><small>키워드 &#x27;코리아&#x27;</small></td>
+</tr><tr>
+  <td>8,9,11</td>
+  <td><strong>[세트] [BL] 환영합니다 마이클 본부장님 (외전 포함) (총7권/완결)</strong></td>
+  <td>퍼리딩딩</td>
+  <td>태랑</td>
+  <td class="num amount-pos" data-sortkey="67396.0">₩67,396</td>
+  <td class="num">12</td>
+  <td><small>키워드 &#x27;본부&#x27;</small></td>
+</tr><tr>
+  <td>4,5,6,8,9,10,11,12</td>
+  <td><strong>[BL] 환영합니다 마이클 본부장님</strong></td>
+  <td>퍼리딩딩</td>
+  <td>도서출판 태랑</td>
+  <td class="num amount-pos" data-sortkey="13440.0">₩13,440</td>
+  <td class="num">26</td>
+  <td><small>키워드 &#x27;본부&#x27;</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><strong>독립기관 D.O.S</strong></td>
+  <td>Lu.B</td>
+  <td>어울림출판사</td>
+  <td class="num amount-pos" data-sortkey="7560.0">₩7,560</td>
+  <td class="num">6</td>
+  <td><small>키워드 &#x27;기관&#x27;</small></td>
+</tr><tr>
+  <td>10,11</td>
+  <td><strong>환영합니다 마이클 본부장님 외전 [BL][단행본]</strong></td>
+  <td>퍼리딩딩</td>
+  <td>도서출판 태랑</td>
+  <td class="num amount-pos" data-sortkey="6870.4">₩6,870</td>
+  <td class="num">4</td>
+  <td><small>키워드 &#x27;본부&#x27;</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><strong>판타지 코리아 1권</strong></td>
+  <td>흑표 지음</td>
+  <td>어울림출판사</td>
+  <td class="num amount-pos" data-sortkey="5120.0">₩5,120</td>
+  <td class="num">5</td>
+  <td><small>키워드 &#x27;코리아&#x27;</small></td>
+</tr><tr>
+  <td>1,2,4,5,7,9</td>
+  <td><strong>프린스 코리아</strong></td>
+  <td>김병재</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="1260.0">₩1,260</td>
+  <td class="num">8</td>
+  <td><small>키워드 &#x27;코리아&#x27;</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><strong>두근두근 호기심 컴퍼니</strong></td>
+  <td>(미상)</td>
+  <td>(미지정)</td>
+  <td class="num amount-pos" data-sortkey="400.0">₩400</td>
+  <td class="num">1</td>
+  <td><small>키워드 &#x27;컴퍼니&#x27;</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><strong>독립기관 D.O.S 1권</strong></td>
+  <td>LU.B 지음</td>
+  <td>어울림출판사</td>
+  <td class="num amount-pos" data-sortkey="0.0">₩0</td>
+  <td class="num">5</td>
+  <td><small>키워드 &#x27;기관&#x27;</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><strong>프린스 코리아 1권</strong></td>
+  <td>김병재 지음</td>
+  <td>어울림출판사</td>
+  <td class="num amount-pos" data-sortkey="0.0">₩0</td>
+  <td class="num">5</td>
+  <td><small>키워드 &#x27;코리아&#x27;</small></td>
+</tr><tr>
+  <td>10,12</td>
+  <td><strong>[BL] 환영합니다 마이클 본부장님 (외전)</strong></td>
+  <td>빨강뽀뽀</td>
+  <td>도서출판 태랑</td>
+  <td class="num amount-pos" data-sortkey="0.0">₩0</td>
+  <td class="num">2</td>
+  <td><small>키워드 &#x27;본부&#x27;</small></td>
+</tr></tbody>
+</table>
+</section>
+</main>
+<div class="footer-note">데이터: 2022_정산내역_통합_v8.xlsx · 정책: 5컬럼·raw 정산액·PII 미포함</div>
+<script>
+// 정렬 가능 테이블
+document.querySelectorAll('table.sortable').forEach(tbl => {
+  const headers = tbl.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const tbody = tbl.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isNum = th.classList.contains('num');
+      const asc = th.dataset.sort !== 'asc';
+      rows.sort((a, b) => {
+        let va = a.cells[idx].dataset.sortkey || a.cells[idx].textContent;
+        let vb = b.cells[idx].dataset.sortkey || b.cells[idx].textContent;
+        if (isNum) { va = parseFloat(va) || 0; vb = parseFloat(vb) || 0; return asc ? va - vb : vb - va; }
+        return asc ? va.localeCompare(vb, 'ko') : vb.localeCompare(va, 'ko');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      headers.forEach(h => h.dataset.sort = '');
+      th.dataset.sort = asc ? 'asc' : 'desc';
+    });
+  });
+});
+
+// 실시간 검색
+document.querySelectorAll('.search-input').forEach(input => {
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    const tbl = document.querySelector(input.dataset.target || 'table');
+    const tbody = tbl ? tbl.querySelector('tbody') : null;
+    if (!tbody) return;
+    tbody.querySelectorAll('tr').forEach(tr => {
+      const text = tr.textContent.toLowerCase();
+      tr.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

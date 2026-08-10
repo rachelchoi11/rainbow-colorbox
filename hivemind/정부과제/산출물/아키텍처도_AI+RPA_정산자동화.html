@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>AI+RPA 웹소설·웹툰 정산 자동화 — 시스템 아키텍처</title>
+<style>
+  :root{
+    --blue:#0B5CFF; --blue-d:#0847CC; --blue-l:#E8F0FF; --blue-l2:#F2F7FF;
+    --ink:#131619; --ink2:#3B424B; --muted:#6E7680;
+    --line:#E1E6F0; --bg:#FFFFFF; --ok:#12805C; --ok-l:#E4F5EE;
+    --warn:#B0740F; --warn-l:#FBF1DF; --dev:#7A3DF0; --dev-l:#F1EAFE;
+    --sh:0 1px 2px rgba(19,32,64,.05),0 2px 10px rgba(19,32,64,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Inter","Pretendard","Apple SD Gothic Neo","Noto Sans KR",-apple-system,sans-serif;
+    color:var(--ink);background:#F5F8FD;font-size:13px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+  .page{width:1000px;margin:0 auto;background:#fff;padding:40px 46px 48px;box-shadow:var(--sh)}
+  .page + .page{margin-top:26px}
+  .doch{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:8px}
+  .doch .fig{font-size:12px;font-weight:800;color:#fff;background:var(--blue);border-radius:6px;padding:4px 10px;letter-spacing:.02em}
+  .doch h1{font-size:16px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
+  .doch .sp{flex:1}
+  .doch .meta{font-size:11px;color:var(--muted);text-align:right;line-height:1.4}
+  .lead{font-size:12.5px;color:var(--ink2);margin:12px 0 20px}
+  .lead b{color:var(--blue)}
+  /* legend */
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--ink2);margin-bottom:18px}
+  .legend .it{display:flex;align-items:center;gap:7px}
+  .swatch{width:26px;height:14px;border-radius:4px;flex-shrink:0}
+  .sw-now{background:var(--blue-l);border:1.5px solid var(--blue)}
+  .sw-dev{background:var(--dev-l);border:1.5px solid var(--dev)}
+  /* layered architecture */
+  .layer{display:flex;align-items:stretch;gap:14px;margin-bottom:12px}
+  .laytag{width:118px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;
+    border-radius:12px;padding:12px 13px;font-size:11px;font-weight:700;color:#fff;text-align:left}
+  .laytag .n{font-size:10px;opacity:.85;font-weight:600;margin-bottom:2px}
+  .laytag .badge{display:none}
+  .lay-body{flex:1;border-radius:12px;padding:14px 15px;display:flex;gap:11px;align-items:center}
+  .lay-now{background:var(--blue-l2);border:1.5px solid #CFE0FF}
+  .lay-dev{background:var(--dev-l);border:1.5px solid var(--dev)}
+  .box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;flex:1;min-height:56px;display:flex;flex-direction:column;justify-content:center}
+  .box .t{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .box .d{font-size:10px;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .arrowcol{display:flex;flex-direction:column;align-items:center;color:var(--blue);font-size:20px;margin:-4px 0;font-weight:700}
+  .metric{font-size:10px;color:var(--ok);font-weight:700;background:var(--ok-l);border-radius:5px;padding:1px 6px;margin-top:5px;display:inline-block;width:fit-content}
+  .cross{margin-top:6px;background:#F7F9FE;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;
+    font-size:11px;color:var(--ink2);line-height:1.7}
+  .cross b{color:var(--ink);white-space:nowrap}
+  .cross .ic{color:var(--blue);font-weight:800;white-space:nowrap;margin-right:5px}
+  /* pipeline */
+  .pipe{display:flex;align-items:stretch;gap:0;margin:8px 0 4px;flex-wrap:nowrap}
+  .pstep{flex:1;background:#fff;border:1.5px solid #CFE0FF;border-radius:11px;padding:11px 9px;text-align:center;position:relative}
+  .pstep.dev{border:1.5px solid var(--dev);background:var(--dev-l)}
+  .pstep .no{width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:10.5px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+  .pstep.dev .no{background:var(--dev)}
+  .pstep .pt{font-size:11px;font-weight:700;line-height:1.3}
+  .pstep .pd{font-size:9.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+  .parrow{align-self:center;color:var(--blue);font-weight:800;font-size:15px;padding:0 3px;flex-shrink:0}
+  .gate{margin-top:14px;background:var(--ok-l);border:1px solid #BCE3D3;border-radius:10px;padding:11px 15px;font-size:11.5px;color:#0B5C43}
+  .gate b{color:var(--ok)}
+  /* roadmap */
+  .road{display:flex;gap:0;margin:14px 0 6px;align-items:stretch}
+  .rl{flex:1;border-radius:12px;padding:14px 13px;color:#fff;position:relative;margin-right:16px}
+  .rl:last-child{margin-right:0}
+  .rl .trl{font-size:11px;font-weight:800;letter-spacing:.02em;opacity:.9}
+  .rl .rt{font-size:13px;font-weight:800;margin:3px 0 8px}
+  .rl ul{list-style:none;font-size:10.5px;line-height:1.5}
+  .rl li{padding-left:11px;position:relative;margin-bottom:3px}
+  .rl li:before{content:"–";position:absolute;left:0;opacity:.7}
+  .rl .when{font-size:10px;font-weight:700;margin-top:8px;background:rgba(255,255,255,.2);border-radius:20px;padding:2px 9px;display:inline-block}
+  .r5{background:#8A93A3} .r6{background:#3D7BF0} .r7{background:#0B5CFF} .r8{background:#0847CC}
+  .rl .chev{position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:#CBD5E6;font-size:20px;font-weight:800;z-index:2}
+  .foot{margin-top:22px;font-size:10.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;line-height:1.5}
+  @media print{body{background:#fff}.page{box-shadow:none;width:auto;margin:0;padding:14mm 12mm;page-break-after:always}}
+</style>
+</head>
+<body>
+
+<!-- ===== A1. 시스템 아키텍처 전체도 ===== -->
+<section class="page">
+  <div class="doch">
+    <span class="fig">A-1</span>
+    <h1>AI+RPA 기반 웹소설·웹툰 멀티플랫폼 정산 자동화 — 시스템 아키텍처</h1>
+    <span class="sp"></span>
+    <div class="meta">2026 출판콘텐츠 기술개발 지원<br>과제 개요도 · v1</div>
+  </div>
+  <p class="lead">
+    유통 플랫폼 <b>31개</b>(유통사 약 28개사)의 제각각인 정산서를 수집하고, <b>AI 표준화·매칭 엔진</b>으로
+    "작가에게 얼마를 왜 지급하는지"를 단일 표준 데이터로 산출한다.
+    파란 계층 = <b>솔루션 엔진 영역</b>, 보라 계층 = <b>서비스 운영 영역</b>.
+  </p>
+  <div class="legend">
+    <div class="it"><span class="swatch sw-now"></span> 솔루션 엔진 영역 (표준화·매칭·정산)</div>
+    <div class="it"><span class="swatch sw-dev"></span> 서비스 운영 영역 (수집·멀티테넌트·발행)</div>
+    <div class="it"><span class="metric" style="margin:0">99.5%</span> 실측 성능지표</div>
+  </div>
+
+  <!-- Layer 0: 원본 수집 (서비스 운영 영역) -->
+  <div class="layer">
+    <div class="laytag" style="background:var(--dev)">
+      <span class="n">Layer 0</span>원본 수집층
+    </div>
+    <div class="lay-body lay-dev">
+      <div class="box"><div class="t">유통사 정산서 원본</div><div class="d">엑셀·CSV·HTML·ZIP</div></div>
+      <div class="box"><div class="t">포털 다운로드·업로드</div><div class="d">월별 정산서 수집</div></div>
+      <div class="box"><div class="t">일매출 데이터</div><div class="d">네이버·미스터블루 등</div></div>
+      <div class="box"><div class="t">원본 저장소</div><div class="d">수집이력·감사</div></div>
+    </div>
+  </div>
+  <div class="arrowcol">▼</div>
+
+  <!-- Layer 1: 표준화 엔진 -->
+  <div class="layer">
+    <div class="laytag" style="background:var(--blue)">
+      <span class="n">Layer 1</span>표준화 엔진
+    </div>
+    <div class="lay-body lay-now">
+      <div class="box"><div class="t">형식 판별</div><div class="d">매직바이트 형식 판별</div><span class="metric">37종 파서</span></div>
+      <div class="box"><div class="t">컬럼 표준화</div><div class="d">컬럼명 → 표준항목 매핑</div></div>
+      <div class="box"><div class="t">합계행 검증</div><div class="d">제공 합계 자동 대사</div><span class="metric">86/86 PASS</span></div>
+      <div class="box"><div class="t">레이블→출판사 귀속</div><div class="d">레이블 마스터로 귀속</div></div>
+    </div>
+  </div>
+  <div class="arrowcol">▼</div>
+
+  <!-- Layer 2: AI 매칭 엔진 -->
+  <div class="layer">
+    <div class="laytag" style="background:var(--blue)">
+      <span class="n">Layer 2</span>AI 매칭 엔진
+    </div>
+    <div class="lay-body lay-now">
+      <div class="box"><div class="t">작품·작가 정규화</div><div class="d">표기변형·병기·구두점 흡수</div><span class="metric">15.8%→99.5%</span></div>
+      <div class="box"><div class="t">자동 매칭·상호대조</div><div class="d">당월 교차+과거 시드</div></div>
+      <div class="box"><div class="t">AI 미매칭 제안</div><div class="d">근거 기반 제안·승인이력</div></div>
+      <div class="box"><div class="t">매칭 연구소</div><div class="d">동명이작 자동탐지·신고</div></div>
+    </div>
+  </div>
+  <div class="arrowcol">▼</div>
+
+  <!-- Layer 3: 정산 계산 엔진 -->
+  <div class="layer">
+    <div class="laytag" style="background:var(--blue)">
+      <span class="n">Layer 3</span>정산 계산 엔진
+    </div>
+    <div class="lay-body lay-now">
+      <div class="box"><div class="t">매출 집계·정산률</div><div class="d">유효계약 정산률 × 매출</div></div>
+      <div class="box"><div class="t">공저 분배</div><div class="d">계약 비율로 저자 배분</div></div>
+      <div class="box"><div class="t">MG 상계·세액</div><div class="d">선인세 상계·지급처 세액</div></div>
+      <div class="box"><div class="t">확정 freeze</div><div class="d">명세서 불변 근거 동결</div></div>
+    </div>
+  </div>
+  <div class="arrowcol">▼</div>
+
+  <!-- Layer 4: 서비스·운영화 -->
+  <div class="layer">
+    <div class="laytag" style="background:var(--dev)">
+      <span class="n">Layer 4</span>서비스·운영화
+    </div>
+    <div class="lay-body lay-dev">
+      <div class="box"><div class="t">멀티테넌트·RBAC</div><div class="d">출판사·유통대행·작가 격리</div></div>
+      <div class="box"><div class="t">명세서 자동 발행</div><div class="d">작가별 생성·검증·배포</div></div>
+      <div class="box"><div class="t">작가 포털</div><div class="d">작가 계정·명세서 열람</div></div>
+      <div class="box"><div class="t">통계 대시보드·API</div><div class="d">유통사별·작가별·계약</div></div>
+    </div>
+  </div>
+
+  <div class="cross"><span class="ic">⟺ 횡단 계층</span> <b>보안·격리</b> Row-Level Security · Payee 개인정보 암호화 &nbsp;|&nbsp; <b>감사</b> 모든 cross-tenant 접근·매칭 승인/정정 AuditLog &nbsp;|&nbsp; <b>영속 DB</b> 집계·명세서 SQL 재구현</div>
+
+  <div class="foot">
+    현재 배포 시작품(FastAPI, 로그인 게이트) 실측: 유통 플랫폼 31개 · 151파일 · 431,296행 · 정산총액 11.97억 원 처리, 완전매칭 99.5% / 미매칭 정산액 0.08% / 검증 86건 전수 PASS. (Layer 3의 공저·MG·확정 freeze는 설계·프로토타입)
+    본 과제는 Layer 0(원본 수집)·Layer 4(멀티테넌트 운영화)를 신규 개발하여 <b>수집 이후 무개입</b> 월 정산 자동화(TRL 8)를 달성한다.
+  </div>
+</section>
+
+<!-- ===== A2. 데이터 파이프라인 ===== -->
+<section class="page">
+  <div class="doch">
+    <span class="fig">A-2</span>
+    <h1>데이터 파이프라인 — 수집에서 명세서 발행까지</h1>
+    <span class="sp"></span>
+    <div class="meta">검증 게이트 내장<br>End-to-End 처리흐름</div>
+  </div>
+  <p class="lead">파일 1건이 <b>표준 Record</b>로 변환되어 정산·명세서에 이르는 9단계. 각 단계는 검증 게이트를 통과해야 다음으로 진행한다.</p>
+  <div class="legend">
+    <div class="it"><span class="swatch sw-now"></span> 솔루션 엔진 영역</div>
+    <div class="it"><span class="swatch sw-dev"></span> 서비스 운영 영역</div>
+  </div>
+
+  <div class="pipe">
+    <div class="pstep dev"><div class="no">1</div><div class="pt">원본 수집</div><div class="pd">업로드·포털<br>다운로드</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="no">2</div><div class="pt">형식 표준화</div><div class="pd">매직바이트·인코딩</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="no">3</div><div class="pt">항목 표준화</div><div class="pd">컬럼→표준항목</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="no">4</div><div class="pt">귀속</div><div class="pd">레이블→출판사</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="no">5</div><div class="pt">작품·작가 매칭</div><div class="pd">정규화+AI 제안</div></div>
+  </div>
+  <div class="pipe" style="margin-top:16px">
+    <div class="pstep"><div class="no">6</div><div class="pt">미매칭 검토</div><div class="pd">연구소·승인이력</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="no">7</div><div class="pt">정산 계산</div><div class="pd">정산률·공저·MG·세액</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep dev"><div class="no">8</div><div class="pt">월 확정·freeze</div><div class="pd">Snapshot 동결</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep dev"><div class="no">9</div><div class="pt">명세서 발행</div><div class="pd">작가 포털 배포</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep dev"><div class="no" style="background:var(--ok)">↺</div><div class="pt">정정 반영</div><div class="pd">차액→다음 정산월</div></div>
+  </div>
+
+  <div class="gate"><b>검증 게이트</b> ② 형식 100% 판별 · ③ 합계행 대사 전수 PASS · ⑤ 완전매칭률/미매칭 정산액 임계 · ⑦ 산식 순서 고정(집계→분배→합산→MG상계→세액→지급액). 게이트 실패 시 해당 단계 정지·알림.</div>
+
+  <div class="foot">
+    표준 스키마 핵심 엔티티: UploadFile · Record(owner_tenant / publisher_tenant 분리) · Work · Person(글로벌 작가) · Contract(시간차원) · MGLedger · CalcSnapshot(명세서 불변 근거) · AuthorStmt.
+    소유(업로드 주체)와 귀속(레이블 마스터가 정한 출판사)을 분리해 유통대행·직거래 시나리오를 동일 모델로 처리.
+  </div>
+</section>
+
+
+</body>
+</html>

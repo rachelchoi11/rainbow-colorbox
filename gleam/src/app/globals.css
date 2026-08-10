@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0e1a;
+  --foreground: #e8eaf2;
+  --accent: #8b9aff;
+  --accent-glow: #c8d3ff;
+  --muted: #6b7280;
+  --card: #131831;
+  --card-border: #1f2547;
+  --gold: #ffd97a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-glow: var(--accent-glow);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-gold: var(--gold);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", system-ui, sans-serif;
+}
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-5 py-3 font-medium transition;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #8b9aff 0%, #c8d3ff 100%);
+  color: #0a0e1a;
+}
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-ghost {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--foreground);
+}
+.btn-ghost:hover { background: #1a2046; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.glow {
+  box-shadow: 0 0 60px -15px rgba(139, 154, 255, 0.5);
+}
+
+/* Star animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+.star {
+  display: inline-block;
+  animation: twinkle 2.5s ease-in-out infinite;
+}

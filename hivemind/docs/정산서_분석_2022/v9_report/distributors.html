@@ -1,0 +1,1394 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>유통사 · v9 리포트</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+       margin: 0; padding: 0; background: #f5f7fa; color: #1f2937; line-height: 1.55; }
+header { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #fff; padding: 32px 32px 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+header h1 { margin: 0; font-size: 26px; font-weight: 700; }
+header .meta { margin-top: 8px; font-size: 13px; opacity: 0.92; }
+nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0 32px; position: sticky; top: 0; z-index: 100;
+      overflow-x: auto; white-space: nowrap; }
+nav a { display: inline-block; padding: 14px 16px; color: #374151; text-decoration: none; font-size: 14px; border-bottom: 3px solid transparent; transition: all 0.15s; }
+nav a:hover, nav a.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+main { max-width: 1320px; margin: 0 auto; padding: 28px 32px 80px; }
+section { background: #fff; border-radius: 10px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+section h2 { margin: 0 0 16px; font-size: 18px; color: #111827; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+.hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-bottom: 24px; }
+.hero-card { padding: 24px; border-radius: 12px; color: #fff; position: relative; overflow: hidden;
+             box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.18s; }
+.hero-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+.hero-card.blue { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); }
+.hero-card.green { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
+.hero-card.red { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); }
+.hero-card.purple { background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); }
+.hero-card.orange { background: linear-gradient(135deg, #d97706 0%, #92400e 100%); }
+.hero-card .h-label { font-size: 12px; opacity: 0.88; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.hero-card .h-value { font-size: 30px; font-weight: 800; line-height: 1.1; }
+.hero-card .h-sub { font-size: 12px; opacity: 0.88; margin-top: 6px; }
+.hero-card .h-icon { position: absolute; top: 20px; right: 20px; font-size: 32px; opacity: 0.35; }
+.tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid #e5e7eb; flex-wrap: wrap; }
+.tab { padding: 10px 18px; cursor: pointer; font-size: 14px; font-weight: 600; color: #6b7280;
+       border-bottom: 3px solid transparent; transition: all 0.15s; user-select: none; }
+.tab:hover { color: #1e3a8a; }
+.tab.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+.tab .tab-count { font-size: 11px; color: #9ca3af; margin-left: 4px; font-weight: 400; }
+.tab.active .tab-count { color: #2563eb; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.cat-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.cat-normal { background: #dcfce7; color: #14532d; }
+.cat-unset { background: #fef3c7; color: #78350f; }
+.cat-biznum-mapped { background: #dbeafe; color: #1e3a8a; }
+.cat-biznum { background: #fee2e2; color: #7f1d1d; }
+.cat-hf-single { background: #dcfce7; color: #14532d; }
+.cat-hf-multi { background: #fef3c7; color: #78350f; }
+.cat-hf-offset { background: #dbeafe; color: #1e3a8a; }
+.cat-hf-unknown { background: #fee2e2; color: #7f1d1d; }
+.chart-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; font-size: 13px; border-bottom: 1px solid #f3f4f6; }
+.chart-row:hover { background: #fafbfc; }
+.chart-row .rank { min-width: 28px; font-weight: 700; color: #6b7280; }
+.chart-row .name { min-width: 180px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.chart-row .bar-bg { flex: 1; background: #e5e7eb; height: 16px; border-radius: 8px; position: relative; overflow: hidden; }
+.chart-row .bar-fg { height: 100%; border-radius: 8px; transition: width 0.4s; }
+.chart-row .bar-fg.normal { background: linear-gradient(90deg, #059669 0%, #10b981 100%); }
+.chart-row .bar-fg.unset { background: linear-gradient(90deg, #d97706 0%, #f59e0b 100%); }
+.chart-row .bar-fg.biznum-mapped { background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%); }
+.chart-row .bar-fg.biznum { background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%); }
+.chart-row .bar-fg.hf-single { background: linear-gradient(90deg, #059669 0%, #10b981 100%); }
+.chart-row .bar-fg.hf-multi { background: linear-gradient(90deg, #d97706 0%, #f59e0b 100%); }
+.chart-row .bar-fg.hf-offset { background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%); }
+.chart-row .bar-fg.hf-unknown { background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%); }
+.chart-row .value { min-width: 150px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; color: #1f2937; }
+.chart-row .sub { font-size: 11px; color: #9ca3af; min-width: 80px; text-align: right; }
+.search-input { padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 13px; width: 360px; margin-bottom: 14px; transition: border 0.15s; }
+.search-input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #f9fafb; text-align: left; padding: 11px 12px; font-weight: 700; border-bottom: 2px solid #e5e7eb; cursor: pointer; user-select: none; position: sticky; top: 56px; }
+th:hover { background: #f3f4f6; }
+th.num { text-align: right; }
+td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: middle; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:hover td { background: #fefce8; }
+.mini-bar { display: inline-block; background: #e5e7eb; height: 6px; border-radius: 3px; vertical-align: middle; margin-right: 8px; overflow: hidden; }
+.mini-bar-fg { height: 100%; border-radius: 3px; }
+.mini-bar-fg.normal { background: #10b981; }
+.mini-bar-fg.unset { background: #f59e0b; }
+.mini-bar-fg.biznum-mapped { background: #3b82f6; }
+.mini-bar-fg.biznum { background: #ef4444; }
+.mini-bar-fg.hf-single { background: #10b981; }
+.mini-bar-fg.hf-multi { background: #f59e0b; }
+.mini-bar-fg.hf-offset { background: #3b82f6; }
+.mini-bar-fg.hf-unknown { background: #ef4444; }
+.amount-cell { display: inline-flex; align-items: center; gap: 4px; }
+.footer-note { text-align: center; color: #6b7280; font-size: 12px; padding: 24px; }
+.filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.filter-bar select { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; cursor: pointer; }
+.filter-bar select:focus { outline: none; border-color: #2563eb; }
+.summary-bar { display: flex; gap: 20px; padding: 14px 18px; background: #f9fafb; border-radius: 8px; margin-bottom: 14px; font-size: 13px; color: #4b5563; flex-wrap: wrap; }
+.summary-bar strong { color: #111827; font-weight: 700; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏪 정산내역 통합 리포트 v9 · 유통사</h1>
+  <div class="meta">유통사별 정산액·행 수·헤더형 (단일행/멀티섹션/오프셋/알 수 없음)</div>
+</header>
+<nav><a href="index.html" class="">대시보드</a> <a href="publishers.html" class="">📚 출판사</a> <a href="authors.html" class="">✍️ 작가</a> <a href="distributors.html" class="active">🏪 유통사</a> <a href="detailed_full_summary.html" class="">📊 상세 (11컬럼)</a> <a href="detailed_full_sample.html" class="">📋 상세 상위 1000건</a> <a href="anomaly.html" class="">⚠️ 이상치</a> <a href="unresolved.html" class="">미매칭</a> <a href="skipped.html" class="">스킵 파일</a> <a href="duplicates.html" class="">중복 기록</a> <a href="evolution.html" class="">라운드 진화</a> <a href="month-01.html" class="">1월</a> <a href="month-02.html" class="">2월</a> <a href="month-03.html" class="">3월</a> <a href="month-04.html" class="">4월</a> <a href="month-05.html" class="">5월</a> <a href="month-06.html" class="">6월</a> <a href="month-07.html" class="">7월</a> <a href="month-08.html" class="">8월</a> <a href="month-09.html" class="">9월</a> <a href="month-10.html" class="">10월</a> <a href="month-11.html" class="">11월</a> <a href="month-12.html" class="">12월</a></nav>
+<main>
+<section>
+<h2>🏪 유통사 현황 한눈에 보기</h2>
+<div class="hero-grid">
+  <div class="hero-card blue">
+    <div class="h-icon">🏪</div>
+    <div class="h-label">전체 유통사 수</div>
+    <div class="h-value">48</div>
+    <div class="h-sub">R10 인식 카테고리</div>
+  </div>
+  <div class="hero-card green">
+    <div class="h-icon">💰</div>
+    <div class="h-label">총 정산액 (v9 detail)</div>
+    <div class="h-value">₩142.6억</div>
+    <div class="h-sub">₩14,262,478,391</div>
+  </div>
+  <div class="hero-card purple">
+    <div class="h-icon">📊</div>
+    <div class="h-label">총 raw 행 수</div>
+    <div class="h-value">593,074</div>
+    <div class="h-sub">평균 12,355행/곳</div>
+  </div>
+  <div class="hero-card orange">
+    <div class="h-icon">⚠️</div>
+    <div class="h-label">비표준 헤더형</div>
+    <div class="h-value">58%</div>
+    <div class="h-sub">multi/offset/unknown · 단일행 외</div>
+  </div>
+</div>
+</section>
+<section>
+<h2>🏷️ 헤더형별 상세 보기</h2>
+<p style="color:#6b7280;font-size:13px;margin-bottom:12px">헤더형 = codex-2 schema 기준 (단일행/멀티섹션/오프셋/알 수 없음) · 탭 클릭 전환</p>
+<div class="tabs">
+  <div class="tab active" data-target="dist-single">단일행 <span class="tab-count">20 · ₩9.4억</span></div>
+  <div class="tab" data-target="dist-multi">멀티섹션/보고서형 <span class="tab-count">20 · ₩122.6억</span></div>
+  <div class="tab" data-target="dist-offset">보고서 오프셋 <span class="tab-count">2 · ₩5.1억</span></div>
+  <div class="tab" data-target="dist-unknown">알 수 없음 <span class="tab-count">6 · ₩5.6억</span></div>
+</div>
+<div class="tab-panel active" id="dist-single">
+  <div class="summary-bar">
+    <div>유통사 수: <strong>20</strong></div>
+    <div>정산액 합계: <strong>₩937,826,148</strong></div>
+    <div>행 수 합계: <strong>311,037</strong></div>
+  </div>
+  <h3 style="margin:18px 0 12px;font-size:15px;color:#374151">📊 정산액 상위 20곳</h3>
+  <div class="chart-row">
+  <div class="rank">1</div>
+  <div class="name" title="원스토어">원스토어</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:100%"></div></div>
+  <div class="value">₩405,449,074</div>
+  <div class="sub">209,522행</div>
+</div><div class="chart-row">
+  <div class="rank">2</div>
+  <div class="name" title="레진">레진</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:62%"></div></div>
+  <div class="value">₩251,886,654</div>
+  <div class="sub">179행</div>
+</div><div class="chart-row">
+  <div class="rank">3</div>
+  <div class="name" title="조아라">조아라</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:16%"></div></div>
+  <div class="value">₩68,816,372</div>
+  <div class="sub">1,299행</div>
+</div><div class="chart-row">
+  <div class="rank">4</div>
+  <div class="name" title="판무림">판무림</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:12%"></div></div>
+  <div class="value">₩48,755,717</div>
+  <div class="sub">7,156행</div>
+</div><div class="chart-row">
+  <div class="rank">5</div>
+  <div class="name" title="에피루스">에피루스</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:7%"></div></div>
+  <div class="value">₩29,030,445</div>
+  <div class="sub">25,087행</div>
+</div><div class="chart-row">
+  <div class="rank">6</div>
+  <div class="name" title="북큐브">북큐브</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:7%"></div></div>
+  <div class="value">₩28,650,723</div>
+  <div class="sub">8,158행</div>
+</div><div class="chart-row">
+  <div class="rank">7</div>
+  <div class="name" title="한아름">한아름</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:4%"></div></div>
+  <div class="value">₩19,198,644</div>
+  <div class="sub">40,207행</div>
+</div><div class="chart-row">
+  <div class="rank">8</div>
+  <div class="name" title="교보문고">교보문고</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:4%"></div></div>
+  <div class="value">₩16,819,448</div>
+  <div class="sub">3,540행</div>
+</div><div class="chart-row">
+  <div class="rank">9</div>
+  <div class="name" title="밀리의서재">밀리의서재</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:3%"></div></div>
+  <div class="value">₩14,665,120</div>
+  <div class="sub">2,614행</div>
+</div><div class="chart-row">
+  <div class="rank">10</div>
+  <div class="name" title="애니툰">애니툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:2%"></div></div>
+  <div class="value">₩11,766,561</div>
+  <div class="sub">1,308행</div>
+</div><div class="chart-row">
+  <div class="rank">11</div>
+  <div class="name" title="로망띠끄">로망띠끄</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:2%"></div></div>
+  <div class="value">₩11,191,264</div>
+  <div class="sub">3,163행</div>
+</div><div class="chart-row">
+  <div class="rank">12</div>
+  <div class="name" title="신영미디어">신영미디어</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩7,779,300</div>
+  <div class="sub">1,449행</div>
+</div><div class="chart-row">
+  <div class="rank">13</div>
+  <div class="name" title="버프툰">버프툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩7,581,520</div>
+  <div class="sub">561행</div>
+</div><div class="chart-row">
+  <div class="rank">14</div>
+  <div class="name" title="라라툰">라라툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩7,241,717</div>
+  <div class="sub">98행</div>
+</div><div class="chart-row">
+  <div class="rank">15</div>
+  <div class="name" title="봄툰">봄툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩5,803,098</div>
+  <div class="sub">661행</div>
+</div><div class="chart-row">
+  <div class="rank">16</div>
+  <div class="name" title="웹하드">웹하드</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩2,903,376</div>
+  <div class="sub">177행</div>
+</div><div class="chart-row">
+  <div class="rank">17</div>
+  <div class="name" title="코미코">코미코</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩262,587</div>
+  <div class="sub">920행</div>
+</div><div class="chart-row">
+  <div class="rank">18</div>
+  <div class="name" title="피우리">피우리</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩24,528</div>
+  <div class="sub">22행</div>
+</div><div class="chart-row">
+  <div class="rank">19</div>
+  <div class="name" title="탑툰">탑툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩0</div>
+  <div class="sub">216행</div>
+</div><div class="chart-row">
+  <div class="rank">20</div>
+  <div class="name" title="미스터블루">미스터블루</div>
+  <div class="bar-bg"><div class="bar-fg hf-single" style="width:1%"></div></div>
+  <div class="value">₩0</div>
+  <div class="sub">4,700행</div>
+</div>
+  <h3 style="margin:28px 0 12px;font-size:15px;color:#374151">📋 전체 20곳</h3>
+  <input type="text" class="search-input tab-search" data-target="#dist-single-tbl" placeholder="🔍 유통사명 검색">
+  <table id="dist-single-tbl" class="sortable">
+    <thead><tr><th>유통사명</th><th class="num">행 수</th><th class="num">정산액</th><th>헤더형</th></tr></thead>
+    <tbody><tr>
+  <td><strong>원스토어</strong></td>
+  <td class="num">209,522</td>
+  <td class="num amount-cell" data-sortkey="405449073.91285324">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:8%;display:block"></span></span>
+    ₩405,449,074
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>레진</strong></td>
+  <td class="num">179</td>
+  <td class="num amount-cell" data-sortkey="251886654.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:5%;display:block"></span></span>
+    ₩251,886,654
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>조아라</strong></td>
+  <td class="num">1,299</td>
+  <td class="num amount-cell" data-sortkey="68816372.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩68,816,372
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>판무림</strong></td>
+  <td class="num">7,156</td>
+  <td class="num amount-cell" data-sortkey="48755717.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩48,755,717
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>에피루스</strong></td>
+  <td class="num">25,087</td>
+  <td class="num amount-cell" data-sortkey="29030445.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩29,030,445
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>북큐브</strong></td>
+  <td class="num">8,158</td>
+  <td class="num amount-cell" data-sortkey="28650723.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩28,650,723
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>한아름</strong></td>
+  <td class="num">40,207</td>
+  <td class="num amount-cell" data-sortkey="19198643.799999766">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩19,198,644
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>교보문고</strong></td>
+  <td class="num">3,540</td>
+  <td class="num amount-cell" data-sortkey="16819448.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩16,819,448
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>밀리의서재</strong></td>
+  <td class="num">2,614</td>
+  <td class="num amount-cell" data-sortkey="14665120.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩14,665,120
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>애니툰</strong></td>
+  <td class="num">1,308</td>
+  <td class="num amount-cell" data-sortkey="11766561.200000001">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩11,766,561
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>로망띠끄</strong></td>
+  <td class="num">3,163</td>
+  <td class="num amount-cell" data-sortkey="11191264.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩11,191,264
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>신영미디어</strong></td>
+  <td class="num">1,449</td>
+  <td class="num amount-cell" data-sortkey="7779300.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩7,779,300
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>버프툰</strong></td>
+  <td class="num">561</td>
+  <td class="num amount-cell" data-sortkey="7581520.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩7,581,520
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>라라툰</strong></td>
+  <td class="num">98</td>
+  <td class="num amount-cell" data-sortkey="7241717.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩7,241,717
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>봄툰</strong></td>
+  <td class="num">661</td>
+  <td class="num amount-cell" data-sortkey="5803097.6">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩5,803,098
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>웹하드</strong></td>
+  <td class="num">177</td>
+  <td class="num amount-cell" data-sortkey="2903376.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩2,903,376
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>코미코</strong></td>
+  <td class="num">920</td>
+  <td class="num amount-cell" data-sortkey="262587.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩262,587
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>피우리</strong></td>
+  <td class="num">22</td>
+  <td class="num amount-cell" data-sortkey="24528.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩24,528
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>탑툰</strong></td>
+  <td class="num">216</td>
+  <td class="num amount-cell" data-sortkey="0.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩0
+  </td>
+  <td>single-row</td>
+</tr><tr>
+  <td><strong>미스터블루</strong></td>
+  <td class="num">4,700</td>
+  <td class="num amount-cell" data-sortkey="0.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩0
+  </td>
+  <td>single-row</td>
+</tr></tbody>
+  </table>
+</div><div class="tab-panel" id="dist-multi">
+  <div class="summary-bar">
+    <div>유통사 수: <strong>20</strong></div>
+    <div>정산액 합계: <strong>₩12,264,546,040</strong></div>
+    <div>행 수 합계: <strong>115,622</strong></div>
+  </div>
+  <h3 style="margin:18px 0 12px;font-size:15px;color:#374151">📊 정산액 상위 20곳</h3>
+  <div class="chart-row">
+  <div class="rank">1</div>
+  <div class="name" title="카카오페이지">카카오페이지</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:100%"></div></div>
+  <div class="value">₩4,911,262,399</div>
+  <div class="sub">14,603행</div>
+</div><div class="chart-row">
+  <div class="rank">2</div>
+  <div class="name" title="카카오">카카오</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:42%"></div></div>
+  <div class="value">₩2,087,701,178</div>
+  <div class="sub">5,654행</div>
+</div><div class="chart-row">
+  <div class="rank">3</div>
+  <div class="name" title="울트라미디어">울트라미디어</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:19%"></div></div>
+  <div class="value">₩938,904,474</div>
+  <div class="sub">3행</div>
+</div><div class="chart-row">
+  <div class="rank">4</div>
+  <div class="name" title="케이코믹스">케이코믹스</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:18%"></div></div>
+  <div class="value">₩915,107,049</div>
+  <div class="sub">48행</div>
+</div><div class="chart-row">
+  <div class="rank">5</div>
+  <div class="name" title="네이버">네이버</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:17%"></div></div>
+  <div class="value">₩883,749,880</div>
+  <div class="sub">9,599행</div>
+</div><div class="chart-row">
+  <div class="rank">6</div>
+  <div class="name" title="만화가족">만화가족</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:15%"></div></div>
+  <div class="value">₩740,581,739</div>
+  <div class="sub">648행</div>
+</div><div class="chart-row">
+  <div class="rank">7</div>
+  <div class="name" title="스토리숲">스토리숲</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:13%"></div></div>
+  <div class="value">₩641,354,721</div>
+  <div class="sub">1,588행</div>
+</div><div class="chart-row">
+  <div class="rank">8</div>
+  <div class="name" title="태피툰">태피툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:10%"></div></div>
+  <div class="value">₩507,600,580</div>
+  <div class="sub">79행</div>
+</div><div class="chart-row">
+  <div class="rank">9</div>
+  <div class="name" title="네이버시리즈">네이버시리즈</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:7%"></div></div>
+  <div class="value">₩389,331,911</div>
+  <div class="sub">4,402행</div>
+</div><div class="chart-row">
+  <div class="rank">10</div>
+  <div class="name" title="예스이십사">예스이십사</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩54,017,894</div>
+  <div class="sub">36,570행</div>
+</div><div class="chart-row">
+  <div class="rank">11</div>
+  <div class="name" title="컨텐츠헤라">컨텐츠헤라</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩43,854,191</div>
+  <div class="sub">79행</div>
+</div><div class="chart-row">
+  <div class="rank">12</div>
+  <div class="name" title="e온누리_storywiz">e온누리_storywiz</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩37,999,135</div>
+  <div class="sub">12,911행</div>
+</div><div class="chart-row">
+  <div class="rank">13</div>
+  <div class="name" title="알라딘">알라딘</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩37,375,800</div>
+  <div class="sub">22,762행</div>
+</div><div class="chart-row">
+  <div class="rank">14</div>
+  <div class="name" title="누온">누온</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩32,774,926</div>
+  <div class="sub">156행</div>
+</div><div class="chart-row">
+  <div class="rank">15</div>
+  <div class="name" title="하이북">하이북</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩18,910,010</div>
+  <div class="sub">1,309행</div>
+</div><div class="chart-row">
+  <div class="rank">16</div>
+  <div class="name" title="블라이스">블라이스</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩10,708,421</div>
+  <div class="sub">1,091행</div>
+</div><div class="chart-row">
+  <div class="rank">17</div>
+  <div class="name" title="톡소다">톡소다</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩7,765,455</div>
+  <div class="sub">1,582행</div>
+</div><div class="chart-row">
+  <div class="rank">18</div>
+  <div class="name" title="스토리이십사">스토리이십사</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩5,535,530</div>
+  <div class="sub">2,522행</div>
+</div><div class="chart-row">
+  <div class="rank">19</div>
+  <div class="name" title="플링">플링</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩10,702</div>
+  <div class="sub">6행</div>
+</div><div class="chart-row">
+  <div class="rank">20</div>
+  <div class="name" title="짱만화">짱만화</div>
+  <div class="bar-bg"><div class="bar-fg hf-multi" style="width:1%"></div></div>
+  <div class="value">₩45</div>
+  <div class="sub">10행</div>
+</div>
+  <h3 style="margin:28px 0 12px;font-size:15px;color:#374151">📋 전체 20곳</h3>
+  <input type="text" class="search-input tab-search" data-target="#dist-multi-tbl" placeholder="🔍 유통사명 검색">
+  <table id="dist-multi-tbl" class="sortable">
+    <thead><tr><th>유통사명</th><th class="num">행 수</th><th class="num">정산액</th><th>헤더형</th></tr></thead>
+    <tbody><tr>
+  <td><strong>카카오페이지</strong></td>
+  <td class="num">14,603</td>
+  <td class="num amount-cell" data-sortkey="4911262399.2268">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:100%;display:block"></span></span>
+    ₩4,911,262,399
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>카카오</strong></td>
+  <td class="num">5,654</td>
+  <td class="num amount-cell" data-sortkey="2087701177.6">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:42%;display:block"></span></span>
+    ₩2,087,701,178
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>울트라미디어</strong></td>
+  <td class="num">3</td>
+  <td class="num amount-cell" data-sortkey="938904474.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:19%;display:block"></span></span>
+    ₩938,904,474
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>케이코믹스</strong></td>
+  <td class="num">48</td>
+  <td class="num amount-cell" data-sortkey="915107049.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:18%;display:block"></span></span>
+    ₩915,107,049
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>네이버</strong></td>
+  <td class="num">9,599</td>
+  <td class="num amount-cell" data-sortkey="883749880.2727273">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:17%;display:block"></span></span>
+    ₩883,749,880
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>만화가족</strong></td>
+  <td class="num">648</td>
+  <td class="num amount-cell" data-sortkey="740581738.7700002">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:15%;display:block"></span></span>
+    ₩740,581,739
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>스토리숲</strong></td>
+  <td class="num">1,588</td>
+  <td class="num amount-cell" data-sortkey="641354720.8854101">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:13%;display:block"></span></span>
+    ₩641,354,721
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>태피툰</strong></td>
+  <td class="num">79</td>
+  <td class="num amount-cell" data-sortkey="507600580.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:10%;display:block"></span></span>
+    ₩507,600,580
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>네이버시리즈</strong></td>
+  <td class="num">4,402</td>
+  <td class="num amount-cell" data-sortkey="389331911.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:7%;display:block"></span></span>
+    ₩389,331,911
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>예스이십사</strong></td>
+  <td class="num">36,570</td>
+  <td class="num amount-cell" data-sortkey="54017894.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩54,017,894
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>컨텐츠헤라</strong></td>
+  <td class="num">79</td>
+  <td class="num amount-cell" data-sortkey="43854191.45454545">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩43,854,191
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>e온누리_storywiz</strong></td>
+  <td class="num">12,911</td>
+  <td class="num amount-cell" data-sortkey="37999135.39000019">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩37,999,135
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>알라딘</strong></td>
+  <td class="num">22,762</td>
+  <td class="num amount-cell" data-sortkey="37375800.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩37,375,800
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>누온</strong></td>
+  <td class="num">156</td>
+  <td class="num amount-cell" data-sortkey="32774926.29">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩32,774,926
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>하이북</strong></td>
+  <td class="num">1,309</td>
+  <td class="num amount-cell" data-sortkey="18910010.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩18,910,010
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>블라이스</strong></td>
+  <td class="num">1,091</td>
+  <td class="num amount-cell" data-sortkey="10708421.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩10,708,421
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>톡소다</strong></td>
+  <td class="num">1,582</td>
+  <td class="num amount-cell" data-sortkey="7765455.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩7,765,455
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>스토리이십사</strong></td>
+  <td class="num">2,522</td>
+  <td class="num amount-cell" data-sortkey="5535530.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩5,535,530
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>플링</strong></td>
+  <td class="num">6</td>
+  <td class="num amount-cell" data-sortkey="10701.6">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩10,702
+  </td>
+  <td>multi-section/report</td>
+</tr><tr>
+  <td><strong>짱만화</strong></td>
+  <td class="num">10</td>
+  <td class="num amount-cell" data-sortkey="45.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩45
+  </td>
+  <td>multi-section/report</td>
+</tr></tbody>
+  </table>
+</div><div class="tab-panel" id="dist-offset">
+  <div class="summary-bar">
+    <div>유통사 수: <strong>2</strong></div>
+    <div>정산액 합계: <strong>₩505,014,689</strong></div>
+    <div>행 수 합계: <strong>542</strong></div>
+  </div>
+  <h3 style="margin:18px 0 12px;font-size:15px;color:#374151">📊 정산액 상위 20곳</h3>
+  <div class="chart-row">
+  <div class="rank">1</div>
+  <div class="name" title="델리툰">델리툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-offset" style="width:100%"></div></div>
+  <div class="value">₩288,081,002</div>
+  <div class="sub">177행</div>
+</div><div class="chart-row">
+  <div class="rank">2</div>
+  <div class="name" title="카카오웹툰">카카오웹툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-offset" style="width:75%"></div></div>
+  <div class="value">₩216,933,687</div>
+  <div class="sub">365행</div>
+</div>
+  <h3 style="margin:28px 0 12px;font-size:15px;color:#374151">📋 전체 2곳</h3>
+  <input type="text" class="search-input tab-search" data-target="#dist-offset-tbl" placeholder="🔍 유통사명 검색">
+  <table id="dist-offset-tbl" class="sortable">
+    <thead><tr><th>유통사명</th><th class="num">행 수</th><th class="num">정산액</th><th>헤더형</th></tr></thead>
+    <tbody><tr>
+  <td><strong>델리툰</strong></td>
+  <td class="num">177</td>
+  <td class="num amount-cell" data-sortkey="288081002.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-offset" style="width:5%;display:block"></span></span>
+    ₩288,081,002
+  </td>
+  <td>report-offset</td>
+</tr><tr>
+  <td><strong>카카오웹툰</strong></td>
+  <td class="num">365</td>
+  <td class="num amount-cell" data-sortkey="216933687.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-offset" style="width:4%;display:block"></span></span>
+    ₩216,933,687
+  </td>
+  <td>report-offset</td>
+</tr></tbody>
+  </table>
+</div><div class="tab-panel" id="dist-unknown">
+  <div class="summary-bar">
+    <div>유통사 수: <strong>6</strong></div>
+    <div>정산액 합계: <strong>₩555,091,514</strong></div>
+    <div>행 수 합계: <strong>165,873</strong></div>
+  </div>
+  <h3 style="margin:18px 0 12px;font-size:15px;color:#374151">📊 정산액 상위 20곳</h3>
+  <div class="chart-row">
+  <div class="rank">1</div>
+  <div class="name" title="리디">리디</div>
+  <div class="bar-bg"><div class="bar-fg hf-unknown" style="width:100%"></div></div>
+  <div class="value">₩329,609,434</div>
+  <div class="sub">148,462행</div>
+</div><div class="chart-row">
+  <div class="rank">2</div>
+  <div class="name" title="네이버웹툰">네이버웹툰</div>
+  <div class="bar-bg"><div class="bar-fg hf-unknown" style="width:22%"></div></div>
+  <div class="value">₩73,443,439</div>
+  <div class="sub">297행</div>
+</div><div class="chart-row">
+  <div class="rank">3</div>
+  <div class="name" title="노블코믹스">노블코믹스</div>
+  <div class="bar-bg"><div class="bar-fg hf-unknown" style="width:17%"></div></div>
+  <div class="value">₩58,587,225</div>
+  <div class="sub">383행</div>
+</div><div class="chart-row">
+  <div class="rank">4</div>
+  <div class="name" title="storywiz">storywiz</div>
+  <div class="bar-bg"><div class="bar-fg hf-unknown" style="width:11%"></div></div>
+  <div class="value">₩37,558,681</div>
+  <div class="sub">16,442행</div>
+</div><div class="chart-row">
+  <div class="rank">5</div>
+  <div class="name" title="더점프이엔티">더점프이엔티</div>
+  <div class="bar-bg"><div class="bar-fg hf-unknown" style="width:9%"></div></div>
+  <div class="value">₩30,418,362</div>
+  <div class="sub">202행</div>
+</div><div class="chart-row">
+  <div class="rank">6</div>
+  <div class="name" title="스토리위즈">스토리위즈</div>
+  <div class="bar-bg"><div class="bar-fg hf-unknown" style="width:7%"></div></div>
+  <div class="value">₩25,474,373</div>
+  <div class="sub">87행</div>
+</div>
+  <h3 style="margin:28px 0 12px;font-size:15px;color:#374151">📋 전체 6곳</h3>
+  <input type="text" class="search-input tab-search" data-target="#dist-unknown-tbl" placeholder="🔍 유통사명 검색">
+  <table id="dist-unknown-tbl" class="sortable">
+    <thead><tr><th>유통사명</th><th class="num">행 수</th><th class="num">정산액</th><th>헤더형</th></tr></thead>
+    <tbody><tr>
+  <td><strong>리디</strong></td>
+  <td class="num">148,462</td>
+  <td class="num amount-cell" data-sortkey="329609433.88013005">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:6%;display:block"></span></span>
+    ₩329,609,434
+  </td>
+  <td>unknown</td>
+</tr><tr>
+  <td><strong>네이버웹툰</strong></td>
+  <td class="num">297</td>
+  <td class="num amount-cell" data-sortkey="73443439.00000001">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩73,443,439
+  </td>
+  <td>unknown</td>
+</tr><tr>
+  <td><strong>노블코믹스</strong></td>
+  <td class="num">383</td>
+  <td class="num amount-cell" data-sortkey="58587224.59932816">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩58,587,225
+  </td>
+  <td>unknown</td>
+</tr><tr>
+  <td><strong>storywiz</strong></td>
+  <td class="num">16,442</td>
+  <td class="num amount-cell" data-sortkey="37558681.35">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩37,558,681
+  </td>
+  <td>unknown</td>
+</tr><tr>
+  <td><strong>더점프이엔티</strong></td>
+  <td class="num">202</td>
+  <td class="num amount-cell" data-sortkey="30418361.711371236">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩30,418,362
+  </td>
+  <td>unknown</td>
+</tr><tr>
+  <td><strong>스토리위즈</strong></td>
+  <td class="num">87</td>
+  <td class="num amount-cell" data-sortkey="25474373.005919997">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩25,474,373
+  </td>
+  <td>unknown</td>
+</tr></tbody>
+  </table>
+</div>
+</section>
+<section>
+<h2>📋 통합 전체 유통사 리스트 (48곳)</h2>
+<p style="color:#6b7280;font-size:13px;margin-bottom:12px">필터 + 검색 + 정렬 모두 사용 가능 · 정산액 컬럼에 인라인 미니바</p>
+<div class="filter-bar">
+  <input type="text" id="distlist-search" class="search-input" placeholder="🔍 유통사명·헤더형 검색" style="margin-bottom:0">
+  <select id="distlist-cat">
+    <option value="">전체 헤더형</option>
+    <option value="single-row">단일행 (20)</option>
+    <option value="multi-section/report">멀티섹션/보고서형 (20)</option>
+    <option value="report-offset">보고서 오프셋 (2)</option>
+    <option value="unknown">알 수 없음 (6)</option>
+  </select>
+  <span id="distlist-info" style="color:#6b7280;font-size:13px">전체 48곳 표시</span>
+</div>
+<table id="distlist" class="sortable">
+<thead><tr><th>헤더형</th><th>유통사명</th><th class="num">행 수</th><th class="num">비중</th><th class="num">정산액</th></tr></thead>
+<tbody><tr data-cat="multi-section/report" data-amount="4911262399.2268">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>카카오페이지</strong></td>
+  <td class="num">14,603</td>
+  <td class="num">2.46%</td>
+  <td class="num amount-cell" data-sortkey="4911262399.2268">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:100%;display:block"></span></span>
+    ₩4,911,262,399
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="2087701177.6">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>카카오</strong></td>
+  <td class="num">5,654</td>
+  <td class="num">0.95%</td>
+  <td class="num amount-cell" data-sortkey="2087701177.6">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:42%;display:block"></span></span>
+    ₩2,087,701,178
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="938904474.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>울트라미디어</strong></td>
+  <td class="num">3</td>
+  <td class="num">0.00%</td>
+  <td class="num amount-cell" data-sortkey="938904474.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:19%;display:block"></span></span>
+    ₩938,904,474
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="915107049.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>케이코믹스</strong></td>
+  <td class="num">48</td>
+  <td class="num">0.01%</td>
+  <td class="num amount-cell" data-sortkey="915107049.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:18%;display:block"></span></span>
+    ₩915,107,049
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="883749880.2727273">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>네이버</strong></td>
+  <td class="num">9,599</td>
+  <td class="num">1.62%</td>
+  <td class="num amount-cell" data-sortkey="883749880.2727273">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:17%;display:block"></span></span>
+    ₩883,749,880
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="740581738.7700002">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>만화가족</strong></td>
+  <td class="num">648</td>
+  <td class="num">0.11%</td>
+  <td class="num amount-cell" data-sortkey="740581738.7700002">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:15%;display:block"></span></span>
+    ₩740,581,739
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="641354720.8854101">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>스토리숲</strong></td>
+  <td class="num">1,588</td>
+  <td class="num">0.27%</td>
+  <td class="num amount-cell" data-sortkey="641354720.8854101">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:13%;display:block"></span></span>
+    ₩641,354,721
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="507600580.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>태피툰</strong></td>
+  <td class="num">79</td>
+  <td class="num">0.01%</td>
+  <td class="num amount-cell" data-sortkey="507600580.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:10%;display:block"></span></span>
+    ₩507,600,580
+  </td>
+</tr><tr data-cat="single-row" data-amount="405449073.91285324">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>원스토어</strong></td>
+  <td class="num">209,522</td>
+  <td class="num">35.33%</td>
+  <td class="num amount-cell" data-sortkey="405449073.91285324">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:8%;display:block"></span></span>
+    ₩405,449,074
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="389331911.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>네이버시리즈</strong></td>
+  <td class="num">4,402</td>
+  <td class="num">0.74%</td>
+  <td class="num amount-cell" data-sortkey="389331911.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:7%;display:block"></span></span>
+    ₩389,331,911
+  </td>
+</tr><tr data-cat="unknown" data-amount="329609433.88013005">
+  <td><span class="cat-tag cat-hf-unknown">unknown</span></td>
+  <td><strong>리디</strong></td>
+  <td class="num">148,462</td>
+  <td class="num">25.03%</td>
+  <td class="num amount-cell" data-sortkey="329609433.88013005">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:6%;display:block"></span></span>
+    ₩329,609,434
+  </td>
+</tr><tr data-cat="report-offset" data-amount="288081002.0">
+  <td><span class="cat-tag cat-hf-offset">report-offset</span></td>
+  <td><strong>델리툰</strong></td>
+  <td class="num">177</td>
+  <td class="num">0.03%</td>
+  <td class="num amount-cell" data-sortkey="288081002.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-offset" style="width:5%;display:block"></span></span>
+    ₩288,081,002
+  </td>
+</tr><tr data-cat="single-row" data-amount="251886654.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>레진</strong></td>
+  <td class="num">179</td>
+  <td class="num">0.03%</td>
+  <td class="num amount-cell" data-sortkey="251886654.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:5%;display:block"></span></span>
+    ₩251,886,654
+  </td>
+</tr><tr data-cat="report-offset" data-amount="216933687.0">
+  <td><span class="cat-tag cat-hf-offset">report-offset</span></td>
+  <td><strong>카카오웹툰</strong></td>
+  <td class="num">365</td>
+  <td class="num">0.06%</td>
+  <td class="num amount-cell" data-sortkey="216933687.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-offset" style="width:4%;display:block"></span></span>
+    ₩216,933,687
+  </td>
+</tr><tr data-cat="unknown" data-amount="73443439.00000001">
+  <td><span class="cat-tag cat-hf-unknown">unknown</span></td>
+  <td><strong>네이버웹툰</strong></td>
+  <td class="num">297</td>
+  <td class="num">0.05%</td>
+  <td class="num amount-cell" data-sortkey="73443439.00000001">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩73,443,439
+  </td>
+</tr><tr data-cat="single-row" data-amount="68816372.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>조아라</strong></td>
+  <td class="num">1,299</td>
+  <td class="num">0.22%</td>
+  <td class="num amount-cell" data-sortkey="68816372.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩68,816,372
+  </td>
+</tr><tr data-cat="unknown" data-amount="58587224.59932816">
+  <td><span class="cat-tag cat-hf-unknown">unknown</span></td>
+  <td><strong>노블코믹스</strong></td>
+  <td class="num">383</td>
+  <td class="num">0.06%</td>
+  <td class="num amount-cell" data-sortkey="58587224.59932816">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩58,587,225
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="54017894.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>예스이십사</strong></td>
+  <td class="num">36,570</td>
+  <td class="num">6.17%</td>
+  <td class="num amount-cell" data-sortkey="54017894.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩54,017,894
+  </td>
+</tr><tr data-cat="single-row" data-amount="48755717.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>판무림</strong></td>
+  <td class="num">7,156</td>
+  <td class="num">1.21%</td>
+  <td class="num amount-cell" data-sortkey="48755717.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩48,755,717
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="43854191.45454545">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>컨텐츠헤라</strong></td>
+  <td class="num">79</td>
+  <td class="num">0.01%</td>
+  <td class="num amount-cell" data-sortkey="43854191.45454545">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩43,854,191
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="37999135.39000019">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>e온누리_storywiz</strong></td>
+  <td class="num">12,911</td>
+  <td class="num">2.18%</td>
+  <td class="num amount-cell" data-sortkey="37999135.39000019">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩37,999,135
+  </td>
+</tr><tr data-cat="unknown" data-amount="37558681.35">
+  <td><span class="cat-tag cat-hf-unknown">unknown</span></td>
+  <td><strong>storywiz</strong></td>
+  <td class="num">16,442</td>
+  <td class="num">2.77%</td>
+  <td class="num amount-cell" data-sortkey="37558681.35">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩37,558,681
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="37375800.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>알라딘</strong></td>
+  <td class="num">22,762</td>
+  <td class="num">3.84%</td>
+  <td class="num amount-cell" data-sortkey="37375800.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩37,375,800
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="32774926.29">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>누온</strong></td>
+  <td class="num">156</td>
+  <td class="num">0.03%</td>
+  <td class="num amount-cell" data-sortkey="32774926.29">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩32,774,926
+  </td>
+</tr><tr data-cat="unknown" data-amount="30418361.711371236">
+  <td><span class="cat-tag cat-hf-unknown">unknown</span></td>
+  <td><strong>더점프이엔티</strong></td>
+  <td class="num">202</td>
+  <td class="num">0.03%</td>
+  <td class="num amount-cell" data-sortkey="30418361.711371236">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩30,418,362
+  </td>
+</tr><tr data-cat="single-row" data-amount="29030445.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>에피루스</strong></td>
+  <td class="num">25,087</td>
+  <td class="num">4.23%</td>
+  <td class="num amount-cell" data-sortkey="29030445.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩29,030,445
+  </td>
+</tr><tr data-cat="single-row" data-amount="28650723.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>북큐브</strong></td>
+  <td class="num">8,158</td>
+  <td class="num">1.38%</td>
+  <td class="num amount-cell" data-sortkey="28650723.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩28,650,723
+  </td>
+</tr><tr data-cat="unknown" data-amount="25474373.005919997">
+  <td><span class="cat-tag cat-hf-unknown">unknown</span></td>
+  <td><strong>스토리위즈</strong></td>
+  <td class="num">87</td>
+  <td class="num">0.01%</td>
+  <td class="num amount-cell" data-sortkey="25474373.005919997">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-unknown" style="width:1%;display:block"></span></span>
+    ₩25,474,373
+  </td>
+</tr><tr data-cat="single-row" data-amount="19198643.799999766">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>한아름</strong></td>
+  <td class="num">40,207</td>
+  <td class="num">6.78%</td>
+  <td class="num amount-cell" data-sortkey="19198643.799999766">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩19,198,644
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="18910010.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>하이북</strong></td>
+  <td class="num">1,309</td>
+  <td class="num">0.22%</td>
+  <td class="num amount-cell" data-sortkey="18910010.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩18,910,010
+  </td>
+</tr><tr data-cat="single-row" data-amount="16819448.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>교보문고</strong></td>
+  <td class="num">3,540</td>
+  <td class="num">0.60%</td>
+  <td class="num amount-cell" data-sortkey="16819448.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩16,819,448
+  </td>
+</tr><tr data-cat="single-row" data-amount="14665120.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>밀리의서재</strong></td>
+  <td class="num">2,614</td>
+  <td class="num">0.44%</td>
+  <td class="num amount-cell" data-sortkey="14665120.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩14,665,120
+  </td>
+</tr><tr data-cat="single-row" data-amount="11766561.200000001">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>애니툰</strong></td>
+  <td class="num">1,308</td>
+  <td class="num">0.22%</td>
+  <td class="num amount-cell" data-sortkey="11766561.200000001">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩11,766,561
+  </td>
+</tr><tr data-cat="single-row" data-amount="11191264.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>로망띠끄</strong></td>
+  <td class="num">3,163</td>
+  <td class="num">0.53%</td>
+  <td class="num amount-cell" data-sortkey="11191264.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩11,191,264
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="10708421.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>블라이스</strong></td>
+  <td class="num">1,091</td>
+  <td class="num">0.18%</td>
+  <td class="num amount-cell" data-sortkey="10708421.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩10,708,421
+  </td>
+</tr><tr data-cat="single-row" data-amount="7779300.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>신영미디어</strong></td>
+  <td class="num">1,449</td>
+  <td class="num">0.24%</td>
+  <td class="num amount-cell" data-sortkey="7779300.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩7,779,300
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="7765455.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>톡소다</strong></td>
+  <td class="num">1,582</td>
+  <td class="num">0.27%</td>
+  <td class="num amount-cell" data-sortkey="7765455.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩7,765,455
+  </td>
+</tr><tr data-cat="single-row" data-amount="7581520.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>버프툰</strong></td>
+  <td class="num">561</td>
+  <td class="num">0.09%</td>
+  <td class="num amount-cell" data-sortkey="7581520.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩7,581,520
+  </td>
+</tr><tr data-cat="single-row" data-amount="7241717.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>라라툰</strong></td>
+  <td class="num">98</td>
+  <td class="num">0.02%</td>
+  <td class="num amount-cell" data-sortkey="7241717.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩7,241,717
+  </td>
+</tr><tr data-cat="single-row" data-amount="5803097.6">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>봄툰</strong></td>
+  <td class="num">661</td>
+  <td class="num">0.11%</td>
+  <td class="num amount-cell" data-sortkey="5803097.6">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩5,803,098
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="5535530.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>스토리이십사</strong></td>
+  <td class="num">2,522</td>
+  <td class="num">0.43%</td>
+  <td class="num amount-cell" data-sortkey="5535530.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩5,535,530
+  </td>
+</tr><tr data-cat="single-row" data-amount="2903376.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>웹하드</strong></td>
+  <td class="num">177</td>
+  <td class="num">0.03%</td>
+  <td class="num amount-cell" data-sortkey="2903376.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩2,903,376
+  </td>
+</tr><tr data-cat="single-row" data-amount="262587.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>코미코</strong></td>
+  <td class="num">920</td>
+  <td class="num">0.16%</td>
+  <td class="num amount-cell" data-sortkey="262587.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩262,587
+  </td>
+</tr><tr data-cat="single-row" data-amount="24528.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>피우리</strong></td>
+  <td class="num">22</td>
+  <td class="num">0.00%</td>
+  <td class="num amount-cell" data-sortkey="24528.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩24,528
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="10701.6">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>플링</strong></td>
+  <td class="num">6</td>
+  <td class="num">0.00%</td>
+  <td class="num amount-cell" data-sortkey="10701.6">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩10,702
+  </td>
+</tr><tr data-cat="multi-section/report" data-amount="45.0">
+  <td><span class="cat-tag cat-hf-multi">multi-section/report</span></td>
+  <td><strong>짱만화</strong></td>
+  <td class="num">10</td>
+  <td class="num">0.00%</td>
+  <td class="num amount-cell" data-sortkey="45.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-multi" style="width:1%;display:block"></span></span>
+    ₩45
+  </td>
+</tr><tr data-cat="single-row" data-amount="0.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>탑툰</strong></td>
+  <td class="num">216</td>
+  <td class="num">0.04%</td>
+  <td class="num amount-cell" data-sortkey="0.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩0
+  </td>
+</tr><tr data-cat="single-row" data-amount="0.0">
+  <td><span class="cat-tag cat-hf-single">single-row</span></td>
+  <td><strong>미스터블루</strong></td>
+  <td class="num">4,700</td>
+  <td class="num">0.79%</td>
+  <td class="num amount-cell" data-sortkey="0.0">
+    <span class="mini-bar" style="width:60px"><span class="mini-bar-fg hf-single" style="width:1%;display:block"></span></span>
+    ₩0
+  </td>
+</tr></tbody>
+</table>
+</section>
+</main>
+<div class="footer-note">데이터: v9 _상세_full distributor 컬럼 + R10 distributor_stats + codex-2 schema · 개인정보 미포함</div>
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.target;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(target).classList.add('active');
+  });
+});
+document.querySelectorAll('table.sortable').forEach(tbl => {
+  const headers = tbl.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const tbody = tbl.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isNum = th.classList.contains('num');
+      const asc = th.dataset.sort !== 'asc';
+      rows.sort((a, b) => {
+        let va = a.cells[idx].dataset.sortkey || a.cells[idx].textContent;
+        let vb = b.cells[idx].dataset.sortkey || b.cells[idx].textContent;
+        if (isNum) { va = parseFloat(va) || 0; vb = parseFloat(vb) || 0; return asc ? va - vb : vb - va; }
+        return asc ? va.localeCompare(vb, 'ko') : vb.localeCompare(va, 'ko');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      headers.forEach(h => h.dataset.sort = '');
+      th.dataset.sort = asc ? 'asc' : 'desc';
+    });
+  });
+});
+function applyAllFilter(scope) {
+  const q = (document.querySelector('#' + scope + '-search')?.value || '').toLowerCase();
+  const cat = document.querySelector('#' + scope + '-cat')?.value || '';
+  const tbody = document.querySelector('#' + scope + ' tbody');
+  if (!tbody) return;
+  let visible = 0;
+  let total_amount = 0;
+  tbody.querySelectorAll('tr').forEach(tr => {
+    const text = tr.textContent.toLowerCase();
+    const trCat = tr.dataset.cat || '';
+    const matchQ = !q || text.includes(q);
+    const matchCat = !cat || trCat === cat;
+    if (matchQ && matchCat) {
+      tr.style.display = '';
+      visible++;
+      total_amount += parseFloat(tr.dataset.amount || 0);
+    } else {
+      tr.style.display = 'none';
+    }
+  });
+  const info = document.querySelector('#' + scope + '-info');
+  if (info) info.textContent = '표시: ' + visible.toLocaleString() + '개 · 합계: ₩' + total_amount.toLocaleString();
+}
+['publist', 'distlist'].forEach(scope => {
+  document.querySelector('#' + scope + '-search')?.addEventListener('input', () => applyAllFilter(scope));
+  document.querySelector('#' + scope + '-cat')?.addEventListener('change', () => applyAllFilter(scope));
+});
+document.querySelectorAll('.tab-search').forEach(input => {
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    const target = input.dataset.target;
+    const tbody = document.querySelector(target + ' tbody');
+    if (!tbody) return;
+    tbody.querySelectorAll('tr').forEach(tr => {
+      tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

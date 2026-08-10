@@ -1,0 +1,1023 @@
+{
+  "generatedAt": "2026-05-27T11:26:56.058Z",
+  "eventSources": [
+    {
+      "name": "경기데이터드림",
+      "role": "문화행사 API",
+      "type": "api",
+      "ok": false,
+      "count": 3,
+      "mode": "mock",
+      "reason": "GG_DATA_KEY 없음"
+    },
+    {
+      "name": "군포 도서관 문화행사",
+      "role": "공공데이터포털 실데이터",
+      "type": "api",
+      "ok": true,
+      "count": 591,
+      "mode": "live",
+      "reason": null
+    },
+    {
+      "name": "군포문화재단",
+      "role": "공연·전시 스크래핑",
+      "type": "scrape",
+      "ok": false,
+      "count": 3,
+      "mode": "mock",
+      "reason": "fetch failed"
+    },
+    {
+      "name": "그림책꿈마루",
+      "role": "실시간 스크래핑",
+      "type": "scrape",
+      "ok": true,
+      "count": 12,
+      "mode": "live",
+      "reason": null
+    },
+    {
+      "name": "경기공유학교",
+      "role": "지역연계 배움터",
+      "type": "scrape",
+      "ok": false,
+      "count": 2,
+      "mode": "mock",
+      "reason": "GONGYU_URL 미설정(소스 확정 대기)"
+    }
+  ],
+  "bookSource": {
+    "name": "도서관 정보나루",
+    "role": "인기 독서도서 API",
+    "type": "api",
+    "ok": false,
+    "count": 6,
+    "mode": "mock",
+    "reason": "정보나루 vitalizationErr: API 활성화 상태가아닙니다."
+  },
+  "counts": {
+    "total": 36,
+    "edu": 30,
+    "reading": 33
+  },
+  "keywords": {
+    "date": "2026-02-25",
+    "top": [
+      {
+        "rank": "1",
+        "kw": "흔한남매",
+        "count": 5339
+      },
+      {
+        "rank": "2",
+        "kw": "혼모노",
+        "count": 4858
+      },
+      {
+        "rank": "3",
+        "kw": "javascript",
+        "count": 2805
+      },
+      {
+        "rank": "4",
+        "kw": "절창",
+        "count": 2656
+      },
+      {
+        "rank": "5",
+        "kw": "모순",
+        "count": 1737
+      },
+      {
+        "rank": "6",
+        "kw": "삼국지",
+        "count": 1647
+      },
+      {
+        "rank": "7",
+        "kw": "괴테는 모든 것을 말했다",
+        "count": 1498
+      },
+      {
+        "rank": "8",
+        "kw": "안녕이라 그랬어",
+        "count": 1476
+      },
+      {
+        "rank": "9",
+        "kw": "급류",
+        "count": 1378
+      },
+      {
+        "rank": "10",
+        "kw": "박곰희",
+        "count": 1244
+      },
+      {
+        "rank": "11",
+        "kw": "해리포터",
+        "count": 1047
+      },
+      {
+        "rank": "12",
+        "kw": "긴긴밤",
+        "count": 1027
+      },
+      {
+        "rank": "13",
+        "kw": "하우스메이드",
+        "count": 957
+      },
+      {
+        "rank": "14",
+        "kw": "당정역",
+        "count": 707
+      },
+      {
+        "rank": "15",
+        "kw": "슈뻘맨",
+        "count": 683
+      }
+    ]
+  },
+  "bookCount": 828589,
+  "booksByBranch": [
+    [
+      "중앙도서관",
+      291450
+    ],
+    [
+      "산본도서관",
+      153385
+    ],
+    [
+      "당동도서관",
+      103386
+    ],
+    [
+      "부곡도서관",
+      97820
+    ],
+    [
+      "어린이도서관",
+      93355
+    ],
+    [
+      "대야도서관",
+      89193
+    ]
+  ],
+  "events": [
+    {
+      "id": "api:역사에서 지혜를 배우다:2025-11-12",
+      "title": "역사에서 지혜를 배우다",
+      "start": "2025-11-12",
+      "end": "2025-12-03",
+      "venue": "상생실(4층 문화강좌실)",
+      "category": "도서관 문화행사",
+      "target": "유치원(6~7세)+초등학교+중학교+고등학교 등 교육기관",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:(25. 11. 12.)대야도서관 견학프로그:2025-11-12",
+      "title": "(25. 11. 12.)대야도서관 견학프로그램 「도서누리」",
+      "start": "2025-11-12",
+      "end": "2025-11-12",
+      "venue": "대야도서관 어린이자료실, 천문우주체험관",
+      "category": "도서관 문화행사",
+      "target": "군포시민(성인)",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:[메이커스페이스]원데이클래스 - 레터링스티커:2025-11-13",
+      "title": "[메이커스페이스]원데이클래스 - 레터링스티커 만들기",
+      "start": "2025-11-13",
+      "end": "2025-11-13",
+      "venue": "산본도서관 2층 메이커스페이스",
+      "category": "도서관 문화행사",
+      "target": "유치원(6~7세)+초등학교+중학교+고등학교 등 교육기관",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:시니어 북클럽 역량강화 특강 <잘하고 싶다,:2025-11-13",
+      "title": "시니어 북클럽 역량강화 특강 <잘하고 싶다, 북클럽>",
+      "start": "2025-11-13",
+      "end": "2025-11-13",
+      "venue": "2층 대강당",
+      "category": "도서관 문화행사",
+      "target": "성인",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:태양관측 (11월 13일 목):2025-11-13",
+      "title": "태양관측 (11월 13일 목)",
+      "start": "2025-11-13",
+      "end": "2025-11-13",
+      "venue": "대야도서관 누리천문대(5층 천체관측실)",
+      "category": "도서관 문화행사",
+      "target": "산본도서관 시니어 북클럽 회원 및 55세 이상 군포 시민",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:야간천체관측(11월 13일 목):2025-11-13",
+      "title": "야간천체관측(11월 13일 목)",
+      "start": "2025-11-13",
+      "end": "2025-11-13",
+      "venue": "대야도서관 누리천문대",
+      "category": "도서관 문화행사",
+      "target": "군포시도서관 회원 중 6세 이상 가족 및 개인",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:야간천체관측(11월 15일 토):2025-11-15",
+      "title": "야간천체관측(11월 15일 토)",
+      "start": "2025-11-15",
+      "end": "2025-11-15",
+      "venue": "대야도서관 누리천문대",
+      "category": "도서관 문화행사",
+      "target": "군포시도서관 회원 중 초등학생 이상 개인 및 가족",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:단체견학 (11월 18일 화):2025-11-18",
+      "title": "단체견학 (11월 18일 화)",
+      "start": "2025-11-18",
+      "end": "2025-11-18",
+      "venue": "대야도서관 누리천문대",
+      "category": "도서관 문화행사",
+      "target": "군포시도서관 회원 중 초등학생 이상 개인 및 가족",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:단체견학 (11월 19일 수):2025-11-19",
+      "title": "단체견학 (11월 19일 수)",
+      "start": "2025-11-19",
+      "end": "2025-11-19",
+      "venue": "대야도서관 누리천문대",
+      "category": "도서관 문화행사",
+      "target": "유치원(6~7세)+초등학교+중학교+고등학교 등 교육기관",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:(25. 11. 19.)대야도서관 견학프로그:2025-11-19",
+      "title": "(25. 11. 19.)대야도서관 견학프로그램 「도서누리」",
+      "start": "2025-11-19",
+      "end": "2025-11-19",
+      "venue": "대야도서관 어린이자료실, 천문우주체험관",
+      "category": "도서관 문화행사",
+      "target": "유치원(6~7세)+초등학교+중학교+고등학교 등 교육기관",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:(명사초청특강) 카프카의?『변신』?깊게 읽기:2025-11-20",
+      "title": "(명사초청특강) 카프카의?『변신』?깊게 읽기",
+      "start": "2025-11-20",
+      "end": "2025-11-20",
+      "venue": "다목적실(지하 1층)",
+      "category": "도서관 문화행사",
+      "target": "군포시 관내 어린이집 및 유치원(2019~2021년생 원아)",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:야간천체관측(11월 20일 목):2025-11-20",
+      "title": "야간천체관측(11월 20일 목)",
+      "start": "2025-11-20",
+      "end": "2025-11-20",
+      "venue": "대야도서관 누리천문대",
+      "category": "도서관 문화행사",
+      "target": "군포시민(성인)",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:태양관측 (11월 21일 금):2025-11-21",
+      "title": "태양관측 (11월 21일 금)",
+      "start": "2025-11-21",
+      "end": "2025-11-21",
+      "venue": "대야도서관 누리천문대(5층 천체관측실)",
+      "category": "도서관 문화행사",
+      "target": "군포시도서관 회원 중 초등학생 이상 개인 및 가족",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:[메이커스페이스]11월 장비교육 - 레이저커:2025-11-22",
+      "title": "[메이커스페이스]11월 장비교육 - 레이저커터",
+      "start": "2025-11-22",
+      "end": "2025-11-22",
+      "venue": "산본도서관 2층 메이커스페이스",
+      "category": "도서관 문화행사",
+      "target": "군포시도서관 회원 중 6세 이상 가족 및 개인",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:'외계인은 진짜로 존재할까?' 누리천문대 (:2025-11-22",
+      "title": "'외계인은 진짜로 존재할까?' 누리천문대 (10회)월간천문학 특별강좌 참가자 모집",
+      "start": "2025-11-22",
+      "end": "2025-11-22",
+      "venue": "대야도서관 누리천문대",
+      "category": "도서관 문화행사",
+      "target": "중학생~성인",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:[메이커스페이스]11월 장비교육 - 재봉틀:2025-11-22",
+      "title": "[메이커스페이스]11월 장비교육 - 재봉틀",
+      "start": "2025-11-22",
+      "end": "2025-11-22",
+      "venue": "산본도서관 2층 메이커스페이스",
+      "category": "도서관 문화행사",
+      "target": "군포시도서관 회원(초등학생 이상, 개인 및 가족)",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://lib.gunpo.go.kr",
+      "kind": "edu",
+      "sourceType": "api",
+      "sourceName": "군포 도서관 문화행사",
+      "tags": [
+        "도서관",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:<동네 책방> 전시연계강연 - 『생애 세 번:2026-01-24",
+      "title": "<동네 책방> 전시연계강연 - 『생애 세 번 만나는 그림책』",
+      "start": "2026-01-24",
+      "end": "2026-01-24",
+      "venue": "그림책꿈마루 상상피움1",
+      "category": "그림책 교육",
+      "target": "그림책에 관심 있는 어른들",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:책방연두 화요인문학함께읽기 - 『다정한 서술:2026-01-27",
+      "title": "책방연두 화요인문학함께읽기 - 『다정한 서술자』",
+      "start": "2026-01-27",
+      "end": "2026-01-27",
+      "venue": "그림책꿈마루 기획전시실",
+      "category": "그림책 교육",
+      "target": "성인 및 청소년 누구나",
+      "fee": "무료",
+      "status": "종료",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:<동네책방> 전시연계강연 - 어린이낭독극과 :2026-02-07",
+      "title": "<동네책방> 전시연계강연 - 어린이낭독극과 함께 하는 책 읽는 즐거움",
+      "start": "2026-02-07",
+      "end": "2026-02-07",
+      "venue": "그림책꿈마루 기획전시실",
+      "category": "그림책 교육",
+      "target": "책 읽기에 관심 있는 어린이와 어른",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:<동네 책방> 전시연계강연 - 『사유하는 것:2026-02-12",
+      "title": "<동네 책방> 전시연계강연 - 『사유하는 것과 살아 있는 것』",
+      "start": "2026-02-12",
+      "end": "2026-02-12",
+      "venue": "그림책꿈마루 기획전시실",
+      "category": "그림책 교육",
+      "target": "성인 및 청소년",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:나다울 작가와 그림책 몸놀이:2026-02-28",
+      "title": "나다울 작가와 그림책 몸놀이",
+      "start": "2026-02-28",
+      "end": "2026-02-28",
+      "venue": "그림책꿈마루 상상피움1",
+      "category": "그림책 교육",
+      "target": "초등 1~2학년",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:그림책 <마음의 집> 이예숙 작가와의 만남:2026-03-14",
+      "title": "그림책 <마음의 집> 이예숙 작가와의 만남",
+      "start": "2026-03-14",
+      "end": "2026-03-14",
+      "venue": "그림책꿈마루 상상피움 1",
+      "category": "그림책 교육",
+      "target": "초등학교 1~3학년",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:석철원 작가의 아기 그림책 이야기와 미니 워:2026-03-21",
+      "title": "석철원 작가의 아기 그림책 이야기와 미니 워크숍",
+      "start": "2026-03-21",
+      "end": "2026-03-21",
+      "venue": "그림책움 계단서가",
+      "category": "그림책 교육",
+      "target": "어린이 포함 가족, 성인 누구나",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:차영경 작가의 '도서관의 악몽' - <도서관:2026-04-11",
+      "title": "차영경 작가의 '도서관의 악몽' - <도서관의 악몽>을 읽고, 상상 담은 책표지와 가방 만들기",
+      "start": "2026-04-11",
+      "end": "2026-04-11",
+      "venue": "그림책꿈마루 상상피움 1",
+      "category": "그림책 교육",
+      "target": "초등학교 1~3학년",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:최민지 작가의 <오모리가 아무리> 북토크:2026-04-18",
+      "title": "최민지 작가의 <오모리가 아무리> 북토크",
+      "start": "2026-04-18",
+      "end": "2026-04-18",
+      "venue": "그림책움 계단서가",
+      "category": "그림책 교육",
+      "target": "성인 및 청소년 30명",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:장애인식개선 그림 그리기 공모전:2026-04-25",
+      "title": "장애인식개선 그림 그리기 공모전",
+      "start": "2026-04-25",
+      "end": "2026-04-25",
+      "venue": "그림책꿈마루 일원 (로비, 상부공원)",
+      "category": "그림책 교육",
+      "target": "초등학교 1~6학년",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:장애인식개선 그림 그리기 공모전 추가 모집(:2026-04-25",
+      "title": "장애인식개선 그림 그리기 공모전 추가 모집(10명)",
+      "start": "2026-04-25",
+      "end": "2026-04-25",
+      "venue": "그림책꿈마루 일원 (로비, 상부공원)",
+      "category": "그림책 교육",
+      "target": "초등학교 1~6학년",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:다은 작가의 『토끼귤』로 놀아요: 그림책 카:2026-05-02",
+      "title": "다은 작가의 『토끼귤』로 놀아요: 그림책 카드로 읽는 글 없는 그림책",
+      "start": "2026-05-02",
+      "end": "2026-05-02",
+      "venue": "그림책꿈마루 상상피움 1",
+      "category": "그림책 교육",
+      "target": "초등학교 1~3학년",
+      "fee": "무료",
+      "status": "마감",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "그림책꿈마루",
+      "tags": [
+        "그림책꿈마루",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:군포 책의 도시 독서대전:2026-06-07",
+      "title": "군포 책의 도시 독서대전",
+      "start": "2026-06-07",
+      "end": "2026-06-09",
+      "venue": "군포시청 광장",
+      "category": "독서축제",
+      "target": "전체",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "event",
+      "sourceType": "api",
+      "sourceName": "경기데이터드림",
+      "tags": [
+        "경기도",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": true
+    },
+    {
+      "id": "scrape:군포프라임필하모닉 정기연주회:2026-06-13",
+      "title": "군포프라임필하모닉 정기연주회",
+      "start": "2026-06-13",
+      "end": "2026-06-13",
+      "venue": "군포문화예술회관 대공연장",
+      "category": "공연/전시",
+      "target": "전체",
+      "fee": "1만원~",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "event",
+      "sourceType": "scrape",
+      "sourceName": "군포문화재단",
+      "tags": [
+        "군포문화재단"
+      ],
+      "isReading": false,
+      "recommended": false
+    },
+    {
+      "id": "api:당정근린공원 숲속 음악회:2026-06-14",
+      "title": "당정근린공원 숲속 음악회",
+      "start": "2026-06-14",
+      "end": "2026-06-14",
+      "venue": "당정근린공원",
+      "category": "공연",
+      "target": "전체",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "event",
+      "sourceType": "api",
+      "sourceName": "경기데이터드림",
+      "tags": [
+        "경기도"
+      ],
+      "isReading": false,
+      "recommended": false
+    },
+    {
+      "id": "scrape:경기공유학교 — 질문하는 인문독서 교실:2026-06-14",
+      "title": "경기공유학교 — 질문하는 인문독서 교실",
+      "start": "2026-06-14",
+      "end": "2026-07-19",
+      "venue": "군포 공유학교 거점",
+      "category": "독서프로그램",
+      "target": "초·중학생",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "경기공유학교",
+      "tags": [
+        "공유학교",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": true
+    },
+    {
+      "id": "scrape:어린이 뮤지컬 「책 읽어주는 로봇」:2026-06-22",
+      "title": "어린이 뮤지컬 「책 읽어주는 로봇」",
+      "start": "2026-06-22",
+      "end": "2026-06-22",
+      "venue": "군포문화예술회관 소공연장",
+      "category": "공연/전시",
+      "target": "가족",
+      "fee": "2만원",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "event",
+      "sourceType": "scrape",
+      "sourceName": "군포문화재단",
+      "tags": [
+        "군포문화재단",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "scrape:마을 연계 독서놀이 (공유학교):2026-06-25",
+      "title": "마을 연계 독서놀이 (공유학교)",
+      "start": "2026-06-25",
+      "end": "2026-06-25",
+      "venue": "군포 마을배움터",
+      "category": "독서프로그램",
+      "target": "초등",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "경기공유학교",
+      "tags": [
+        "공유학교",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": true
+    },
+    {
+      "id": "scrape:지역작가 초청 북토크 — 군포에서 쓰다:2026-06-27",
+      "title": "지역작가 초청 북토크 — 군포에서 쓰다",
+      "start": "2026-06-27",
+      "end": "2026-06-27",
+      "venue": "군포문화예술회관 세미나실",
+      "category": "강연",
+      "target": "전체",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "event",
+      "sourceType": "scrape",
+      "sourceName": "군포문화재단",
+      "tags": [
+        "군포문화재단",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": false
+    },
+    {
+      "id": "api:철쭉축제 거리 공연:2026-06-28",
+      "title": "철쭉축제 거리 공연",
+      "start": "2026-06-28",
+      "end": "2026-06-28",
+      "venue": "군포 철쭉동산",
+      "category": "공연",
+      "target": "가족",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "event",
+      "sourceType": "api",
+      "sourceName": "경기데이터드림",
+      "tags": [
+        "경기도"
+      ],
+      "isReading": false,
+      "recommended": false
+    }
+  ],
+  "recommended": [
+    {
+      "id": "scrape:마을 연계 독서놀이 (공유학교):2026-06-25",
+      "title": "마을 연계 독서놀이 (공유학교)",
+      "start": "2026-06-25",
+      "end": "2026-06-25",
+      "venue": "군포 마을배움터",
+      "category": "독서프로그램",
+      "target": "초등",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "경기공유학교",
+      "tags": [
+        "공유학교",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": true
+    },
+    {
+      "id": "api:군포 책의 도시 독서대전:2026-06-07",
+      "title": "군포 책의 도시 독서대전",
+      "start": "2026-06-07",
+      "end": "2026-06-09",
+      "venue": "군포시청 광장",
+      "category": "독서축제",
+      "target": "전체",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "event",
+      "sourceType": "api",
+      "sourceName": "경기데이터드림",
+      "tags": [
+        "경기도",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": true
+    },
+    {
+      "id": "scrape:경기공유학교 — 질문하는 인문독서 교실:2026-06-14",
+      "title": "경기공유학교 — 질문하는 인문독서 교실",
+      "start": "2026-06-14",
+      "end": "2026-07-19",
+      "venue": "군포 공유학교 거점",
+      "category": "독서프로그램",
+      "target": "초·중학생",
+      "fee": "무료",
+      "status": null,
+      "applyUrl": "#",
+      "kind": "edu",
+      "sourceType": "scrape",
+      "sourceName": "경기공유학교",
+      "tags": [
+        "공유학교",
+        "독서"
+      ],
+      "isReading": true,
+      "recommended": true
+    }
+  ],
+  "books": [
+    {
+      "title": "불편한 편의점",
+      "author": "김호연",
+      "rank": 1
+    },
+    {
+      "title": "아몬드",
+      "author": "손원평",
+      "rank": 2
+    },
+    {
+      "title": "세상에 나쁜 곤충은 없다",
+      "author": "안네 스베르드루프티게손",
+      "rank": 3
+    },
+    {
+      "title": "미드나잇 라이브러리",
+      "author": "매트 헤이그",
+      "rank": 4
+    },
+    {
+      "title": "달러구트 꿈 백화점",
+      "author": "이미예",
+      "rank": 5
+    },
+    {
+      "title": "어린이라는 세계",
+      "author": "김소영",
+      "rank": 6
+    }
+  ]
+}

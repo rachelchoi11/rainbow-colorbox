@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>정산 솔루션 v2 프로덕션 배포 작업 기록</title>
+<style>
+  @page { size: A4; margin: 12mm 18mm 12mm 18mm; @bottom-center { content: counter(page); } }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif;
+    color: #1a1a1a; font-size: 10.5pt; line-height: 1.5; margin: 0; letter-spacing: -0.01em;
+  }
+  .cover {
+    height: 250mm; display: flex; flex-direction: column; justify-content: center;
+    page-break-after: always; border-top: 3px solid #1a2a44; border-bottom: 1px solid #1a2a44;
+  }
+  .cover .cover-logo { width: 70mm; height: auto; margin-bottom: 36px; }
+  .cover .kicker { font-size: 11pt; color: #5a6472; letter-spacing: 0.04em; margin-bottom: 14px; }
+  .cover h1 { font-size: 24pt; font-weight: 800; line-height: 1.3; margin: 0 0 10px; color: #14233d; letter-spacing: -0.02em; }
+  .cover .sub { font-size: 12.5pt; color: #3a4658; font-weight: 500; margin-bottom: 56px; }
+  .cover .meta { border-top: 1px solid #d8dde4; padding-top: 18px; }
+  .cover .meta table { border: none; }
+  .cover .meta td { border: none; padding: 3px 0; font-size: 10pt; }
+  .cover .meta td:first-child { color: #6b7280; width: 96px; }
+
+  h2 { font-size: 13.5pt; font-weight: 800; color: #14233d; margin: 15px 0 8px; padding-bottom: 6px; border-bottom: 2px solid #14233d; page-break-after: avoid; }
+  h3 { font-size: 11pt; font-weight: 700; color: #1f3354; margin: 11px 0 5px; page-break-after: avoid; }
+  p { margin: 6px 0; }
+  ul { margin: 5px 0; padding-left: 18px; }
+  li { margin: 2px 0; }
+  strong { font-weight: 700; color: #14233d; }
+  .lead { font-size: 10.6pt; color: #2a3442; }
+
+  table { width: 100%; border-collapse: collapse; margin: 7px 0; font-size: 9.4pt; page-break-inside: avoid; }
+  th { background: #eef1f5; color: #14233d; font-weight: 700; text-align: left; padding: 5px 9px; border-bottom: 1.5px solid #c2cad6; }
+  td { padding: 4px 9px; border-bottom: 1px solid #e3e7ed; vertical-align: top; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:nth-child(even) td { background: #fafbfc; }
+  .col-local { color: #1f3354; }
+
+  .callout { background: #f5f7fa; border-left: 3px solid #1a2a44; padding: 9px 15px; margin: 9px 0; font-size: 10pt; color: #2a3442; }
+  .warn { background: #fbf6ef; border-left: 3px solid #b45f06; }
+  .delta-pos { color: #1f6b3e; font-weight: 600; }
+  .small { font-size: 9pt; color: #6b7280; }
+  .section { page-break-inside: auto; }
+</style>
+</head>
+<body>
+
+<!-- 표지 -->
+<div class="cover">
+  <img class="cover-logo" src="hivemind_logo.png" alt="HIVE MIND">
+  <div class="kicker">정산 표준화 솔루션 · 배포 작업 기록</div>
+  <h1>정산 솔루션 v2 프로덕션 배포 작업 기록</h1>
+  <div class="sub">로컬 고도화본(v2)의 운영 서버 반영</div>
+  <div class="meta">
+    <table>
+      <tr><td>작성일</td><td>2026년 6월 26일</td></tr>
+      <tr><td>작성자</td><td>최혜윤 (기획·PO 총괄)</td></tr>
+      <tr><td>대상</td><td>고도화 보고 이후, 운영 서버 v1 → v2 반영</td></tr>
+      <tr><td>관련 문서</td><td>정산솔루션 고도화 보고서 — 고도화 기능·성과 상세</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 머리말 -->
+<div class="section">
+<p class="lead">앞서 고도화 보고서에서 정리한 v2(1~4월 데이터·매칭 고도화·매칭 연구소)를 미팅 이후 실제 운영 서버(프로덕션)에 반영 완료했습니다. <strong>고도화 기능·성과의 상세는 고도화 보고서를 참조</strong>하시고, 본 문서는 그 결과물을 운영 환경에 안전하게 올리기까지의 <strong>배포 작업 기록</strong>입니다.</p>
+</div>
+
+<!-- 1. 배포 전 상태 -->
+<div class="section">
+<h2>1. 배포 전 상태 — 로컬 vs 운영(프로덕션)</h2>
+<p>그동안 고도화(v2)는 <strong>로컬(개발 환경)</strong>에서 진행했고, <strong>운영 서버는 아직 초기 버전(v1)</strong>으로 가동 중이었습니다. 이번 배포는 그 둘 사이의 격차를 운영 서버에 반영하는 작업입니다.</p>
+<table>
+  <tr><th>항목</th><th>로컬 개발본 (v2)</th><th>운영 프로덕션 (v1, 반영 전)</th></tr>
+  <tr><td>대상 데이터</td><td class="col-local">1~4월 통합 (43.1만 행)</td><td>2·3월 (14.5만 행)</td></tr>
+  <tr><td>유통사</td><td class="col-local">31곳 (교보문고·모픽 편입)</td><td>28~29곳</td></tr>
+  <tr><td>완전매칭률</td><td class="col-local">99.5%</td><td>98.1%</td></tr>
+  <tr><td>주요 기능</td><td class="col-local">미매칭 보드 일괄처리 · 매칭 연구소(동명이작 탐지)</td><td>없음</td></tr>
+</table>
+<div class="callout">운영 서버 <strong>v1 → v2로 전환</strong></div>
+</div>
+
+<!-- 2. 반영 중 발견한 이슈 -->
+<div class="section">
+<h2>2. v2 반영 중 발견한 이슈와 조치</h2>
+
+<h3>이슈 1 — 로컬에서 누락된 안전장치 2종</h3>
+<ul>
+  <li><strong>예스24·판무림 정산 산식</strong> (매출·정산액 환산식) — 누락 시 해당 유통사 금액이 빈값으로 회귀</li>
+  <li><strong>메모리(OOM) 안전장치</strong> — 누락 시 과거 발생했던 서버 다운(502)이 재발할 위험. 데이터가 3배로 커져 위험도가 더 높음</li>
+</ul>
+
+<h3>이슈 2 — 로컬과 운영의 폴더 구조 상이</h3>
+
+<h3>조치 항목</h3>
+<ul>
+  <li><strong>안전장치 2종 재병합</strong> — 정산 산식과 메모리 안전장치를 v2에 다시 얹어, 유실 없이 반영</li>
+  <li><strong>운영 구조에 맞춰 재조립</strong> — 경로를 환경변수 기반으로 정리하여 운영 서버에서 그대로 동작하도록 조정</li>
+  <li><strong>데이터 재생성</strong> — 산식이 반영된 1~4월 데이터(43.1만 행)를 다시 생성. 공식 통합본과 수치 일치 확인</li>
+  <li><strong>전수 점검</strong> — 로컬에서 로그인·집계 수치·신규 기능(연구소·일괄처리)까지 전수 정상 확인</li>
+  <li><strong>롤백 안전망 확보</strong> — 문제 발생 시 직전 상태로 즉시 되돌릴 수 있도록 복원 지점 보존</li>
+</ul>
+</div>
+
+<!-- 4. 결과 -->
+<div class="section">
+<h2>3. 결과 — 라이브 확인</h2>
+<table>
+  <tr><th>점검 항목</th><th>결과</th></tr>
+  <tr><td>배포 방식</td><td>무중단 (서비스 중단 없이 전환)</td></tr>
+  <tr><td>메모리(OOM) 안정성</td><td class="delta-pos">정상 — 샘플 로드 3.6초, 다운 없음</td></tr>
+  <tr><td>정산총액</td><td>11.97억 원 (1~4월)</td></tr>
+  <tr><td>처리 규모 · 작가</td><td>43.1만 행 · 작가 6,068명 · 유통사 31곳</td></tr>
+  <tr><td>완전매칭률 · 검증</td><td class="delta-pos">99.5% · 검증 86건 전수 PASS</td></tr>
+</table>
+<div class="callout">운영 서버가 <strong>v2(1~4월 데이터·매칭 연구소 포함)로 정상 전환</strong>되었습니다. 로그인 후 1~4월 정산 데이터를 열람 가능합니다.<br><span class="small">접속: https://hivemind-production-b8eb.up.railway.app (로그인 필요)</span></div>
+</div>
+
+</body>
+</html>

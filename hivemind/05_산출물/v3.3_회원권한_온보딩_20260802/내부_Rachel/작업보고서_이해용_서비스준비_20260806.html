@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang=ko><head><meta charset=utf-8><style>@page{size:A4;margin:15mm}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#1a1a1a;font-size:10.3pt;line-height:1.62;max-width:820px;margin:0 auto;padding:8px}
+h1{font-size:19pt;font-weight:800;border-bottom:3px solid #222;padding-bottom:8px;margin-bottom:10px}
+h2{font-size:13.5pt;font-weight:800;margin:22px 0 8px;border-bottom:2px solid #161616;padding-bottom:5px}
+ul{margin:6px 0 6px 2px;padding-left:20px}li{margin:3px 0}
+table{border-collapse:collapse;width:100%;margin:9px 0;font-size:9.3pt}
+th{background:#eef1f5;border:1px solid #c2cad6;padding:6px 9px;text-align:left}
+td{border:1px solid #e3e7ed;padding:6px 9px;vertical-align:top}
+strong{color:#0f1115}code{background:#f2f4f7;padding:1px 5px;border-radius:3px;font-size:9pt}
+hr{border:none;border-top:1px solid #e3e7ed;margin:14px 0}
+a{color:#0B5CFF;text-decoration:none}
+blockquote{background:#f4f8ff;border-left:3px solid #0B5CFF;margin:7px 0;padding:8px 13px;font-size:9.7pt;color:#2a3340;border-radius:0 4px 4px 0}
+blockquote strong{color:#0B5CFF}
+.badge{background:#0B5CFF;color:#fff;font-size:8pt;padding:1px 7px;border-radius:10px;margin-left:7px;vertical-align:middle;font-weight:700}
+</style></head><body>
+<h1>작업 보고서 (이해용) — 본격 서비스 준비 1일차</h1>
+<ul><li>작성일: 2026년 8월 6일 · 작성: 최혜윤 · 용도: 내부 이해·구두 설명 대비(무엇·왜·어떻게 포함)</li><li>맥락: 9월말 여러 출판사 시연 목표. 실테넌트 테스트(한 출판사의 다유통사 엑셀 대량 투입) 중 발견·개선.</li><li>품질 기준: 정산 정확도 불변식(431,296행 · 99.50% · 검증 86건) 전 과정 유지.</li></ul>
+<hr>
+<h2>0. 오늘 한 일 한눈에</h2>
+<p>1. 심층 리뷰 3종(업로드 UX · 미매칭 임계값 · CP 대시보드) 병렬 실행 → 문제 규명.</p>
+<p>2. Phase A(안전 패치): 기간 파싱 버그 · 미매칭 자동승인 제거 · CP KPI 누수.</p>
+<p>3. Phase B(개편): 업로드→표준화→결과 UX · CP 대시보드 · 미매칭 3밴드.</p>
+<p>4. 데이터 영속성 정리: 감사·결정 로그 볼륨화 + DB 자동 백업.</p>
+<p>5. 아키텍처 정리: 볼륨·SQLite·Postgres 이전 설계.</p>
+<hr>
+<h2>1. 심층 리뷰로 드러난 문제 (무엇·왜)</h2>
+<p><strong>① 기간 파싱 버그 — &quot;미상년 NaN월&quot;, 5월 공백·6월 유령</strong></p>
+<ul><li>무엇: 표준화 결과 추세 차트에 존재하지 않는 월이 나타남.</li><li>왜: 기간을 <strong>파일명에서만</strong> 뽑는데, ⓐ다운로드 타임스탬프(<code>_20260617142003</code>)를 정산월로 오인식(→6월), ⓑ연·월 없는 파일명은 &quot;미상&quot;으로 떨어짐.</li></ul>
+<p><strong>② 미매칭 AI 신뢰도 % — 단독으로 신뢰 불가</strong></p>
+<ul><li>무엇: 신뢰도 60~74% 제안에 정답과 오탐이 섞임.</li><li>왜: 화면 %가 <strong>사실상 문자 유사도</strong>(음절 집합 겹침+접두). 오탐이 71%에도, 정답이 64%에도 존재. 진짜 판별 신호는 <strong>&quot;같은 작가로 몇 건이 수렴하나(agreement)&quot;</strong>.</li></ul>
+<p><strong>③ CP 대시보드 — 출판사에게 안 맞는 지표</strong></p>
+<ul><li>무엇: 계약사 홈이 매칭률·미매칭·원본검증(표준화 엔진 내부지표)을 보여줌.</li><li>왜: 이건 운영사(품질 담당) 지표. 출판사는 &quot;이번 달 어느 유통사 정산서가 왔나&quot;가 우선.</li></ul>
+<blockquote><strong>설명</strong> — 세 문제 모두 &quot;실제 여러 출판사·유통사 데이터를 넣어보니&quot; 드러난 것. 화면·샘플만 보면 안 보이고, 실테넌트 투입에서 표면화됨. 그래서 리뷰를 데이터·코드 근거로 돌림.</blockquote>
+<h2>2. Phase A — 안전 패치 (무엇·왜·어떻게·검증)</h2>
+<p><strong>① 기간 파싱 견고화</strong></p>
+<ul><li>어떻게: 9자리 이상 연속 숫자(다운로드 일시·epoch) <strong>선(先) 마스킹</strong> → 타임스탬프 오인식 제거. 월 범위(1~12) 검증. 연도 없는 &quot;N월&quot; 파일은 <strong>배치의 지배 연도로 보정</strong>(같은 업로드의 다른 파일에서 연도 추론).</li><li>검증: 실제 파일명 10종(원스토어·북큐브·신영미디어·밀리 등) 전부 2026-04로 정상 귀속.</li></ul>
+<p><strong>② 미매칭 자동승인 제거</strong>(결정: 자동승인 없음)</p>
+<ul><li>어떻게: &quot;전체 승인&quot;(63% 단건까지 일괄 등록) 삭제 → 선택 승인만. + <strong>&quot;동일 작가 N건&quot; 배지</strong>(agreement) 노출, 수렴순 정렬.</li><li>왜: 오등록 방지. 승인은 사람이 확인 후.</li></ul>
+<p><strong>③ CP 원본검증 KPI 누수</strong></p>
+<ul><li>어떻게: CP 홈에서 원본검증 KPI 제거(운영자 전용). 기존엔 세션 전체(모든 출판사) 파일 수를 읽던 경미한 크로스테넌트 누수였음.</li></ul>
+<h2>3. Phase B — 개편</h2>
+<p><strong>① 업로드 → 표준화 → 결과 UX</strong></p>
+<ul><li>파일 드롭 즉시 <strong>사전점검</strong>(파일 안 열고 파일명만): 유통사별 그룹핑 + 배지(양식 인식/미지원/기간/중복) + 개별 제거 + <strong>&quot;정산월 지정&quot;</strong>(오인식·미상 일괄 교정).</li><li>표준화 후 곧장 요약으로 안 튀고 <strong>결과 프리뷰</strong>(정산액·행수·유통사·기간범위·미매칭 + 경고) → &quot;정산 요약으로&quot;.</li></ul>
+<p><strong>② CP 대시보드</strong></p>
+<ul><li>매칭률·미매칭·원본검증 → 운영자 전용. CP 홈 1차 블록 = <strong>&quot;이번 달 유통사별 수집 현황&quot;</strong>(수신/미수신 배지). 안 온 유통사가 한눈에.</li></ul>
+<p><strong>③ 미매칭 3밴드</strong></p>
+<ul><li>신뢰 높음(우선 검토)/검토/낮은 신뢰(접힘). 자동승인 없이 검토 효율만.</li></ul>
+<blockquote><strong>설명</strong> — Phase A는 회귀 불변식과 독립(파일명 파싱·UI·권한만)이라 리스크 0으로 즉시 반영. Phase B는 화면 개편이라 별도. 둘 다 43만행 회귀 유지 확인 후 배포.</blockquote>
+<h2>4. 데이터 영속성 정리 (오늘의 사건에서 파생)</h2>
+<p><strong>발단:</strong> 재배포 후 &quot;감사 로그가 사라졌다&quot;는 보고.</p>
+<ul><li>원인: <strong>회원·계약·정산 등 핵심 데이터는 SQLite(볼륨)라 유지</strong>되지만, 감사 로그(<code>audit.jsonl</code>)·연구소 결정 로그(<code>decisions.jsonl</code>)는 <strong>볼륨 밖(이미지 경로)</strong> 에 쓰여 재배포마다 초기화됨.</li><li>조치: 두 로그를 <strong>볼륨(APP_DB 디렉터리)</strong> 으로 이동 → 이제 유지. (과거 로그는 임시 디스크였어 복구 불가.)</li><li>추가: <strong>DB 자동 백업</strong> 구현 — 하루 1회 <code>app.db</code>를 볼륨의 <code>backups/</code>에 온라인 백업(14일 보존). 실수 삭제·손상·잘못된 이관으로부터 시점 복구.</li></ul>
+<blockquote><strong>설명</strong> — 핵심 교훈: &quot;볼륨에 없는 파일 = 재배포 시 소멸.&quot; 이제 런타임에 쓰이는 상태(회원·계약·정산런·설정·별칭·플래그·감사·결정 로그·계약첨부)는 <strong>전부 볼륨</strong>. 세션 시크릿은 env 고정.</blockquote>
+<h2>5. 아키텍처 이해 (볼륨·SQLite·Postgres)</h2>
+<ul><li><strong>볼륨</strong> = 영구 디스크(아마존 EBS 같은 저장 공간). DB가 아니라 &quot;창고&quot;.</li><li><strong>SQLite</strong> = 파일 하나(<code>app.db</code>)가 곧 DB인 내장형. 앱과 같은 프로세스가 그 파일을 직접 읽고 씀 → <strong>별도 DB 서버·접속 계정·SSH 키 없음</strong>(그래서 예전 프로젝트의 RDS+SSH와 다름).</li><li><strong>접속</strong> = 컨테이너 셸 진입 후 파일 열기. 외부 엔드포인트 없음.</li><li><strong>한계·이전 시점</strong>: 다중 인스턴스·외부 도구 연동·부하·가용성 요구가 오면 <strong>관리형 Postgres로 이전</strong>(그때 접속 문자열·사설망이 생김). <code>db.py</code>가 KV 추상화라 백엔드 교체만으로 저비용 이전 가능. 상세: <code>DB이전설계_SQLite→Postgres_20260806.md</code>.</li></ul>
+<h2>6. 남은 과제</h2>
+<ul><li><strong>B4 세션 영속(중요):</strong> 업로드한 정산 데이터가 지금은 메모리 세션이라 재배포 시 소멸(재업로드 필요). 실서비스엔 테넌트별 영속 필요.</li><li><strong>C 정확도 심화:</strong> 정규화 보강(권차/외전/부제 완전일치 복원) → 미매칭 자체 감소(회귀 재검증 필요).</li><li><strong>Postgres 이전:</strong> 트리거 도달 시(설계 완료, 대기).</li><li><strong>시연 준비:</strong> 스토린랩 외 2~3곳 실제 정산서로 표준화 정확도 교차 테스트.</li></ul>
+</body></html>

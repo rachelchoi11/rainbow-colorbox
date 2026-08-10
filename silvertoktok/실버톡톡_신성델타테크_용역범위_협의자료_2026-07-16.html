@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>실버톡톡 × 신성델타테크 — 용역 범위 협의 자료 (2026-07-16)</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --brand: #2E5AAC;
+    --brand-dark: #101B33;
+    --ink: #1B2430;
+    --muted: #64748B;
+    --line: #E2E8F0;
+    --bg-soft: #F4F6FA;
+    --warn-bg: #FFFBEB;
+    --warn-line: #F59E0B;
+    --crit-bg: #FEF2F2;
+    --crit-line: #DC2626;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+      system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    color: var(--ink);
+    line-height: 1.65;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+    font-size: 14px;
+    word-break: keep-all;       /* 국문 줄바꿈이 단어 중간에서 끊기지 않게 */
+    overflow-wrap: break-word;
+  }
+  h1 {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
+    margin: 0 0 20px; padding-bottom: 14px;
+    border-bottom: 3px solid var(--brand);
+  }
+  h2 {
+    font-size: 19px; font-weight: 700; letter-spacing: -0.01em;
+    margin: 40px 0 14px; padding: 8px 12px;
+    background: var(--brand-dark); color: #fff; border-radius: 6px;
+  }
+  h3 {
+    font-size: 15.5px; font-weight: 700;
+    margin: 26px 0 10px; padding-left: 9px;
+    border-left: 4px solid var(--brand);
+  }
+  h4 { font-size: 14px; font-weight: 700; margin: 18px 0 8px; }
+  p { margin: 9px 0; }
+  a { color: var(--brand); }
+  strong { font-weight: 700; }
+  code {
+    background: var(--bg-soft); padding: 1.5px 5px; border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em; color: #0F766E;
+  }
+  pre {
+    background: var(--brand-dark); color: #E2E8F0;
+    padding: 14px 16px; border-radius: 8px; overflow-x: auto;
+    font-size: 12px; line-height: 1.5;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+  table {
+    border-collapse: collapse; width: 100%;
+    margin: 12px 0; font-size: 12.5px;
+    /* 표가 페이지를 넘어가도 잘리지 않게 */
+    page-break-inside: auto;
+  }
+  th, td {
+    border: 1px solid var(--line); padding: 7px 9px;
+    text-align: left; vertical-align: top;
+  }
+  th { background: var(--bg-soft); font-weight: 700; }
+  tr:nth-child(even) td { background: #FBFCFE; }
+  blockquote {
+    margin: 12px 0; padding: 10px 14px;
+    background: var(--bg-soft); border-left: 4px solid var(--brand);
+    border-radius: 0 6px 6px 0; color: #334155;
+  }
+  blockquote p { margin: 5px 0; }
+  ul, ol { margin: 9px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  li > ul, li > ol { margin: 4px 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
+
+  /* 스크린샷 — 화면 캡처임이 드러나도록 테두리를 준다 */
+  img {
+    max-width: 100%; height: auto; display: block;
+    margin: 14px 0; border: 1px solid var(--line);
+    border-radius: 8px; box-shadow: 0 2px 12px rgba(27,36,48,0.10);
+  }
+
+  /* 첫 표(한 장 요약)를 눈에 띄게 */
+  h2 + table th:first-child { width: 22%; }
+
+  /* 인쇄 */
+  @page { size: A4; margin: 15mm 12mm; }
+  @media print {
+    body { padding: 0; max-width: none; font-size: 10.5pt; }
+    h2 { page-break-after: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h3, h4 { page-break-after: avoid; }
+    table, pre, blockquote, img { page-break-inside: avoid; }
+    img { box-shadow: none; }
+    tr { page-break-inside: avoid; }
+    th, td, blockquote, pre { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: var(--ink); text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<h1>실버톡톡 × 신성델타테크 — 용역 범위 협의 자료</h1>
+<blockquote><p><strong>일자</strong>: 2026-07-16 | <strong>대상</strong>: 신성델타테크 (레미 / Lemmy)</p><p><strong>목적</strong>: VIP요양병원 PoC 실증 및 개발 용역 범위 구체화</p><p><strong>동봉</strong>: 그룹웨어 시연 (라이브) · IoT 연동 상세 자료 17p · 기술/규제 조사 3건</p></blockquote>
+<hr>
+<h2>1. 한 장 요약</h2>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>우리 역할</strong></td><td>레미가 만든 신호를 <strong>요양병원 현장이 실제로 쓰는 것</strong>으로 바꾸는 계층 — 화면·알림·보호자 전달·실증 측정</td></tr>
+<tr><td><strong>이미 가진 것</strong></td><td>병원용 그룹웨어 <strong>25개 화면 개발 완료</strong>(오늘 시연) · <strong>보호자 앱 실서비스 운영 중</strong>(VIP 보호자 실사용) · 파트너 CMS · <strong>VIP EMR(브레인) 환자명단 연동 가동 중</strong></td></tr>
+<tr><td><strong>그래서</strong></td><td>PoC에 필요한 <strong>수요처·현장·보호자 채널·화면이 이미 붙어 있다.</strong> 새로 만들 것은 <strong>레미와의 접점</strong>이지 시스템 전체가 아니다</td></tr>
+<tr><td><strong>오늘 목표</strong></td><td>용역 범위 후보(§3)에서 <strong>무엇을 발주할지 함께 고르는 것</strong></td></tr>
+</tbody></table>
+<hr>
+<h2>2. 우리가 이미 운영 중인 것 [사실 — 오늘 시연 가능]</h2>
+<p>레미 PoC가 필요로 하는 것 중 <strong>이미 살아 있는 것</strong>:</p>
+<table><thead><tr><th>자산</th><th>상태</th><th>PoC에서의 역할</th></tr></thead><tbody>
+<tr><td><strong>보호자 앱 (실버톡톡)</strong></td><td><strong>실서비스 — VIP 보호자 실사용 중</strong></td><td>실증 성과를 <strong>보호자까지 전달하는 유일한 채널.</strong> 신규 구축 불요</td></tr>
+<tr><td><strong>병원용 그룹웨어</strong></td><td>25개 화면 개발 완료 (오늘 시연)</td><td>병동별 실시간 현황·알림 이력·수면 리포트·센서 장비·알림 규칙</td></tr>
+<tr><td><strong>파트너 CMS</strong></td><td>운영 중</td><td>환자·보호자·병실 마스터 관리</td></tr>
+<tr><td><strong>환자 명단 연동</strong></td><td><strong>가동 중</strong></td><td>VIP EMR(<strong>브레인</strong> = 헥톤프로젝트)에서 환자·병동·병실·입퇴원 수신</td></tr>
+<tr><td><strong>VIP요양병원 관계</strong></td><td>운영 파트너</td><td><strong>PoC 수요처가 이미 확보된 상태</strong></td></tr>
+<tr><td><strong>전자결재 모듈</strong></td><td>개발 완료</td><td>낙상 알림 → <strong>사고보고서 기안 자동 연계</strong> (오늘 시연 하이라이트)</td></tr>
+</tbody></table>
+<blockquote><p><strong>→ 핵심</strong>: PoC의 병목은 보통 <strong>&quot;현장을 어디서 구하나 / 보호자에게 어떻게 전달하나&quot;</strong>인데, <strong>그 두 개가 이미 해결되어 있다.</strong></p></blockquote>
+<hr>
+<h2>3. 용역 범위 후보 — 오늘 함께 고를 것</h2>
+<blockquote><p>아래는 <strong>제안</strong>이다. 레미 사양과 실증 목표에 따라 빼거나 더한다.</p></blockquote>
+<table><thead><tr><th>#</th><th>모듈</th><th>내용</th><th>우리 상태</th><th>난이도</th></tr></thead><tbody>
+<tr><td><strong>A</strong></td><td><strong>센서 연동 계층</strong></td><td>레미 → 우리 서버 수집·정규화. 전송 방식(MQTT/Webhook/REST)·주기·과거 데이터 정책</td><td><strong>신규</strong> — 레미 사양 확인 후 설계</td><td>중</td></tr>
+<tr><td><strong>B</strong></td><td><strong>병원용 모니터링</strong></td><td>실시간 현황·알림 이력·환자별 리포트·장비 상태</td><td><strong>화면 완성</strong> → 실데이터 연결</td><td><strong>낮음</strong></td></tr>
+<tr><td><strong>C</strong></td><td><strong>알림·에스컬레이션</strong></td><td>규칙 엔진, 미확인 시 승계, <strong>나스콜 연동</strong>, 야간 정책, 무소음 병실</td><td>규칙 엔진 설계 완료</td><td>중</td></tr>
+<tr><td><strong>D</strong></td><td><strong>보호자 전달</strong></td><td>실버톡톡 앱 연동 + <strong>노출 범위 설계</strong>(§4-3)</td><td><strong>앱 운영 중</strong></td><td>중</td></tr>
+<tr><td><strong>E</strong></td><td><strong>★ 실증 성과 측정</strong></td><td>지표 정의·자동 수집·리포트 산출 (§4-1)</td><td>신규</td><td>중</td></tr>
+<tr><td><strong>F</strong></td><td><strong>★ 규제 대응</strong></td><td>웰니스 트랙 문구 정합, <strong>식약처 사전검토 공동 신청</strong> (§4-2)</td><td><strong>조사 완료 (870줄)</strong></td><td>—</td></tr>
+<tr><td><strong>G</strong></td><td>환자 마스터 연동</td><td>브레인 환자명단 → 센서-환자 매핑</td><td><strong>가동 중</strong></td><td>낮음</td></tr>
+</tbody></table>
+<blockquote><p><strong>E와 F는 보통 발주서에서 빠진다.</strong> 그런데 <strong>PoC의 성패를 실제로 가르는 건 이 둘이다</strong> (§4).</p></blockquote>
+<hr>
+<h2>4. 우리가 먼저 말씀드리는 것 — 조사로 확인한 3가지</h2>
+<blockquote><p>조사 3건 완료: IoT 모니터링 시장·기술 / 의료기기 인증 인허가 / 요양병원 EMR 연동.</p><p><strong>법령 원문·지침서 전문·1차 출처 직접 추출 기반.</strong> 상세 자료 동봉.</p></blockquote>
+<h3>4-1. ⚠️ 「낙상 감소」를 실증 지표로 잡으면 실패한다 [사실 — 대규모 RCT]</h3>
+<table><thead><tr><th>연구</th><th>규모</th><th>결과</th></tr></thead><tbody>
+<tr><td>Shorr et al.</td><td><strong>27,672명</strong></td><td>침대이탈 알람 → <strong>낙상률 유의미한 감소 없음</strong></td></tr>
+<tr><td>REFINE</td><td>1,839명</td><td>동일</td></tr>
+<tr><td><strong>Cochrane 리뷰</strong></td><td>메타분석</td><td><strong>&quot;알람 단독으로는 낙상을 줄이지 못한다&quot;</strong></td></tr>
+</tbody></table>
+<p><strong>→ 지표를 「낙상률 감소」로 잡으면, 기술이 잘 작동해도 실증은 실패로 기록된다.</strong></p>
+<p><strong>우리 제안 — 실제로 움직이고 증명 가능한 지표:</strong></p>
+<table><thead><tr><th>지표</th><th>왜 이것인가</th></tr></thead><tbody>
+<tr><td><strong>발견 지연 시간</strong> (사건 → 인지)</td><td>알람이 실제로 바꾸는 것. <strong>여기서 이긴다</strong></td></tr>
+<tr><td><strong>조치 이력 완결성</strong></td><td>인증평가·사고 대응의 실물 근거</td></tr>
+<tr><td><strong>알림 응답률 / 미확인 에스컬레이션</strong></td><td>워크플로우가 도는지</td></tr>
+<tr><td><strong>야간 라운딩 효율</strong></td><td>인력난 = 사업의 원래 문제의식</td></tr>
+<tr><td><strong>보호자 문의 감소</strong></td><td>보호자 앱 채널 보유 = 우리만 잴 수 있음</td></tr>
+</tbody></table>
+<blockquote><p><strong>→ 낙상은 「줄이는 것」이 아니라 「놓치지 않는 것」으로 포지셔닝한다.</strong> 이게 근거 있는 유일한 주장이다.</p></blockquote>
+<h3>4-2. ⚠️ 의료기기 인증 — 받는 쪽이 손해다 [사실 — 법령·고시 원문]</h3>
+<p><strong>결론: 웰니스(비의료기기) 트랙 유지를 권고한다.</strong></p>
+<table><thead><tr><th></th><th>2등급을 따면 얻는 것</th></tr></thead><tbody>
+<tr><td>요양병원 수가</td><td>❌ <strong>일당정액수가라 별도 수가 없음</strong></td></tr>
+<tr><td>인증평가 가점</td><td>❌ <strong>해당 지표가 부존재</strong></td></tr>
+<tr><td>복지용구 등재</td><td>❌ <strong>허가증이 요건이 아님</strong> (고시 전문에 &quot;허가증&quot; 0건)</td></tr>
+<tr><td>정부사업 요구</td><td>❌ 복지부 응급안전안심 규격서 219p에 <strong>&quot;의료기기&quot; 0회</strong></td></tr>
+</tbody></table>
+<p><strong>비용은 40배(300~450만 → 수천만~1.5억), 기간은 10배.</strong></p>
+<p><strong>⚠️ 다만 경계선이 「질병명」이 아니라 「위급상황 탐지」에 있다</strong> — 2026.2.12 개정 웰니스 판단기준(지침서-0091-03) 원문:</p>
+<blockquote><p>위해도 판단요소: <strong>&quot;심정지, 사망 등 위급한 상황을 탐지하는지 여부&quot;</strong></p><p>고위해도 예시: <strong>&quot;수면 시 무호흡 등의 측정 기능이 있는 수면평가장치&quot;</strong></p></blockquote>
+<p><strong>→ 제품 문구·기능 정의를 양사가 맞춰야 한다.</strong> 우리는 이미 화면 라벨 전체를 <strong>관측 사실 진술</strong>로 교체했다 (<code>호흡 저하</code> → <code>호흡수 기준 미만</code>).</p>
+<p><strong>✅ 제안: 「의료기기 해당 여부 검토」 공동 신청</strong> — <strong>무료·10일 회신</strong>, 식약처 ☎043-719-3758. <strong>마케팅 문구 확정 전에</strong> 사용목적 2~3안으로 등급 민감도를 확인한다.</p>
+<p><strong>➕ 기회: 복지용구 「낙상알림시스템」 급여 신설</strong> (고시 시행 <strong>2026.1.20</strong>, 배회감지기와 동렬). <strong>1호 등재 기회</strong> — 단 재가급여라 요양병원 입원환자와는 별개 채널.</p>
+<h3>4-3. ⚠️ 최대 쟁점 — 보호자 앱에 무엇을 보여줄 것인가</h3>
+<blockquote><p>**실시간 바이탈과 미확인 낙상 알림을 보호자에게 그대로 주면,</p><p>클레임은 병원이 아니라 「우리 화면」으로 온다.**</p></blockquote>
+<ul>
+<li>보호자는 <strong>24시간 지켜보지 않는다.</strong> 그런데 우리 앱에 떴다는 사실은 남는다</li>
+<li><strong>오탐 30%를 전제해야 한다</strong> (§ IoT 자료 6.2 — 벤더 &quot;정확도 95%&quot;와 실환경은 다르다). 오탐이 보호자에게 직행하면 <strong>신뢰가 먼저 죽는다</strong></li>
+<li><strong>→ 병원 내부용(실시간·원시)과 보호자용(가공·요약·사후)을 분리한다.</strong> VIP와도 선합의 필요</li>
+</ul>
+<hr>
+<h2>5. 범위 확정을 위해 필요한 것</h2>
+<p><strong>레미 쪽 (오늘 확인)</strong> — 상세 26문항은 동봉 자료 §4</p>
+<table><thead><tr><th></th><th>질문</th><th>왜 범위가 갈리나</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>고정형 사양</strong> — 레이더인가, 대역(60/70㎓), 출력 항목</td><td>호흡·심박·수면단계가 안 나오면 <strong>B의 절반이 화면에 띄울 값이 없다</strong></td></tr>
+<tr><td>2</td><td><strong>낙상 판정 주체</strong> — 레미 엣지인가, 우리 서버인가</td><td><strong>A·C의 범위와 책임 소재가 여기서 갈린다</strong></td></tr>
+<tr><td>3</td><td><strong>전송 방식·주기</strong>, 과거 데이터 조회 가능 여부</td><td>푸시/폴링에 따라 A 재설계. 과거 API 없으면 <strong>우리가 저장</strong> → 인프라 요건 발생</td></tr>
+<tr><td>4</td><td><strong>나스콜 드라이 콘택트로만 붙는가</strong></td><td>⚠️ 그렇다면 <strong>상세 데이터가 안 온다</strong> — 접점 신호(있음/없음)뿐. <strong>B·E의 전제가 무너진다</strong></td></tr>
+<tr><td>5</td><td><strong>카메라·마이크 탑재 여부</strong></td><td>탑재 시 <strong>개인정보 난이도 급상승</strong> — 범위·일정에 직결</td></tr>
+<tr><td>6</td><td>보유 인증 (KC·전자파·의료기기 여부)</td><td>§4-2 트랙 정합</td></tr>
+</tbody></table>
+<p><strong>우리 쪽 (확인 완료 / 진행 중)</strong></p>
+<ul>
+<li>✅ VIP EMR = 브레인, 환자명단 엑셀 연동 가동 중</li>
+<li>🔲 <strong>VIP와 보호자 앱 노출 범위 합의</strong> ← §4-3, PoC 설계 전 필수</li>
+<li>🔲 개인정보 위수탁 구조 (우리는 수탁자) · <strong>국내 리전 요건</strong> — 전자의무기록 고시상 <strong>예외 없음</strong></li>
+</ul>
+<hr>
+<h2>6. 제안하는 다음 단계</h2>
+<table><thead><tr><th>순서</th><th>내용</th><th>시점</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>레미 고정형 사양서·API 문서 수령</strong></td><td>미팅 직후</td></tr>
+<tr><td>2</td><td><strong>실증 지표 합의</strong> (§4-1) — <strong>발주서에 들어가기 전에</strong></td><td>1주 내</td></tr>
+<tr><td>3</td><td>용역 범위·산출물 확정 (§3에서 선택)</td><td>2주 내</td></tr>
+<tr><td>4</td><td><strong>식약처 「해당 여부 검토」 공동 신청</strong> (§4-2) — 무료·10일</td><td>문구 확정 전</td></tr>
+<tr><td>5</td><td>PoC 설계서 (시나리오·기간·대상 병동·측정 방법)</td><td>범위 확정 후</td></tr>
+</tbody></table>
+<hr>
+<blockquote><p><strong>한 줄</strong>: 화면은 이미 있고, 현장도 보호자 채널도 이미 있다.</p><p><strong>오늘 맞출 것은 「레미와의 접점」과 「무엇을 성공으로 부를 것인가」다.</strong></p></blockquote>
+</body>
+</html>

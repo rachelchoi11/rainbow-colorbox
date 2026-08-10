@@ -1,0 +1,140 @@
+{
+  "source": "그림책꿈마루",
+  "url": "https://www.gunpo.go.kr/picturebook",
+  "scrapedAt": "2026-05-27T11:59:26.146639+00:00",
+  "count": 12,
+  "items": [
+    {
+      "title": "다은 작가의 『토끼귤』로 놀아요:  그림책 카드로 읽는 글 없는 그림책",
+      "status": "마감",
+      "start": "2026-05-02",
+      "end": "2026-05-02",
+      "venue": "그림책꿈마루 상상피움 1",
+      "target": "초등학교 1~3학년",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1222&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=131"
+    },
+    {
+      "title": "장애인식개선 그림 그리기 공모전",
+      "status": "마감",
+      "start": "2026-04-25",
+      "end": "2026-04-25",
+      "venue": "그림책꿈마루 일원 (로비, 상부공원)",
+      "target": "초등학교 1~6학년",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1211&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=129"
+    },
+    {
+      "title": "장애인식개선 그림 그리기 공모전 추가 모집(10명)",
+      "status": "마감",
+      "start": "2026-04-25",
+      "end": "2026-04-25",
+      "venue": "그림책꿈마루 일원 (로비, 상부공원)",
+      "target": "초등학교 1~6학년",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1212&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=132"
+    },
+    {
+      "title": "최민지 작가의 <오모리가 아무리> 북토크",
+      "status": "마감",
+      "start": "2026-04-18",
+      "end": "2026-04-18",
+      "venue": "그림책움 계단서가",
+      "target": "성인 및 청소년 30명",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1206&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=130"
+    },
+    {
+      "title": "차영경 작가의 '도서관의 악몽' - <도서관의 악몽>을 읽고, 상상 담은 책표지와 가방 만들기",
+      "status": "마감",
+      "start": "2026-04-11",
+      "end": "2026-04-11",
+      "venue": "그림책꿈마루 상상피움 1",
+      "target": "초등학교 1~3학년",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1198&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=128"
+    },
+    {
+      "title": "석철원 작가의 아기 그림책 이야기와 미니 워크숍",
+      "status": "마감",
+      "start": "2026-03-21",
+      "end": "2026-03-21",
+      "venue": "그림책움 계단서가",
+      "target": "어린이 포함 가족, 성인 누구나",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1177&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=127"
+    },
+    {
+      "title": "그림책 <마음의 집> 이예숙 작가와의 만남",
+      "status": "마감",
+      "start": "2026-03-14",
+      "end": "2026-03-14",
+      "venue": "그림책꿈마루 상상피움 1",
+      "target": "초등학교 1~3학년",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1133&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=126"
+    },
+    {
+      "title": "나다울 작가와 그림책 몸놀이",
+      "status": "마감",
+      "start": "2026-02-28",
+      "end": "2026-02-28",
+      "venue": "그림책꿈마루 상상피움1",
+      "target": "초등 1~2학년",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1121&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=125"
+    },
+    {
+      "title": "<동네 책방> 전시연계강연 - 『사유하는 것과 살아 있는 것』",
+      "status": "마감",
+      "start": "2026-02-12",
+      "end": "2026-02-12",
+      "venue": "그림책꿈마루 기획전시실",
+      "target": "성인 및 청소년",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1102&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=124"
+    },
+    {
+      "title": "<동네책방> 전시연계강연 - 어린이낭독극과 함께 하는 책 읽는 즐거움",
+      "status": "마감",
+      "start": "2026-02-07",
+      "end": "2026-02-07",
+      "venue": "그림책꿈마루 기획전시실",
+      "target": "책 읽기에 관심 있는 어린이와 어른",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1101&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=123"
+    },
+    {
+      "title": "책방연두 화요인문학함께읽기 - 『다정한 서술자』",
+      "status": "종료",
+      "start": "2026-01-27",
+      "end": "2026-01-27",
+      "venue": "그림책꿈마루 기획전시실",
+      "target": "성인 및 청소년 누구나",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1103&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=122"
+    },
+    {
+      "title": "<동네 책방> 전시연계강연 - 『생애 세 번 만나는 그림책』",
+      "status": "마감",
+      "start": "2026-01-24",
+      "end": "2026-01-24",
+      "venue": "그림책꿈마루 상상피움1",
+      "target": "그림책에 관심 있는 어른들",
+      "category": "그림책 교육",
+      "poster": "https://www.gunpo.go.kr/picturebook/ko/M000000141/api/images?atchFileNo=1092&resize=1280x720",
+      "applyUrl": "https://www.gunpo.go.kr/picturebook/ko/M000000141/edu/progrm/view?eduProgrmNo=121"
+    }
+  ]
+}

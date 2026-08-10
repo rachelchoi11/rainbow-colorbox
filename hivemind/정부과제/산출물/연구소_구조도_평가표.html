@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>매칭 오류 연구소 — 구조도·문제개선·평가표</title>
+<style>
+  :root{
+    --blue:#0B5CFF; --blue-d:#0847CC; --blue-l:#E8F0FF; --blue-l2:#F2F7FF;
+    --ink:#131619; --ink2:#3B424B; --muted:#6E7680;
+    --line:#E1E6F0; --ok:#12805C; --ok-l:#E4F5EE;
+    --warn:#B0740F; --warn-l:#FBF1DF; --err:#C2362F; --err-l:#FBEAE9;
+    --dev:#7A3DF0; --dev-l:#F1EAFE;
+    --sh:0 1px 2px rgba(19,32,64,.05),0 2px 10px rgba(19,32,64,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Inter","Pretendard","Apple SD Gothic Neo","Noto Sans KR",-apple-system,sans-serif;
+    color:var(--ink);background:#F5F8FD;font-size:12.5px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+  .page{width:1000px;margin:0 auto;background:#fff;padding:38px 44px 46px;box-shadow:var(--sh)}
+  .page + .page{margin-top:26px}
+  .doch{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:14px}
+  .doch .fig{font-size:12px;font-weight:800;color:#fff;background:var(--blue);border-radius:6px;padding:4px 10px}
+  .doch h1{font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .doch .sp{flex:1}
+  .doch .meta{font-size:11px;color:var(--muted);text-align:right;line-height:1.4}
+  .lead{font-size:12.5px;color:var(--ink2);margin:10px 0 16px}
+  .lead b{color:var(--blue)}
+  h2{font-size:15px;font-weight:800;margin:22px 0 10px;padding-left:11px;border-left:4px solid var(--blue);letter-spacing:-.02em}
+  /* KPI strip */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:6px 0 4px}
+  .kpi{border:1px solid var(--line);border-radius:12px;padding:12px 13px;text-align:center}
+  .kpi .k{font-size:10.5px;color:var(--muted);font-weight:600}
+  .kpi .v{font-size:19px;font-weight:800;color:var(--blue);margin-top:3px;letter-spacing:-.02em}
+  .kpi .v .u{font-size:12px;color:var(--muted)}
+  /* process loop */
+  .loop{display:flex;align-items:stretch;gap:0;margin:8px 0 4px}
+  .lstep{flex:1;border:1.5px solid #CFE0FF;border-radius:12px;padding:12px 12px;background:var(--blue-l2);position:relative;margin-right:26px}
+  .lstep:last-child{margin-right:0}
+  .lstep .n{width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:7px}
+  .lstep .t{font-size:12.5px;font-weight:800;margin-bottom:3px}
+  .lstep .d{font-size:10.5px;color:var(--muted);line-height:1.45}
+  .lstep .arr{position:absolute;right:-19px;top:50%;transform:translateY(-50%);color:var(--blue);font-size:17px;font-weight:800}
+  .feedback{margin-top:10px;background:var(--ok-l);border:1px dashed #9FD3BE;border-radius:10px;padding:9px 14px;font-size:11px;color:#0B5C43}
+  .feedback b{color:var(--ok)}
+  .inputs{display:flex;gap:10px;margin:6px 0 14px}
+  .ibox{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 13px;background:#fff}
+  .ibox .t{font-size:12px;font-weight:700}
+  .ibox .d{font-size:10.5px;color:var(--muted);margin-top:2px}
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:11px;margin:8px 0}
+  th{background:#F4F7FC;text-align:left;font-weight:700;color:var(--ink2);padding:8px 9px;border:1px solid var(--line);font-size:10.5px}
+  td{padding:8px 9px;border:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+  tbody tr:nth-child(even) td{background:#FBFCFE}
+  .code{font-weight:800;color:#fff;border-radius:5px;padding:2px 7px;font-size:10px;display:inline-block}
+  .c-done{background:var(--ok)} .c-new{background:var(--blue)} .c-x{background:var(--dev)}
+  .pill{font-size:9.5px;font-weight:700;border-radius:20px;padding:2px 7px;display:inline-block}
+  .p-ok{background:var(--ok-l);color:var(--ok)} .p-new{background:var(--blue-l);color:var(--blue)}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .foot{margin-top:18px;font-size:10px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;line-height:1.5}
+  .note{font-size:10.5px;color:var(--muted);margin-top:4px}
+  /* flowchart */
+  .fc{max-width:600px;margin:8px auto 0}
+  .frow{display:flex;justify-content:center;align-items:center;gap:0;position:relative}
+  .fbox{background:#fff;border:1.5px solid var(--blue);border-radius:10px;padding:10px 16px;text-align:center;font-size:11.5px;font-weight:700;width:330px}
+  .fbox .s{font-size:10px;font-weight:500;color:var(--muted);margin-top:2px}
+  .fterm{background:var(--ink);color:#fff;border-color:var(--ink);border-radius:28px;width:250px}
+  .fdec-wrap{width:150px;height:150px;position:relative;margin:2px auto}
+  .fdec-wrap .sq{position:absolute;inset:16px;transform:rotate(45deg);background:#EDF1F8;border:1.6px solid #9DB0CE;border-radius:8px}
+  .fdec-wrap .tx{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;font-weight:800;color:var(--ink2);padding:0 20px}
+  .farr{width:2px;height:20px;background:#C3CEE0;margin:0 auto;position:relative}
+  .farr:after{content:'▼';position:absolute;bottom:-7px;left:-4.5px;color:#C3CEE0;font-size:10px}
+  .farr .yl{position:absolute;left:8px;top:3px;font-size:10px;font-weight:800;color:var(--blue);white-space:nowrap}
+  .handler{position:absolute;left:calc(50% + 90px);width:210px;background:#F7F9FC;border:1.4px dashed #A9B7CE;border-radius:9px;padding:8px 11px;font-size:10.5px;color:var(--ink2);line-height:1.4}
+  .handler .no{font-size:9.5px;font-weight:800;color:var(--muted);display:block;margin-bottom:2px}
+  .handler b{color:var(--ink)}
+  .hconn{position:absolute;left:calc(50% + 75px);top:50%;width:15px;height:1.4px;background:#A9B7CE}
+  .subproc{border:1.6px solid #C5D6FF;background:var(--blue-l2);border-radius:14px;padding:14px 16px 6px;margin:2px auto;max-width:560px}
+  .subproc .sh{font-size:12px;font-weight:800;color:var(--blue);margin-bottom:10px;text-align:center}
+  .legend{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:10.5px;color:var(--ink2);margin:2px 0 12px}
+  .legend .it{display:flex;align-items:center;gap:6px}
+  .lg{width:22px;height:13px;border-radius:4px;flex-shrink:0}
+  /* 순서도 노드는 페이지 경계에서 잘리지 않게 */
+  .frow,.fdec-wrap,.subproc,.farr{break-inside:avoid;page-break-inside:avoid}
+  @media print{body{background:#fff}.page{box-shadow:none;width:auto;margin:0;padding:12mm 11mm;page-break-after:always}.fdec-wrap .tx{color:var(--ink2)}
+    .frow,.fdec-wrap,.subproc,.farr{break-inside:avoid;page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<!-- ===== P1. 전체 프로세스 구조도 ===== -->
+<section class="page">
+  <div class="doch">
+    <span class="fig">R-1</span>
+    <h1>매칭 오류 연구소(Lab) — 전체 프로세스 구조도</h1>
+    <span class="sp"></span>
+    <div class="meta">정산 정확도 상시개선 루프<br>AI 표준화·매칭 엔진 상단</div>
+  </div>
+  <p class="lead">
+    완전매칭률(99.5%)만으로는 보이지 않는 <b>‘오(誤)매칭’(제목이 같아 다른 작품끼리 합쳐진 건)</b>과
+    검증·추정 사각을 <b>자동 탐지·신고 → 검토 → 진단 → 규칙 반영 → 재측정</b>하는 닫힌 루프.
+    작가 인세 정산의 <b>마지막 0.x% 오차</b>를 사람 검토와 결합해 지속적으로 줄인다.
+  </p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="k">처리 규모</div><div class="v">431K<span class="u">행</span></div></div>
+    <div class="kpi"><div class="k">완전매칭</div><div class="v">99.5<span class="u">%</span></div></div>
+    <div class="kpi"><div class="k">자동 탐지 유형</div><div class="v">8<span class="u">종</span></div></div>
+    <div class="kpi"><div class="k">동명이작 위험액</div><div class="v">0.04<span class="u">%</span></div></div>
+    <div class="kpi"><div class="k">검증 대사</div><div class="v">86<span class="u">/86</span></div></div>
+  </div>
+
+  <h2>입력 — 두 경로로 의심 사례 수집</h2>
+  <div class="inputs">
+    <div class="ibox"><div class="t">① 자동 탐지기 (8종)</div><div class="d">규칙별로 "틀릴 수 있는 경로"를 데이터에서 자동 적출 (E1·E3~E9). 사람이 못 보는 대량 오차를 기계가 선별.</div></div>
+    <div class="ibox"><div class="t">② 담당자 신고</div><div class="d">작품별·작가별·유통사별 결과 화면에서 이상 발견 시 즉시 신고(사유 분류+메모). 현장 지식 반영.</div></div>
+  </div>
+
+  <h2>처리 — 상태 워크플로우 · 규칙 반영 루프</h2>
+  <div class="loop">
+    <div class="lstep"><div class="n">1</div><div class="t">수집</div><div class="d">자동탐지·신고를 연구소에 적재. 유형별 탭·위험액 정렬.</div><span class="arr">›</span></div>
+    <div class="lstep"><div class="n">2</div><div class="t">검토</div><div class="d">원본 내역(표준화 이전 원천 작가·레이블·엑셀파일) 대조로 진위 판단.</div><span class="arr">›</span></div>
+    <div class="lstep"><div class="n">3</div><div class="t">진단</div><div class="d">열림 → 검토중 → <b>규칙반영</b> / 기각. 진단 메모 첨부(감사추적).</div><span class="arr">›</span></div>
+    <div class="lstep"><div class="n">4</div><div class="t">규칙 반영</div><div class="d">작품키 분리·시리즈/레이블 별칭·정규화·스펙 수정으로 확정.</div><span class="arr">›</span></div>
+    <div class="lstep"><div class="n">5</div><div class="t">재측정</div><div class="d">동일 데이터 통제비교로 오차 감소 확인 → 회귀 0 보장.</div></div>
+  </div>
+  <div class="feedback"><b>닫힌 루프</b> 재측정 결과가 다시 탐지기 임계·규칙에 반영되어 다음 정산월에 오차가 더 줄어든다. 모든 결정은 이력으로 남아 <b>감사추적·재현</b> 가능(정산 근거 투명성).</div>
+
+  <div class="foot">
+    안전 원칙 — 규칙 반영(특히 작품키 분리)은 <b>전역 매칭 키를 바꾸지 않고</b> 승인된 건만 타겟 적용하여 정산총액·완전매칭률에 회귀 0. 자동 적용 없이 <b>사람 승인 후</b> 반영(오판 방지).
+  </div>
+</section>
+
+<!-- ===== P2. 8종 탐지기 카탈로그 (문제→개선) ===== -->
+<section class="page">
+  <div class="doch">
+    <span class="fig">R-2</span>
+    <h1>탐지기 카탈로그 — 문제와 개선 (E1~E10)</h1>
+    <span class="sp"></span>
+    <div class="meta">각 규칙이 "틀릴 수 있는 경로"<br>전수 카탈로그화</div>
+  </div>
+  <p class="lead">매칭·검증 파이프라인의 각 단계가 틀릴 수 있는 <b>모든 경로를 유형화</b>하고, 자동 탐지법과 처리(개선)를 1:1로 설계했다. <span class="pill p-ok">완성</span> 배포·검증 / <span class="pill p-new">신규</span> 본 과제 개발.</p>
+  <table>
+    <thead><tr><th style="width:34px">코드</th><th style="width:130px">문제(오류 유형)</th><th>자동 탐지 방법</th><th style="width:150px">처리 = 개선</th><th style="width:78px" class="num">실측</th><th style="width:44px">상태</th></tr></thead>
+    <tbody>
+      <tr><td><span class="code c-new">E1</span></td><td><b>동명이작 과병합</b> — 제목 같아 다른 작품이 한 작품으로</td><td>title_norm별 작가군 2+ AND 레이블 서로 disjoint</td><td>작품키=제목+작가로 <b>분리</b>(승인제)</td><td class="num">96건<br>위험 47.8만</td><td><span class="pill p-new">신규</span></td></tr>
+      <tr><td><span class="code c-done">E2</span></td><td>작가 표기변형 — 한자·영문 병기로 같은 작가가 분산·가짜 동명이작</td><td>작가 강축약·병기 통합 규칙</td><td>작가 정규화 강화(이미 반영)</td><td class="num">−100명<br>과탐 −68</td><td><span class="pill p-ok">완성</span></td></tr>
+      <tr><td><span class="code c-new">E3</span></td><td><b>레이블 표기변형</b> — 같은 출판사가 여러 레이블로 분산</td><td>레이블 강축약(법인격·괄호·기호 제거) 동일군</td><td>레이블 별칭·정규화로 통합</td><td class="num">41그룹</td><td><span class="pill p-new">신규</span></td></tr>
+      <tr><td><span class="code c-new">E4</span></td><td><b>backfill 오귀속</b> — 동명이작 작품에 무작가 행이 틀린 작가로 채워짐</td><td>동명이작(E1) 작품 × author_src=당월대조</td><td>E1 분리 선행 + 신뢰도 표기</td><td class="num">12건</td><td><span class="pill p-new">신규</span></td></tr>
+      <tr><td><span class="code c-new">E5</span></td><td><b>번들/구독 오분류</b> — 구독권·패스가 작품으로(또는 반대)</td><td>번들 플래그 항목 + 정산액·행수 이상치</td><td>번들 사전 보강·검토 큐</td><td class="num">1건<br>273만</td><td><span class="pill p-new">신규</span></td></tr>
+      <tr><td><span class="code c-new">E6</span></td><td><b>단행본/연재 오판</b> — 한 작품이 플랫폼마다 유형 엇갈림</td><td>title_norm별 book_type(단행본·연재) 혼재</td><td>각주 확인 후 규칙 확정</td><td class="num">120+건</td><td><span class="pill p-new">신규</span></td></tr>
+      <tr><td><span class="code c-new">E7</span></td><td><b>권/회차 과분리</b> — 권 번호가 안 지워져 한 시리즈가 여러 작품키로</td><td>base(숫자 제거) 동일 · title_norm 2+</td><td>시리즈 별칭 통합</td><td class="num">120+건</td><td><span class="pill p-new">신규</span></td></tr>
+      <tr><td><span class="code c-new">E8</span></td><td><b>합계검증 사각</b> — 제공 합계행 없어 원본 대사 불가</td><td>expected_settle=None 파일</td><td>교차검증·월간 추세 이상치 보조</td><td class="num">65파일</td><td><span class="pill p-new">신규</span></td></tr>
+      <tr><td><span class="code c-new">E9</span></td><td><b>정산액 추정오차</b> — 제공값 아닌 계산식 추정 구간</td><td>settle_basis=계산값 플랫폼×산식 집계</td><td>수수료 기준 확인서 회신 반영</td><td class="num">3구간<br>1.6억</td><td><span class="pill p-new">신규</span></td></tr>
+      <tr><td><span class="code c-done">E10</span></td><td>미매칭 단독작 — 작가·레이블 모두 미제공</td><td>미매칭 보드(AI 제안·알라딘 조회)</td><td>승인제 수동 등록(연구소 밖)</td><td class="num">0.06%</td><td><span class="pill p-ok">완성</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <b>실측</b> = 자동 탐지 건수(프로토타입 구현·검증 완료, 로컬). <b>처리(반영)</b>는 승인제 — <b>E1 분리는 원클릭 구현</b>, E3/E7 별칭 통합·E6 각주 확정·E8 교차검증·E9 확인서 회신은 <b>반영 방식(운영·후속 개발)</b>. E2(작가 정규화)·E10(미매칭 보드)은 기존 배포본에서 처리. ‘신규’ = 본 과제 개발 대상.
+  </div>
+</section>
+
+<!-- ===== P3. 정량·정성 평가표 ===== -->
+<section class="page">
+  <div class="doch">
+    <span class="fig">R-3</span>
+    <h1>성과 평가표 — 정량·정성 지표</h1>
+    <span class="sp"></span>
+    <div class="meta">외부·객관 평가 지향<br>동일 데이터 통제비교</div>
+  </div>
+
+  <h2>정량 지표 <span style="font-size:11px;font-weight:600;color:var(--muted)">— 결과(outcome) 지표. 처리 ‘건수’가 아니라 오차·정확도의 변화로 측정</span></h2>
+  <table>
+    <thead><tr><th style="width:172px">지표</th><th class="num" style="width:74px">현재</th><th class="num" style="width:78px">목표</th><th>평가 방법</th><th style="width:120px">달성 수단</th></tr></thead>
+    <tbody>
+      <tr><td><b>오매칭(동명이작) 위험액 비율</b> <span class="note" style="display:block">※ 연구소(E1 분리)의 핵심 성과 지표</span></td><td class="num">0.040%</td><td class="num">≤ 0.010%</td><td>동명이작 잔여 위험액 / 정산총액</td><td>E1 분리(승인제)</td></tr>
+      <tr><td>작품 식별 정확도 <span class="note" style="display:block">과병합·과분리 해소</span></td><td class="num">기준선</td><td class="num">오매칭↓·과분리↓</td><td>동명이작 위험액 + 권/회차 과분리 그룹 수 변화</td><td>E1 분리·E7 통합*</td></tr>
+      <tr><td>자동 오류탐지 커버리지</td><td class="num">1종</td><td class="num">8종<br><span class="note">(카탈로그 10종)</span></td><td>오류 카탈로그 대비 자동탐지 유형 수</td><td>프로토타입 구현*(로컬)</td></tr>
+      <tr><td>규칙반영 후 회귀(정산총액·완전매칭률)</td><td class="num">0</td><td class="num">0 유지</td><td>동일 데이터 통제비교(불변식 검증)</td><td>안전장치(전역키 불변)</td></tr>
+      <tr style="background:var(--warn-l)"><td>검증 커버리지(대사+교차) <span class="pill" style="background:#fff;color:var(--warn)">조건부</span></td><td class="num">57%<br><span class="note">(86/151)</span></td><td class="num">≥ 80%</td><td>합계 대사 + 수정본 교차검증</td><td>교차검증 <span class="note">(합계행은 유통사 제공 의존)</span></td></tr>
+      <tr style="background:var(--warn-l)"><td>정산액 추정 구간 축소 <span class="pill" style="background:#fff;color:var(--warn)">조건부</span></td><td class="num">3구간</td><td class="num">≤ 1구간</td><td>제공값 전환율(추정→제공)</td><td>유통사 수수료 기준 회신 <span class="note">(외부 의존)</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    · <b>측정 원칙</b> 처리 ‘건수(0→N)’가 아니라 그 결과인 <b>오차 비율·정확도 변화</b>로 측정. 완전매칭률(99.5%)은 전체 파이프라인 지표라 상단 요약에만 표기(연구소는 매칭률이 아니라 <b>오매칭 정확도</b>에 기여).<br>
+    · <b>조건부(노랑)</b> 유통사 제공 데이터·회신에 일부 의존(달성 시 상향, 미달 시 근거 명시). <b>* 표시</b> 자동 탐지는 구현·검증 완료이나 <b>반영(별칭 통합 등) 액션은 일부 후속·미배포</b> — E1 분리는 원클릭 구현, E7 통합 등은 반영 방식 개발 예정.
+  </div>
+
+  <h2>정성 지표</h2>
+  <table>
+    <thead><tr><th style="width:180px">지표</th><th>현재 수준</th><th>목표 수준</th><th style="width:170px">평가 방법</th></tr></thead>
+    <tbody>
+      <tr><td>정산 근거 투명성·감사추적</td><td>매칭 결과 산출</td><td>모든 규칙반영·정정 이력화 + 원본 내역 근거 제시</td><td>감사로그 완결성·재현 검증</td></tr>
+      <tr><td>오류 탐지 체계성</td><td>동명이작 1종 탐지</td><td>오류 경로 10종 카탈로그 + 8종 자동탐지</td><td>카탈로그 대비 탐지 커버리지</td></tr>
+      <tr><td>사람-기계 협업(오판 방지)</td><td>자동 적용</td><td>자동탐지 + 사람 승인제(자동 미적용)</td><td>승인/기각 이력·오판율</td></tr>
+      <tr><td>상시 개선 운영성</td><td>일회성 수정</td><td>신고→진단→반영→재측정 닫힌 루프 상시화</td><td>수요 출판사 파일럿 운영 평가</td></tr>
+      <tr><td>도메인 확장성</td><td>내부 규칙</td><td>규칙 카탈로그·별칭 마스터 자산화(신규 플랫폼 흡수)</td><td>신규 유통사 편입 시 재사용률</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    실측 근거 — 유통사 28~31 · 151파일 · 431,296행 · 정산총액 11.97억 원. 완전매칭 99.5% / 미매칭 정산액 0.08% / 합계 대사 검증 86건 전수 PASS / 자동탐지 8종 618건 적출.
+    평가는 자체 내부 판정을 지양하고 <b>유통사 제공 합계 대사·수요 출판사 실데이터 통제비교</b>로 수행.
+  </div>
+</section>
+
+<!-- ===== P4. 전 프로세스 순서도 ===== -->
+<section class="page">
+  <div class="doch">
+    <span class="fig">R-4</span>
+    <h1>전 프로세스 순서도 — 수집부터 명세서 발행까지</h1>
+    <span class="sp"></span>
+    <div class="meta">판단(◇)·처리(▭)·예외 처리(↩)<br>연구소 서브프로세스 포함</div>
+  </div>
+  <div class="legend">
+    <div class="it"><span class="lg" style="background:var(--ink)"></span> 시작/끝</div>
+    <div class="it"><span class="lg" style="background:#fff;border:1.5px solid var(--blue)"></span> 처리</div>
+    <div class="it"><span class="lg" style="background:#EDF1F8;border:1.5px solid #9DB0CE;transform:rotate(45deg);width:13px;height:13px"></span> 판단</div>
+    <div class="it"><span class="lg" style="background:#fff;border:1.4px dashed var(--muted)"></span> 예외/되돌림(↩)</div>
+    <div class="it"><span class="lg" style="background:var(--blue-l2);border:1.5px solid #C5D6FF"></span> 연구소 서브프로세스</div>
+  </div>
+
+  <div class="fc">
+    <div class="frow"><div class="fbox fterm">시작 · 정산서 수집/업로드</div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fbox">형식 표준화<div class="s">매직바이트 형식판별 · 인코딩(cp949·zip 등)</div></div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fdec-wrap"><div class="sq"></div><div class="tx">형식 판별<br>성공?</div>
+      <div class="hconn"></div><div class="handler"><span class="no">아니오</span>파서 스펙 추가·수정 후 재시도 <b>↩</b></div></div></div>
+    <div class="farr"><span class="yl">예</span></div>
+    <div class="frow"><div class="fbox">항목 표준화<div class="s">유통사 컬럼명 → 표준항목 매핑</div></div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fdec-wrap"><div class="sq"></div><div class="tx">합계행<br>대사 일치?</div>
+      <div class="hconn"></div><div class="handler"><span class="no">불일치 · 합계행 없음</span><b>E8</b> 교차검증 큐(수정본·추세) <b>↩</b></div></div></div>
+    <div class="farr"><span class="yl">예</span></div>
+    <div class="frow"><div class="fbox">레이블 → 출판사 귀속<div class="s">레이블 마스터로 정산 귀속 확정</div></div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fbox">작품·작가 매칭<div class="s">정규화 + 당월대조 + AI 제안</div></div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fdec-wrap"><div class="sq"></div><div class="tx">완전<br>매칭?</div>
+      <div class="hconn"></div><div class="handler"><span class="no">아니오(미매칭)</span><b>E10</b> 미매칭 보드 — AI 제안·알라딘·수동(승인제) <b>↩</b></div></div></div>
+    <div class="farr"><span class="yl">예</span></div>
+    <div class="frow"><div class="fbox" style="border-color:var(--blue)">자동 오류탐지 8종<div class="s">E1 동명이작 · E3 레이블 · E4 backfill · E5 번들 · E6 유형 · E7 권차 · E8 검증 · E9 추정</div></div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fdec-wrap"><div class="sq"></div><div class="tx">오매칭·<br>오류 의심?</div></div></div>
+
+    <div class="farr"><span class="yl">예</span></div>
+    <!-- 연구소 서브프로세스 -->
+    <div class="subproc">
+      <div class="sh">연구소 서브프로세스 (사람 승인 루프)</div>
+      <div style="display:flex;align-items:center;gap:0;justify-content:center;flex-wrap:wrap;font-size:10.5px">
+        <div style="background:#fff;border:1px solid #C5D6FF;border-radius:8px;padding:7px 10px;font-weight:700;text-align:center">수집<div style="font-weight:400;color:var(--muted)">탐지·신고 적재</div></div>
+        <span style="color:var(--blue);font-weight:800;padding:0 6px">›</span>
+        <div style="background:#fff;border:1px solid #C5D6FF;border-radius:8px;padding:7px 10px;font-weight:700;text-align:center">검토<div style="font-weight:400;color:var(--muted)">원본 내역 대조</div></div>
+        <span style="color:var(--blue);font-weight:800;padding:0 6px">›</span>
+        <div style="width:96px;height:64px;position:relative;flex-shrink:0"><div style="position:absolute;inset:10px;transform:rotate(45deg);background:#EDF1F8;border:1.4px solid #9DB0CE;border-radius:6px"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:10px;font-weight:800;color:var(--ink2)">진짜<br>오류?</div></div>
+        <div style="display:flex;flex-direction:column;gap:5px;padding-left:6px">
+          <div style="background:var(--blue-l);border:1px solid #C5D6FF;border-radius:8px;padding:5px 9px;font-weight:700;color:var(--blue)"><b style="color:var(--blue)">예 →</b> 규칙반영 <span style="font-weight:400;color:var(--ink2)">(E1 분리·E3/E7 별칭·스펙)</span></div>
+          <div style="background:#EEF1F6;border:1px solid #C7CFDA;border-radius:8px;padding:5px 9px;font-weight:700;color:var(--muted)"><b>아니오 →</b> 기각 <span style="font-weight:400">(진단 메모)</span></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:9px;font-size:10.5px;color:var(--blue);font-weight:700">재측정(회귀 0 확인) 후 정산 계산으로 복귀 · 모든 결정 이력화(감사추적)</div>
+    </div>
+
+    <div class="farr"><span class="yl">처리완료</span></div>
+    <div class="frow"><div class="fbox">정산 계산<div class="s">정산월 유효계약 정산률 · 공저 분배 · MG 상계 · 세액</div></div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fbox">월 확정<div class="s">CalcSnapshot freeze — 명세서 불변 근거 동결</div></div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fbox">명세서 발행 · 작가 포털<div class="s">작가별 명세서 생성·검증·배포</div></div></div>
+    <div class="farr"></div>
+    <div class="frow"><div class="fbox fterm">끝 · 작가 지급 근거 확정</div></div>
+  </div>
+
+  <div class="foot">
+    판단(◇)에서 예외 경로(↩)는 해당 처리 큐로 보내 해결 후 본류로 복귀한다. 오류 탐지 후 <b>연구소 서브프로세스</b>는 자동 적용 없이 <b>사람 승인</b>을 거치며, 규칙반영은 전역 매칭 키를 바꾸지 않아 정산총액·완전매칭률에 <b>회귀 0</b>. 재측정으로 오차 감소를 확인하고 다음 정산월 규칙에 반영(닫힌 루프).<br>
+    ※ 구현 범위 — <b>표준화·매칭·자동 오류탐지·연구소(E1 분리)</b>는 프로토타입 구현. <b>월 확정(freeze)·명세서 발행·작가 포털</b>은 서비스 운영화 <b>개발 대상</b>(본 과제 목표 프로세스).
+  </div>
+</section>
+
+</body>
+</html>

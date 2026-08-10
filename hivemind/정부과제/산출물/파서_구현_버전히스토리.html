@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>정산서 파서 구현 버전 히스토리</title>
+<style>
+  :root{--ink:#161616;--gray:#565656;--mut:#7a7a7a;--line:#111;--bd:#b9b9b9;--hd:#ececec;--zebra:#fafafa;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    color:var(--ink);background:#f0f0f0;font-size:12px;line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+  .doc{max-width:800px;margin:22px auto;background:#fff;padding:40px 46px 44px;border:1px solid #d6d6d6;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+  .head{text-align:center;position:relative;border-bottom:2.5px solid var(--line);padding-bottom:14px;margin-bottom:8px}
+  .docno{position:absolute;top:0;right:0;font-size:10.5px;color:var(--gray);text-align:right;line-height:1.5}
+  .kicker{font-size:11px;color:var(--gray);letter-spacing:.02em}
+  .head h1{font-size:22px;font-weight:800;letter-spacing:.04em;margin:8px 0 2px}
+  .head .sub{font-size:11.5px;color:var(--gray)}
+  h2{font-size:13px;font-weight:800;margin:20px 0 7px;padding-bottom:4px;border-bottom:1.5px solid var(--line)}
+  .vtag{font-size:11px;font-weight:800;color:#fff;background:var(--ink);padding:2px 8px;border-radius:3px;margin-right:6px}
+  table{width:100%;border-collapse:collapse;font-size:11px;margin:6px 0 4px}
+  th,td{border:1px solid var(--bd);padding:6px 9px;vertical-align:top;text-align:left}
+  th{background:var(--hd);font-weight:700;color:var(--ink);white-space:nowrap}
+  td.k{background:var(--hd);font-weight:700;white-space:nowrap}
+  td.c{text-align:center;white-space:nowrap}
+  .mono{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:10px}
+  .foot{margin-top:16px;border-top:1px solid var(--bd);padding-top:9px;font-size:10px;color:var(--mut);line-height:1.6}
+  @media print{body{background:#fff}.doc{box-shadow:none;border:none;margin:0;max-width:none;padding:14mm 16mm}
+    h2{page-break-after:avoid}table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<article class="doc">
+  <div class="head">
+    <div class="docno">문서번호 : PVH-2026-001<br>발 급 일 : 2026. 07.</div>
+    <div class="kicker">2026년 출판콘텐츠 기술개발 지원 사업 · 자유과제 · 제출서류 ③ 기술수준 증빙 (첨부 ⑥)</div>
+    <h1>정산서 파서 구현 버전 히스토리</h1>
+    <div class="sub">유통사 정산서 표준화 파서·산식의 버전별 기능 추가 이력</div>
+  </div>
+
+  <h2>1. 파서 공통 구조</h2>
+  <table>
+    <thead><tr><th style="width:120px">처리 단계</th><th>방식</th></tr></thead>
+    <tbody>
+      <tr><td class="k">형식 판별</td><td>매직바이트 기반 실형식 판별 (HTML 위장 .xls · 깨진 xlsx · cp949 · zip 등 확장자 무관)</td></tr>
+      <tr><td class="k">플랫폼 매칭</td><td>파일명 정규식으로 파서 스펙 선택</td></tr>
+      <tr><td class="k">헤더 탐지</td><td>고정행 지정 또는 토큰 자동탐지, 그룹 헤더 평탄화</td></tr>
+      <tr><td class="k">컬럼 매핑</td><td>표준 필드(title·author·label·gross·settle·book_type)에 후보 컬럼명 이름 기준 매핑 (위치 불변 미가정)</td></tr>
+      <tr><td class="k">산식</td><td>매출·정산액 미제공 플랫폼 계산, 제공값/계산값 구분(basis)</td></tr>
+      <tr><td class="k">검증</td><td>플랫폼 제공 합계행과 자동 대사 (±1원 이내 PASS)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2. 버전별 기능 추가 이력</h2>
+  <table>
+    <thead><tr><th style="width:96px">버전 · 시기</th><th>주요 추가·변경 기능</th><th style="width:150px">검증</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="c"><span class="vtag">v1</span><br>2026-06</td>
+        <td>· 초기 표준화 파서 구축 (유통사 25종 컬럼 → 표준 항목 매핑)<br>· 비정형 파일 처리 : HTML 위장 .xls 16종, 깨진 xlsx(북큐브·애니툰), cp949, zip(리디)<br>· 미제공 플랫폼 산식 도입 (네이버·미스터블루·리디·조아라·블라이스)</td>
+        <td>2·3월 합계행 40파일 전수 일치</td>
+      </tr>
+      <tr>
+        <td class="c"><span class="vtag">v2</span><br>2026-06</td>
+        <td>· <b>교보문고·모픽</b> 파서 신규 (교보 = B2B 기관납품, ISBN·공급사 보유)<br>· 노벨피아 detail 양식, 원스토어·로망띠끄·알라딘 B2B 명명 수용<br>· 예스24(총정산액÷0.7 역산)·판무림(판매금액×0.7) 산식<br>· 작가 정규화 강화 (한자·영문 병기 통합)</td>
+        <td>1~4월 431,296행 · 대사 86 PASS / 0 FAIL · 완전매칭 99.5%</td>
+      </tr>
+      <tr>
+        <td class="c"><span class="vtag">v2.1</span><br>2026-07</td>
+        <td>· 예스24 신양식 3종(B2B·B2C·연재) 신규, 파일명 접두 매칭 (정산액 직접 제공 → 역산 폐기)<br>· 카카오페이지 헤더 자동탐지로 구·신 양식 통합<br>· 네이버시리즈·미스터블루 <b>일매출(일별)</b> 스펙 신규<br>· 로망띠끄 명명 확장, 노벨피아 일별 판매형 매칭</td>
+        <td>11~12월 163파일 파싱 · 대사 31 PASS / 0 FAIL<br>1~4월 회귀 431,296행·86 PASS 불변</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3. v2.1 플랫폼별 양식 변경 대응 상세</h2>
+  <table>
+    <thead><tr><th style="width:110px">플랫폼</th><th>양식 변경</th><th>대응</th></tr></thead>
+    <tbody>
+      <tr><td>예스24</td><td>1종 → 3종 신양식(B2B·B2C·연재), 파일명 <span class="mono">B2B_List·B2C_List·SerialWorkStatisticsList</span></td><td>3종 스펙 신규 + 파일명 접두 매칭, 정산액 직접 제공(산식 폐기·구양식 폴백)</td></tr>
+      <tr><td>카카오페이지</td><td>구양식 헤더 6~7행 (1~4월은 1~2행)</td><td>고정행 → 토큰 자동탐지로 구·신 통합</td></tr>
+      <tr><td>네이버시리즈<br>미스터블루</td><td>월정산서 → 일매출(일별) 제공</td><td>일별 스펙 신규, 정산액 직접 제공(월 집계 전제)</td></tr>
+      <tr><td>로망띠끄</td><td>명명 <span class="mono">(로망띠끄 N월 1/2)</span></td><td>매칭 확장(1=단행본/전자책, 2=연재)</td></tr>
+      <tr><td>노벨피아</td><td>일별 판매형(상품명·판매합계·정산금액)</td><td>detail 매칭에 일별 포함</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. 산식(계산값) 이력</h2>
+  <table>
+    <thead><tr><th style="width:150px">플랫폼</th><th>산식</th><th style="width:70px">도입</th></tr></thead>
+    <tbody>
+      <tr><td>네이버시리즈</td><td>(합계 − 마켓수수료추정) × 0.7</td><td class="c">v1</td></tr>
+      <tr><td>미스터블루</td><td>판매유형별 정산액 합산</td><td class="c">v1</td></tr>
+      <tr><td>리디</td><td>매출 = 판매액 + 취소액</td><td class="c">v1</td></tr>
+      <tr><td>예스24 (구양식)</td><td>매출 = 총정산액 ÷ 0.7 (역산)</td><td class="c">v2</td></tr>
+      <tr><td>판무림</td><td>정산액 = 판매금액 × 0.7</td><td class="c">v2</td></tr>
+      <tr><td>예스24 (신 3종)</td><td>정산액 직접 제공 (산식 불요)</td><td class="c">v2.1</td></tr>
+      <tr><td>네이버·미스터블루 일매출</td><td>정산액 직접 제공</td><td class="c">v2.1</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. 커버리지 요약</h2>
+  <table>
+    <thead><tr><th>구분</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td class="k">파서 스펙</td><td>37종</td></tr>
+      <tr><td class="k">유통 플랫폼</td><td>31개 이상</td></tr>
+      <tr><td class="k">처리·검증 (1~4월)</td><td>431,296행 · 합계 대사 86 PASS / 0 FAIL</td></tr>
+      <tr><td class="k">처리·검증 (11~12월)</td><td>163파일 · 합계 대사 31 PASS / 0 FAIL</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">파서는 파일명 정규식 매칭 · 헤더 자동탐지 · 이름 기준 컬럼 매핑 · 합계행 대사의 4중 구조로 구성되며, 데이터 추가 시 1~4월 회귀검증(무변경)을 통과시킨 뒤 반영함.</div>
+</article>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>정산 통계 대시보드 설계·구현 보고서</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 17mm 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family:'Nanum Gothic','NanumGothic','나눔고딕','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+         color:#222; margin:0; line-height:1.7; font-size:10pt;
+         -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page { max-width:780px; margin:0 auto; padding:40px 24px 60px; }
+  .doc-head { border-top:4px solid #1f2d3d; border-bottom:1px solid #1f2d3d; padding:26px 4px 20px; margin-bottom:8px; }
+  h1 { font-size:20pt; font-weight:800; margin:0 0 10px; letter-spacing:-.02em; color:#1f2d3d; }
+  .meta-table { width:auto; font-size:9pt; color:#444; border-collapse:collapse; margin-top:6px; }
+  .meta-table td { padding:1px 18px 1px 0; border:none; }
+  .meta-table td.k { color:#888; }
+  h2 { font-size:13pt; font-weight:800; color:#1f2d3d; margin:38px 0 12px; padding:6px 0 6px 12px; border-left:4px solid #1f2d3d; background:#f7f8fa; }
+  h3 { font-size:10.5pt; font-weight:700; margin:22px 0 8px; color:#333; }
+  p { margin:7px 0; text-align:justify; }
+  table { width:100%; border-collapse:collapse; margin:12px 0 18px; font-size:9pt; }
+  th { background:#1f2d3d; color:#fff; font-weight:700; padding:7px 9px; text-align:left; border:1px solid #1f2d3d; }
+  th.r,td.r { text-align:right; }
+  td { border:1px solid #d9dde3; padding:5px 9px; vertical-align:top; }
+  tr:nth-child(even) td { background:#fafbfc; }
+  .num { font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .kpi { display:flex; margin:18px 0 6px; border:1px solid #d9dde3; }
+  .kpi .cell { flex:1; padding:16px 14px; border-right:1px solid #d9dde3; background:#fff; }
+  .kpi .cell:last-child { border-right:none; }
+  .kpi .v { font-size:16pt; font-weight:800; color:#1f2d3d; letter-spacing:-.02em; }
+  .kpi .k { font-size:8.3pt; color:#667; margin-top:4px; line-height:1.5; }
+  .box { border:1px solid #d9dde3; border-left:4px solid #5a6b80; background:#f7f8fa; padding:10px 16px; font-size:9pt; margin:12px 0; }
+  .small { font-size:8.5pt; color:#667; }
+  .tag { display:inline-block; font-size:8pt; font-weight:700; padding:1px 7px; border-radius:4px; }
+  .t-done { background:#e7f7f0; color:#138a5e; } .t-plus { background:#eef3ff; color:#1f4fd0; }
+  .t-part { background:#fff3e8; color:#c9740f; } .t-no { background:#eef0f4; color:#888; }
+  .pagebreak { page-break-before:always; }
+  footer { margin-top:48px; padding-top:12px; border-top:1px solid #1f2d3d; font-size:8.3pt; color:#888; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="doc-head">
+  <h1>정산 통계 대시보드 설계·구현 보고서</h1>
+  <table class="meta-table">
+    <tr><td class="k">수신</td><td>하이브마인드</td><td class="k">작성일</td><td>2026년 6월 8일</td></tr>
+    <tr><td class="k">분석 근거</td><td>기존 Power BI 통계 파일 내부 정의 추출</td><td class="k">구분</td><td>업무 보고</td></tr>
+    <tr><td class="k">작성자</td><td>최혜윤</td><td class="k">연락처</td><td>010-5710-0708 · hyeyun.choi@nsion.net</td></tr>
+  </table>
+</div>
+
+<div class="kpi">
+  <div class="cell"><div class="v">10종</div><div class="k">구현한 분석 지표<br>(기존 의도 + 확장)</div></div>
+  <div class="cell"><div class="v">6 / 8</div><div class="k">기존 그래프 8종 중 반영<br>(2종 데이터 한계로 제외)</div></div>
+  <div class="cell"><div class="v">5종</div><div class="k">신규 추가 지표<br>(정산 솔루션 강점)</div></div>
+  <div class="cell"><div class="v">실데이터</div><div class="k">2026년 2–3월<br>검증 완료 집계</div></div>
+</div>
+
+<h2>1. 분석 배경</h2>
+<p>기존에 사용하던 Power BI 통계 파일(2025년 자체 출간작 매출 정리)의 내부 리포트 정의를 추출하여,
+담당자가 어떤 지표를 어떤 형태로 보고자 했는지 파악했습니다. 이를 기준으로 신규 웹 대시보드의 통계 구성을
+설계하고, 기존 의도를 충족하면서 정산 솔루션의 강점을 더한 지표를 구현했습니다.</p>
+<p class="small">※ Power BI Desktop은 Windows 전용으로 macOS에서 직접 열 수 없으나, 파일 내부 구조(리포트 정의)를
+추출하여 구성 의도를 분석했습니다. 신규 대시보드는 웹 기반으로 재구현되어 운영체제 제약이 없습니다.</p>
+
+<h2>2. 기존 Power BI 구성 (추출 결과)</h2>
+<p>단일 페이지에 비주얼 13개로 구성되어 있으며, 측정값은 사실상 <b>입금액(매출) 합계</b> 하나입니다.
+이 값을 여러 차원으로 나누어 보는 <b>매출 분석 대시보드</b>입니다.</p>
+
+<h3>필터(슬라이서) 5종</h3>
+<p>판매월 · 작품(시리즈명) · 작가명 · 판매처(유통사) · 장르(중분류)</p>
+
+<h3>그래프 8종</h3>
+<table>
+  <tr><th>비주얼</th><th>구성 (차원 → 측정)</th><th>의도</th></tr>
+  <tr><td>선 그래프 — 매출 추이</td><td>판매월 → 입금액</td><td>시간 흐름별 매출</td></tr>
+  <tr><td>원형 — 분야별 매출</td><td>장르(중분류) → 입금액</td><td>장르 구성</td></tr>
+  <tr><td>원형 — 브랜드별 매출</td><td>출판사(레이블) → 입금액</td><td>레이블 구성</td></tr>
+  <tr><td>도넛 — 판매처별 매출</td><td>유통사 → 입금액</td><td>유통사 구성</td></tr>
+  <tr><td>가로막대 — 작품별 매출</td><td>시리즈명 → 입금액</td><td>작품 순위</td></tr>
+  <tr><td>가로막대 — 출간연도별 매출비중</td><td>출간연도 → 입금액</td><td>신간/구간 기여도</td></tr>
+  <tr><td>피벗 — 대상 작품수</td><td>출간년도 → 작품수</td><td>연도별 출간 규모</td></tr>
+  <tr><td>카드 — 총 입금액</td><td>— → 입금액</td><td>총 매출</td></tr>
+</table>
+<div class="box">
+<b>관찰</b> — 작가별 분석 차트는 없으며, 작가는 필터로만 존재합니다. 정산 솔루션의 핵심 목적이
+‘작가에게 지급할 금액과 근거’임을 고려하면, 작가 중심 분석이 보강될 필요가 있습니다.
+</div>
+
+<h2 class="pagebreak">3. 신규 대시보드 구현 결과</h2>
+<p>기존 의도를 충족하는 지표에 더해, 정산 솔루션만의 분석 4종을 추가했습니다.
+모든 차트는 상단의 <b>유통사·기간 필터</b>에 연동되어 함께 갱신되며, 각 항목에 수치 라벨을 표기했습니다.</p>
+
+<h3>3-1. 기존 그래프 8종 → 신규 대시보드 반영 현황</h3>
+<table>
+  <tr><th>기존 Power BI 그래프</th><th>신규 대시보드 반영</th><th>상태</th></tr>
+  <tr><td>매출 추이 (선)</td><td>월별 매출·정산액 막대 — 매출·정산액 동시 표기, 각 월 수치 라벨</td><td><span class="tag t-done">반영·개선</span></td></tr>
+  <tr><td>판매처별 매출 (도넛)</td><td>유통사별 매출 비중 (도넛)</td><td><span class="tag t-done">반영</span></td></tr>
+  <tr><td>브랜드별 매출 (원형)</td><td>레이블(브랜드)별 매출 (가로막대)</td><td><span class="tag t-done">반영</span></td></tr>
+  <tr><td>작품별 매출 (가로막대)</td><td>작품별 매출 순위 (가로막대)</td><td><span class="tag t-done">반영</span></td></tr>
+  <tr><td>총 입금액 (카드)</td><td>정산 요약 — 총매출·정산액 카드</td><td><span class="tag t-done">반영</span></td></tr>
+  <tr><td>분야별 매출 (원형)</td><td>장르(분류)별 매출 — 제공 유통사 한정</td><td><span class="tag t-part">부분</span></td></tr>
+  <tr><td>출간연도별 매출비중 (가로막대)</td><td>—</td><td><span class="tag t-no">제외</span></td></tr>
+  <tr><td>대상 작품수 (피벗)</td><td>—</td><td><span class="tag t-no">제외</span></td></tr>
+</table>
+<p class="small">제외 2종은 정산서에 출간일 정보가 없어 산출이 불가능한 항목입니다(4장 참조).</p>
+
+<h3>3-2. 신규 추가 지표 (정산 솔루션 강점)</h3>
+<table>
+  <tr><th>지표 (차트)</th><th>내용</th><th>의의</th></tr>
+  <tr><td>작가별 정산 + 근거 (표·드릴다운)</td><td>작가·작품·유통사별 정산액과 산출 근거</td><td>‘작가에게 얼마를 왜’ — 정산의 핵심</td></tr>
+  <tr><td>작가 정산 집중도 (파레토)</td><td>상위 작가 누적 비중</td><td>매출 기여 구조 파악</td></tr>
+  <tr><td>매출 → 정산액 구조 (폭포)</td><td>총매출에서 수수료·배분 차감 흐름</td><td>매출과 정산액의 관계</td></tr>
+  <tr><td>유통사 × 단행본/연재 (히트맵)</td><td>유형별 강세 유통사</td><td>채널 전략 참고</td></tr>
+  <tr><td>단행본/연재 구성 (구성비 바)</td><td>판매 유형별 정산액 비중</td><td>유형별 매출 구조</td></tr>
+</table>
+
+<h3>3-2. 실데이터 산출 결과 (2026년 2–3월)</h3>
+<table>
+  <tr><th>지표</th><th>결과</th></tr>
+  <tr><td>매출 → 정산액 구조</td><td class="num">총매출 760,105,970원 → 정산액 513,213,972원 (수수료·배분 246,891,998원)</td></tr>
+  <tr><td>유통사 매출 비중 (상위)</td><td>리디 31.0% · 무툰 16.4% · 원스토리 15.8% · 네이버시리즈 12.3% · 카카오페이지 9.5%</td></tr>
+  <tr><td>레이블별 매출 (상위)</td><td>매드햇 189,945,858원(37%) · 시계토끼 8.6% · 도서출판 청어람 7.3%</td></tr>
+  <tr><td>작가 정산 집중도</td><td>상위 10명 36.2% · 50명 62.2% · 100명 73.8% (총 4,251명)</td></tr>
+  <tr><td>단행본/연재 구성</td><td>단행본 53.4% · 연재 44.7% · 구독제 1.0%</td></tr>
+</table>
+<p class="small">※ 모든 수치는 업로드된 유통사 정산서를 표준화·합산한 실데이터이며, 원본 합계 대사 검증을 거쳤습니다.</p>
+
+<h2>4. 데이터 한계 (투명 고지)</h2>
+<table>
+  <tr><th>지표</th><th>상태</th><th>사유 및 대안</th></tr>
+  <tr><td>출간연도별 매출비중 / 대상 작품수</td><td><span class="tag t-no">제외</span></td>
+      <td>유통사 정산서에 출간일 정보가 없습니다. 작품 마스터에 출간연도를 입력하면 추가 가능합니다.</td></tr>
+  <tr><td>장르(분류)별 매출</td><td><span class="tag t-part">부분</span></td>
+      <td>장르 항목을 제공하는 유통사가 제한적입니다. 제공 분에 한해 집계하며 화면에 한계를 명시했습니다.</td></tr>
+</table>
+
+<h2 class="pagebreak">5. 시연 시나리오</h2>
+<p>아래 순서로 시연하면 표준화–분석–정산–검증의 전체 흐름을 약 10분 내에 보여줄 수 있습니다.
+모든 화면은 2026년 2–3월 실데이터로 동작합니다.</p>
+<table>
+  <tr><th style="width:30px">#</th><th style="width:120px">화면</th><th>시연 내용 / 설명 멘트</th></tr>
+  <tr><td>1</td><td>업로드</td><td>‘샘플로 둘러보기’ 클릭. <b>“유통사 28곳, 형식이 제각각인 정산서 69개를 그대로 넣어 자동 표준화합니다.”</b></td></tr>
+  <tr><td>2</td><td>정산 요약</td><td>작가 지급 대상 정산액과 월별 매출·정산액 막대 제시. <b>“원본 합계와 자동 대사해 40/40 일치 검증을 거친 실데이터입니다.”</b></td></tr>
+  <tr><td>3</td><td>통계 분석</td><td>매출→정산 폭포·유통사 도넛·작가 파레토(상위 10명 36%) 짚기. 상단 유통사 필터 변경 시 차트 즉시 갱신 시연.</td></tr>
+  <tr><td>4</td><td>작가별 (핵심)</td><td>상위 작가 클릭 → 작품×유통사×월별 정산액과 산출 근거 드릴다운. <b>“작가에게 얼마를 왜 줘야 하는지 유통사 원본까지 추적됩니다.”</b></td></tr>
+  <tr><td>5</td><td>정산서 발행</td><td>유통사 선택 → ‘정산서 발행’ → 원천징수·실지급액 포함 명세서 → 인쇄/PDF.</td></tr>
+  <tr><td>6</td><td>미매칭 AI (핵심)</td><td>AI 제안 탭에서 ‘월야환담 광월야’ 등 신뢰도·근거와 함께 제안 → 승인 시연 → 결정 히스토리 확인. <b>“AI가 다른 유통사·유사 작품에서 작가를 찾아 제안하고, 승인하면 이후 자동 반영되며 모든 결정이 이력으로 남습니다.”</b></td></tr>
+  <tr><td>7</td><td>통합 검색</td><td>‘월야환담’ 검색 → 유통사별 작가 보유 여부(✓) 확인. <b>“한 작품이 어느 유통사에 어떤 작가로 들어있는지 한눈에 봅니다.”</b></td></tr>
+</table>
+
+<h2>6. 요약</h2>
+<p>기존 Power BI 대시보드가 보여주던 매출 분석 지표를 대부분 반영하고, 정산 솔루션의 목적에 맞는
+작가 중심 분석(작가별 정산·근거, 정산 집중도)과 매출–정산 구조 분석, AI 미매칭 제안을 추가했습니다.
+운영체제 제약이 없는 웹 기반으로 재구현하여 유통사·기간 필터에 실시간 연동되며, 출간연도·장르 등
+원천 데이터의 한계가 있는 항목은 사유와 보완 방안을 함께 정리했습니다.</p>
+
+<div class="box" style="border-left-color:#c9740f;background:#fff8f0">
+<b>데이터 취급 안내.</b> 본 보고서에는 실제 매출·정산액 및 작가·작품 정보가 포함되어 있습니다.
+정산 당사자 간 내부 검토 목적으로만 사용하며, 제3자에게 재배포·공유하지 않도록 유의해 주시기 바랍니다.</div>
+
+<footer>
+  <div>정산 통계 대시보드 설계·구현 보고서 · 하이브마인드 귀중</div>
+  <div>작성 최혜윤 · 2026. 6. 8.</div>
+</footer>
+
+</div>
+</body>
+</html>

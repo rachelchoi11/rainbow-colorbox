@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>정산 데이터 표준화 검증 보고서</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 17mm 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Nanum Gothic', 'NanumGothic', '나눔고딕', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+         color: #222; margin: 0; line-height: 1.7; font-size: 10pt;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { max-width: 780px; margin: 0 auto; padding: 40px 24px 60px; }
+  .doc-head { border-top: 4px solid #1f2d3d; border-bottom: 1px solid #1f2d3d; padding: 26px 4px 20px; margin-bottom: 8px; }
+  h1 { font-size: 20pt; font-weight: 800; margin: 0 0 10px; letter-spacing: -0.02em; color: #1f2d3d; }
+  .meta-table { width: auto; font-size: 9pt; color: #444; border-collapse: collapse; margin-top: 6px; }
+  .meta-table td { padding: 1px 18px 1px 0; border: none; }
+  .meta-table td.k { color: #888; }
+  h2 { font-size: 13pt; font-weight: 800; color: #1f2d3d; margin: 40px 0 12px;
+        padding: 6px 0 6px 12px; border-left: 4px solid #1f2d3d; background: #f7f8fa; }
+  h3 { font-size: 10.5pt; font-weight: 700; margin: 22px 0 8px; color: #333; }
+  p { margin: 7px 0; text-align: justify; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 9pt; }
+  th { background: #1f2d3d; color: #fff; font-weight: 700; padding: 7px 9px; text-align: left; border: 1px solid #1f2d3d; }
+  td { border: 1px solid #d9dde3; padding: 5px 9px; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafbfc; }
+  tr.tot td { background: #eef1f5; font-weight: 700; border-top: 2px solid #1f2d3d; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .kpi { display: flex; margin: 18px 0 6px; border: 1px solid #d9dde3; }
+  .kpi .cell { flex: 1; padding: 16px 14px; border-right: 1px solid #d9dde3; background: #fff; }
+  .kpi .cell:last-child { border-right: none; }
+  .kpi .v { font-size: 17pt; font-weight: 800; color: #1f2d3d; letter-spacing: -0.02em; }
+  .kpi .k { font-size: 8.3pt; color: #667; margin-top: 4px; line-height: 1.5; }
+  .box { border: 1px solid #d9dde3; border-left: 4px solid #5a6b80; background: #f7f8fa;
+          padding: 10px 16px; font-size: 9pt; margin: 12px 0; }
+  .small { font-size: 8.5pt; color: #667; }
+  .pagebreak { page-break-before: always; }
+  footer { margin-top: 48px; padding-top: 12px; border-top: 1px solid #1f2d3d;
+            font-size: 8.3pt; color: #888; display: flex; justify-content: space-between; }
+  .toc { font-size: 9.5pt; margin: 14px 0 4px; }
+  .toc td { border: none; border-bottom: 1px dotted #ccc; padding: 4px 2px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="doc-head">
+  <h1>정산 데이터 표준화 검증 보고서</h1>
+  <table class="meta-table">
+    <tr><td class="k">수신</td><td>하이브마인드</td><td class="k">작성일</td><td>2026년 6월 4일</td></tr>
+    <tr><td class="k">대상 기간</td><td>2026년 2월 – 3월 (2개월)</td><td class="k">대상 자료</td><td>유통 플랫폼 28곳 정산서 파일 69개</td></tr>
+    <tr><td class="k">작성자</td><td>최혜윤</td><td class="k">연락처</td><td>010-5710-0708 · hyeyun.choi@nsion.net</td></tr>
+    <tr><td class="k">자료 제공</td><td colspan="3">하이브마인드 정형선 본부장님 (2026. 5. 31. 정산서 샘플 공유분 — 전체 파일 목록은 별첨 참조)</td></tr>
+  </table>
+</div>
+
+<div class="kpi">
+  <div class="cell"><div class="v">145,018</div><div class="k">표준화 처리 레코드<br>(2개월 · 28개 유통사)</div></div>
+  <div class="cell"><div class="v">98.1%</div><div class="k">작가·레이블 완전 매칭<br>(142,211건)</div></div>
+  <div class="cell"><div class="v">40 / 40</div><div class="k">원본 합계 대사 통과<br>(합계 보유 정산서 전수)</div></div>
+  <div class="cell"><div class="v">34 / 34</div><div class="k">수기 정리본 교차검증 일치<br>(2월분 전수)</div></div>
+</div>
+<p class="small">본 보고서의 모든 수치는 2026년 2–3월 실제 정산서 파일을 자동 처리한 결과에서 산출했습니다.</p>
+
+<h2>요약</h2>
+<p>유통사 28곳의 정산서 69개 파일(형식 6종, 145,018행)을 단일 표준 체계로 자동 변환했습니다.
+변환 결과는 두 가지 방법으로 검증했습니다. 첫째, 정산서 자체에 합계가 기재된 40개 파일 전수에서
+자동 집계액이 원본 합계와 ±1원 이내로 일치함을 확인했습니다. 둘째, 담당자가 수작업으로 정리한
+2월분 파일 34개를 동일 체계로 처리하여 원본 처리 결과와 전수 일치함을 확인했습니다.
+작품 대조는 전체의 98.1%가 자동으로 완결되었으며, 잔여 미매칭은 시리즈 기준 154건
+(금액 기준 전체의 0.42%)으로 수렴했습니다.</p>
+
+<h2>1. 미매칭 현황</h2>
+<p>전체 145,018건 중 작가명과 레이블이 모두 확정된 레코드는 142,211건(98.1%)입니다.
+잔여분의 구성은 다음과 같습니다.</p>
+
+<table>
+  <tr><th>매칭 단계</th><th class="num">레코드</th><th class="num">비중</th><th>내용</th></tr>
+  <tr><td>완전 매칭</td><td class="num">142,211</td><td class="num">98.06%</td><td>작가·레이블 모두 확정</td></tr>
+  <tr><td>부분 매칭(작가만 확정)</td><td class="num">2,536</td><td class="num">1.75%</td><td>레이블 미확정 — 레이블 미제공 유통사의 일부 작품</td></tr>
+  <tr><td>미매칭</td><td class="num">271</td><td class="num">0.19%</td><td>작가·레이블 모두 미확정</td></tr>
+</table>
+
+<p>미매칭 271건은 시리즈 기준 154건이며, 금액으로는 2,135,478원으로 전체 정산액
+513,213,972원의 0.42%입니다. 유통사별 구성은 예스24 244건,
+올툰 17건, 원스토리 10건입니다. 예스24·올툰은 정산서에 작가명·레이블 항목이 없는 유통사이며,
+타 유통사에 유통되지 않아 대조가 불가능한 작품이 미매칭으로 남았습니다.
+원스토리는 ‘원스토리 패스’ 등 구독 번들 상품으로, 개별 작품이 아니므로 작품 대조 대상이 아닙니다.</p>
+
+<h3>1-1. 미매칭 검토 대상 목록 (정산액 상위 20건 — 실데이터)</h3>
+<table>
+  <tr><th>유통사</th><th>작품명(정산서 원문)</th><th class="num">행수</th><th class="num">정산액(원)</th></tr>
+  <tr><td>원스토리</td><td>원스토리 패스 (원스토리 패스 - 북스앤데이터)</td><td class='num'>10</td><td class='num'>1,090,122</td></tr>
+<tr><td>예스24</td><td>AI시대의 필수 문해력 수업</td><td class='num'>2</td><td class='num'>207,200</td></tr>
+<tr><td>올툰</td><td>[소설]끌린다면, 한 번 더</td><td class='num'>2</td><td class='num'>121,540</td></tr>
+<tr><td>예스24</td><td>더블 : 두 구의 시체, 두 명의 살인자</td><td class='num'>2</td><td class='num'>47,040</td></tr>
+<tr><td>예스24</td><td>이토록 완벽한 실종</td><td class='num'>1</td><td class='num'>31,500</td></tr>
+<tr><td>예스24</td><td>신수의 주인 01권</td><td class='num'>11</td><td class='num'>20,160</td></tr>
+<tr><td>예스24</td><td>밤은 눈을 감지 않는다</td><td class='num'>1</td><td class='num'>17,280</td></tr>
+<tr><td>예스24</td><td>습기</td><td class='num'>1</td><td class='num'>16,464</td></tr>
+<tr><td>예스24</td><td>환상서점 2 : 긴 밤이 될 겁니다</td><td class='num'>2</td><td class='num'>16,128</td></tr>
+<tr><td>예스24</td><td>첫사랑에 실패한 마녀는 화친혼을 원한다 (외전)</td><td class='num'>8</td><td class='num'>15,750</td></tr>
+<tr><td>예스24</td><td>우리 중 하나</td><td class='num'>1</td><td class='num'>14,700</td></tr>
+<tr><td>예스24</td><td>나를 구원하지 마세요 1권</td><td class='num'>10</td><td class='num'>14,700</td></tr>
+<tr><td>예스24</td><td>눈 먼 공녀로 환생했다 1권</td><td class='num'>4</td><td class='num'>14,560</td></tr>
+<tr><td>예스24</td><td>정령왕 엘퀴네스 (개정판) 14.5권</td><td class='num'>2</td><td class='num'>13,300</td></tr>
+<tr><td>예스24</td><td>아버님이 교육하는 첫날밤. 외전 (2부) : 시숙부님의 계략</td><td class='num'>4</td><td class='num'>13,300</td></tr>
+<tr><td>예스24</td><td>내 공작님은 안 죽어! (외전)</td><td class='num'>5</td><td class='num'>13,160</td></tr>
+<tr><td>예스24</td><td>죽어 줘, 라는 말을 들었다 1권</td><td class='num'>4</td><td class='num'>12,600</td></tr>
+<tr><td>예스24</td><td>에피소드 외전 4. 네버엔딩 (삽화본)</td><td class='num'>2</td><td class='num'>12,250</td></tr>
+<tr><td>예스24</td><td>미국 온라인 고등학교로 명문대 진학하기 : 제도권 교육을 벗어나 도전으로 이룬 합격 스토리</td><td class='num'>1</td><td class='num'>11,200</td></tr>
+<tr><td>예스24</td><td>요도전설 1권</td><td class='num'>6</td><td class='num'>11,200</td></tr>
+</table>
+
+<div class="box">
+미매칭분은 검토 목록으로 분리해 두었습니다. 시리즈당 1회 등록(작가·레이블 확인)하면 다음 달부터
+자동 매칭되므로, 운영상 잔여 작업은 건별 수작업이 아니라 <b>시리즈별 1회 등록 154건</b>입니다.
+구독 번들 상품의 작품 배분 기준은 별도 협의가 필요합니다.
+</div>
+
+<h3>1-2. 대조 보강 효과</h3>
+<table>
+  <tr><th>항목</th><th class="num">원천 정산서 미제공</th><th class="num">대조 보강 후 잔여</th><th class="num">해소율</th></tr>
+  <tr><td>작가명</td><td class="num">1,957건</td><td class="num">271건</td><td class="num">86.2%</td></tr>
+  <tr><td>레이블(출판사)</td><td class="num">9,564건</td><td class="num">2,807건</td><td class="num">70.7%</td></tr>
+</table>
+
+<h3>1-3. 보강 실사례 — 정산서에 없던 값이 채워진 예 (유통사별 1건)</h3>
+<table>
+  <tr><th>유통사</th><th>작품명(정산서 원문)</th><th>보강된 작가</th><th>보강된 레이블</th></tr>
+  <tr><td>구루컴퍼니</td><td>걸려들다</td><td>타흔</td><td>사막여우</td></tr>
+<tr><td>노벨피아</td><td>형은 없고 형수만…</td><td>중2엄마</td><td>so what</td></tr>
+<tr><td>무툰</td><td>학사마존</td><td>정재</td><td>스토리야</td></tr>
+<tr><td>문피아</td><td>야인시대 공무원으로 살아남기 [D]</td><td>사키만자루</td><td>매드햇</td></tr>
+<tr><td>블라이스</td><td>나 혼자만 레벨업</td><td>추공</td><td>파피루스</td></tr>
+<tr><td>에이블리</td><td>침대 위의 대표님</td><td>왕기대</td><td>하트퀸</td></tr>
+<tr><td>예스24</td><td>[BL] 교합</td><td>마뇽</td><td>체셔</td></tr>
+<tr><td>올툰</td><td>[BL소설]메디시스가의 오메가</td><td>코네꼬</td><td>야간비행</td></tr>
+<tr><td>조아라</td><td>[GL] 홍연(紅緣) [외전증보판]</td><td>[솔라리스][여시랑]</td><td>체셔</td></tr>
+<tr><td>카카오페이지</td><td>스탯 뻥튀기 탱커 [완결]</td><td>담적산</td><td>케이너스랩</td></tr>
+</table>
+<p class="small">※ 위 유통사들의 정산서에는 레이블 항목이 없거나 비어 있으며, 표의 작가·레이블 값은
+타 유통사 정산서와의 대조로 자동 확정한 결과입니다.</p>
+
+<h3>1-4. 미매칭 저감 방안</h3>
+<p>미매칭은 네 가지 방향으로 추가 축소할 수 있습니다. 우선순위 순으로 정리합니다.</p>
+<table>
+  <tr><th style="width:130px">방안</th><th>내용</th><th style="width:150px">기대 효과</th><th style="width:70px">상태</th></tr>
+  <tr><td><b>① 번들·구독 분리</b></td>
+      <td>‘원스토리 패스’ 등 채널 정기권은 개별 작품이 아니므로 작품 대조 대상에서 분리합니다.
+          작품 제목과 무관한 매출이 미매칭으로 잡히던 것을 정상화합니다.</td>
+      <td>정산액 미매칭률<br>0.42% → 0.20%</td><td>적용 완료</td></tr>
+  <tr><td><b>② 작가·레이블 등록</b></td>
+      <td>정산서에 작가·레이블이 없고 타 유통사에도 유통되지 않은 단독 신간(예스24·올툰)은
+          검토 보드에서 1회 등록하면 이후 모든 월에 자동 매칭됩니다.</td>
+      <td>잔여 미매칭<br>대부분 해소</td><td>운영</td></tr>
+  <tr><td><b>③ 정규화·근사 매칭 강화</b></td>
+      <td>외전·시즌·특별판 등 아직 규칙으로 거르지 못하는 표기 패턴을 보강하고,
+          완전 일치 외에 표기 차이를 흡수하는 근사(유사도) 매칭을 추가합니다.</td>
+      <td>자동 매칭률<br>추가 상승</td><td>후속</td></tr>
+  <tr><td><b>④ 식별자 보조 키</b></td>
+      <td>일부 유통사가 제공하는 작품코드 등 식별자를 매칭 보조 키로 병행합니다.
+          <b>단, ISBN은 단독 키로 부적합합니다</b> — 전집·세트·개정판마다 번호가 분기되거나 누락되는 경우가 많다는
+          담당자 확인에 따라, 제목 매칭을 대체하지 않고 보조 용도로만 활용합니다.</td>
+      <td>표기차 우회<br>(보조)</td><td>검토</td></tr>
+</table>
+
+<h3>1-5. 번들 분리 적용 전후 비교</h3>
+<table>
+  <tr><th>지표</th><th class="num">적용 전</th><th class="num">적용 후</th><th class="num">변화</th></tr>
+  <tr><td>미매칭 건수</td><td class="num">271건</td><td class="num">261건</td><td class="num">−10건</td></tr>
+  <tr><td>미매칭률 (건수 기준)</td><td class="num">0.19%</td><td class="num">0.18%</td><td class="num">−0.01%p</td></tr>
+  <tr><td>미매칭 정산액</td><td class="num">2,135,478원</td><td class="num">1,045,356원</td><td class="num">−1,090,122원</td></tr>
+  <tr><td>미매칭률 (정산액 기준)</td><td class="num">0.42%</td><td class="num">0.20%</td><td class="num">−0.22%p</td></tr>
+  <tr><td>번들·구독 별도 분류</td><td class="num">—</td><td class="num">10건 / 1,090,122원</td><td class="num">신설</td></tr>
+</table>
+<p class="small">※ ‘원스토리 패스’ 등 채널 정기권(작품이 아닌 매출)을 분리한 결과입니다.
+‘삼국지 싸이코패스’, ‘패스 마스터’ 같은 실제 작품이 키워드로 잘못 분류되지 않도록 채널 정기권 패턴만 정밀 지정했습니다.</p>
+
+<h2 class="pagebreak">2. 대조표 자동화 방식</h2>
+<p>기존에는 5년치 데이터로 작성한 대조표를 엑셀 VLOOKUP으로 적용해 왔습니다.
+2022년 12월 수기 정리본(38,063행)을 실측한 결과 브랜드명 항목의 70.3%가 매칭 실패값(#N/A)으로
+남아 있었고, 신간 출시 시마다 대조표를 다시 작성해야 했습니다. 자동화 체계는 이를 4단계로 대체합니다.</p>
+
+<table>
+  <tr><th style="width:120px">단계</th><th>내용</th><th style="width:170px">성과(실측)</th></tr>
+  <tr><td><b>① 정규화 규칙 엔진</b></td>
+      <td>유통사마다 다른 표기(권·화수, 띄어쓰기, 괄호 병기, 태그)를 규칙으로 제거하고
+          시리즈 단위 표준 키를 생성합니다.</td>
+      <td>2022년 수기 정리본 기준<br>자동 일치율 78.8%</td></tr>
+  <tr><td><b>② 당월 상호 대조</b></td>
+      <td>작가·레이블을 제공하는 유통사(리디·알라딘·카카오페이지 등)의 값을 표준 키별로 집계하여,
+          미제공 유통사(무툰·문피아·조아라·예스24 등)의 동일 작품에 채워 넣습니다.
+          대조표가 매월 데이터에서 자동 재생성됩니다.</td>
+      <td>작가 86.2%·레이블 70.7%<br>미제공분 해소</td></tr>
+  <tr><td><b>③ 과거 자산 승계</b></td>
+      <td>2022년 수기 정리본에서 ‘유통사 표기 → 시리즈·작가·브랜드’ 954개 키를 추출하여
+          당월 데이터로 해소되지 않는 구간을 보강합니다. 기존 수작업 결과가 초기 자산으로 전환됩니다.</td>
+      <td>시드 954키 적용</td></tr>
+  <tr><td><b>④ 미매칭 검토 목록</b></td>
+      <td>①–③으로 해소되지 않은 건은 검토 목록으로 분리합니다. 시리즈당 1회 등록하면 이후
+          자동 매칭되므로, 신간 대응이 대조표 재작성에서 목록 확인·승인으로 줄어듭니다.</td>
+      <td>잔여 154건<br>(금액 기준 0.42%)</td></tr>
+</table>
+
+<h3>2-1. 정규화 규칙이 제거하는 표기 변형 (실데이터)</h3>
+<table>
+  <tr><th>변형 유형</th><th>정산서 원문 표기 예</th><th>통일 결과</th></tr>
+  <tr><td>권·화·부 표기</td><td>21세기 대마법사 10 / 회귀의 전설 3부 1222화</td><td>21세기 대마법사 / 회귀의 전설</td></tr>
+  <tr><td>띄어쓰기 차이</td><td>보스 오빠, 살살! ↔ 보스오빠, 살살!</td><td>동일 시리즈로 통합</td></tr>
+  <tr><td>괄호 병기</td><td>술탄(Sultan) / 퀸 앤 폰 (Queen&amp;Pawn)</td><td>술탄 / 퀸 앤 폰</td></tr>
+  <tr><td>판형·판매 태그</td><td>[e북]·[단행본]·[독점]·(개정판)·*세트구매*</td><td>태그 제거 후 동일 시리즈로 통합</td></tr>
+  <tr><td>외전·시즌</td><td>외전 / 특별외전 / 시즌2</td><td>본편 시리즈로 통합</td></tr>
+</table>
+
+<h3>2-2. 시리즈 통합 실사례 — 여러 표기가 하나의 시리즈로 묶인 예</h3>
+<table>
+  <tr><th>시리즈(통합 결과)</th><th class="num">원문 표기 수</th><th class="num">유통사 수</th><th>원문 표기 예</th></tr>
+  <tr><td>템빨</td><td class='num'>2,101종</td><td class='num'>4곳</td><td class='small'>템빨 23화 · 템빨 24화 · 템빨 25화 등</td></tr>
+<tr><td>이탄</td><td class='num'>753종</td><td class='num'>5곳</td><td class='small'>이탄 697회 · 이탄 696회 · 이탄 695회 등</td></tr>
+<tr><td>마존현세강림기</td><td class='num'>691종</td><td class='num'>5곳</td><td class='small'>마존현세강림기 [단행본] · 마존현세강림기 2135회 (완결) · 마존현세강림기 897회 등</td></tr>
+<tr><td>문과라도 안 죄송한 이세계로 감</td><td class='num'>480종</td><td class='num'>9곳</td><td class='small'>문과라도 안 죄송한 이세계로 감 [단행본] · [e북]문과라도 안 죄송한 이세계로 감 · 문과라도 안 죄송한 이세계로 감 [D] 등</td></tr>
+<tr><td>별종</td><td class='num'>443종</td><td class='num'>4곳</td><td class='small'>별종 462화 (완결) · 별종 461화 · 별종 460화 등</td></tr>
+</table>
+
+<div class="box">
+규칙으로 판별이 불가능한 유형은 별칭 등록으로 처리합니다. 예를 들어 ‘온 디 에어(On the air)’의
+정규 명칭이 괄호 안 영문 ‘On the air’인 경우는 규칙이 아닌 등록 대상입니다. 측정 결과 이러한
+잔여 유형은 시리즈 약 48개 수준으로 수렴했습니다.
+</div>
+
+<h2 class="pagebreak">3. 표준화 통일 내역</h2>
+
+<h3>3-1. 파일 형식·인코딩의 통일</h3>
+<table>
+  <tr><th>원천 상태 (유통사별 상이)</th><th>통일 결과</th></tr>
+  <tr><td>확장자는 xls이나 실제는 HTML 문서인 파일 16종 (네이버·노벨피아·무툰·밀리의서재·블라이스·하이북 등)</td>
+      <td rowspan="5">파일 내용 기준으로 형식을 자동 판별하여 단일 표준 테이블로 변환합니다.<br>
+      <span class="small">확장자를 신뢰하지 않는 구조입니다.</span></td></tr>
+  <tr><td>정상 xlsx · 구형 xls(예스24)</td></tr>
+  <tr><td>내부 구조가 손상된 비표준 xlsx (북큐브·애니툰·카카오페이지)</td></tr>
+  <tr><td>CSV(에이블리·구루컴퍼니·알라딘·조아라) · ZIP 압축(리디)</td></tr>
+  <tr><td>HTML 행 태그 누락으로 깨진 파일 (피플앤스토리)</td></tr>
+  <tr><td>EUC-KR(cp949) 인코딩 3종 — 로망띠끄·신영미디어·에피루스<br>
+      <span class="small">‘Mac에서 글씨 깨짐’ 현상의 원인이며, 데이터 손상이 아니므로 자동 복원됩니다.</span></td>
+      <td>UTF-8로 통일</td></tr>
+  <tr><td>헤더 행 위치 상이 (1행–5행, 2–4단 복합 헤더, 헤더 없는 파일 포함)</td>
+      <td>유통사별 규격 등록으로 자동 인식</td></tr>
+  <tr><td>합계·SUM·Total 행 혼입 (상단·하단·중간)</td>
+      <td>자동 제거 후 검증 기준값으로 재활용</td></tr>
+</table>
+
+<h3>3-2. 항목 명칭의 통일</h3>
+<table>
+  <tr><th style="width:120px">표준 항목</th><th>유통사별 원천 명칭 (실제 수집된 표기)</th></tr>
+  <tr><td><b>작품명</b></td><td>작품명 · 컨텐츠 · 상품명 · 도서명 · 타이틀 · 제목 · 시리즈명 · 작품 제목 · 콘텐츠명</td></tr>
+  <tr><td><b>작가</b></td><td>작가명 · 작가 · 저자 · 저자명 · 글작가</td></tr>
+  <tr><td><b>레이블</b></td><td>레이블 · 출판사 · 출판사명 · 출판사명2 · 레이블명 · 브랜드명 · 소분류 · 출판권자<br>
+      <span class="small">※ 하이북의 ‘레이블명(출판사명)’ 복합 표기는 분리하고, 피플앤스토리의 CP사 항목은 레이블이 아니므로 제외했습니다.</span></td></tr>
+  <tr><td><b>총매출</b></td><td>판매 금액 합계(원) · 콘텐츠 매출금액 · 판매합계 · 판매액 · 판매금액 · 판매 골드 · 전체매출(원) · 총매출액 · 거래액(원화) 총합계 · 매출액 · 합계</td></tr>
+  <tr><td><b>정산액</b></td><td>정산 금액 합계(원) · 콘텐츠 정산금액 · 정산금액 · 정산액 · 정산 금액 · 소득액 · 총지급액(원) · 총 정산액 · 정산대상금액 · 정산지급액 · 공급대가 · 정산금</td></tr>
+  <tr><td><b>구분</b></td><td>[단행본]·[e북]·[연재] 제목 태그 · 연재/단행 · 종류 · 타입 · 판매형태 · 판매처(프리미엄 여부) · 회차 판매가(100원 여부) 등 9가지 방식 → 단행본/연재로 통일</td></tr>
+  <tr><td><b>기간</b></td><td>판매일 · 날짜 · 판매년월 · 발생 월/정산 월<br>
+      <span class="small">※ 익월·익익월 정산 구조를 고려하여 ‘정산월’과 ‘판매월’을 별도 항목으로 분리했습니다.</span></td></tr>
+</table>
+
+<h3>3-3. 금액 산출 근거의 표기</h3>
+<p>유통사마다 ‘매출’의 기준이 다르고 일부는 정산액을 제공하지 않습니다.
+동일 항목으로 통일하되, 모든 금액에 산출 근거를 부여하여 추적이 가능하도록 했습니다.</p>
+<table>
+  <tr><th style="width:90px">근거 표기</th><th>적용 내용</th></tr>
+  <tr><td>제공값</td><td>유통사가 정산서에 직접 기재한 값입니다. (대부분의 유통사)</td></tr>
+  <tr><td>계산값</td><td>네이버시리즈: (합계 − 마켓수수료 추정치) × 0.7 — 수수료 추정치는 정산서 내 제공 항목을 사용합니다.<br>
+      블라이스: 판매액 × 0.7 · 조아라: 단가 × 판매건수 · 리디: 판매액 + 취소액(음수)</td></tr>
+  <tr><td>미제공</td><td>밀리의서재(구독제로 판매금액 개념 없음) · 예스24(총매출 미제공) · 판무림(행 단위 정산액 없음 — 협의 필요)</td></tr>
+</table>
+
+<h3>3-4. 집계 단위의 통일</h3>
+<p>권 단위(예스24), 회차 단위(리디·판무림), 일자 단위(에이블리·노벨피아·알라딘), 시리즈 단위(네이버) 등
+유통사마다 다른 행 단위를 시리즈 단위 제목 기준으로 집계합니다. 원천 행은 원문 그대로 보존하며
+145,018행 전체에 원본 파일명과 행 번호를 부착하여 역추적이 가능합니다.</p>
+
+<h2 class="pagebreak">4. 검증 결과</h2>
+<p>검증은 두 단계로 수행했습니다. 첫째, 정산서 자체에 합계가 기재된 파일은 자동 집계액과
+원본 합계의 일치 여부를 확인했습니다(±1원 이내). 둘째, 합계가 없는 파일은 담당자 수기 정리본(2월분)을
+동일 체계로 처리하여 원본 처리 결과와 비교했습니다. 두 검증 모두 전수 통과했습니다.</p>
+
+<h3>4-1. 유통사별 처리·정산액 요약 (2개월 합산)</h3>
+<table>
+  <tr><th>유통사</th><th class="num">레코드</th><th class="num">총매출(원)</th><th class="num">정산액(원)</th></tr>
+  <tr><td>리디</td><td class='num'>36,020</td><td class='num'>231,674,726</td><td class='num'>158,881,333</td></tr>
+<tr><td>무툰</td><td class='num'>2,795</td><td class='num'>120,506,800</td><td class='num'>84,354,760</td></tr>
+<tr><td>원스토리</td><td class='num'>63,759</td><td class='num'>125,285,550</td><td class='num'>80,926,017</td></tr>
+<tr><td>네이버시리즈</td><td class='num'>1,412</td><td class='num'>95,505,450</td><td class='num'>62,974,891</td></tr>
+<tr><td>카카오페이지</td><td class='num'>1,955</td><td class='num'>81,781,080</td><td class='num'>48,573,560</td></tr>
+<tr><td>미소설</td><td class='num'>2,017</td><td class='num'>14,603,200</td><td class='num'>9,200,016</td></tr>
+<tr><td>예스24</td><td class='num'>1,862</td><td class='num'>0</td><td class='num'>8,871,496</td></tr>
+<tr><td>알라딘</td><td class='num'>6,190</td><td class='num'>12,602,500</td><td class='num'>8,821,750</td></tr>
+<tr><td>하이북</td><td class='num'>1,561</td><td class='num'>12,438,100</td><td class='num'>8,706,670</td></tr>
+<tr><td>애니툰</td><td class='num'>1,608</td><td class='num'>14,438,200</td><td class='num'>8,130,272</td></tr>
+<tr><td>북큐브</td><td class='num'>1,727</td><td class='num'>9,734,490</td><td class='num'>6,814,143</td></tr>
+<tr><td>밀리의서재</td><td class='num'>3,155</td><td class='num'>0</td><td class='num'>4,953,400</td></tr>
+<tr><td>피우리</td><td class='num'>2,332</td><td class='num'>4,898,220</td><td class='num'>3,428,754</td></tr>
+<tr><td>블라이스</td><td class='num'>2,416</td><td class='num'>4,705,300</td><td class='num'>3,293,710</td></tr>
+<tr><td>신영미디어</td><td class='num'>863</td><td class='num'>3,845,540</td><td class='num'>2,691,878</td></tr>
+<tr><td>구루컴퍼니</td><td class='num'>173</td><td class='num'>4,168,000</td><td class='num'>2,193,045</td></tr>
+<tr><td>에피루스</td><td class='num'>595</td><td class='num'>3,129,244</td><td class='num'>2,044,871</td></tr>
+<tr><td>미스터블루</td><td class='num'>3,150</td><td class='num'>0</td><td class='num'>1,972,018</td></tr>
+<tr><td>로망띠끄(단행본)</td><td class='num'>933</td><td class='num'>2,765,720</td><td class='num'>1,936,004</td></tr>
+<tr><td>문피아</td><td class='num'>782</td><td class='num'>2,251,200</td><td class='num'>1,453,095</td></tr>
+<tr><td>조아라</td><td class='num'>118</td><td class='num'>1,452,700</td><td class='num'>871,620</td></tr>
+<tr><td>로망띠끄(연재)</td><td class='num'>232</td><td class='num'>845,000</td><td class='num'>591,500</td></tr>
+<tr><td>올툰</td><td class='num'>85</td><td class='num'>763,680</td><td class='num'>374,203</td></tr>
+<tr><td>노벨피아</td><td class='num'>1,156</td><td class='num'>525,400</td><td class='num'>331,002</td></tr>
+<tr><td>큐툰</td><td class='num'>125</td><td class='num'>351,600</td><td class='num'>246,120</td></tr>
+<tr><td>에이블리</td><td class='num'>1,070</td><td class='num'>330,100</td><td class='num'>231,070</td></tr>
+<tr><td>피플앤스토리</td><td class='num'>142</td><td class='num'>413,600</td><td class='num'>173,712</td></tr>
+<tr><td>미노벨</td><td class='num'>129</td><td class='num'>274,700</td><td class='num'>173,061</td></tr>
+<tr><td>판무림</td><td class='num'>6,656</td><td class='num'>10,815,870</td><td class='num'>0</td></tr>
+<tr class='tot'><td>합계</td><td class='num'>145,018</td><td class='num'>760,105,970</td><td class='num'>513,213,972</td></tr>
+</table>
+<p class="small">※ 총매출이 정산액보다 작게 표시되는 유통사는 총매출 미제공(예스24·밀리의서재 등) 또는
+수수료 차감 후 금액 기준(문피아·구루컴퍼니)인 경우입니다. 상세 기준은 3-3을 참조하시기 바랍니다.</p>
+
+<h3 class="pagebreak">4-2. 파일별 검증 내역 (전체 69개 파일)</h3>
+<table>
+  <tr><th>정산월</th><th>유통사</th><th>계정</th><th>실제 형식</th><th class="num">행수</th>
+      <th class="num">자동 집계 정산액</th><th class="num">원본 기재 합계</th><th>검증</th></tr>
+  <tr><td>2026-02</td><td>구루컴퍼니</td><td>1</td><td>csv</td><td class='num'>44</td><td class='num'>598,138</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>구루컴퍼니</td><td></td><td>csv</td><td class='num'>31</td><td class='num'>162,196</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>네이버시리즈</td><td>1</td><td>html</td><td class='num'>4</td><td class='num'>997,730</td><td class='num'>997,730</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>네이버시리즈</td><td></td><td>html</td><td class='num'>668</td><td class='num'>26,540,672</td><td class='num'>26,540,672</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>노벨피아</td><td>1</td><td>html</td><td class='num'>69</td><td class='num'>199,962</td><td class='num'>199,962</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>로망띠끄(단행본)</td><td></td><td>html</td><td class='num'>499</td><td class='num'>1,071,770</td><td class='num'>1,071,770</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>로망띠끄(연재)</td><td></td><td>html</td><td class='num'>101</td><td class='num'>270,830</td><td class='num'>270,830</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>리디</td><td></td><td>zip&gt;csv</td><td class='num'>18,244</td><td class='num'>111,008,749</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>무툰</td><td></td><td>html</td><td class='num'>1,374</td><td class='num'>45,617,950</td><td class='num'>45,617,950</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>문피아</td><td></td><td>xlsx</td><td class='num'>389</td><td class='num'>924,899</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>미노벨</td><td></td><td>html</td><td class='num'>51</td><td class='num'>91,413</td><td class='num'>91,413</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>미소설</td><td></td><td>html</td><td class='num'>936</td><td class='num'>4,138,533</td><td class='num'>4,138,533</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>미스터블루</td><td></td><td>xlsx</td><td class='num'>1,739</td><td class='num'>1,208,923</td><td class='num'>1,208,923</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>밀리의서재</td><td>1</td><td>html</td><td class='num'>1,399</td><td class='num'>2,081,320</td><td class='num'>2,081,320</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>밀리의서재</td><td></td><td>html</td><td class='num'>120</td><td class='num'>343,280</td><td class='num'>343,280</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>북큐브</td><td></td><td>xlsx</td><td class='num'>941</td><td class='num'>3,341,366</td><td class='num'>3,341,366</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>블라이스</td><td></td><td>html</td><td class='num'>1,222</td><td class='num'>1,772,050</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>신영미디어</td><td></td><td>html</td><td class='num'>484</td><td class='num'>1,680,098</td><td class='num'>1,680,098</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>알라딘</td><td></td><td>csv</td><td class='num'>3,266</td><td class='num'>4,680,368</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>애니툰</td><td></td><td>xlsx</td><td class='num'>837</td><td class='num'>4,421,672</td><td class='num'>4,421,673</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>에이블리</td><td></td><td>csv</td><td class='num'>595</td><td class='num'>137,900</td><td class='num'>137,900</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>에피루스</td><td></td><td>html</td><td class='num'>299</td><td class='num'>699,952</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>예스24</td><td></td><td>xls</td><td class='num'>917</td><td class='num'>3,933,145</td><td class='num'>3,933,145</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>올툰</td><td></td><td>xlsx</td><td class='num'>41</td><td class='num'>251,076</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>원스토리</td><td></td><td>xlsx</td><td class='num'>32,496</td><td class='num'>39,527,203</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>조아라</td><td></td><td>csv</td><td class='num'>55</td><td class='num'>211,920</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>카카오페이지</td><td>선투자</td><td>xlsx</td><td class='num'>101</td><td class='num'>12,759,077</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>카카오페이지</td><td>일반</td><td>xlsx</td><td class='num'>813</td><td class='num'>10,279,020</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>큐툰</td><td></td><td>html</td><td class='num'>64</td><td class='num'>124,460</td><td class='num'>124,460</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>판무림</td><td>판무림 2</td><td>xlsx</td><td class='num'>2,372</td><td class='num'>0</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>판무림</td><td>팜무림 1</td><td>xlsx</td><td class='num'>844</td><td class='num'>0</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-02</td><td>피우리</td><td></td><td>xlsx</td><td class='num'>1,103</td><td class='num'>1,621,606</td><td class='num'>1,621,606</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>피플앤스토리</td><td></td><td>html</td><td class='num'>55</td><td class='num'>74,088</td><td class='num'>74,088</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-02</td><td>하이북</td><td></td><td>html</td><td class='num'>765</td><td class='num'>4,386,830</td><td class='num'>4,386,830</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>구루컴퍼니</td><td>1</td><td>csv</td><td class='num'>64</td><td class='num'>1,045,403</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>구루컴퍼니</td><td></td><td>csv</td><td class='num'>34</td><td class='num'>387,308</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>네이버시리즈</td><td>1</td><td>html</td><td class='num'>5</td><td class='num'>1,670,979</td><td class='num'>1,670,979</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>네이버시리즈</td><td></td><td>html</td><td class='num'>735</td><td class='num'>33,765,510</td><td class='num'>33,765,510</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>노벨피아</td><td>1</td><td>html</td><td class='num'>58</td><td class='num'>131,040</td><td class='num'>131,040</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>노벨피아</td><td></td><td>html</td><td class='num'>1,029</td><td class='num'>0</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>로망띠끄(단행본)</td><td></td><td>html</td><td class='num'>434</td><td class='num'>864,234</td><td class='num'>864,234</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>로망띠끄(연재)</td><td></td><td>html</td><td class='num'>131</td><td class='num'>320,670</td><td class='num'>320,670</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>리디</td><td></td><td>zip&gt;csv</td><td class='num'>17,776</td><td class='num'>47,872,584</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>무툰</td><td></td><td>html</td><td class='num'>1,421</td><td class='num'>38,736,810</td><td class='num'>38,736,810</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>문피아</td><td></td><td>xlsx</td><td class='num'>393</td><td class='num'>528,196</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>미노벨</td><td></td><td>html</td><td class='num'>78</td><td class='num'>81,648</td><td class='num'>81,648</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>미소설</td><td></td><td>html</td><td class='num'>1,081</td><td class='num'>5,061,483</td><td class='num'>5,061,483</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>미스터블루</td><td></td><td>xlsx</td><td class='num'>1,411</td><td class='num'>763,095</td><td class='num'>763,095</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>밀리의서재</td><td>1</td><td>html</td><td class='num'>1,515</td><td class='num'>2,119,200</td><td class='num'>2,119,200</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>밀리의서재</td><td></td><td>html</td><td class='num'>121</td><td class='num'>409,600</td><td class='num'>409,600</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>북큐브</td><td></td><td>xlsx</td><td class='num'>786</td><td class='num'>3,472,777</td><td class='num'>3,472,777</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>블라이스</td><td></td><td>html</td><td class='num'>1,194</td><td class='num'>1,521,660</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>신영미디어</td><td></td><td>html</td><td class='num'>379</td><td class='num'>1,011,780</td><td class='num'>1,011,780</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>알라딘</td><td></td><td>csv</td><td class='num'>2,924</td><td class='num'>4,141,382</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>애니툰</td><td></td><td>xlsx</td><td class='num'>771</td><td class='num'>3,708,600</td><td class='num'>3,708,600</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>에이블리</td><td></td><td>csv</td><td class='num'>475</td><td class='num'>93,170</td><td class='num'>93,170</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>에피루스</td><td></td><td>html</td><td class='num'>296</td><td class='num'>1,344,919</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>예스24</td><td></td><td>xls</td><td class='num'>945</td><td class='num'>4,938,351</td><td class='num'>4,938,351</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>올툰</td><td></td><td>xlsx</td><td class='num'>44</td><td class='num'>123,127</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>원스토리</td><td></td><td>xlsx</td><td class='num'>31,263</td><td class='num'>41,398,814</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>조아라</td><td></td><td>csv</td><td class='num'>63</td><td class='num'>659,700</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>카카오페이지</td><td>선투자</td><td>xlsx</td><td class='num'>111</td><td class='num'>11,499,713</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>카카오페이지</td><td>일반</td><td>xlsx</td><td class='num'>930</td><td class='num'>14,035,750</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>큐툰</td><td></td><td>html</td><td class='num'>61</td><td class='num'>121,660</td><td class='num'>121,660</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>판무림</td><td>판무림 1</td><td>xlsx</td><td class='num'>1,345</td><td class='num'>0</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>판무림</td><td>판무림 2</td><td>xlsx</td><td class='num'>2,095</td><td class='num'>0</td><td class='num'>—</td><td>교차검증 일치</td></tr>
+<tr><td>2026-03</td><td>피우리</td><td></td><td>xlsx</td><td class='num'>1,229</td><td class='num'>1,807,148</td><td class='num'>1,807,148</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>피플앤스토리</td><td></td><td>html</td><td class='num'>87</td><td class='num'>99,624</td><td class='num'>99,624</td><td>합계 대사 일치</td></tr>
+<tr><td>2026-03</td><td>하이북</td><td></td><td>html</td><td class='num'>796</td><td class='num'>4,319,840</td><td class='num'>4,319,840</td><td>합계 대사 일치</td></tr>
+</table>
+<p class="small">※ ‘원본 기재 합계’가 없는 파일(거래 명세형 정산서)은 수기 정리본 교차검증으로 확인했습니다.
+‘판무림’의 정산액 0원은 오류가 아니라 해당 정산서에 행 단위 정산액 항목이 없기 때문이며, 5장 확인
+요청 사항에 포함했습니다.</p>
+
+<h2>5. 확인 요청 사항</h2>
+<table>
+  <tr><th style="width:30px">#</th><th style="width:130px">항목</th><th>내용</th></tr>
+  <tr><td>1</td><td>노벨피아 주계정</td><td>조회수형 정산 양식 계정의 2·3월 정산금이 전 행 0원입니다. 계정 상태 확인을 요청드립니다.</td></tr>
+  <tr><td>2</td><td>판무림 정산율</td><td>정산서에 행 단위 정산액이 없습니다. 계약 정산율을 알려주시면 자동 산출하겠습니다.</td></tr>
+  <tr><td>3</td><td>원스토리 패스</td><td>구독 번들 매출(월 약 109만 원)의 작품 배분 기준 협의가 필요합니다.</td></tr>
+  <tr><td>4</td><td>올툰 구분 기준</td><td>유의사항 문서의 ‘타입 항목’이 실제 정산서에 없습니다. 작품명 접두 태그로 갈음할지 확인을 요청드립니다.</td></tr>
+  <tr><td>5</td><td>예스24 신간 등록</td><td>미매칭 154건 중 다수가 예스24 단독 유통작입니다. 작가·레이블 1회 등록 목록을 별도 송부하겠습니다.</td></tr>
+</table>
+
+<h2 class="pagebreak">별첨. 분석 대상 파일 목록</h2>
+<p>아래 파일(하이브마인드 정형선 본부장님 제공, 2026. 5. 31. 공유분)을 분석 대상으로 했으며,
+파일명은 수령 당시 원본 그대로 기재했습니다. 이외에 검증 참고 자료로
+&lt;01. 유통사 정산서별 유의 사항&gt; 문서, 담당자 수기 정리본 폴더(26년 2월 일부 수정분 34개 파일),
+2022년 12월 매출 정리 파일(38,063행)을 함께 사용했습니다.</p>
+<table>
+  <tr><th style="width:34px">#</th><th>파일명 (원본 그대로)</th><th>유통사</th></tr>
+  <tr><td colspan='3' style='background:#eef1f5;font-weight:700'>2026년 2월분 — 34개 파일</td></tr>
+<tr><td class='num' style='width:34px'>1</td><td>202602_에이블리_스토린랩.csv</td><td style='width:110px'>에이블리</td></tr>
+<tr><td class='num' style='width:34px'>2</td><td>구루컴퍼니 (1) 26년 2월.csv</td><td style='width:110px'>구루컴퍼니</td></tr>
+<tr><td class='num' style='width:34px'>3</td><td>구루컴퍼니 26년 2월.csv</td><td style='width:110px'>구루컴퍼니</td></tr>
+<tr><td class='num' style='width:34px'>4</td><td>네이버 26년 2월 (1).xls</td><td style='width:110px'>네이버시리즈</td></tr>
+<tr><td class='num' style='width:34px'>5</td><td>네이버 26년 2월.xls</td><td style='width:110px'>네이버시리즈</td></tr>
+<tr><td class='num' style='width:34px'>6</td><td>노벨피아 (1) 26년 2월.xls</td><td style='width:110px'>노벨피아</td></tr>
+<tr><td class='num' style='width:34px'>7</td><td>로망띠끄 26년 2월 (단행본).xls</td><td style='width:110px'>로망띠끄(단행본)</td></tr>
+<tr><td class='num' style='width:34px'>8</td><td>로망띠끄 26년 2월 (연재).xls</td><td style='width:110px'>로망띠끄(연재)</td></tr>
+<tr><td class='num' style='width:34px'>9</td><td>리디북스 26년 2월.zip</td><td style='width:110px'>리디</td></tr>
+<tr><td class='num' style='width:34px'>10</td><td>무툰 26년 2월.xls</td><td style='width:110px'>무툰</td></tr>
+<tr><td class='num' style='width:34px'>11</td><td>문피아 26년 2월.xlsx</td><td style='width:110px'>문피아</td></tr>
+<tr><td class='num' style='width:34px'>12</td><td>미노벨 26년 2월.xls</td><td style='width:110px'>미노벨</td></tr>
+<tr><td class='num' style='width:34px'>13</td><td>미소설 26년 2월.xls</td><td style='width:110px'>미소설</td></tr>
+<tr><td class='num' style='width:34px'>14</td><td>미스터블루 26년 2월.xlsx</td><td style='width:110px'>미스터블루</td></tr>
+<tr><td class='num' style='width:34px'>15</td><td>밀리의서재 26년 2월 (1).xls</td><td style='width:110px'>밀리의서재</td></tr>
+<tr><td class='num' style='width:34px'>16</td><td>밀리의서재 26년 2월.xls</td><td style='width:110px'>밀리의서재</td></tr>
+<tr><td class='num' style='width:34px'>17</td><td>북큐브 상세매출 2026-2~2026-2.xlsx</td><td style='width:110px'>북큐브</td></tr>
+<tr><td class='num' style='width:34px'>18</td><td>블라이스 26년 2월.xls</td><td style='width:110px'>블라이스</td></tr>
+<tr><td class='num' style='width:34px'>19</td><td>신영미디어 26년 2월.xls</td><td style='width:110px'>신영미디어</td></tr>
+<tr><td class='num' style='width:34px'>20</td><td>알라딘 26년 2월.csv</td><td style='width:110px'>알라딘</td></tr>
+<tr><td class='num' style='width:34px'>21</td><td>애니툰 26년 2월.xlsx</td><td style='width:110px'>애니툰</td></tr>
+<tr><td class='num' style='width:34px'>22</td><td>에피루스 2026년02월정산내역.xls</td><td style='width:110px'>에피루스</td></tr>
+<tr><td class='num' style='width:34px'>23</td><td>예스24 26년 2월.xls</td><td style='width:110px'>예스24</td></tr>
+<tr><td class='num' style='width:34px'>24</td><td>올툰 26년 2월.xlsx</td><td style='width:110px'>올툰</td></tr>
+<tr><td class='num' style='width:34px'>25</td><td>원스토리 26년 2월.xlsx</td><td style='width:110px'>원스토리</td></tr>
+<tr><td class='num' style='width:34px'>26</td><td>조아라 26년 2월.csv</td><td style='width:110px'>조아라</td></tr>
+<tr><td class='num' style='width:34px'>27</td><td>카카오페이지 선투자 계약_2026-02_주식회사 스토린랩_CP월정산내역.xlsx</td><td style='width:110px'>카카오페이지</td></tr>
+<tr><td class='num' style='width:34px'>28</td><td>카카오페이지 일반계약_2026-02_주식회사 스토린랩_CP월정산내역.xlsx</td><td style='width:110px'>카카오페이지</td></tr>
+<tr><td class='num' style='width:34px'>29</td><td>큐툰 26년 2월.xls</td><td style='width:110px'>큐툰</td></tr>
+<tr><td class='num' style='width:34px'>30</td><td>판무림 2_26년 2월.xlsx</td><td style='width:110px'>판무림</td></tr>
+<tr><td class='num' style='width:34px'>31</td><td>팜무림 1_26년 2월.xlsx</td><td style='width:110px'>판무림</td></tr>
+<tr><td class='num' style='width:34px'>32</td><td>피우리_정산_202602.xlsx</td><td style='width:110px'>피우리</td></tr>
+<tr><td class='num' style='width:34px'>33</td><td>피플앤스토리 26년 2월.xls</td><td style='width:110px'>피플앤스토리</td></tr>
+<tr><td class='num' style='width:34px'>34</td><td>하이북 26년 2월.xls</td><td style='width:110px'>하이북</td></tr>
+<tr><td colspan='3' style='background:#eef1f5;font-weight:700'>2026년 3월분 — 35개 파일</td></tr>
+<tr><td class='num' style='width:34px'>1</td><td>202603_에이블리_스토린랩.csv</td><td style='width:110px'>에이블리</td></tr>
+<tr><td class='num' style='width:34px'>2</td><td>구루컴퍼니 (1) 26년 3월.csv</td><td style='width:110px'>구루컴퍼니</td></tr>
+<tr><td class='num' style='width:34px'>3</td><td>구루컴퍼니 26년 3월.csv</td><td style='width:110px'>구루컴퍼니</td></tr>
+<tr><td class='num' style='width:34px'>4</td><td>네이버 26년 3월 (1).xls</td><td style='width:110px'>네이버시리즈</td></tr>
+<tr><td class='num' style='width:34px'>5</td><td>네이버 26년 3월.xls</td><td style='width:110px'>네이버시리즈</td></tr>
+<tr><td class='num' style='width:34px'>6</td><td>노벨피아 (1) 26년 3월.xls</td><td style='width:110px'>노벨피아</td></tr>
+<tr><td class='num' style='width:34px'>7</td><td>노벨피아 2026년 3월.xls</td><td style='width:110px'>노벨피아</td></tr>
+<tr><td class='num' style='width:34px'>8</td><td>로망띠끄 26년 3월 (단행본).xls</td><td style='width:110px'>로망띠끄(단행본)</td></tr>
+<tr><td class='num' style='width:34px'>9</td><td>로망띠끄 26년 3월 (연재).xls</td><td style='width:110px'>로망띠끄(연재)</td></tr>
+<tr><td class='num' style='width:34px'>10</td><td>리디북스 26년 3월.zip</td><td style='width:110px'>리디</td></tr>
+<tr><td class='num' style='width:34px'>11</td><td>무툰 26년 3월.xls</td><td style='width:110px'>무툰</td></tr>
+<tr><td class='num' style='width:34px'>12</td><td>문피아 26년 3월.xlsx</td><td style='width:110px'>문피아</td></tr>
+<tr><td class='num' style='width:34px'>13</td><td>미노벨 26년 3월.xls</td><td style='width:110px'>미노벨</td></tr>
+<tr><td class='num' style='width:34px'>14</td><td>미소설 26년 3월.xls</td><td style='width:110px'>미소설</td></tr>
+<tr><td class='num' style='width:34px'>15</td><td>미스터블루 26년 3월.xlsx</td><td style='width:110px'>미스터블루</td></tr>
+<tr><td class='num' style='width:34px'>16</td><td>밀리의서재 26년 3월 (1).xls</td><td style='width:110px'>밀리의서재</td></tr>
+<tr><td class='num' style='width:34px'>17</td><td>밀리의서재 26년 3월.xls</td><td style='width:110px'>밀리의서재</td></tr>
+<tr><td class='num' style='width:34px'>18</td><td>북큐브 상세매출 2026-3~2026-3.xlsx</td><td style='width:110px'>북큐브</td></tr>
+<tr><td class='num' style='width:34px'>19</td><td>블라이스 26년 3월.xls</td><td style='width:110px'>블라이스</td></tr>
+<tr><td class='num' style='width:34px'>20</td><td>신영미디어 26년 3월.xls</td><td style='width:110px'>신영미디어</td></tr>
+<tr><td class='num' style='width:34px'>21</td><td>알라딘 26년 3월.csv</td><td style='width:110px'>알라딘</td></tr>
+<tr><td class='num' style='width:34px'>22</td><td>애니툰 26년 3월.xlsx</td><td style='width:110px'>애니툰</td></tr>
+<tr><td class='num' style='width:34px'>23</td><td>에피루스 2026년03월정산내역.xls</td><td style='width:110px'>에피루스</td></tr>
+<tr><td class='num' style='width:34px'>24</td><td>예스24 26년 3월.xls</td><td style='width:110px'>예스24</td></tr>
+<tr><td class='num' style='width:34px'>25</td><td>올툰 26년 3월.xlsx</td><td style='width:110px'>올툰</td></tr>
+<tr><td class='num' style='width:34px'>26</td><td>원스토리 26년 3월.xlsx</td><td style='width:110px'>원스토리</td></tr>
+<tr><td class='num' style='width:34px'>27</td><td>조아라 26년 3월.csv</td><td style='width:110px'>조아라</td></tr>
+<tr><td class='num' style='width:34px'>28</td><td>카카오페이지 선투자 계약_2026-03_주식회사 스토린랩_CP월정산내역.xlsx</td><td style='width:110px'>카카오페이지</td></tr>
+<tr><td class='num' style='width:34px'>29</td><td>카카오페이지 일반계약_2026-03_주식회사 스토린랩_CP월정산내역.xlsx</td><td style='width:110px'>카카오페이지</td></tr>
+<tr><td class='num' style='width:34px'>30</td><td>큐툰 26뇬 3월.xls</td><td style='width:110px'>큐툰</td></tr>
+<tr><td class='num' style='width:34px'>31</td><td>판무림 1_26년 3월.xlsx</td><td style='width:110px'>판무림</td></tr>
+<tr><td class='num' style='width:34px'>32</td><td>판무림 2_26년 3월.xlsx</td><td style='width:110px'>판무림</td></tr>
+<tr><td class='num' style='width:34px'>33</td><td>피우리_정산_202603.xlsx</td><td style='width:110px'>피우리</td></tr>
+<tr><td class='num' style='width:34px'>34</td><td>피플앤스토리 26년 3월.xls</td><td style='width:110px'>피플앤스토리</td></tr>
+<tr><td class='num' style='width:34px'>35</td><td>하이북 26년 3월.xls</td><td style='width:110px'>하이북</td></tr>
+</table>
+
+<div class="box" style="border-left-color:#c9740f;background:#fff8f0">
+<b>데이터 취급 안내.</b> 본 보고서에는 실제 매출·정산액 및 작가·작품 정보가 포함되어 있습니다.
+정산 당사자 간 내부 검토 목적으로만 사용하며, 제3자에게 재배포·공유하지 않도록 유의해 주시기 바랍니다.</div>
+
+<footer>
+  <div>정산 데이터 표준화 검증 보고서 · 2026년 2–3월 · 하이브마인드 귀중</div>
+  <div>작성 최혜윤 · 2026. 6. 4.</div>
+</footer>
+
+</div>
+</body>
+</html>

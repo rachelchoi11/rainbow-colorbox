@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>정산 서비스 개발 보고서 (v3.4 · 보고용)</title>
+<style>
+  @page { size: A4; margin: 22mm 18mm 20mm 18mm; @bottom-center { content: counter(page); } }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "Apple SD Gothic Neo","Noto Sans KR",-apple-system,sans-serif; color:#1a1a1a; font-size:10.5pt; line-height:1.62; margin:0; letter-spacing:-0.01em; }
+  .cover { height:247mm; display:flex; flex-direction:column; justify-content:center; page-break-after:always; border-top:3px solid #222; border-bottom:1px solid #222; }
+  .cover .cover-logo { width:64mm; height:auto; margin-bottom:34px; }
+  .cover .kicker { font-size:11pt; color:#5a6472; letter-spacing:.04em; margin-bottom:14px; }
+  .cover h1 { font-size:25pt; font-weight:800; line-height:1.3; margin:0 0 10px; color:#161616; letter-spacing:-.02em; }
+  .cover .sub { font-size:12.5pt; color:#3a4658; font-weight:500; margin-bottom:56px; line-height:1.5; }
+  .cover .meta { border-top:1px solid #d8dde4; padding-top:18px; }
+  .cover .meta table { border:none; } .cover .meta td { border:none; padding:3px 0; font-size:10pt; }
+  .cover .meta td:first-child { color:#6b7280; width:92px; }
+  h2 { font-size:14pt; font-weight:800; color:#161616; margin:24px 0 11px; padding-bottom:7px; border-bottom:2px solid #161616; page-break-after:avoid; }
+  h3 { font-size:11.5pt; font-weight:700; color:#333; margin:16px 0 7px; page-break-after:avoid; }
+  p { margin:7px 0; } ul { margin:7px 0; padding-left:18px; } li { margin:3px 0; }
+  strong { font-weight:700; color:#161616; }
+  .lead { font-size:10.8pt; color:#2a3442; }
+  table { width:100%; border-collapse:collapse; margin:11px 0; font-size:9.2pt; page-break-inside:avoid; }
+  th { background:#eef1f5; color:#161616; font-weight:700; text-align:left; padding:6px 9px; border-bottom:1.5px solid #c2cad6; }
+  td { padding:6px 9px; border-bottom:1px solid #e3e7ed; vertical-align:top; }
+  tr:nth-child(even) td { background:#fafbfc; }
+  .callout { background:#f5f7fa; border-left:3px solid #222; padding:10px 14px; margin:12px 0; font-size:9.8pt; color:#2a3442; }
+  .code { background:#f7f8fa; border:1px solid #e3e7ed; border-radius:4px; padding:11px 14px; margin:10px 0; font-family:"SF Mono",Menlo,monospace; font-size:8.7pt; line-height:1.6; white-space:pre-wrap; color:#2a3442; page-break-inside:avoid; }
+  .section { page-break-inside:auto; }
+</style></head><body>
+
+<div class="cover">
+  <img class="cover-logo" src="hivemind_logo.png" alt="HIVE MIND">
+  <div class="kicker">정산 표준화 솔루션 · 개발 보고</div>
+  <h1>정산 서비스 개발 보고서</h1>
+  <div class="sub">서비스화 · 계약/정산 · 회원·권한·보안 · 저장소 · 정식 배포<br>(v3.4 — 배포본 이후 결과 요약)</div>
+  <div class="meta"><table>
+    <tr><td>작성일</td><td>2026년 8월 4일</td></tr>
+    <tr><td>작성자</td><td>최혜윤 (기획·PO 총괄)</td></tr>
+    <tr><td>연락처</td><td>rachel@hive-mind.kr</td></tr>
+    <tr><td>범위</td><td>배포본(v2) 이후 서비스 고도화 및 정식 배포</td></tr>
+    <tr><td>불변식</td><td>431,296행 · 완전매칭 99.50% · 원본 대사 검증 86건 (전 과정 유지)</td></tr>
+  </table></div>
+</div>
+
+<div class="section">
+<h2>개요</h2>
+<p class="lead">배포본(v2)은 정산 데이터를 분석하는 도구였음. 개발본(v3)은 이를 출판사 단위 멀티테넌트 서비스로 전환하고, 계약 체계·정산 마감·회원/권한·데이터 격리·영속 저장소를 갖춰 Railway 영속 볼륨으로 정식 배포했음.</p>
+<table>
+  <tr><th>영역</th><th>결과</th></tr>
+  <tr><td>아키텍처</td><td>멀티테넌트 서비스화, 출판사↔레이블 계층, 저장소 SQLite 이전</td></tr>
+  <tr><td>계약·정산</td><td>계약 넘버링·상태·유효기간, 유통대행 지급, 정산 마감/원장</td></tr>
+  <tr><td>회원·권한·보안</td><td>RBAC·온보딩, 접속 게이트 분리, 서버측 테넌트 격리, 계약사 자체 관리</td></tr>
+  <tr><td>분석·운영</td><td>성과 분석, 수집 현황·이상 탐지·마감 스케줄, 회사 정보·삭제</td></tr>
+  <tr><td>배포·품질</td><td>Railway 영속 볼륨 정식 배포, 감사·회귀·리뷰·QA</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>1. 서비스화 · 데이터 계층</h2>
+<ul>
+  <li>정산 데이터에서 파생하던 출판사·계약·유통사를 영속 마스터로 분리, 정산은 그 위에 얹는 구조로 재설계.</li>
+  <li>정산 매칭 엔진(core)은 무변경 → 회귀 불변식 유지. 운영자 콘솔 ↔ 출판사 워크스페이스 역할별 IA.</li>
+  <li>출판사↔레이블 계층 확립: 통합 매핑표 458 레이블 → 158 출판사, 테넌트 843 → 128곳 정리(에피루스 등 파서 교정 포함).</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>2. 저장소 — SQLite</h2>
+<ul>
+  <li>마스터(출판사·계약·회원·초대·플래그·별칭 등)를 SQLite(WAL)로 이전. 최초 기동 시 기존 JSON 1회 자동 이관, 호출부 무변경.</li>
+  <li>재시작·동시 쓰기·크래시에도 데이터 보존. 검증: 이관(출판사 128 등)·라운드트립·회귀 유지.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>3. 계약 체계</h2>
+<p>계약마다 고유번호를 부여해 번호만으로 출판사·원작·매체·권리·형태가 읽힘.</p>
+<div class="code">0001 - AA001 - N - 1 - 00
+ └ 출판사 · 콘텐츠 고유번호 · 웹소설(N)/웹툰(T) · 계약유형 · 콘텐츠유형</div>
+<ul>
+  <li>상태(초안/확정/종료): 소급 일괄=초안, 초안은 예상 지급액 미반영 → 확정 후 반영.</li>
+  <li>유효기간(시작/종료월): 해당 기간 정산행에만 배분율 적용(과거 소급 방지).</li>
+  <li>소급 일괄 등록: 정산 데이터의 작품·작가를 계약 초안 소스로 재활용해 일괄 생성.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>4. 정산 산식 · 마감/원장</h2>
+<p class="lead">작가 지급 = 유통사 제공 정산액 × 계약 배분율 − 선인세(MG) − 원천징수. (유통사 제공값 기준.)</p>
+<ul>
+  <li>유통대행 3계층(작가–출판사–관리자): 지급 대상이 출판사면 매칭 키를 출판사명(산하 레이블 합산)으로 전환, 계산식은 동일.</li>
+  <li>정산 마감: 월 지급액을 확정=불변 스냅샷으로 고정(초안→확정→지급), MG는 이월 원장으로 이중 차감 방지.</li>
+  <li>명세서(작가 지급)를 확정 계약의 배분율·MG·세율로 통일 → 계약관리 예상지급액과 일치.</li>
+</ul>
+<div class="code">검증 — 런1 MG 5천만 상계 → 지급 21,990,569 / 확정 후 런2 MG 이월(상계 0) → 70,340,569 (이중 차감 없음)</div>
+</div>
+
+<div class="section">
+<h2>5. 회원 · 권한 · 접속 게이트 분리</h2>
+<table>
+  <tr><th>조직</th><th>역할</th><th>요지</th></tr>
+  <tr><td>운영사</td><td>최고관리자 / 운영자 / 뷰어</td><td>전 기능·승인 / 운영·계정발급 / 조회</td></tr>
+  <tr><td>계약사</td><td>출판사관리자 / 담당자</td><td>자사 계약·정산 관리·사용자 관리 / 자사 조회</td></tr>
+</table>
+<ul>
+  <li>접속 게이트 분리: 운영사=회원가입 후 승인 / 계약사=초대 링크 발급(초대는 계약사 전용).</li>
+  <li>최초 접속: 동의 → 담당자 정보 입력(온보딩) → 워크스페이스. 계약사 화면은 계약사명이 주 브랜드.</li>
+  <li>계약사 자체 관리: 출판사관리자가 자사 계약·정산 마감을 직접 관리(담당자는 조회 전용).</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>6. 보안 — 서버측 테넌트 격리</h2>
+<p>정산 조회·내보내기·명세서를 로그인 사용자의 테넌트 레이블로 서버측 강제. 계약·유통사·첨부·정산 마감은 소속 테넌트 검사(타사 403). 계약·마감 쓰기 지점 전부에 자사 스코프 강제.</p>
+<table>
+  <tr><th>검증</th><th>결과</th></tr>
+  <tr><td>계약사 summary(자사) / 운영자 summary(전체)</td><td>6.04억 / 11.97억</td></tr>
+  <tr><td>계약사 → 타사 계약/유통사/첨부</td><td>403</td></tr>
+  <tr><td>계약사 → 라벨 인젝션(타사 강제)</td><td>0건(교집합 차단)</td></tr>
+  <tr><td>계약사 자체 관리(라이브 6종)</td><td>자사 200 · 타사·전사 마감현황 403 · 운영자 전 테넌트 유지</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>7. 분석 · 운영 자동화 · 홈 재편</h2>
+<ul>
+  <li>성과 분석: 월별 추세·전월 대비·유통사 성과·상위 작가/작품·집중도·유통대행 비중.</li>
+  <li>운영 자동화: 수집 현황판(유통사 31곳×월)·이상 탐지(급변·누락·음수·합계 불일치)·마감 스케줄러(마감일·리마인더).</li>
+  <li>회사 정보 자가 관리(사업자·대표자·주소·입금계좌·세금계산서 이메일)·회원/출판사 삭제.</li>
+  <li>운영자 콘솔 홈 재편: 고객사(출판사)별 정산 1차 블록, 유통사별 2차.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>8. 정식 배포 — Railway 영속 볼륨</h2>
+<ul>
+  <li>상태(SQLite·세션·계약 첨부)를 영속 볼륨에 저장 → 재배포에도 계정·데이터 보존.</li>
+  <li>환경변수 분리(세션 시크릿·DB 경로·첨부 경로·API 키), 시크릿 코드·저장소 미포함.</li>
+  <li>최초 시드: 운영사 최고관리자 · 정산 1~4월(431,296행) · 출판사 128곳 · 계약사 데모 1곳. 재배포 후 데이터·세션 유지 확인.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>9. 성과 요약 · 남은 과제</h2>
+<table>
+  <tr><th>지표</th><th>배포본(v2)</th><th>개발본(v3.4)</th></tr>
+  <tr><td>성격</td><td>정산 분석 도구</td><td>멀티테넌트 정산 서비스(정식 배포)</td></tr>
+  <tr><td>출판사·계약·유통사</td><td>정산 데이터 파생</td><td>영속 마스터(분리)</td></tr>
+  <tr><td>진입</td><td>정산 업로드 후</td><td>업로드 없이 관리</td></tr>
+  <tr><td>사용자</td><td>단일 접근</td><td>회원·역할·권한(RBAC)</td></tr>
+  <tr><td>데이터 격리</td><td>없음</td><td>서버측 테넌트 격리</td></tr>
+  <tr><td>계약·정산</td><td>요율 직접</td><td>넘버링·상태·유효기간·유통대행·정산 마감/원장</td></tr>
+  <tr><td>계약사 관리</td><td>—</td><td>자사 계약·마감 자체 관리(자사 스코프 강제)</td></tr>
+  <tr><td>저장·운영</td><td>JSON</td><td>SQLite · Railway 영속 볼륨(상시 운영)</td></tr>
+  <tr><td>회귀 불변식</td><td>431,296/99.50%/86</td><td>동일(유지)</td></tr>
+</table>
+<h3>남은 과제</h3>
+<ul>
+  <li>정식 오픈 전: 로그인 시도 제한(레이트리밋) · SMTP(초대·알림 메일 실발송).</li>
+  <li>후속: 작가 마스터+명세서 자동 배포 · 세무 연동(팝빌 등, 파트너 확정 후) · 자동 마감 생성 · 페이지네이션·계약 일괄 편집 · 공개 API/웹훅.</li>
+  <li>정책 확인(본부장): 원천징수율(현 3.3%) · 약관 · 마감 후 정정 정책.</li>
+</ul>
+<div class="callout">개발본은 로그인·권한·온보딩·데이터 격리·계약 신뢰성·정산 마감·계약사 자체 관리·영속 저장소를 갖추고 Railway 영속 볼륨으로 정식 배포된 상태로, 외부 계약사 계정 운영이 가능한 최소 안전선을 통과했음.</div>
+</div>
+
+</body></html>

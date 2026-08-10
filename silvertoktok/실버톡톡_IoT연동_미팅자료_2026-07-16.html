@@ -1,0 +1,1098 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>실버톡톡 × IoT 센서 연동 — 미팅 자료 (2026-07-16)</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --brand: #2E5AAC;
+    --brand-dark: #101B33;
+    --ink: #1B2430;
+    --muted: #64748B;
+    --line: #E2E8F0;
+    --bg-soft: #F4F6FA;
+    --warn-bg: #FFFBEB;
+    --warn-line: #F59E0B;
+    --crit-bg: #FEF2F2;
+    --crit-line: #DC2626;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+      system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    color: var(--ink);
+    line-height: 1.65;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+    font-size: 14px;
+    word-break: keep-all;       /* 국문 줄바꿈이 단어 중간에서 끊기지 않게 */
+    overflow-wrap: break-word;
+  }
+  h1 {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
+    margin: 0 0 20px; padding-bottom: 14px;
+    border-bottom: 3px solid var(--brand);
+  }
+  h2 {
+    font-size: 19px; font-weight: 700; letter-spacing: -0.01em;
+    margin: 40px 0 14px; padding: 8px 12px;
+    background: var(--brand-dark); color: #fff; border-radius: 6px;
+  }
+  h3 {
+    font-size: 15.5px; font-weight: 700;
+    margin: 26px 0 10px; padding-left: 9px;
+    border-left: 4px solid var(--brand);
+  }
+  h4 { font-size: 14px; font-weight: 700; margin: 18px 0 8px; }
+  p { margin: 9px 0; }
+  a { color: var(--brand); }
+  strong { font-weight: 700; }
+  code {
+    background: var(--bg-soft); padding: 1.5px 5px; border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em; color: #0F766E;
+  }
+  pre {
+    background: var(--brand-dark); color: #E2E8F0;
+    padding: 14px 16px; border-radius: 8px; overflow-x: auto;
+    font-size: 12px; line-height: 1.5;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+  table {
+    border-collapse: collapse; width: 100%;
+    margin: 12px 0; font-size: 12.5px;
+    /* 표가 페이지를 넘어가도 잘리지 않게 */
+    page-break-inside: auto;
+  }
+  th, td {
+    border: 1px solid var(--line); padding: 7px 9px;
+    text-align: left; vertical-align: top;
+  }
+  th { background: var(--bg-soft); font-weight: 700; }
+  tr:nth-child(even) td { background: #FBFCFE; }
+  blockquote {
+    margin: 12px 0; padding: 10px 14px;
+    background: var(--bg-soft); border-left: 4px solid var(--brand);
+    border-radius: 0 6px 6px 0; color: #334155;
+  }
+  blockquote p { margin: 5px 0; }
+  ul, ol { margin: 9px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  li > ul, li > ol { margin: 4px 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
+
+  /* 스크린샷 — 화면 캡처임이 드러나도록 테두리를 준다 */
+  img {
+    max-width: 100%; height: auto; display: block;
+    margin: 14px 0; border: 1px solid var(--line);
+    border-radius: 8px; box-shadow: 0 2px 12px rgba(27,36,48,0.10);
+  }
+
+  /* 첫 표(한 장 요약)를 눈에 띄게 */
+  h2 + table th:first-child { width: 22%; }
+
+  /* 인쇄 */
+  @page { size: A4; margin: 15mm 12mm; }
+  @media print {
+    body { padding: 0; max-width: none; font-size: 10.5pt; }
+    h2 { page-break-after: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h3, h4 { page-break-after: avoid; }
+    table, pre, blockquote, img { page-break-inside: avoid; }
+    img { box-shadow: none; }
+    tr { page-break-inside: avoid; }
+    th, td, blockquote, pre { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: var(--ink); text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<h1>실버톡톡 × IoT 센서 연동 — 미팅 자료</h1>
+<blockquote>
+<p><strong>일시</strong> 2026-07-16 | <strong>작성</strong> 2026-07-15
+<strong>참석</strong> 실버톡톡(기획·PO/PM) × IoT(로봇·센서) 개발업체
+<strong>PoC 기관</strong> VIP요양병원
+<strong>안건</strong> 센서 데이터 연동 범위 확정 · 역할 분담 · 인증 트랙 협의</p>
+</blockquote>
+<hr>
+<h2>0. 한 장 요약</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>우리 포지션</strong></td>
+<td>센서 데이터를 받아 <strong>화면·인사이트·모니터링을 만드는 통합 파트너</strong>. 대시보드 웹은 <strong>이미 개발 완료(시연 가능)</strong></td>
+</tr>
+<tr>
+<td><strong>연동 구조</strong></td>
+<td>IoT 센서 → (규격 협의) → 실버톡톡 웹(병원용 그룹웨어) → <strong>가공·요약</strong> → 실버톡톡 앱(보호자용)</td>
+</tr>
+<tr>
+<td><strong>오늘 확정할 것</strong></td>
+<td>① 데이터 규격·전송 방식 ② 낙상 판정 주체(엣지/클라우드) ③ 학습기간 ④ 역할·책임 경계 ⑤ 인증 트랙</td>
+</tr>
+<tr>
+<td><strong>최대 쟁점</strong></td>
+<td><strong>보호자 앱 노출 범위</strong> — 실시간 바이탈·낙상 알림을 보호자에게 그대로 주면 안 된다 (§6.1)</td>
+</tr>
+<tr>
+<td><strong>⚠️ 인증 제안 — 방향 전환</strong></td>
+<td><strong>&quot;의료기기 인증 받으세요&quot;라고 하면 안 된다.</strong> 조사 결과 <strong>2등급을 따도 열리는 시장이 없다</strong>(수가 ❌ / 평가 가점 ❌ / 복지용구 요건 ❌ / 정부사업 요구 ❌). 비용 40배·기간 10배를 내고 &quot;명분&quot; 하나를 사는 셈. <strong>대신 웰니스 트랙을 함께 지키자고 제안</strong>하고, <strong>복지용구 「낙상알림시스템」 급여(2026.1.20 신설)</strong> 를 기회로 제시 (§7)</td>
+</tr>
+<tr>
+<td><strong>전제할 숫자</strong></td>
+<td><strong>초기 오탐 30%</strong>. 벤더가 &quot;정확도 95%&quot;라 해도 실환경은 다르다 (§6.2)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>1. 미팅 목표와 우리 포지션</h2>
+<h3>1.1 목표</h3>
+<ol>
+<li>센서가 <strong>무엇을</strong> 보내주는지 확정 (출력 항목·주기·전송 방식)</li>
+<li><strong>누가 무엇을 판정하는지</strong> 경계 확정 (센서 엣지 vs 우리 서버)</li>
+<li><strong>책임 소재</strong> 합의 (오탐·미탐 시)</li>
+<li>PoC 범위·일정 합의</li>
+<li>인증 트랙 협의</li>
+</ol>
+<h3>1.2 우리 포지션 — 협상에서 강한 카드</h3>
+<blockquote>
+<p><strong>센서 벤더는 대시보드를 만들지 않는다. 통합 파트너가 만든다.</strong></p>
+</blockquote>
+<p>글로벌 선도 업체 <strong>Vayyar Care</strong>의 실제 구조 (공식 스펙 문서 확인):</p>
+<ul>
+<li>Vayyar 자체 앱·대시보드·SMS는 <strong>&quot;평가 또는 파일럿 기간에만&quot;</strong> 제공</li>
+<li><strong>정식 배포 시에는 파트너가 Webhook/MQTT/API로 자사 대시보드를 직접 구축</strong>하는 B2B2C 구조</li>
+<li>실제로 나스콜 업체(Austco), 관제 업체(Skyresponse)가 통합 파트너로 붙어 있음</li>
+</ul>
+<p><strong>→ 이게 정확히 우리 포지션이다. 그리고 우리는 이미 만들었다.</strong></p>
+<p>말할 문장:</p>
+<blockquote>
+<p>&quot;센서에서 나오는 신호를 요양병원 현장이 실제로 쓰는 화면으로 만드는 게 저희 역할입니다. 이미 개발해 왔으니 먼저 보여드리겠습니다. 이 화면에 어떤 데이터가 들어와야 하는지를 오늘 맞춰보고 싶습니다.&quot;</p>
+</blockquote>
+<hr>
+<h2>2. 개발 완료 현황 — 실버톡톡 그룹웨어 (시연 자료)</h2>
+<p>요양병원 <strong>내부 업무용 웹 그룹웨어</strong>. 화면 프로토타입 완성 (mock 데이터 기준, DB/API는 연동 단계에서 구현).</p>
+<ul>
+<li>스택: Next.js 16 · React 19 · TypeScript · Tailwind · shadcn/ui</li>
+<li>규모: <strong>4대 모듈 25개 페이지</strong>, 멀티테넌트(병원 3곳), 역할 6종 권한 분기</li>
+<li>검증: 전 라우트 정상, 타입·린트 에러 0</li>
+</ul>
+<h3>2.1 환자 모니터링 <code>/mon</code> — 오늘 미팅의 본체</h3>
+<table>
+<thead>
+<tr>
+<th>화면</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>실시간 현황</strong></td>
+<td>병동·호실 그리드. 환자별 호흡수·심박수·체동지수·수면단계·재실 여부. 5초 갱신</td>
+</tr>
+<tr>
+<td><strong>알림 이력</strong></td>
+<td>심각도·유형·상태별 필터, 추이 차트, 유형별 분포, <strong>평균 응답시간</strong>, 에스컬레이션 경과 강조</td>
+</tr>
+<tr>
+<td><strong>환자 목록·상세</strong></td>
+<td>8시간 바이탈 차트, <strong>수면 리포트</strong>(단계별 시간·수면효율·이석 횟수), 알림 이력</td>
+</tr>
+<tr>
+<td><strong>센서 장비</strong></td>
+<td>장비별 상태·배터리·마지막 통신. 오프라인/배터리부족 상단 고정</td>
+</tr>
+<tr>
+<td><strong>알림 규칙</strong></td>
+<td>유형별 임계값·지속시간·적용 시간대·수신 역할·에스컬레이션 시간 설정</td>
+</tr>
+</tbody></table>
+<p><strong>설계상 이미 반영한 것 (미팅에서 강조할 부분):</strong></p>
+<ul>
+<li><strong>오프라인 센서를 &quot;정상&quot;이 아니라 &quot;관측 불가&quot;로 분리</strong> — 센서가 죽었는데 초록불이 켜지는 게 이 도메인 최대 위험이라, 회색 빗금 + &quot;측정치 없음&quot;으로 명시</li>
+<li><strong><code>sustainSeconds</code>(지속 시간)</strong> — 임계 초과가 N초 이상 지속돼야 알림. 오탐 억제 개념이 이미 들어가 있음</li>
+<li><strong><code>escalateAfterMin</code>(에스컬레이션)</strong> — 미확인 시 상급자 통보</li>
+<li><strong>임계값 조정 시 오탐↔놓침 트레이드오프를 UI에 명시</strong></li>
+</ul>
+<h3>2.2 나머지 3개 모듈 (연동과 무관하나 시연 시 전체 그림)</h3>
+<ul>
+<li><strong>부서 보드</strong> — 인수인계(근무조별), 필독 확인 추적, 부서별 게시판</li>
+<li><strong>상담</strong> — 보호자 상담 배정·이력, 챗봇 예약 정책</li>
+<li><strong>전자결재</strong> — 기안~결재, 결재선 자동 구성</li>
+</ul>
+<h3>2.3 ★ 이미 구현된 연동 시나리오 — 시연 하이라이트</h3>
+<blockquote>
+<p><strong>낙상 알림 → 클릭 → 사고보고서 자동 기안</strong>
+환자·병실·발생시각·**당시 바이탈(호흡 20.7 / 심박 76)**이 자동으로 채워지고,
+결재선(수간호사 합의 → 부서장 → 행정실장 → 병원장)이 실시간 구성됨.</p>
+</blockquote>
+<p><strong>이게 센서 데이터가 병원 업무로 이어지는 그림이다.</strong> IoT 업체에 &quot;우리가 왜 필요한지&quot;를 설명하는 가장 좋은 장면.</p>
+<hr>
+<h2>3. 연동 범위 (Scope)</h2>
+<h3>3.1 데이터 흐름</h3>
+<pre><code>[IoT 센서]  ─(①규격 협의)→  [수집/연동 계층]  ─→  [실버톡톡 웹]  ─(②가공)→  [보호자 앱]
+ 레이더·로봇                   MQTT/Webhook/API      병원 내부용              실버톡톡
+                                                    · 실시간 현황            · 요약·리포트
+                                                    · 알림/에스컬레이션       · 안심 정보
+                                                    · 수면 리포트
+                                                    · 사고보고서 연계
+</code></pre>
+<h3>3.2 역할 분담 (제안 — 오늘 합의할 것)</h3>
+<table>
+<thead>
+<tr>
+<th>영역</th>
+<th>IoT 업체</th>
+<th>실버톡톡</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>센서 하드웨어·설치·유지보수</td>
+<td>●</td>
+<td></td>
+</tr>
+<tr>
+<td>원시 신호 처리, <strong>낙상/이석 판정</strong></td>
+<td>●</td>
+<td></td>
+</tr>
+<tr>
+<td>장비 상태(배터리·통신) 신호 제공</td>
+<td>●</td>
+<td></td>
+</tr>
+<tr>
+<td>데이터 전송 규격·API 문서 제공</td>
+<td>●</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>하드웨어 인증</strong>(KC·전자파·의료기기)</td>
+<td>●</td>
+<td></td>
+</tr>
+<tr>
+<td>수집·저장·이력 관리</td>
+<td>협의</td>
+<td>협의</td>
+</tr>
+<tr>
+<td><strong>화면·대시보드·인사이트</strong></td>
+<td></td>
+<td>●</td>
+</tr>
+<tr>
+<td><strong>알림 규칙·에스컬레이션 정책</strong></td>
+<td></td>
+<td>●</td>
+</tr>
+<tr>
+<td>병원 업무 연계(사고보고서 등)</td>
+<td></td>
+<td>●</td>
+</tr>
+<tr>
+<td><strong>보호자 앱 가공·노출</strong></td>
+<td></td>
+<td>●</td>
+</tr>
+<tr>
+<td>병원 현장 운영·교육</td>
+<td></td>
+<td>● (VIP와 함께)</td>
+</tr>
+</tbody></table>
+<h3>3.3 범위에서 <strong>빼야</strong> 할 것 (명확히)</h3>
+<ul>
+<li>실버톡톡은 <strong>의학적 판단을 하지 않는다.</strong> 센서가 준 값을 표시하고, 병원이 정한 기준에 따라 알릴 뿐이다.</li>
+<li>실버톡톡은 <strong>센서 정확도를 보증하지 않는다.</strong> (계약서 명시 필요 — §6.4)</li>
+</ul>
+<hr>
+<h2>4. IoT 업체에 확인해야 할 사항 ✅</h2>
+<blockquote>
+<p>이 표를 그대로 들고 가서 채우면 된다. <strong>답이 안 나오는 항목이 곧 리스크다.</strong></p>
+</blockquote>
+<h3>4.1 센서·출력 항목 [최우선]</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>질문</th>
+<th>왜 중요한가</th>
+<th>답변</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>센서 종류·주파수 (UWB / mmWave / 도플러 / 열화상 / 카메라)</td>
+<td>측정 가능 항목이 여기서 갈림</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>실제 출력 항목</strong>: 재실 / 낙상 / 호흡수 / 심박수 / 수면단계 / 자세 / 위치좌표 / 활동량 중 무엇?</td>
+<td><strong>Vayyar는 호흡·심박·수면단계를 아예 출력하지 않는다.</strong> 우리 화면은 이 값들을 전제로 만들었음</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>항목별 유효 거리·조건</strong></td>
+<td>맥케어는 호흡 5m인데 <strong>심박은 2m</strong>. 천장 설치면 심박은 상시 부정확</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>심박수는 정말 신뢰 가능한가?</td>
+<td>검증 최상위 제품(Somnofy)은 <strong>심박만은 레이더로 안 재고 별도 심박벨트를 붙인다</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>다인실 간섭 / 커튼·이불 / 금속 침대프레임 / 방문객 영향</td>
+<td>요양병원은 2~6인실. <strong>업계에 검증 연구가 없음</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>설치 조건 (천장/벽/스탠드), 전원, 네트워크</td>
+<td>현장 공사 범위</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>4.2 낙상 판정 로직 [최우선]</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>질문</th>
+<th>왜 중요한가</th>
+<th>답변</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td><strong>낙상 판정을 어디서 하나?</strong> 센서 엣지 / 자사 클라우드 / 우리가?</td>
+<td>우리 규칙 엔진 설계가 여기서 갈림</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>판정 상태머신과 지연 시간은?</strong></td>
+<td>Vayyar: 의심 50초 → 확인 40초 → 알림 30초 = <strong>총 90초 이상 의도적 지연</strong>. 즉시 알림은 업계 표준이 아님</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>&quot;바닥에 오래 누워있음&quot;(fall + no motion) 별도 로직이 있나?</td>
+<td>Vayyar는 낙상 순간을 놓쳐도 이걸로 잡음(5~12분)</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>타인 입실 시 자동 취소 같은 오탐 억제 로직이 있나?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>학습 기간(Learning Mode)이 있나?</strong></td>
+<td><strong>Vayyar 2주, 사이렌케어 최소 2주.</strong> 없으면 PoC 첫 주에 오탐 폭탄</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>오탐률 근거를 주실 수 있나? 실험실인가 실환경인가</strong></td>
+<td>§6.2 참조. &quot;95% 정확도&quot;는 대개 실험실·빈방</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>4.3 연동 규격</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>질문</th>
+<th>왜 중요한가</th>
+<th>답변</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>13</td>
+<td>전송 방식: <strong>MQTT / Webhook / REST / WebSocket</strong> 중 무엇?</td>
+<td>우리 수집 계층 설계</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>API 문서·데이터 스키마 샘플</strong>을 주실 수 있나?</td>
+<td>없으면 일정 산정 불가</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>푸시인가 폴링인가? <strong>샘플링/전송 주기</strong>는?</td>
+<td>맥케어 5초, Somnofy 원시 1Hz. 우리 목업은 30초</td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td><strong>이벤트만 오나, 연속 스트림도 오나?</strong></td>
+<td>실시간 그리드 구현 가능 여부</td>
+<td></td>
+</tr>
+<tr>
+<td>17</td>
+<td><strong>과거 데이터 조회 API</strong>가 있나? 아니면 우리가 저장해야 하나?</td>
+<td>수면 리포트·차트에 필수</td>
+<td></td>
+</tr>
+<tr>
+<td>18</td>
+<td>데이터가 <strong>그쪽 클라우드를 경유</strong>하나? 우리가 원본을 받나?</td>
+<td>개인정보·소유권 문제 직결</td>
+<td></td>
+</tr>
+<tr>
+<td>19</td>
+<td>장비 상태(배터리·오프라인·펌웨어)도 신호로 주나?</td>
+<td>우리 <code>센서 장비</code> 화면에 필요</td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td><strong>나스콜(간호사 호출) 연동</strong>을 지원하나? (드라이 콘택트)</td>
+<td><strong>현장은 API가 아니라 나스콜로 붙는 경우가 많다.</strong> VIP 기존 설비 확인 필요</td>
+<td></td>
+</tr>
+<tr>
+<td>21</td>
+<td>장애 시 통보 절차·SLA</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>4.4 법·개인정보</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>질문</th>
+<th>왜 중요한가</th>
+<th>답변</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>22</td>
+<td><strong>현재 보유 인증</strong>: KC / 전자파 / <strong>의료기기 인증 여부</strong></td>
+<td>§7 컨설팅의 출발점</td>
+<td></td>
+</tr>
+<tr>
+<td>23</td>
+<td>조달청 혁신제품 지정 여부</td>
+<td>맥케어가 받은 것. 의료기기 인증과 <strong>별개 트랙</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td>데이터 <strong>소유권</strong>은 누구에게?</td>
+<td>계약 핵심</td>
+<td></td>
+</tr>
+<tr>
+<td>25</td>
+<td>서버 위치 (국내?), 개인정보 위수탁 구조</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>26</td>
+<td>로봇이 <strong>카메라·마이크</strong>를 포함하나?</td>
+<td>포함되면 개인정보 난이도가 급상승</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. 내가 말해야 할 부분 (스크립트)</h2>
+<h3>5.1 오프닝 — 포지션 선점</h3>
+<blockquote>
+<p>&quot;저희는 요양병원 보호자용 플랫폼을 운영하고 있고, VIP요양병원에서 실증 중입니다.
+센서에서 나오는 데이터를 <strong>현장이 실제로 쓰는 화면</strong>으로 만드는 게 저희 역할입니다.
+이미 개발해 왔으니 먼저 보여드리고, 여기 어떤 데이터가 들어와야 하는지 맞춰보고 싶습니다.&quot;</p>
+</blockquote>
+<p>→ <strong>바로 시연.</strong> (<code>/mon/live</code> → <code>/mon/alerts</code> → 낙상 알림에서 사고보고서 기안까지)</p>
+<h3>5.2 시연하며 강조할 3가지</h3>
+<ol>
+<li><strong>&quot;센서가 죽으면 정상이 아니라 관측 불가로 보여줍니다.&quot;</strong>
+→ 우리가 이 도메인을 이해하고 있다는 신호. 신뢰 확보.</li>
+<li><strong>&quot;알림은 지속시간·에스컬레이션·수신 역할까지 규칙으로 관리합니다.&quot;</strong>
+→ 우리는 단순 표시기가 아니라 운영 도구다.</li>
+<li><strong>&quot;낙상 알림이 사고보고서 기안으로 바로 이어집니다.&quot;</strong>
+→ 센서 데이터가 병원 업무로 연결되는 그림. 우리가 필요한 이유.</li>
+</ol>
+<h3>5.3 요구할 것 (명확히)</h3>
+<blockquote>
+<p>&quot;저희가 화면을 붙이려면 <strong>데이터 규격 문서와 샘플 페이로드</strong>가 필요합니다.
+특히 <strong>어떤 항목을 실제로 출력하시는지</strong>, <strong>낙상 판정을 어디서 하시는지</strong>, 이 둘이 확정돼야 일정이 나옵니다.&quot;</p>
+</blockquote>
+<h3>5.4 인증 이야기를 꺼내는 방식 (§7 상세)</h3>
+<ul>
+<li>❌ <strong>&quot;의료기기 인증 받으셔야 합니다&quot;</strong> — <strong>조사 결과 근거가 없다.</strong> 2등급을 따도 수가·평가가점·복지용구·정부사업 어디에도 실익이 없고 비용만 40배다. 이렇게 말했다가 그쪽이 1억 쓰고 아무것도 못 얻으면 우리가 신뢰를 잃는다.</li>
+<li>✅ <strong>&quot;웰니스 트랙을 같이 지키죠. 사용목적 문구를 서로 맞춥시다.&quot;</strong> — 우리 화면 문구는 이미 그 기준으로 정리해뒀다.</li>
+<li>✅ <strong>&quot;복지용구 「낙상알림시스템」이 2026.1.20 급여 품목으로 신설됐습니다. 1호 등재를 노려볼 만합니다.&quot;</strong> ← <strong>선물.</strong> 관계가 &quot;요구&quot;에서 &quot;기여&quot;로 바뀐다.</li>
+<li>✅ <strong>&quot;식약처 사전 검토를 같이 받으시죠. 무료고 10일이면 공식 회신이 옵니다.&quot;</strong>
+→ 협력 프레임. 우리가 원문까지 확인해 왔다는 것 자체가 신뢰 자산.</li>
+</ul>
+<h3>5.5 절대 하면 안 되는 말</h3>
+<ul>
+<li><strong>&quot;이걸로 낙상을 줄일 수 있습니다&quot;</strong> — §6.3. 근거가 없고, 아는 사람 앞에서 반박당한다.</li>
+<li><strong>&quot;정확도 보증합니다&quot;</strong> — 우리가 보증할 수 없다.</li>
+<li>보호자 앱 노출 범위를 <strong>이 자리에서 확답하지 말 것</strong> — VIP와 먼저 합의해야 한다 (§6.1).</li>
+</ul>
+<hr>
+<h2>6. 주의사항 · 리스크</h2>
+<h3>6.1 ★ 최대 리스크 — 보호자 앱에 무엇을 보여줄 것인가</h3>
+<p><strong>이 프로젝트에서 가장 위험한 결정이다. 기술이 아니라 정책 문제.</strong></p>
+<p>실시간 바이탈·낙상 알림을 보호자에게 그대로 노출하면:</p>
+<table>
+<thead>
+<tr>
+<th>리스크</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>클레임 전가</strong></td>
+<td><em>&quot;새벽에 엄마 심박 110이었는데 왜 아무도 안 갔냐&quot;</em> — 병원이 아니라 <strong>우리 화면 때문에</strong> 발생</td>
+</tr>
+<tr>
+<td><strong>병원 반발</strong></td>
+<td>병원이 확인·조치하기 전에 보호자가 먼저 아는 구조. VIP가 받아들이기 어려움</td>
+</tr>
+<tr>
+<td><strong>의학적 해석 전가</strong></td>
+<td>비전문가인 보호자가 숫자를 해석하게 됨</td>
+</tr>
+<tr>
+<td><strong>규제 리스크</strong></td>
+<td>우리 앱이 의료적 판단을 제공하는 것으로 해석될 여지 증가 (§7)</td>
+</tr>
+</tbody></table>
+<p><strong>권고 — 노출 범위를 계층으로 분리:</strong></p>
+<table>
+<thead>
+<tr>
+<th>대상</th>
+<th>보여줄 것</th>
+<th>보여주지 말 것</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>병원 (그룹웨어)</strong></td>
+<td>실시간 바이탈, 낙상·이석 알림, 센서 상태, 원시 추이</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>보호자 (앱)</strong></td>
+<td><strong>가공·요약</strong>: 주간 수면 리포트, &quot;수면 양호/주의&quot;, 활동량 추이, 병원이 <strong>확인·조치 완료한 후</strong>의 사고 안내</td>
+<td>실시간 심박·호흡 숫자, 미확인 낙상 알림, 센서 오류</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>이건 IoT 업체가 아니라 VIP요양병원과 먼저 합의할 사안이다.</strong> 내일 미팅에서는 &quot;보호자 노출 범위는 병원과 협의 중&quot;으로 두고 확답하지 말 것.</p>
+</blockquote>
+<h3>6.2 ★ 오탐 — 전제해야 할 숫자</h3>
+<p>벤더가 &quot;정확도 95~98%&quot;를 제시할 가능성이 높다. <strong>거의 전부 실험실·빈방 조건이다.</strong></p>
+<table>
+<thead>
+<tr>
+<th>근거</th>
+<th>수치</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>실낙상 데이터로 13개 알고리즘 검증</td>
+<td><strong>민감도 57.0%</strong> (실험실 시뮬레이션 대비 급락). 1일 오탐 3~85건<br><em>Bagalà et al., PMC3353905</em></td>
+</tr>
+<tr>
+<td>mmWave 레이더 다중타겟</td>
+<td>96.3% → <strong>일상생활동작 추가 시 86.5%</strong><br><em>Sensors 2024, 24(11):3660</em></td>
+</tr>
+<tr>
+<td>침대이탈 알람 실측 (328일, 119건)</td>
+<td><strong>오탐률 31~32%</strong>, PPV 68%<br><em>Subermaniam et al., Front Public Health 2017</em></td>
+</tr>
+<tr>
+<td>지역사회 파일럿</td>
+<td>낙상 알람 84건 중 <strong>83건이 오탐</strong> (진양성 1건)<br><em>Bloch et al., PMC4662041</em></td>
+</tr>
+<tr>
+<td>문헌의 자기 고백</td>
+<td>&quot;실생활 조건의 민감도·특이도에 대한 지식은 <strong>여전히 부족</strong>&quot; — 레이더 낙상감지의 구조적 공백</td>
+</tr>
+</tbody></table>
+<p><strong>→ &quot;초기 배포 시 오탐 30%를 전제로 인력 운영 계획을 세운다&quot;가 현실적 출발점.</strong></p>
+<h3>6.3 ★ 알림 피로 — 이건 사람을 죽인다</h3>
+<table>
+<thead>
+<tr>
+<th>근거</th>
+<th>수치</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Joint Commission</td>
+<td>임상 알람의 <strong>85~99%가 실제 개입 불필요</strong></td>
+</tr>
+<tr>
+<td>ICU 알람 분석</td>
+<td><strong>16.9%만 적절히 트리거</strong>. 43.6% 순수 오탐</td>
+</tr>
+<tr>
+<td>FDA DB (2005.1~2010.6)</td>
+<td><strong>알람 관련 사망 566건</strong></td>
+</tr>
+<tr>
+<td>Joint Commission Sentinel Event (2009.1~2012.6)</td>
+<td>알람 관련 <strong>사망 80건, 영구 기능손상 13건</strong>. 실제 위해의 10% 미만만 포착된 수치로 추정</td>
+</tr>
+</tbody></table>
+<p><strong>야간 간호사 1명이 30병상을 본다. 알림이 하룻밤 50건 오면 전부 끈다. 그러면 시스템은 없는 것과 같다.</strong></p>
+<p>→ 우리 <code>/mon/rules</code>의 지속시간·시간대 한정·고위험군 한정·에스컬레이션이 전부 이 문제 대응책. 미팅에서 설명할 것.</p>
+<h3>6.4 ★ 책임 소재 — 계약서에 반드시</h3>
+<p>센서가 낙상을 <strong>놓쳤을 때</strong>, 오탐으로 <strong>인력이 소진됐을 때</strong>, 알림이 늦어 <strong>사고가 커졌을 때</strong> — 누구 책임인가?</p>
+<p><strong>우리는 &quot;표시&quot;만 하는데, 화면이 우리 것이라 클레임은 우리에게 온다.</strong></p>
+<p>명시할 것:</p>
+<ul>
+<li>센서 정확도·판정 로직의 책임은 <strong>IoT 업체</strong></li>
+<li>실버톡톡은 <strong>수신한 데이터를 병원이 설정한 규칙에 따라 표시·전달</strong>할 뿐, 의학적 판단·정확도를 보증하지 않음</li>
+<li>병원의 임상적 조치 판단은 <strong>병원 책임</strong></li>
+<li>장애·오탐 발생 시 통보·대응 절차와 SLA</li>
+</ul>
+<h3>6.5 &quot;낙상 감소&quot;를 세일즈 포인트로 쓸 수 없다</h3>
+<table>
+<thead>
+<tr>
+<th>근거</th>
+<th>결론</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Shorr et al. 2012 — <strong>27,672명 RCT</strong></td>
+<td>알람 사용을 <strong>36배</strong>로 늘렸는데 낙상률 변화 없음 (RR 1.09)</td>
+</tr>
+<tr>
+<td>REFINE — 1,839명</td>
+<td>p=0.51</td>
+</tr>
+<tr>
+<td>Cochrane 리뷰</td>
+<td>&quot;효과 불확실&quot;</td>
+</tr>
+<tr>
+<td>요양시설 특화 리뷰</td>
+<td><em>&quot;bed alarms alone are relatively useless&quot;</em></td>
+</tr>
+</tbody></table>
+<p><strong>→ 근거에 맞는 포지셔닝:</strong></p>
+<ul>
+<li>❌ &quot;낙상을 예방합니다&quot;</li>
+<li>✅ <strong>&quot;낙상 발견 지연을 줄이고, 조치 이력을 남깁니다&quot;</strong></li>
+<li>✅ <strong>&quot;인증평가·감사 대응 자료가 자동으로 쌓입니다&quot;</strong></li>
+</ul>
+<p>IoT 업체가 &quot;낙상 30% 감소&quot; 자료를 들고 오면 <strong>근거를 물어야 한다.</strong> 그 자료로 병원에 영업하면 나중에 우리가 같이 책임진다.</p>
+<h3>6.6 개인정보 — 미해결 리스크</h3>
+<ul>
+<li><strong>치매 환자의 동의 주체가 법적 공백이다.</strong> 의사결정능력이 저하된 성인의 개인정보 동의 주체에 대한 명문 조항을 찾지 못했다.</li>
+<li>보호자 동의로 갈음 가능한지 <strong>개인정보보호위원회 유권해석 질의</strong>를 검토해야 한다.</li>
+<li>로봇에 카메라·마이크가 포함되면 난이도가 급상승한다 (§4.4-26).</li>
+</ul>
+<h3>6.7 데이터 추상화 — 우리 쪽 숙제</h3>
+<p>현재 우리 코드는 <code>readingAt()</code> / <code>seriesFor()</code> 두 함수만 실제 API로 바꾸면 된다고 가정했으나, <strong>이 가정은 틀렸다.</strong></p>
+<table>
+<thead>
+<tr>
+<th>우리 가정</th>
+<th>현실</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>우리가 원시값을 받아 판정</td>
+<td><strong>센서가 엣지에서 이미 판정해서 이벤트를 올림</strong></td>
+</tr>
+<tr>
+<td>임의 시각 조회 가능</td>
+<td><strong>실제는 푸시(MQTT/Webhook).</strong> 과거 조회는 우리 DB가 있어야 함</td>
+</tr>
+<tr>
+<td>모든 값이 매 샘플마다 옴</td>
+<td><strong>벤더마다 출력 집합이 다름</strong> (Vayyar는 호흡·심박 미출력)</td>
+</tr>
+<tr>
+<td>샘플링 30초 단일</td>
+<td>원시 1Hz / Epoch 30초 / Trend 세션 <strong>3계층</strong></td>
+</tr>
+<tr>
+<td>센서 = API</td>
+<td><strong>드라이 콘택트면 접점 신호만 옴</strong></td>
+</tr>
+</tbody></table>
+<p>→ <code>VitalsSource</code> 인터페이스 + <code>capabilities()</code>(벤더가 뭘 출력하는지 런타임에 앎) + 벤더 어댑터 <strong>3계층 재설계 필요.</strong> 미팅에서 규격이 확정되면 착수.</p>
+<hr>
+<h2>7. 의료기기 인증 — 컨설팅 자료</h2>
+<blockquote>
+<p>⚠️ <strong>이 절은 변호사·인허가(RA) 전문가 검토가 아니다.</strong> 법령·지침서 <strong>원문을 직접 추출</strong>해 작성했으나(2차 요약 미사용), 최종 판단은 <strong>RA 전문가 + 의료법 변호사 검토가 필수</strong>다.
+상세: <code>~/workspace/silvertoktok-groupware/docs/medical-device-certification.md</code> (525줄, 1차 출처 링크 포함)</p>
+</blockquote>
+<h3>7.0 ★ 결론부터 — &quot;인증 받으세요&quot;라고 말하면 안 된다</h3>
+<p>조사 전 가설은 <em>&quot;IoT 업체에 의료기기 인증을 제안한다&quot;</em> 였다. <strong>조사 결과 이 가설은 기각됐다.</strong></p>
+<p><strong>2등급 의료기기를 취득해도 열리는 시장이 없다</strong> [사실 기반]:</p>
+<table>
+<thead>
+<tr>
+<th>기대했던 것</th>
+<th>실제</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>수가를 받을 수 있다</td>
+<td>❌ <strong>요양병원은 일당정액수가제.</strong> 2등급을 따도 별도 산정 경로가 없다</td>
+</tr>
+<tr>
+<td>평가에서 가점을 받는다</td>
+<td>❌ <strong>지표 자체가 없다.</strong> 장기요양기관 평가매뉴얼 <strong>218페이지 전문에서 <code>IoT</code>·<code>센서</code>·<code>스마트</code>·<code>인공지능</code>·<code>디지털</code> 검색 결과 0건</strong></td>
+</tr>
+<tr>
+<td>복지용구 등재에 필요하다</td>
+<td>❌ 의료기기 허가는 등재 요건이 <strong>아니다</strong></td>
+</tr>
+<tr>
+<td>정부사업에 필요하다</td>
+<td>❌ 응급안전안심·AI 스마트홈 모두 의료기기 요구 <strong>0회</strong></td>
+</tr>
+<tr>
+<td>병원 납품에 필요하다</td>
+<td>❌ 법제처 유권해석: <em>&quot;의료기기 해당 여부는 사용목적에 따라 결정되는 것이지 의료기관이 사용하는 경우만을 의료기기로 보는 것은 아니다&quot;</em></td>
+</tr>
+</tbody></table>
+<p><strong>비용·기간 비교</strong> [사실 — 법정 수수료 기준]:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>A. 웰니스 (비의료기기)</strong></th>
+<th><strong>B. 2등급 의료기기</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>총 비용</td>
+<td><strong>약 300~450만원</strong></td>
+<td><strong>수천만 ~ 1.5억원</strong></td>
+</tr>
+<tr>
+<td>총 기간</td>
+<td><strong>1~2개월</strong></td>
+<td><strong>6개월 ~ 2년+</strong></td>
+</tr>
+<tr>
+<td>선행 요건</td>
+<td>없음</td>
+<td>제조업 허가 + <strong>GMP 적합인정</strong> + <strong>품질책임자 선임</strong></td>
+</tr>
+<tr>
+<td>SW 부담</td>
+<td>없음</td>
+<td><strong>IEC 62304 C등급</strong> (식약처 가이드라인이 &quot;환자감시장치 SW = C등급&quot;을 직접 예시)</td>
+</tr>
+<tr>
+<td>얻는 것</td>
+<td>—</td>
+<td><strong>&quot;의료기기&quot; 명분 하나</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>→ B는 비용 40배·기간 10배를 내고 명분 하나를 사는 것이다. 현 시점에서 투자 대비 회수가 성립하지 않는다.</strong></p>
+<p><strong>미팅에서 &quot;인증 받으세요&quot;라고 했다가, 그쪽이 1억 쓰고 아무것도 못 얻으면 우리가 신뢰를 잃는다.</strong></p>
+</blockquote>
+<h3>7.1 ★ 진짜 경계선 — 질병명이 아니라 &quot;위급상황 탐지 + 경보 + 의료진 전송&quot;</h3>
+<p><strong>식약처 「의료기기와 개인용 건강관리(웰니스) 제품 판단기준」 지침서-0091-03 (2026.2 개정) 원문</strong> [사실]</p>
+<p><strong>위해도 판단요소 5개 중 하나라도 걸리면 고위해도:</strong></p>
+<blockquote>
+<p>○ 생체적합성 문제를 야기하는지 / ○ 침습적인지 / ○ 작동 실패 시 상해·질병이 발생하는지
+○ <strong>심정지, 사망 등 위급한 상황을 탐지하는지 여부</strong> ← 🔴 <strong>우리 제품 정면 해당</strong>
+○ 기기의 기능·특성을 통제·변경하는지</p>
+</blockquote>
+<p><strong>의사결정 흐름도 최종 관문:</strong></p>
+<blockquote>
+<p>○ 심정지, 사망 등 위급한 상황을 탐지하는가? → <strong>예 → 개인용 건강관리제품이 아님</strong></p>
+</blockquote>
+<p><strong>고위해도로 명시된 예시:</strong></p>
+<blockquote>
+<p>∙ <strong>수면 시 무호흡 등의 측정 기능이 있는 수면 평가 장치</strong> ☞ 위급한 상황을 탐지할 수 있으므로 위해도가 높다 <strong>(개인용 건강관리제품이 아님)</strong></p>
+</blockquote>
+<p><strong>반대로 웰니스로 인정된 인접 사례:</strong></p>
+<blockquote>
+<p>○ 수면 중 <strong>움직임 정도를 자가 측정</strong>하는 제품 → 웰니스
+○ <strong>고령자의 낙상 위험도 측정</strong>을 통해 보행교정이 가능하도록 도와주는 제품 → 웰니스 <em>(낙상 관련 유일 사례)</em>
+↔ <strong>(의료기기)</strong> 위 앱의 데이터를 <strong>진료 등에 사용하기 위해 의료기관(의료진)에 저장·전송하거나 분석하는 소프트웨어</strong> ← 🔴 <strong>우리 대시보드 구조와 유사</strong></p>
+</blockquote>
+<p><strong>→ 경계선의 정정:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>웰니스 (허용)</strong></th>
+<th><strong>고위해도 (탈락)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>시점</strong></td>
+<td><strong>사전</strong> 위험도 평가</td>
+<td><strong>실시간</strong> 사고·이상 탐지</td>
+</tr>
+<tr>
+<td><strong>출력</strong></td>
+<td>기록·추이·가이드</td>
+<td><strong>응급 알림·경보</strong></td>
+</tr>
+<tr>
+<td><strong>수신자</strong></td>
+<td>본인·가족</td>
+<td><strong>의료진(진료 목적)</strong></td>
+</tr>
+</tbody></table>
+<p><strong>⚠️ 대법원 2008도7688</strong> [사실]:</p>
+<blockquote>
+<p>그 기구 등이 위 조항 소정의 목적으로 사용되는 것이면 되고 <strong>객관적으로 그러한 성능을 가지고 있는가를 고려할 필요가 없으며</strong>, … 사용목적은 <strong>구조와 형태, 표시된 사용목적과 효과, 판매할 때의 선전 또는 설명</strong>을 종합적으로 고려하여 결정한다.</p>
+</blockquote>
+<p><strong>→ 기술이 아니라 문구가 법적 지위를 만든다. 성능이 실제로 없어도 &quot;된다&quot;고 광고하면 의료기기다.</strong></p>
+<h3>7.2 그런데 시장은 반대로 굴러간다 — 정면 충돌하는 두 사실</h3>
+<table>
+<thead>
+<tr>
+<th>지침서 문언</th>
+<th>국가·시장 실무</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;위급상황 탐지 → 웰니스 아님&quot;</td>
+<td><strong>복지부 응급안전안심서비스: 60GHz 레이더 + 호흡·심박 측정 + 서맥(40bpm) 알람 규정.</strong> 사업안내서 <strong>219쪽 전체에 &quot;의료기기&quot; 언급 0회</strong></td>
+</tr>
+<tr>
+<td>&quot;무호흡 측정 수면평가장치 → 의료기기&quot;</td>
+<td><strong>맥케어 &quot;수면무호흡&quot; 표방 + 요양병원 2만 대 보급</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>2026.1.20 시행 복지용구 고시: 「낙상알림시스템」</strong>(= <em>&quot;활동 상태를 관찰하여 <strong>경보를 전하는</strong> 목적의 제품&quot;</em>)<strong>을 급여 품목으로 신설. 의료기기 허가 요구 없음</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td>스마트레이더시스템 복지부 <strong>10만 대</strong> 공급, 공시에 &quot;의료기기&quot; 0회</td>
+</tr>
+</tbody></table>
+<p><strong>[추정] 이 모순의 해소 방식</strong>: 정부·업계는 제품을 <strong>&quot;활동량감지기&quot;로 명명</strong>하고 사용목적을 **&quot;활동 감지·관찰&quot;**로 표방해 흐름도의 &quot;위급상황 탐지&quot; 관문을 <strong>문구상으로</strong> 우회한다. 호흡·심박은 &quot;움직임의 대상에 포함될 수 있는&quot; 부수 항목으로 서술된다.</p>
+<p><strong>⚠️ 반례 하나 — 미리 알고 가야 할 것 [미검증]</strong></p>
+<p><strong>㈜비트센싱 <code>Wellune-M1</code></strong> — <strong>60GHz FMCW 레이더로 2등급 &quot;인증&quot;을 받은 국내 선례</strong>가 보고됐다 (허가번호 <code>D제인26-4021호</code>, 2026-06-05, 디지털의료기기 트랙).
+사용목적 문구가 결정적이다:</p>
+<blockquote>
+<p>*&quot;<strong>의료진이 의료기관 내에서</strong> 수면무호흡 증상이 있는 환자의 수면무호흡을 <strong>선별</strong>하기 위해 … <strong>FMCW 레이더</strong>를 통해 수집된 호흡신호를 …&quot;*</p>
+</blockquote>
+<ul>
+<li><strong>함의</strong>: &quot;레이더 = 무조건 웰니스&quot;가 아니다. <strong>수면무호흡을 표방하면 2등급으로 가고, 실제로 통과한 회사가 있다.</strong></li>
+<li><strong>단 검증 상태</strong>: 식약처 DB 재조회에 실패했고 언론보도가 없어 <strong>교차검증되지 않았다. [미검증]으로 취급할 것.</strong></li>
+<li><strong>미팅 대응</strong>: IoT 업체가 <em>&quot;비트센싱은 인증받았던데요?&quot;</em> 라고 하면 → *&quot;맞습니다. 그런데 그쪽은 <strong>수면무호흡 선별</strong>을 사용목적으로 잡아서 갈 수밖에 없었던 겁니다. 우리가 그 문구를 안 쓰면 그 트랙을 탈 이유가 없습니다.&quot;*</li>
+</ul>
+<p><strong>⚠️ 그리고 &quot;시장에 깔려 있다&quot;는 것은 적법성의 근거가 아니다:</strong></p>
+<ul>
+<li>응급안전안심·복지용구는 <strong>재가(독거노인=개인용)</strong> 맥락. <strong>요양병원 입원환자 모니터링은 법적 맥락이 다르다</strong> [추정]</li>
+<li>지침서 「Ⅴ. 지도점검」: 비의료기기를 의료용으로 표시·광고하거나 허가 없이 의료용으로 사용하면 <strong>의료기기법 제26조에 따라 고발 또는 행정지도</strong></li>
+<li><strong>제26조① 위반(무허가 의료기기 사용) = 5년/5천만원.</strong> 규율 대상에 <strong>제조사와 사용 기관(병원)이 모두 포함</strong>된다</li>
+</ul>
+<h3>7.3 ★ 권고 — &quot;감지·경보 제품&quot;이 아니라 &quot;관찰·기록 제품&quot;으로</h3>
+<p><strong>시나리오 A(웰니스) 유지.</strong> 근거:</p>
+<ol>
+<li><strong>B가 여는 시장이 없다</strong> (§7.0)</li>
+<li><strong>A가 여는 시장은 이미 크다</strong> — 복지용구 「낙상알림시스템」 급여(2026.1.20 신설), 응급안전안심(10만 대 선례), 조달청 혁신제품, 요양병원 직납</li>
+<li><strong>비용·기간이 자릿수로 다르다</strong></li>
+<li><strong>국가가 직접 선례를 만들었다</strong> — 복지부 규격서가 60GHz 레이더 + 호흡·심박 + 서맥 알람을 의료기기 요구 없이 규정</li>
+</ol>
+<h4>✅ 해야 할 것 (제품·UI·마케팅)</h4>
+<ol>
+<li><strong>&quot;감지·모니터링&quot; → &quot;관찰·기록&quot;.</strong> 복지용구 고시가 쓰는 **&quot;관찰알림&quot;**이 국가가 승인한 안전한 어휘다</li>
+<li><strong>&quot;낙상 위험도&quot;는 쓸 수 있다</strong> — 지침서가 웰니스로 인정한 유일한 낙상 사례의 어휘. <strong>&quot;낙상 감지&quot;(사후 탐지)와 &quot;낙상 위험도&quot;(사전 평가)를 엄격히 구분</strong></li>
+<li><strong>주의 문구 삽입</strong> (지침서 Ⅴ-3 권고):<blockquote>
+<p>&quot;본 제품은 의료기기가 아니므로 질병 유무를 판단할 수 없으며, 질병 유무 판단을 위해서는 의사의 검진이 필요합니다.&quot;</p>
+</blockquote>
+</li>
+<li><strong>&quot;낙상을 줄인다&quot;고 말하지 않는다</strong> — §6.5의 RCT 근거와도 일치. 규제·과학 양쪽에서 방어 불가</li>
+</ol>
+<h4>❌ 영구 금지어</h4>
+<ul>
+<li><strong>&quot;호흡정지 / 심정지 / 무호흡 감지&quot;</strong> ← 지침서가 고위해도로 <strong>명시한 유일한 항목</strong>. 맥케어를 따라하면 안 된다</li>
+<li>&quot;응급상황 <strong>자동 감지</strong>&quot;, &quot;생명을 구합니다&quot;</li>
+<li>&quot;<strong>진단</strong>&quot;, &quot;질병 <strong>조기 발견</strong>&quot;, &quot;위험 <strong>예측</strong>&quot;</li>
+<li>의료진에게 <strong>&quot;진료 목적으로&quot;</strong> 데이터를 전송한다는 표현</li>
+</ul>
+<h4>⚠️ 남는 리스크 (정직하게)</h4>
+<p><strong>우리 제품의 핵심 가치(실시간 이상 알림)와 웰니스 유지 조건(위급상황 탐지 표방 금지)은 정면 충돌한다.</strong>
+문구를 아무리 다듬어도 <strong>실제 기능이 &quot;야간에 환자가 숨을 안 쉬면 간호사를 부른다&quot;라면</strong> 식약처가 실질로 판단할 여지가 있다 [추정].
+<strong>이 리스크는 문구로 완전히 제거되지 않는다. 사전 질의(§7.5-1)가 유일한 확실한 방어책이다.</strong></p>
+<h3>7.4 우리(실버톡톡)가 이미 반영한 것</h3>
+<p>라벨을 <strong>관측 사실 진술</strong>로 전면 교체 완료:</p>
+<table>
+<thead>
+<tr>
+<th>변경 전</th>
+<th>변경 후</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>호흡 저하</code></td>
+<td><strong><code>호흡수 기준 미만</code></strong></td>
+</tr>
+<tr>
+<td><code>호흡 과다</code></td>
+<td><strong><code>호흡수 기준 초과</code></strong></td>
+</tr>
+<tr>
+<td><code>심박 이상</code></td>
+<td><strong><code>심박수 기준 범위 밖</code></strong></td>
+</tr>
+<tr>
+<td>&quot;심박수가 <strong>정상 범위</strong>를 벗어났습니다&quot;</td>
+<td>&quot;심박수가 <strong>설정 범위</strong>를 벗어났습니다&quot;</td>
+</tr>
+</tbody></table>
+<ul>
+<li>코드 주석에 근거를 명시하고 <strong>&quot;수면 리포트에 수면무호흡 지표를 절대 추가하지 말 것&quot;</strong> 을 못박음</li>
+<li>라벨이 단일 원천이라 한 곳 수정으로 전 화면 반영</li>
+<li><strong>남은 과제</strong>: <code>FALL: &quot;낙상 감지&quot;</code> 는 지침서 기준 <strong>위험한 쪽</strong>에 있다. <code>&quot;낙상 알림&quot;</code>/<code>&quot;활동 관찰&quot;</code> 계열로 재검토 필요 (§8.2)</li>
+</ul>
+<p><strong>→ 미팅에서 이 얘기를 하면 &quot;이 회사는 규제를 이해하고 있다&quot;는 강한 신호가 된다.</strong></p>
+<h3>7.5 ★ IoT 업체에 제안할 것 — 3가지</h3>
+<p><strong>① &quot;인증 받으세요&quot;가 아니라 &quot;웰니스 트랙을 같이 지키자&quot;</strong></p>
+<blockquote>
+<p>&quot;저희가 식약처 지침서 원문을 확인해봤는데, 경계선이 <strong>질병명이 아니라 &#39;위급상황 탐지 + 경보&#39;</strong> 에 있더라고요.
+2등급을 따도 요양병원은 일당정액수가라 수가가 없고, 평가 가점 지표도 <strong>아예 없습니다</strong>. 비용은 40배고요.
+그래서 <strong>웰니스 트랙을 유지하되, 사용목적 문구를 서로 맞추는 게</strong> 맞다고 봅니다.
+저희 화면 문구는 이미 그 기준으로 정리해뒀습니다.&quot;</p>
+</blockquote>
+<p><strong>② 🎁 선물 — 복지용구 「낙상알림시스템」 급여 (2026.1.20 신설)</strong></p>
+<blockquote>
+<p>&quot;<strong>2026년 1월 20일 시행 고시로 「낙상알림시스템」이 복지용구 급여 품목으로 신설</strong>됐습니다.
+<em>&#39;활동 상태를 관찰하여 경보를 전하는 목적의 제품&#39;</em> 으로 정의돼 있고, <strong>의료기기 허가를 요구하지 않습니다.</strong>
+<strong>신설된 지 얼마 안 돼서 1호 등재를 노려볼 수 있습니다.</strong>&quot;</p>
+</blockquote>
+<p>→ 인증 비용을 쓰라는 말보다 <strong>돈이 되는 트랙을 알려주는 것</strong>이 훨씬 강한 카드다. 관계의 성격이 &quot;요구&quot;에서 &quot;기여&quot;로 바뀐다.</p>
+<p><strong>③ 「의료기기 해당 여부 검토」를 같이 받자 — 무료, 10일</strong></p>
+<blockquote>
+<p>&quot;「의료기기 허가·신고·심사 등에 관한 규정」 <strong>제60조</strong>에 사전 검토 제도가 있습니다.
+사용목적 자료를 내면 <strong>식약처장이 10일 내에 공식 회신</strong>을 줍니다. <strong>무료입니다.</strong>
+사용목적 문구를 <strong>2~3안으로 준비해서 어디서 선이 갈리는지</strong> 공식 회신을 받아두면, 나중에 마케팅·계약 리스크가 사라집니다.
+☎ 043-719-3758&quot;</p>
+</blockquote>
+<p>→ <strong>이게 이 문서 전체에서 가장 중요한 액션이다.</strong> 이것 없이는 웰니스 트랙 전체가 추정 위에 서 있다.</p>
+<h3>7.6 IoT 업체에 확인할 것 (§4.4 보강)</h3>
+<ul>
+<li>현재 사용목적을 <strong>문서상 어떻게 표기</strong>하고 있나? (카탈로그·제안서·홈페이지 문구)</li>
+<li><strong>&quot;수면무호흡&quot;·&quot;호흡정지 감지&quot;</strong> 표현을 쓰고 있나? ← 쓰고 있으면 리스크 공유 필요</li>
+<li>「의료기기 해당 여부 검토」를 받은 적이 있나? 회신 문서가 있나?</li>
+<li>복지용구·조달청·정부사업 등재 이력이 있나?</li>
+</ul>
+<h3>7.7 ⚠️ 이 절의 한계 (정직하게)</h3>
+<ul>
+<li>요양병원 <strong>인증기준 원문 PDF</strong>는 다운로드 게이팅으로 확보 실패 → §7.0의 &quot;평가 가점 없음&quot;은 장기요양·심평원은 1차 출처, 요양병원 인증은 2차 출처 기반</li>
+<li><strong>혁신의료기기 지정·규제샌드박스</strong>는 조사 미완 — 별도 확인 필요</li>
+<li><strong>&quot;의료기기 요구 공고가 없다&quot;는 부존재 증명이 불가능</strong>하다. 정확히는 **&quot;발견하지 못했다&quot;**이다</li>
+<li>조사 중 한 공고 페이지의 <strong>자동요약이 &quot;주요 자격요건: 의료기기 관련 인증&quot;이라는 허위를 생성</strong>했다(원문에 없는 문구). <strong>이 절의 인용은 전부 원문 직접 추출이며, 2차 요약을 근거로 쓰지 말 것</strong></li>
+</ul>
+<h2>8. 액션 아이템</h2>
+<h3>8.1 미팅 중</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 시연 (<code>/mon/live</code> → <code>/mon/alerts</code> → 사고보고서 기안)</li>
+<li><input disabled="" type="checkbox"> §4 체크리스트 답변 확보 — <strong>특히 #2(출력 항목), #7(판정 주체), #11(학습기간), #14(API 문서)</strong></li>
+<li><input disabled="" type="checkbox"> 역할 분담표(§3.2) 합의</li>
+<li><input disabled="" type="checkbox"> <strong>인증 = 웰니스 트랙 공동 유지 제안</strong> (§7.5 3가지: 문구 맞추기 / 복지용구 급여 / 사전 검토 공동 신청)</li>
+<li><input disabled="" type="checkbox"> §7.6 확인 — 현재 사용목적 문구, &quot;수면무호흡&quot; 표현 사용 여부</li>
+<li><input disabled="" type="checkbox"> 다음 미팅 일정</li>
+</ul>
+<h3>8.2 미팅 후 (우리)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>VIP요양병원과 보호자 앱 노출 범위 합의</strong> ← 최우선</li>
+<li><input disabled="" type="checkbox"> <strong>★ 「의료기기 해당 여부 검토」 신청</strong> — 사용목적 2~3안 준비, 무료·10일, ☎ 043-719-3758. <strong>웰니스 트랙 전체가 이 회신 위에 선다</strong></li>
+<li><input disabled="" type="checkbox"> <strong><code>FALL: &quot;낙상 감지&quot;</code> 라벨 재검토</strong> — 지침서 기준 위험한 쪽. &quot;낙상 알림&quot;/&quot;활동 관찰&quot; 계열로 (§7.4)</li>
+<li><input disabled="" type="checkbox"> 복지용구 「낙상알림시스템」 등재 요건 확인 (건보공단) — 2026.1.20 신설, 1호 등재 기회</li>
+<li><input disabled="" type="checkbox"> API 규격 수령 후 <code>VitalsSource</code> 3계층 설계 착수 (§6.7)</li>
+<li><input disabled="" type="checkbox"> 계약서 책임 조항 초안 (§6.4)</li>
+<li><input disabled="" type="checkbox"> 개인정보 위수탁 구조 정리 / 치매환자 동의 주체 유권해석 질의 검토</li>
+<li><input disabled="" type="checkbox"> VIP 기존 나스콜 설비 확인 (§4.3-20)</li>
+<li><input disabled="" type="checkbox"> 포지셔닝 문구 전면 재정렬 — &quot;낙상 감소&quot; 제거 (§6.5)</li>
+<li><input disabled="" type="checkbox"> <strong>RA 전문가 + 의료법 변호사 검토</strong> — 특히 §7.1 경계선, §7.3 남는 리스크</li>
+</ul>
+<h3>8.3 확정돼야 일정이 나오는 것 (블로커)</h3>
+<ol>
+<li><strong>출력 항목</strong> — 호흡·심박·수면단계가 안 나오면 화면 재설계</li>
+<li><strong>전송 규격·API 문서</strong> — 없으면 수집 계층 산정 불가</li>
+<li><strong>과거 데이터 조회 방식</strong> — 우리가 저장해야 하면 DB 설계 범위 확대</li>
+<li><strong>보호자 앱 노출 범위</strong> — 병원 합의 필요</li>
+</ol>
+<hr>
+<h2>부록. 근거 자료 출처</h2>
+<ul>
+<li>상세 조사: <code>~/workspace/silvertoktok-groupware/docs/iot-monitoring-research.md</code> (1,000줄, 출처 URL 포함)</li>
+<li>인증 조사: <code>~/workspace/silvertoktok-groupware/docs/medical-device-certification.md</code></li>
+<li>표기 원칙: 각 항목에 [사실]/[벤더주장]/[검증됨]/[추정]/확인 불가를 구분해 표기</li>
+</ul>
+<p><strong>주요 인용</strong></p>
+<table>
+<thead>
+<tr>
+<th>주제</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>낙상 알람 RCT</td>
+<td>Shorr et al., <em>Ann Intern Med</em> 2012 (27,672명) / REFINE (1,839명) / Cochrane</td>
+</tr>
+<tr>
+<td>실환경 민감도 57%</td>
+<td>Bagalà et al., PMC3353905</td>
+</tr>
+<tr>
+<td>레이더 ADL 86.5%</td>
+<td><em>Sensors</em> 2024, 24(11):3660</td>
+</tr>
+<tr>
+<td>침대이탈 오탐 31~32%</td>
+<td>Subermaniam et al., <em>Front Public Health</em> 2017, PMC5220104</td>
+</tr>
+<tr>
+<td>알람 피로·사망</td>
+<td>PubMed 23776996 / Joint Commission / APSF</td>
+</tr>
+<tr>
+<td>호흡수 MAE 0.18</td>
+<td>Somnofy 검증, <em>JMIR Biomed Eng</em> 2022</td>
+</tr>
+<tr>
+<td>웰니스 판단기준</td>
+<td>식약처, 2026.2.12 개정</td>
+</tr>
+<tr>
+<td>Vayyar 낙상 상태머신·API</td>
+<td>Vayyar Care 공식 스펙 PDF</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>작성: 2026-07-15 | 실버톡톡 기획·PO/PM</em></p>
+
+</body>
+</html>

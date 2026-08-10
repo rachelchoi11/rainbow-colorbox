@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>정산 표준화 솔루션</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="shell">
+
+  <!-- 사이드바 -->
+  <aside class="side">
+    <div class="brand">
+      <div class="logo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+      </div>
+      <div class="nm">정산 표준화<small>Settlement Studio</small></div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="foot">유통사 정산서 표준화·검증<br>작가 정산 산출 솔루션</div>
+  </aside>
+
+  <!-- 본문 -->
+  <div class="main">
+    <div class="topbar">
+      <div class="title" id="pageTitle">정산 요약</div>
+      <div class="right">
+        <div class="selctl hide" id="platselWrap"><select id="platSel" onchange="App.setPlatform(this.value)"></select></div>
+        <div class="monthsel hide" id="monthsel">
+          <button onclick="App.shiftMonth(-1)">‹</button>
+          <div class="lbl" id="monthLbl">전체 기간<small id="monthSub">—</small></div>
+          <button onclick="App.shiftMonth(1)">›</button>
+        </div>
+        <button class="btn hide" id="exportBtn" onclick="App.exportXlsx()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          엑셀 내보내기
+        </button>
+      </div>
+    </div>
+    <div class="content" id="view"></div>
+  </div>
+</div>
+
+<div class="scrim" id="scrim" onclick="App.closeDrawer()"></div>
+<div class="drawer" id="drawer"></div>
+<div class="toast" id="toast"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>

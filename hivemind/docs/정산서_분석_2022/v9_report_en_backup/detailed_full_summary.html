@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Detailed Full (Summary) · v9 Report</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+       margin: 0; padding: 0; background: #f5f7fa; color: #1f2937; line-height: 1.55; }
+header { background: #1e3a8a; color: #fff; padding: 24px 32px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+header h1 { margin: 0; font-size: 24px; }
+header .meta { margin-top: 6px; font-size: 13px; opacity: 0.85; }
+nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0 32px; position: sticky; top: 0; z-index: 100;
+      overflow-x: auto; white-space: nowrap; }
+nav a { display: inline-block; padding: 14px 16px; color: #374151; text-decoration: none; font-size: 14px; border-bottom: 3px solid transparent; }
+nav a:hover, nav a.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+main { max-width: 1280px; margin: 0 auto; padding: 24px 32px 80px; }
+section { background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+section h2 { margin: 0 0 16px; font-size: 18px; color: #111827; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi-card { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 18px; border-radius: 8px; border-left: 4px solid #2563eb; }
+.kpi-card.positive { border-left-color: #059669; }
+.kpi-card.warning { border-left-color: #d97706; }
+.kpi-card.danger { border-left-color: #dc2626; }
+.kpi-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 22px; font-weight: 700; color: #111827; margin-top: 4px; }
+.kpi-sub { font-size: 12px; color: #6b7280; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+th { background: #f9fafb; text-align: left; padding: 10px 12px; font-weight: 600; border-bottom: 2px solid #e5e7eb; position: sticky; top: 56px; cursor: pointer; user-select: none; }
+th:hover { background: #f3f4f6; }
+th.num { text-align: right; }
+td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:hover td { background: #fefce8; }
+.search-input { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; width: 320px; margin-bottom: 12px; }
+.footer-note { text-align: center; color: #6b7280; font-size: 12px; padding: 24px; }
+.chart-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; font-size: 13px; }
+.chart-row .label { min-width: 180px; }
+.chart-row .bar-bg { flex: 1; background: #e5e7eb; height: 16px; border-radius: 3px; }
+.chart-row .bar-fg { background: #2563eb; height: 100%; border-radius: 3px; }
+.chart-row .value { min-width: 150px; text-align: right; font-variant-numeric: tabular-nums; color: #374151; }
+.coverage-bar { display: inline-block; background: #2563eb; height: 8px; border-radius: 3px; vertical-align: middle; margin-left: 8px; }
+.coverage-label { display: inline-block; min-width: 50px; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 정산내역 통합 리포트 v9 · Detailed Full (11컬럼 통계)</h1>
+  <div class="meta">v9 _상세_full 시트 (593k 행 × 11컬럼) — 커버리지·distributor·channel·content_type·vendor_type 분포</div>
+</header>
+<nav><a href="index.html" class="">대시보드</a> <a href="publishers.html" class="">📚 Publishers</a> <a href="authors.html" class="">✍️ Authors</a> <a href="distributors.html" class="">🏪 Distributors</a> <a href="detailed_full_summary.html" class="active">📊 Detailed (11col)</a> <a href="detailed_full_sample.html" class="">📋 Detailed Top 1000</a> <a href="anomaly.html" class="">⚠️ Anomaly</a> <a href="unresolved.html" class="">미매칭</a> <a href="skipped.html" class="">스킵 파일</a> <a href="duplicates.html" class="">중복 log</a> <a href="evolution.html" class="">라운드 진화</a> <a href="month-01.html" class="">1월</a> <a href="month-02.html" class="">2월</a> <a href="month-03.html" class="">3월</a> <a href="month-04.html" class="">4월</a> <a href="month-05.html" class="">5월</a> <a href="month-06.html" class="">6월</a> <a href="month-07.html" class="">7월</a> <a href="month-08.html" class="">8월</a> <a href="month-09.html" class="">9월</a> <a href="month-10.html" class="">10월</a> <a href="month-11.html" class="">11월</a> <a href="month-12.html" class="">12월</a></nav>
+<main>
+<p style="background:#fef3c7;border-left:4px solid #d97706;padding:12px;border-radius:4px;font-size:13px;margin-bottom:24px">
+  <strong>📌 안내:</strong> 5컬럼 메인 시트(v8과 동일)는 <a href="month-01.html">월별 페이지</a>에서 확인. 본 페이지는 v9의 신규 <code>_상세_full</code> 시트(11컬럼)의 통계만 표시. 정산액 상위 1,000행 raw 데이터는 <a href="detailed_full_sample.html">📋 Detailed Top 1000</a> 페이지 참조.
+</p>
+<section>
+<h2>📊 Detailed Full (11컬럼) 통계</h2>
+<div class="kpi-grid">
+  <div class="kpi-card positive"><div class="kpi-label">전체 raw 행</div><div class="kpi-value">593,074</div><div class="kpi-sub">_상세_full 시트</div></div>
+  <div class="kpi-card positive"><div class="kpi-label">총 정산액 (raw)</div><div class="kpi-value">₩14,262,478,391</div></div>
+  <div class="kpi-card"><div class="kpi-label">고유 유통사</div><div class="kpi-value">48</div></div>
+  <div class="kpi-card"><div class="kpi-label">고유 sales_channel</div><div class="kpi-value">1,017</div></div>
+  <div class="kpi-card"><div class="kpi-label">고유 content_type</div><div class="kpi-value">153</div></div>
+  <div class="kpi-card"><div class="kpi-label">고유 vendor_type</div><div class="kpi-value">7</div></div>
+  <div class="kpi-card warning"><div class="kpi-label">list_price 채워진 행</div><div class="kpi-value">32.4%</div><div class="kpi-sub">192,093 / 593,074</div></div>
+  <div class="kpi-card warning"><div class="kpi-label">quantity 채워진 행</div><div class="kpi-value">55.6%</div><div class="kpi-sub">329,652 / 593,074</div></div>
+</div>
+</section><section>
+<h2>📋 컬럼 커버리지 (11컬럼 each)</h2>
+<div class="chart-row">
+  <div class="label">책</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">593,074 (100.0%)</div>
+</div><div class="chart-row">
+  <div class="label">작가</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">593,074 (100.0%)</div>
+</div><div class="chart-row">
+  <div class="label">raw 책명</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">593,074 (100.0%)</div>
+</div><div class="chart-row">
+  <div class="label">출판사</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">593,074 (100.0%)</div>
+</div><div class="chart-row">
+  <div class="label">정산액</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">593,074 (100.0%)</div>
+</div><div class="chart-row">
+  <div class="label">sales_channel</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">593,074 (100.0%)</div>
+</div><div class="chart-row">
+  <div class="label">distributor</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">593,074 (100.0%)</div>
+</div><div class="chart-row">
+  <div class="label">content_type</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:96%"></div></div>
+  <div class="value">572,356 (96.5%)</div>
+</div><div class="chart-row">
+  <div class="label">vendor_type</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">593,074 (100.0%)</div>
+</div><div class="chart-row">
+  <div class="label">list_price</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:32%"></div></div>
+  <div class="value">192,093 (32.4%)</div>
+</div><div class="chart-row">
+  <div class="label">quantity</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:55%"></div></div>
+  <div class="value">329,652 (55.6%)</div>
+</div>
+</section><section>
+<h2>🏪 Top 15 유통사 (행 수 + 정산액)</h2>
+<p style="color:#6b7280;font-size:13px;margin-bottom:12px">11컬럼 페이지에서는 유통사가 별도 컬럼 → 정산액 합계 분석 가능 (5컬럼 v8 메인에서는 부재).</p>
+<div class="chart-row">
+  <div class="label">원스토어</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">209,522행 · ₩405,449,074</div>
+</div><div class="chart-row">
+  <div class="label">리디</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:70%"></div></div>
+  <div class="value">148,462행 · ₩329,609,434</div>
+</div><div class="chart-row">
+  <div class="label">한아름</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:19%"></div></div>
+  <div class="value">40,207행 · ₩19,198,644</div>
+</div><div class="chart-row">
+  <div class="label">예스이십사</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:17%"></div></div>
+  <div class="value">36,570행 · ₩54,017,894</div>
+</div><div class="chart-row">
+  <div class="label">에피루스</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:11%"></div></div>
+  <div class="value">25,087행 · ₩29,030,445</div>
+</div><div class="chart-row">
+  <div class="label">알라딘</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:10%"></div></div>
+  <div class="value">22,762행 · ₩37,375,800</div>
+</div><div class="chart-row">
+  <div class="label">storywiz</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:7%"></div></div>
+  <div class="value">16,442행 · ₩37,558,681</div>
+</div><div class="chart-row">
+  <div class="label">카카오페이지</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:6%"></div></div>
+  <div class="value">14,603행 · ₩4,911,262,399</div>
+</div><div class="chart-row">
+  <div class="label">e온누리_storywiz</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:6%"></div></div>
+  <div class="value">12,911행 · ₩37,999,135</div>
+</div><div class="chart-row">
+  <div class="label">네이버</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:4%"></div></div>
+  <div class="value">9,599행 · ₩883,749,880</div>
+</div><div class="chart-row">
+  <div class="label">북큐브</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:3%"></div></div>
+  <div class="value">8,158행 · ₩28,650,723</div>
+</div><div class="chart-row">
+  <div class="label">판무림</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:3%"></div></div>
+  <div class="value">7,156행 · ₩48,755,717</div>
+</div><div class="chart-row">
+  <div class="label">카카오</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:2%"></div></div>
+  <div class="value">5,654행 · ₩2,087,701,178</div>
+</div><div class="chart-row">
+  <div class="label">미스터블루</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:2%"></div></div>
+  <div class="value">4,700행 · ₩0</div>
+</div><div class="chart-row">
+  <div class="label">네이버시리즈</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:2%"></div></div>
+  <div class="value">4,402행 · ₩389,331,911</div>
+</div>
+</section><section>
+<h2>📡 sales_channel 분포 (Top 10)</h2>
+<div class="chart-row">
+  <div class="label">리디</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">148,462 · 25.0%</div>
+</div><div class="chart-row">
+  <div class="label">H039599217</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:32%"></div></div>
+  <div class="value">48,939 · 8.3%</div>
+</div><div class="chart-row">
+  <div class="label">한아름</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:27%"></div></div>
+  <div class="value">40,207 · 6.8%</div>
+</div><div class="chart-row">
+  <div class="label">H041671017</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:25%"></div></div>
+  <div class="value">37,762 · 6.4%</div>
+</div><div class="chart-row">
+  <div class="label">예스이십사</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:24%"></div></div>
+  <div class="value">36,570 · 6.2%</div>
+</div><div class="chart-row">
+  <div class="label">에피루스</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:16%"></div></div>
+  <div class="value">25,087 · 4.2%</div>
+</div><div class="chart-row">
+  <div class="label">알라딘</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:15%"></div></div>
+  <div class="value">22,762 · 3.8%</div>
+</div><div class="chart-row">
+  <div class="label">카카오페이지</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:9%"></div></div>
+  <div class="value">14,598 · 2.5%</div>
+</div><div class="chart-row">
+  <div class="label">B2C</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:7%"></div></div>
+  <div class="value">10,881 · 1.8%</div>
+</div><div class="chart-row">
+  <div class="label">H040512178</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:7%"></div></div>
+  <div class="value">10,600 · 1.8%</div>
+</div>
+</section><section>
+<h2>🎨 content_type 분포 (Top 10)</h2>
+<div class="chart-row">
+  <div class="label">소설</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">226,673 · 38.2%</div>
+</div><div class="chart-row">
+  <div class="label">정규</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:92%"></div></div>
+  <div class="value">209,526 · 35.3%</div>
+</div><div class="chart-row">
+  <div class="label">일반</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:9%"></div></div>
+  <div class="value">21,264 · 3.6%</div>
+</div><div class="chart-row">
+  <div class="label">원스토어㈜</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:7%"></div></div>
+  <div class="value">18,085 · 3.0%</div>
+</div><div class="chart-row">
+  <div class="label">웹툰</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:4%"></div></div>
+  <div class="value">10,764 · 1.8%</div>
+</div><div class="chart-row">
+  <div class="label">대여</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:4%"></div></div>
+  <div class="value">9,655 · 1.6%</div>
+</div><div class="chart-row">
+  <div class="label">삼사</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:4%"></div></div>
+  <div class="value">9,327 · 1.6%</div>
+</div><div class="chart-row">
+  <div class="label">이북클럽</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:3%"></div></div>
+  <div class="value">8,191 · 1.4%</div>
+</div><div class="chart-row">
+  <div class="label">선투자</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:2%"></div></div>
+  <div class="value">4,945 · 0.8%</div>
+</div><div class="chart-row">
+  <div class="label">만화</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:2%"></div></div>
+  <div class="value">4,859 · 0.8%</div>
+</div>
+</section><section>
+<h2>🏢 vendor_type 분포 (Top 10)</h2>
+<div class="chart-row">
+  <div class="label">B2C</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">213,349 · 36.0%</div>
+</div><div class="chart-row">
+  <div class="label">B2BC</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:90%"></div></div>
+  <div class="value">193,876 · 32.7%</div>
+</div><div class="chart-row">
+  <div class="label">원스토어㈜</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:52%"></div></div>
+  <div class="value">112,635 · 19.0%</div>
+</div><div class="chart-row">
+  <div class="label">OSB_AOS_ONESTORE</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:25%"></div></div>
+  <div class="value">54,531 · 9.2%</div>
+</div><div class="chart-row">
+  <div class="label">OSB_AOS_GOOGLE</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:6%"></div></div>
+  <div class="value">14,277 · 2.4%</div>
+</div><div class="chart-row">
+  <div class="label">OSB_MW</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:1%"></div></div>
+  <div class="value">3,770 · 0.6%</div>
+</div><div class="chart-row">
+  <div class="label">OSB_PCW</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:0%"></div></div>
+  <div class="value">636 · 0.1%</div>
+</div>
+</section>
+</main>
+<div class="footer-note">데이터: v9 (_상세_full 593k × 11col) · 5컬럼 정책 유지 + 신규 6컬럼 detail · PII 미포함</div>
+<script>
+document.querySelectorAll('table.sortable').forEach(tbl => {
+  const headers = tbl.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const tbody = tbl.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isNum = th.classList.contains('num');
+      const asc = th.dataset.sort !== 'asc';
+      rows.sort((a, b) => {
+        let va = a.cells[idx].dataset.sortkey || a.cells[idx].textContent;
+        let vb = b.cells[idx].dataset.sortkey || b.cells[idx].textContent;
+        if (isNum) { va = parseFloat(va) || 0; vb = parseFloat(vb) || 0; return asc ? va - vb : vb - va; }
+        return asc ? va.localeCompare(vb, 'ko') : vb.localeCompare(va, 'ko');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      headers.forEach(h => h.dataset.sort = '');
+      th.dataset.sort = asc ? 'asc' : 'desc';
+    });
+  });
+});
+document.querySelectorAll('.search-input').forEach(input => {
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    const tbl = document.querySelector(input.dataset.target || 'table');
+    const tbody = tbl ? tbl.querySelector('tbody') : null;
+    if (!tbody) return;
+    tbody.querySelectorAll('tr').forEach(tr => {
+      const text = tr.textContent.toLowerCase();
+      tr.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

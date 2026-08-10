@@ -1,0 +1,3566 @@
+
+<table width="100%" border=1 cellpadding=3 bordercolor="#a0c8f9">
+		<td style="mso-data-placement:same-cell;">판매구분</td>
+		<td class="lheader" >제목</td>
+		<td class="lheader" >저자</td>
+		<td class="lheader" >출판사</td>
+		<td class="lheader" >수량</td>
+		<td class="lheader" >판매금액</td>
+		<td class="lheader" >수수료</td>
+		<td class="lheader" >정산액</td>
+		<td class="lheader" >ISBN/UCI</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">6개월짜리 신부</td>
+		<td align=left>제타</td>
+		<td>노크(knock)</td>
+		<td>1</td>
+		<td>3500</td>
+		<td></td>
+		<td align=left >2,450</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">갈망<세트구매></td>
+		<td align=left>님도르신</td>
+		<td>로망로즈</td>
+		<td>3</td>
+		<td>5355</td>
+		<td></td>
+		<td align=left >3,213</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">거침없이 1</td>
+		<td align=left>화연 윤희수</td>
+		<td>수스토리</td>
+		<td>3</td>
+		<td>8400</td>
+		<td></td>
+		<td align=left >5,880</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">거침없이 2(완결)</td>
+		<td align=left>화연 윤희수</td>
+		<td>수스토리</td>
+		<td>2</td>
+		<td>5700</td>
+		<td></td>
+		<td align=left >3,990</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">거침없이<세트구매></td>
+		<td align=left>화연 윤희수</td>
+		<td>수스토리</td>
+		<td>18</td>
+		<td>41310</td>
+		<td></td>
+		<td align=left >24,786</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">검신광룡 2</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">겨울의 끝에서 1</td>
+		<td align=left>정가별</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3240</td>
+		<td></td>
+		<td align=left >2,268</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">겨울의 끝에서 1</td>
+		<td align=left>정가별</td>
+		<td>래이니북스</td>
+		<td>2</td>
+		<td>6120</td>
+		<td></td>
+		<td align=left >3,672</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">겨울의 끝에서 2(완결)</td>
+		<td align=left>정가별</td>
+		<td>래이니북스</td>
+		<td>2</td>
+		<td>6120</td>
+		<td></td>
+		<td align=left >3,672</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">겨울의 끝에서 2(완결)</td>
+		<td align=left>정가별</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3240</td>
+		<td></td>
+		<td align=left >2,268</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">곱게 미쳐 줄게요<세트구매></td>
+		<td align=left>느린돌</td>
+		<td>사막여우</td>
+		<td>3</td>
+		<td>6197</td>
+		<td></td>
+		<td align=left >3,717</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">광풍무 4</td>
+		<td align=left>나한</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">그 누구도 아닌 너에게 [외전]</td>
+		<td align=left>수현</td>
+		<td>로망로즈</td>
+		<td>2</td>
+		<td>1900</td>
+		<td></td>
+		<td align=left >1,330</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">그 누구도 아닌 너에게 1</td>
+		<td align=left>수현</td>
+		<td>로망로즈</td>
+		<td>5</td>
+		<td>13500</td>
+		<td></td>
+		<td align=left >9,450</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">그 누구도 아닌 너에게 1</td>
+		<td align=left>수현</td>
+		<td>로망로즈</td>
+		<td>4</td>
+		<td>10200</td>
+		<td></td>
+		<td align=left >6,120</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">그 누구도 아닌 너에게 2(완결)</td>
+		<td align=left>수현</td>
+		<td>로망로즈</td>
+		<td>1</td>
+		<td>2550</td>
+		<td></td>
+		<td align=left >1,530</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">그 누구도 아닌 너에게 2(완결)</td>
+		<td align=left>수현</td>
+		<td>로망로즈</td>
+		<td>1</td>
+		<td>2700</td>
+		<td></td>
+		<td align=left >1,890</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">그 누구도 아닌 너에게<세트구매></td>
+		<td align=left>수현</td>
+		<td>로망로즈</td>
+		<td>21</td>
+		<td>37485</td>
+		<td></td>
+		<td align=left >22,491</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">그녀는 의붓누나였어요</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>2975</td>
+		<td></td>
+		<td align=left >1,785</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">그녀를 함락시키는 방법  1</td>
+		<td align=left>우젤랑</td>
+		<td>야맨스</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >600</td>
+		<td align=left style="mso-number-format:'\@'">9791157700776</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">끊을 수 없는 관계 1</td>
+		<td align=left>포르테</td>
+		<td>로망띠끄</td>
+		<td>4</td>
+		<td>11700</td>
+		<td></td>
+		<td align=left >8,190</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">끊을 수 없는 관계 2(완결)</td>
+		<td align=left>포르테</td>
+		<td>로망띠끄</td>
+		<td>3</td>
+		<td>8700</td>
+		<td></td>
+		<td align=left >6,090</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">끊을 수 없는 관계<세트구매></td>
+		<td align=left>포르테</td>
+		<td>로망띠끄</td>
+		<td>4</td>
+		<td>9180</td>
+		<td></td>
+		<td align=left >5,508</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">끝정<세트구매></td>
+		<td align=left>벚꽃그리고</td>
+		<td>고트북스</td>
+		<td>3</td>
+		<td>9410</td>
+		<td></td>
+		<td align=left >5,645</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">나의 오만한 배우님 1</td>
+		<td align=left>솧</td>
+		<td>사막여우</td>
+		<td>1</td>
+		<td>2800</td>
+		<td></td>
+		<td align=left >1,960</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">나의 오만한 배우님 2</td>
+		<td align=left>솧</td>
+		<td>사막여우</td>
+		<td>1</td>
+		<td>2800</td>
+		<td></td>
+		<td align=left >1,960</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">나의, 하나 1</td>
+		<td align=left>가온해</td>
+		<td>로망띠끄</td>
+		<td>1</td>
+		<td>2880</td>
+		<td></td>
+		<td align=left >2,016</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">나의, 하나 1</td>
+		<td align=left>가온해</td>
+		<td>로망띠끄</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">나의, 하나 2</td>
+		<td align=left>가온해</td>
+		<td>로망띠끄</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">나의, 하나 2</td>
+		<td align=left>가온해</td>
+		<td>로망띠끄</td>
+		<td>1</td>
+		<td>2880</td>
+		<td></td>
+		<td align=left >2,016</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">나의, 하나<세트구매></td>
+		<td align=left>가온해</td>
+		<td>로망띠끄</td>
+		<td>6</td>
+		<td>14688</td>
+		<td></td>
+		<td align=left >8,812</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">남편 쇼핑  1</td>
+		<td align=left>느린돌</td>
+		<td>사막여우</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">남편 재워놓고 해요</td>
+		<td align=left>적파랑</td>
+		<td>so what</td>
+		<td>3</td>
+		<td>2225</td>
+		<td></td>
+		<td align=left >1,358</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">낯선 재회 1</td>
+		<td align=left>한윤채</td>
+		<td>사막여우</td>
+		<td>3</td>
+		<td>10260</td>
+		<td></td>
+		<td align=left >7,182</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">낯선 재회 2(완결)</td>
+		<td align=left>한윤채</td>
+		<td>사막여우</td>
+		<td>3</td>
+		<td>10260</td>
+		<td></td>
+		<td align=left >7,182</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">낯선 재회<세트구매></td>
+		<td align=left>한윤채</td>
+		<td>사막여우</td>
+		<td>8</td>
+		<td>23256</td>
+		<td></td>
+		<td align=left >13,952</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">내 아들의 몹쓸 짓</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >595</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">너무 밝히는 엄마들</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>2</td>
+		<td>1600</td>
+		<td></td>
+		<td align=left >952</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">너무 큰 아들친구</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >595</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">다정 중독 1</td>
+		<td align=left>임단젤</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>2900</td>
+		<td></td>
+		<td align=left >2,030</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">다정 중독 2</td>
+		<td align=left>임단젤</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>2900</td>
+		<td></td>
+		<td align=left >2,030</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">다정 중독 3(완결)</td>
+		<td align=left>임단젤</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3500</td>
+		<td></td>
+		<td align=left >2,450</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">더티 웨딩 1</td>
+		<td align=left>리버 진</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>2975</td>
+		<td></td>
+		<td align=left >1,785</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">도련님이랑 하면 어때서</td>
+		<td align=left>적파랑</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>600</td>
+		<td></td>
+		<td align=left >357</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">독점 계약 1</td>
+		<td align=left>주황연</td>
+		<td>N.fic</td>
+		<td>1</td>
+		<td>3500</td>
+		<td></td>
+		<td align=left >2,450</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">독점 계약 2(완결)</td>
+		<td align=left>주황연</td>
+		<td>N.fic</td>
+		<td>1</td>
+		<td>3500</td>
+		<td></td>
+		<td align=left >2,450</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">독점욕 1</td>
+		<td align=left>트윈레드</td>
+		<td>라포레</td>
+		<td>2</td>
+		<td>5400</td>
+		<td></td>
+		<td align=left >3,780</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">독점욕 2(완결)</td>
+		<td align=left>트윈레드</td>
+		<td>라포레</td>
+		<td>2</td>
+		<td>5400</td>
+		<td></td>
+		<td align=left >3,780</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">독점욕 외전</td>
+		<td align=left>트윈레드</td>
+		<td>라포레</td>
+		<td>1</td>
+		<td>1300</td>
+		<td></td>
+		<td align=left >910</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">딜 넣는 만능 바드 2</td>
+		<td align=left>쿄쿄맨</td>
+		<td>스토리야</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">만져도 돼? (외전증보판)</td>
+		<td align=left>차가울(미캉)</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>4000</td>
+		<td></td>
+		<td align=left >2,800</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">멸망한 세계의 유산을 찾았습니다. 2</td>
+		<td align=left>아만티</td>
+		<td>사이렌</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">멸문세가 소가주 2</td>
+		<td align=left>지인</td>
+		<td>ARC</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">모르는 아내 1</td>
+		<td align=left>소낙연</td>
+		<td>사막여우</td>
+		<td>2</td>
+		<td>5270</td>
+		<td></td>
+		<td align=left >3,162</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">모르는 아내 1</td>
+		<td align=left>소낙연</td>
+		<td>사막여우</td>
+		<td>29</td>
+		<td>82460</td>
+		<td></td>
+		<td align=left >57,722</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">모르는 아내 2</td>
+		<td align=left>소낙연</td>
+		<td>사막여우</td>
+		<td>28</td>
+		<td>79980</td>
+		<td></td>
+		<td align=left >55,986</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">모르는 아내 2</td>
+		<td align=left>소낙연</td>
+		<td>사막여우</td>
+		<td>2</td>
+		<td>5270</td>
+		<td></td>
+		<td align=left >3,162</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">모르는 아내 3(완결)</td>
+		<td align=left>소낙연</td>
+		<td>사막여우</td>
+		<td>2</td>
+		<td>5270</td>
+		<td></td>
+		<td align=left >3,162</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">모르는 아내 3(완결)</td>
+		<td align=left>소낙연</td>
+		<td>사막여우</td>
+		<td>21</td>
+		<td>60140</td>
+		<td></td>
+		<td align=left >42,098</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">모르는 아내<세트구매></td>
+		<td align=left>소낙연</td>
+		<td>사막여우</td>
+		<td>30</td>
+		<td>69892</td>
+		<td></td>
+		<td align=left >41,929</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">무검마도 2</td>
+		<td align=left>강용</td>
+		<td>스토리야</td>
+		<td>1</td>
+		<td>2125</td>
+		<td></td>
+		<td align=left >1,275</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">무검마도 3</td>
+		<td align=left>강용</td>
+		<td>스토리야</td>
+		<td>1</td>
+		<td>2125</td>
+		<td></td>
+		<td align=left >1,275</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">무검마도 4</td>
+		<td align=left>강용</td>
+		<td>스토리야</td>
+		<td>1</td>
+		<td>2125</td>
+		<td></td>
+		<td align=left >1,275</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">무검마도 5</td>
+		<td align=left>강용</td>
+		<td>스토리야</td>
+		<td>1</td>
+		<td>2125</td>
+		<td></td>
+		<td align=left >1,275</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">무검마도 6</td>
+		<td align=left>강용</td>
+		<td>스토리야</td>
+		<td>1</td>
+		<td>2125</td>
+		<td></td>
+		<td align=left >1,275</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">무극신갑 2</td>
+		<td align=left>나한</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">무극신갑 3</td>
+		<td align=left>나한</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">무극신갑 4</td>
+		<td align=left>나한</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">무극신갑 5</td>
+		<td align=left>나한</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">무극신갑 6</td>
+		<td align=left>나한</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">무극신갑 7(완결)</td>
+		<td align=left>나한</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">묵룡창 1</td>
+		<td align=left>가나 이대성</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954258425</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">묵룡창 2</td>
+		<td align=left>가나 이대성</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954258432</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">묵룡창 3</td>
+		<td align=left>가나 이대성</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954258449</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">묵룡창 4</td>
+		<td align=left>가나 이대성</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954258456</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">묵룡창 5(완결)</td>
+		<td align=left>가나 이대성</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954258463</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">미스틱 시티 (외전)</td>
+		<td align=left>한서흔</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>1500</td>
+		<td></td>
+		<td align=left >1,050</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">미스틱 시티 1</td>
+		<td align=left>한서흔</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">미스틱 시티 2</td>
+		<td align=left>한서흔</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">미스틱 시티 3(완결)</td>
+		<td align=left>한서흔</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">밀크 플레이(삽화본)</td>
+		<td align=left>문정민</td>
+		<td>플로린</td>
+		<td>20</td>
+		<td>50000</td>
+		<td></td>
+		<td align=left >35,000</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">밀크 플레이(삽화본)</td>
+		<td align=left>문정민</td>
+		<td>플로린</td>
+		<td>23</td>
+		<td>48875</td>
+		<td></td>
+		<td align=left >29,325</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">발기시켜드립니다</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>2</td>
+		<td>1600</td>
+		<td></td>
+		<td align=left >952</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">보호 본능</td>
+		<td align=left>연민정(레드퀸)</td>
+		<td>노크(knock)</td>
+		<td>1</td>
+		<td>2550</td>
+		<td></td>
+		<td align=left >1,530</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">불건전한 집안 사정</td>
+		<td align=left>랭작가</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>850</td>
+		<td></td>
+		<td align=left >510</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">비서 감금 (삽화본)</td>
+		<td align=left>문정민</td>
+		<td>플로린</td>
+		<td>5</td>
+		<td>12500</td>
+		<td></td>
+		<td align=left >8,750</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">비서 감금 (삽화본)</td>
+		<td align=left>문정민</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>2125</td>
+		<td></td>
+		<td align=left >1,275</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">빼앗긴 아이 1</td>
+		<td align=left>신팸</td>
+		<td>래이니북스</td>
+		<td>14</td>
+		<td>33540</td>
+		<td></td>
+		<td align=left >23,478</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">빼앗긴 아이 1</td>
+		<td align=left>신팸</td>
+		<td>래이니북스</td>
+		<td>5</td>
+		<td>11050</td>
+		<td></td>
+		<td align=left >6,630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">빼앗긴 아이 2</td>
+		<td align=left>신팸</td>
+		<td>래이니북스</td>
+		<td>2</td>
+		<td>4420</td>
+		<td></td>
+		<td align=left >2,652</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">빼앗긴 아이 2</td>
+		<td align=left>신팸</td>
+		<td>래이니북스</td>
+		<td>12</td>
+		<td>28860</td>
+		<td></td>
+		<td align=left >20,202</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">빼앗긴 아이 3(완결)</td>
+		<td align=left>신팸</td>
+		<td>래이니북스</td>
+		<td>11</td>
+		<td>26520</td>
+		<td></td>
+		<td align=left >18,564</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">빼앗긴 아이 3(완결)</td>
+		<td align=left>신팸</td>
+		<td>래이니북스</td>
+		<td>2</td>
+		<td>4420</td>
+		<td></td>
+		<td align=left >2,652</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">빼앗긴 아이<세트구매></td>
+		<td align=left>신팸</td>
+		<td>래이니북스</td>
+		<td>36</td>
+		<td>71604</td>
+		<td></td>
+		<td align=left >42,960</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사내 결벽주의 1</td>
+		<td align=left>구재나</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>2295</td>
+		<td></td>
+		<td align=left >1,377</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사내 결벽주의 1</td>
+		<td align=left>구재나</td>
+		<td>플로린</td>
+		<td>7</td>
+		<td>18630</td>
+		<td></td>
+		<td align=left >13,041</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사내 결벽주의 2(완결)</td>
+		<td align=left>구재나</td>
+		<td>플로린</td>
+		<td>7</td>
+		<td>18630</td>
+		<td></td>
+		<td align=left >13,041</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사내 결벽주의 2(완결)</td>
+		<td align=left>구재나</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>2295</td>
+		<td></td>
+		<td align=left >1,377</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사내 결벽주의<세트구매></td>
+		<td align=left>구재나</td>
+		<td>플로린</td>
+		<td>8</td>
+		<td>16524</td>
+		<td></td>
+		<td align=left >9,913</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사내성실의 원칙</td>
+		<td align=left>리큐리</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>3528</td>
+		<td></td>
+		<td align=left >2,116</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사내성실의 원칙 1</td>
+		<td align=left>리큐리</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>2380</td>
+		<td></td>
+		<td align=left >1,428</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사내성실의 원칙 1</td>
+		<td align=left>리큐리</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>2800</td>
+		<td></td>
+		<td align=left >1,960</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사내성실의 원칙 2(완결)</td>
+		<td align=left>리큐리</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>2800</td>
+		<td></td>
+		<td align=left >1,960</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사내성실의 원칙<세트구매></td>
+		<td align=left>리큐리</td>
+		<td>플로린</td>
+		<td>2</td>
+		<td>4284</td>
+		<td></td>
+		<td align=left >2,570</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사악도인 1</td>
+		<td align=left>가나 이대성</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954258364</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사악도인 2</td>
+		<td align=left>가나 이대성</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954258371</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사악도인 3</td>
+		<td align=left>가나 이대성</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954258388</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사야지존 1</td>
+		<td align=left>나민채</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9791131327166</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사야지존 2</td>
+		<td align=left>나민채</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9791131327173</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사야지존 3</td>
+		<td align=left>나민채</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9791131327180</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사야지존 4</td>
+		<td align=left>나민채</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9791131327197</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사야지존 5</td>
+		<td align=left>나민채</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9791131327203</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사제회귀 2</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사제회귀 3</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사제회귀 4</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사제회귀 5</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사제회귀 6</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사제회귀 7</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">사제회귀 8(완결)</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">사직 후 계약 아내<세트구매></td>
+		<td align=left>새록</td>
+		<td>사막여우</td>
+		<td>3</td>
+		<td>7803</td>
+		<td></td>
+		<td align=left >4,681</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">생사금고 5</td>
+		<td align=left>한이담</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954240451</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">생사금고 6</td>
+		<td align=left>한이담</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954240468</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">샤피로 1</td>
+		<td align=left>쥬논</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >540</td>
+		<td align=left style="mso-number-format:'\@'">9788954260671</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">수박</td>
+		<td align=left>강원산</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>17010</td>
+		<td></td>
+		<td align=left >10,206</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">수치스러운 밤 1</td>
+		<td align=left>최고진</td>
+		<td>사막여우</td>
+		<td>1</td>
+		<td>2380</td>
+		<td></td>
+		<td align=left >1,428</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">수치스러운 밤 1</td>
+		<td align=left>최고진</td>
+		<td>사막여우</td>
+		<td>2</td>
+		<td>5320</td>
+		<td></td>
+		<td align=left >3,724</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">수치스러운 밤 2</td>
+		<td align=left>최고진</td>
+		<td>사막여우</td>
+		<td>1</td>
+		<td>2520</td>
+		<td></td>
+		<td align=left >1,764</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">수치스러운 밤 3(완결)</td>
+		<td align=left>최고진</td>
+		<td>사막여우</td>
+		<td>1</td>
+		<td>2520</td>
+		<td></td>
+		<td align=left >1,764</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">수치스러운 밤<세트구매></td>
+		<td align=left>최고진</td>
+		<td>사막여우</td>
+		<td>9</td>
+		<td>19278</td>
+		<td></td>
+		<td align=left >11,565</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">쉴 틈 없이 사랑해주세요<세트구매></td>
+		<td align=left>하루가 너무 길다</td>
+		<td>사막여우</td>
+		<td>3</td>
+		<td>6885</td>
+		<td></td>
+		<td align=left >4,131</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">스며들기 전에<세트구매></td>
+		<td align=left>하루가 너무 길다</td>
+		<td>사막여우</td>
+		<td>3</td>
+		<td>7574</td>
+		<td></td>
+		<td align=left >4,544</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">스폰<세트구매></td>
+		<td align=left>Yulia</td>
+		<td>래이니북스</td>
+		<td>2</td>
+		<td>5049</td>
+		<td></td>
+		<td align=left >3,029</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">신이 내린 투자 천재 2</td>
+		<td align=left>해달벗</td>
+		<td>ARC</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">신이 내린 투자 천재 3</td>
+		<td align=left>해달벗</td>
+		<td>ARC</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">쓰레기의 취향 1</td>
+		<td align=left>야누스</td>
+		<td>로망로즈</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">아버님이 교육하는 첫날밤. 외전 (1부)</td>
+		<td align=left>경조사매니아</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >700</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">아버님이 교육하는 첫날밤. 외전 (2부)</td>
+		<td align=left>경조사매니아</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >700</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">아버님이 교육하는 첫날밤. 외전 (3부)</td>
+		<td align=left>경조사매니아</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >700</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">아빠 몰래 새 엄마랑</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >595</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">아저씨, 너무 심해요</td>
+		<td align=left>적파랑</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>600</td>
+		<td></td>
+		<td align=left >357</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">아줌마가 대신 해줄까</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>600</td>
+		<td></td>
+		<td align=left >357</td>
+		<td align=left style="mso-number-format:'\@'">9791158419677</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">악당무적 1</td>
+		<td align=left>강호풍</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263252</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">악당무적 2</td>
+		<td align=left>강호풍</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263269</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">악당무적 3</td>
+		<td align=left>강호풍</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263276</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">악당무적 4</td>
+		<td align=left>강호풍</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263283</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">악당무적 5</td>
+		<td align=left>강호풍</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263290</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">악당무적 6(완결)</td>
+		<td align=left>강호풍</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9791131326893</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">알몸의 처형</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>600</td>
+		<td></td>
+		<td align=left >357</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">야한 짓은 나하고만</td>
+		<td align=left>연민정(레드퀸)</td>
+		<td>노크(knock)</td>
+		<td>2</td>
+		<td>6000</td>
+		<td></td>
+		<td align=left >4,200</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">어린아내들의 분출</td>
+		<td align=left>적파랑</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>2975</td>
+		<td></td>
+		<td align=left >1,785</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">어머니, 저한테 왜 이러세요?</td>
+		<td align=left>적파랑</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >595</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">언니의 첫날밤을 훔쳤다 1</td>
+		<td align=left>느린돌</td>
+		<td>사막여우</td>
+		<td>4</td>
+		<td>15600</td>
+		<td></td>
+		<td align=left >10,920</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">언니의 첫날밤을 훔쳤다 2(완결)</td>
+		<td align=left>느린돌</td>
+		<td>사막여우</td>
+		<td>4</td>
+		<td>16000</td>
+		<td></td>
+		<td align=left >11,200</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">언니의 첫날밤을 훔쳤다<세트구매></td>
+		<td align=left>느린돌</td>
+		<td>사막여우</td>
+		<td>12</td>
+		<td>36720</td>
+		<td></td>
+		<td align=left >22,032</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">언더커버<세트구매></td>
+		<td align=left>허도윤</td>
+		<td>하트퀸</td>
+		<td>2</td>
+		<td>4590</td>
+		<td></td>
+		<td align=left >2,754</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">역전의 순간</td>
+		<td align=left>임은성</td>
+		<td>플로린</td>
+		<td>5</td>
+		<td>16150</td>
+		<td></td>
+		<td align=left >9,690</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">역전의 순간</td>
+		<td align=left>임은성</td>
+		<td>플로린</td>
+		<td>14</td>
+		<td>49780</td>
+		<td></td>
+		<td align=left >34,846</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">역전의 순간 (외전)</td>
+		<td align=left>임은성</td>
+		<td>플로린</td>
+		<td>8</td>
+		<td>7700</td>
+		<td></td>
+		<td align=left >5,390</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">역전의 순간 (외전)</td>
+		<td align=left>임은성</td>
+		<td>플로린</td>
+		<td>3</td>
+		<td>2550</td>
+		<td></td>
+		<td align=left >1,530</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">역전의 순간<세트구매></td>
+		<td align=left>임은성</td>
+		<td>플로린</td>
+		<td>72</td>
+		<td>132192</td>
+		<td></td>
+		<td align=left >79,310</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">옆집 AV여배우</td>
+		<td align=left>여시</td>
+		<td>Red Cat</td>
+		<td>1</td>
+		<td>625</td>
+		<td></td>
+		<td align=left >406</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">오빠 대신 빚보증</td>
+		<td align=left>김민</td>
+		<td>원샷(OneShot)</td>
+		<td>1</td>
+		<td>1200</td>
+		<td></td>
+		<td align=left >840</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">온전하지 못한 관계 1</td>
+		<td align=left>하루가 너무 길다</td>
+		<td>사막여우</td>
+		<td>1</td>
+		<td>2040</td>
+		<td></td>
+		<td align=left >1,224</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">온전하지 못한 관계<세트구매></td>
+		<td align=left>하루가 너무 길다</td>
+		<td>사막여우</td>
+		<td>16</td>
+		<td>23868</td>
+		<td></td>
+		<td align=left >14,320</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">완벽한 소유 1</td>
+		<td align=left>화연 윤희수</td>
+		<td>수스토리</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">완벽한 소유 2(완결)</td>
+		<td align=left>화연 윤희수</td>
+		<td>수스토리</td>
+		<td>3</td>
+		<td>9000</td>
+		<td></td>
+		<td align=left >6,300</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">완벽한 소유<세트구매></td>
+		<td align=left>화연 윤희수</td>
+		<td>수스토리</td>
+		<td>2</td>
+		<td>4590</td>
+		<td></td>
+		<td align=left >2,754</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">완벽한 청혼 1</td>
+		<td align=left>송민선</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>3400</td>
+		<td></td>
+		<td align=left >2,380</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 10</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 10</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 11</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 11</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 12</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 13(완결)</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 13(완결)</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 2</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>4</td>
+		<td>3600</td>
+		<td></td>
+		<td align=left >2,520</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 2</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>5</td>
+		<td>4500</td>
+		<td></td>
+		<td align=left >3,150</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 3</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>3</td>
+		<td>2700</td>
+		<td></td>
+		<td align=left >1,890</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 3</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>3</td>
+		<td>2700</td>
+		<td></td>
+		<td align=left >1,890</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 4</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 4</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>3</td>
+		<td>2700</td>
+		<td></td>
+		<td align=left >1,890</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 5</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 5</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 6</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 6</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 7</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 7</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 8</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 8</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 9</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">용을 삼킨 검 9</td>
+		<td align=left>사도연</td>
+		<td>넥스트레벨 스튜디오</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">우리 사이에 아기가<세트구매></td>
+		<td align=left>느린돌</td>
+		<td>사막여우</td>
+		<td>3</td>
+		<td>5967</td>
+		<td></td>
+		<td align=left >3,580</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">의붓딸 성교육 시키기</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>2</td>
+		<td>1625</td>
+		<td></td>
+		<td align=left >1,001</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">이제 대줄 남자도 없어</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >595</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">이혼 시차 [외전]</td>
+		<td align=left>반흔</td>
+		<td>로망로즈</td>
+		<td>2</td>
+		<td>1200</td>
+		<td></td>
+		<td align=left >840</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">이혼 시차 1</td>
+		<td align=left>반흔</td>
+		<td>로망로즈</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">이혼 시차 2(완결)</td>
+		<td align=left>반흔</td>
+		<td>로망로즈</td>
+		<td>4</td>
+		<td>12000</td>
+		<td></td>
+		<td align=left >8,400</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 1</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,080</td>
+		<td align=left style="mso-number-format:'\@'">9788954232821</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 10</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261029</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 11</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261036</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 12</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261043</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 13</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261050</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 14</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261067</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 15</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261074</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 16</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261081</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 17</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261098</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 18</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9791131310021</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 19</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9791131310038</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 2</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954232838</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 20</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9791131310045</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 3</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954232845</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 4</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954233477</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 5</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954235525</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 6</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954236201</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 7</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954237581</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 8</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954239189</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">일보신권 9</td>
+		<td align=left>시니어</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>3200</td>
+		<td></td>
+		<td align=left >1,920</td>
+		<td align=left style="mso-number-format:'\@'">9788954261012</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">임신 강요 1</td>
+		<td align=left>오유영</td>
+		<td>유니브</td>
+		<td>1</td>
+		<td>3500</td>
+		<td></td>
+		<td align=left >2,450</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">잉첩 (외전)</td>
+		<td align=left>별보라</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >700</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">잉첩 1</td>
+		<td align=left>별보라</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>4000</td>
+		<td></td>
+		<td align=left >2,800</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">잉첩 2(완결)</td>
+		<td align=left>별보라</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>4000</td>
+		<td></td>
+		<td align=left >2,800</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">자, 나처럼 벌려봐 </td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>600</td>
+		<td></td>
+		<td align=left >357</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">장모님, 한 번만 대주세요 1</td>
+		<td align=left>경조사매니아</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>850</td>
+		<td></td>
+		<td align=left >510</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">장모님, 한 번만 대주세요 2</td>
+		<td align=left>경조사매니아</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>850</td>
+		<td></td>
+		<td align=left >510</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">장모님, 한 번만 대주세요 3</td>
+		<td align=left>경조사매니아</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>850</td>
+		<td></td>
+		<td align=left >510</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">장모님, 한 번만 대주세요 4(완결)</td>
+		<td align=left>경조사매니아</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>850</td>
+		<td></td>
+		<td align=left >510</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">재벌 사위 말고 재벌 하겠습니다 2</td>
+		<td align=left>해달벗</td>
+		<td>ARC</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">재벌 사위 말고 재벌 하겠습니다 3</td>
+		<td align=left>해달벗</td>
+		<td>ARC</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">재벌 사위 말고 재벌 하겠습니다 4</td>
+		<td align=left>해달벗</td>
+		<td>ARC</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">재벌 사위 말고 재벌 하겠습니다 5</td>
+		<td align=left>해달벗</td>
+		<td>ARC</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">저질 상사한테 당하다</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>625</td>
+		<td></td>
+		<td align=left >406</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">전남편의 순정<세트구매></td>
+		<td align=left>설래인</td>
+		<td>래이니북스</td>
+		<td>3</td>
+		<td>5967</td>
+		<td></td>
+		<td align=left >3,580</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">전소 1</td>
+		<td align=left>그일도</td>
+		<td>플로린</td>
+		<td>3</td>
+		<td>9720</td>
+		<td></td>
+		<td align=left >6,804</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">전소 2</td>
+		<td align=left>그일도</td>
+		<td>플로린</td>
+		<td>3</td>
+		<td>9720</td>
+		<td></td>
+		<td align=left >6,804</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">전소 3</td>
+		<td align=left>그일도</td>
+		<td>플로린</td>
+		<td>2</td>
+		<td>6480</td>
+		<td></td>
+		<td align=left >4,536</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">전소 4(완결)</td>
+		<td align=left>그일도</td>
+		<td>플로린</td>
+		<td>3</td>
+		<td>9720</td>
+		<td></td>
+		<td align=left >6,804</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">전소<세트구매></td>
+		<td align=left>그일도</td>
+		<td>플로린</td>
+		<td>4</td>
+		<td>11016</td>
+		<td></td>
+		<td align=left >6,609</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">정점에 서다</td>
+		<td align=left>강원산</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>11907</td>
+		<td></td>
+		<td align=left >7,144</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">조작된 밤 1</td>
+		<td align=left>진다래</td>
+		<td>사막여우</td>
+		<td>2</td>
+		<td>6460</td>
+		<td></td>
+		<td align=left >3,876</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">조작된 밤 1</td>
+		<td align=left>진다래</td>
+		<td>사막여우</td>
+		<td>11</td>
+		<td>38380</td>
+		<td></td>
+		<td align=left >26,866</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">조작된 밤 2(완결)</td>
+		<td align=left>진다래</td>
+		<td>사막여우</td>
+		<td>10</td>
+		<td>34960</td>
+		<td></td>
+		<td align=left >24,472</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">조작된 밤 2(완결)</td>
+		<td align=left>진다래</td>
+		<td>사막여우</td>
+		<td>1</td>
+		<td>3230</td>
+		<td></td>
+		<td align=left >1,938</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">조작된 밤<세트구매></td>
+		<td align=left>진다래</td>
+		<td>사막여우</td>
+		<td>14</td>
+		<td>40698</td>
+		<td></td>
+		<td align=left >24,417</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">죽음의 기사 2</td>
+		<td align=left>고샅</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">죽음의 기사 3</td>
+		<td align=left>고샅</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">죽음의 기사 5</td>
+		<td align=left>고샅</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>900</td>
+		<td></td>
+		<td align=left >630</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">집착 열애 (외전)</td>
+		<td align=left>캐스퍼</td>
+		<td>에오스</td>
+		<td>1</td>
+		<td>500</td>
+		<td></td>
+		<td align=left >350</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">짜릿한 회귀로 역대급 재벌! 2</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">짜릿한 회귀로 역대급 재벌! 3</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">짜릿한 회귀로 역대급 재벌! 4</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">짜릿한 회귀로 역대급 재벌! 5</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">짜릿한 회귀로 역대급 재벌! 6</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">짜릿한 회귀로 역대급 재벌! 7</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">짜릿한 회귀로 역대급 재벌! 8</td>
+		<td align=left>강바기</td>
+		<td>매드햇</td>
+		<td>1</td>
+		<td>3000</td>
+		<td></td>
+		<td align=left >2,100</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">착각, 아니야 1</td>
+		<td align=left>다온향</td>
+		<td>래이니북스</td>
+		<td>2</td>
+		<td>7600</td>
+		<td></td>
+		<td align=left >5,320</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">착각, 아니야 2(완결)</td>
+		<td align=left>다온향</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3800</td>
+		<td></td>
+		<td align=left >2,660</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">착한 처제▶몹쓸 짓</td>
+		<td align=left>적파랑</td>
+		<td>so what</td>
+		<td>3</td>
+		<td>6000</td>
+		<td></td>
+		<td align=left >3,849</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">천공의 성좌 1</td>
+		<td align=left>이광섭</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954234924</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">천공의 성좌 2</td>
+		<td align=left>이광섭</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954234931</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">천공의 성좌 3</td>
+		<td align=left>이광섭</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954234948</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">천공의 성좌 4</td>
+		<td align=left>이광섭</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954235471</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">천공의 성좌 5</td>
+		<td align=left>이광섭</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954236539</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">천공의 성좌 6</td>
+		<td align=left>이광섭</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954236546</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">천공의 성좌 7(완결)</td>
+		<td align=left>이광섭</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954236720</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">철혈검신<세트구매></td>
+		<td align=left>해경</td>
+		<td>드림북스</td>
+		<td>20</td>
+		<td>48960</td>
+		<td></td>
+		<td align=left >29,376</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">첫 마음 1</td>
+		<td align=left>송민선</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>4200</td>
+		<td></td>
+		<td align=left >2,940</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">첫 마음 2</td>
+		<td align=left>송민선</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>4200</td>
+		<td></td>
+		<td align=left >2,940</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">첫 마음 3(완결)</td>
+		<td align=left>송민선</td>
+		<td>플로린</td>
+		<td>1</td>
+		<td>4200</td>
+		<td></td>
+		<td align=left >2,940</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">충격 젊은 장모님</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>2</td>
+		<td>1625</td>
+		<td></td>
+		<td align=left >1,001</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">치명적인 여친엄마</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >595</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">친구의 남편</td>
+		<td align=left>달로켓</td>
+		<td>레드라인</td>
+		<td>1</td>
+		<td>1000</td>
+		<td></td>
+		<td align=left >700</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">폭정</td>
+		<td align=left>정은동</td>
+		<td>래이니북스</td>
+		<td>3</td>
+		<td>9600</td>
+		<td></td>
+		<td align=left >6,720</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">폭정 (외전)</td>
+		<td align=left>정은동</td>
+		<td>래이니북스</td>
+		<td>2</td>
+		<td>2400</td>
+		<td></td>
+		<td align=left >1,680</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">프랑스 해군 제독이 되었다 3</td>
+		<td align=left>알자스</td>
+		<td>ARC</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">하드코어 아줌마</td>
+		<td align=left>적파랑</td>
+		<td>so what</td>
+		<td>4</td>
+		<td>6600</td>
+		<td></td>
+		<td align=left >4,206</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">학사 김필도 2</td>
+		<td align=left>한세</td>
+		<td>매드햇</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">학사 김필도 3</td>
+		<td align=left>한세</td>
+		<td>매드햇</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">학사 김필도 4</td>
+		<td align=left>한세</td>
+		<td>매드햇</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">학사 김필도 5</td>
+		<td align=left>한세</td>
+		<td>매드햇</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">학사 김필도 6</td>
+		<td align=left>한세</td>
+		<td>매드햇</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">학사 김필도 7</td>
+		<td align=left>한세</td>
+		<td>매드햇</td>
+		<td>2</td>
+		<td>1800</td>
+		<td></td>
+		<td align=left >1,260</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">학사 김필도 8</td>
+		<td align=left>한세</td>
+		<td>매드햇</td>
+		<td>3</td>
+		<td>2700</td>
+		<td></td>
+		<td align=left >1,890</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">학사 김필도 9(완결)</td>
+		<td align=left>한세</td>
+		<td>매드햇</td>
+		<td>3</td>
+		<td>2700</td>
+		<td></td>
+		<td align=left >1,890</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">허튼수작 1</td>
+		<td align=left>아일라</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3600</td>
+		<td></td>
+		<td align=left >2,520</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">허튼수작 2(완결)</td>
+		<td align=left>아일라</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>3600</td>
+		<td></td>
+		<td align=left >2,520</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">협객혼 1</td>
+		<td align=left>진부동</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263443</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">협객혼 2</td>
+		<td align=left>진부동</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263450</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">협객혼 3</td>
+		<td align=left>진부동</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263467</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">협객혼 4</td>
+		<td align=left>진부동</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263474</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">협객혼 5</td>
+		<td align=left>진부동</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263481</td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">협객혼 6(완결)</td>
+		<td align=left>진부동</td>
+		<td>드림북스</td>
+		<td>1</td>
+		<td>2720</td>
+		<td></td>
+		<td align=left >1,632</td>
+		<td align=left style="mso-number-format:'\@'">9788954263498</td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">형은 없고 형수만…</td>
+		<td align=left>중2엄마</td>
+		<td>so what</td>
+		<td>1</td>
+		<td>600</td>
+		<td></td>
+		<td align=left >357</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">후회 없는 선택이었다 1</td>
+		<td align=left>차해솔</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>2800</td>
+		<td></td>
+		<td align=left >1,960</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">후회 없는 선택이었다 1</td>
+		<td align=left>차해솔</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>2380</td>
+		<td></td>
+		<td align=left >1,428</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>앱</td>
+		<td style="mso-data-placement:same-cell;">후회 없는 선택이었다 2(완결)</td>
+		<td align=left>차해솔</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>2380</td>
+		<td></td>
+		<td align=left >1,428</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+			<tr align=center>
+		<td>이북클럽</td>
+		<td style="mso-data-placement:same-cell;">후회 없는 선택이었다 2(완결)</td>
+		<td align=left>차해솔</td>
+		<td>래이니북스</td>
+		<td>1</td>
+		<td>2800</td>
+		<td></td>
+		<td align=left >1,960</td>
+		<td align=left style="mso-number-format:'\@'"></td>
+	</tr>
+
+</table>

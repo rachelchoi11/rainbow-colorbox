@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>정산 프로그램 제작 과정 설명</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 17mm 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family:'Nanum Gothic','NanumGothic','나눔고딕','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+         color:#222; margin:0; line-height:1.75; font-size:10pt;
+         -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page { max-width:780px; margin:0 auto; padding:40px 24px 60px; }
+  .doc-head { border-top:4px solid #1f2d3d; border-bottom:1px solid #1f2d3d; padding:26px 4px 20px; margin-bottom:8px; }
+  h1 { font-size:20pt; font-weight:800; margin:0 0 10px; letter-spacing:-.02em; color:#1f2d3d; }
+  .meta-table { width:auto; font-size:9pt; color:#444; border-collapse:collapse; margin-top:6px; }
+  .meta-table td { padding:1px 18px 1px 0; border:none; }
+  .meta-table td.k { color:#888; }
+  .lead { font-size:10.5pt; color:#444; background:#f7f8fa; border-left:4px solid #1f2d3d; padding:12px 16px; margin:16px 0 4px; }
+  h2 { font-size:13pt; font-weight:800; color:#1f2d3d; margin:34px 0 12px; padding:6px 0 6px 12px; border-left:4px solid #1f2d3d; background:#f7f8fa; }
+  h3 { font-size:10.5pt; font-weight:700; margin:20px 0 8px; color:#333; }
+  p { margin:7px 0; text-align:justify; }
+  table { width:100%; border-collapse:collapse; margin:12px 0 18px; font-size:9.2pt; }
+  th { background:#1f2d3d; color:#fff; font-weight:700; padding:7px 9px; text-align:left; border:1px solid #1f2d3d; }
+  td { border:1px solid #d9dde3; padding:6px 9px; vertical-align:top; }
+  tr:nth-child(even) td { background:#fafbfc; }
+  b.k { color:#1f4fd0; }
+  .flow { background:#eef3ff; border:1px solid #d7e0f5; border-radius:8px; padding:12px 16px; font-size:10pt; font-weight:700; color:#1f2d3d; text-align:center; margin:14px 0; }
+  .box { border:1px solid #d9dde3; border-left:4px solid #5a6b80; background:#f7f8fa; padding:10px 16px; font-size:9.2pt; margin:12px 0; }
+  .small { font-size:8.6pt; color:#667; }
+  .pagebreak { page-break-before:always; }
+  .prog { display:flex; align-items:center; gap:8px; margin:14px 0; flex-wrap:wrap; }
+  .prog .step { background:#fff; border:1px solid #d9dde3; border-radius:8px; padding:8px 12px; text-align:center; font-size:9pt; }
+  .prog .step b { display:block; font-size:14pt; color:#1f4fd0; }
+  .prog .arrow { color:#9aa1ac; font-weight:700; }
+  footer { margin-top:44px; padding-top:12px; border-top:1px solid #1f2d3d; font-size:8.3pt; color:#888; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="doc-head">
+  <h1>정산 프로그램은 어떻게 만들어졌나</h1>
+  <table class="meta-table">
+    <tr><td class="k">부제</td><td>유통사별 제각각인 정산서 → 작가별 정산·근거 자동 산출까지</td></tr>
+    <tr><td class="k">수신</td><td>하이브마인드</td><td class="k">작성</td><td>최혜윤 · 2026. 6. 9.</td></tr>
+  </table>
+</div>
+
+<div class="lead">유통사 28곳이 보내는 형식·표기가 전부 다른 정산서를, "작가에게 얼마를 왜 줘야 하는지"가 자동으로 나오는
+하나의 표준 데이터로 만든 과정입니다. 각 단계에서 마주친 실제 문제와 해결 방법을 정리했습니다.</div>
+
+<div class="flow">정산서 업로드 → ① 형식 통일 → ② 항목 통일 → ③ 작품·작가 자동 매칭 → ④ 미매칭 줄이기 → 작가별 정산·근거·통계·정산서 발행</div>
+
+<h2>1. 첫 번째 벽 — 파일이 파일이 아니었다 (형식 통일)</h2>
+<p><b>문제.</b> 유통사마다 정산서 형식이 전부 달랐고, 확장자가 실제 형식과 달랐습니다.</p>
+<table>
+  <tr><th style="width:42%">실제 상태</th><th>해당 유통사 / 내용</th></tr>
+  <tr><td>확장자는 .xls인데 <b>실제는 HTML 문서</b> (16종)</td><td>네이버·노벨피아·무툰·밀리·블라이스·하이북 등 — 엑셀로는 열리나 프로그램으론 안 읽힘</td></tr>
+  <tr><td>.xlsx인데 <b>내부가 깨진 비표준 파일</b></td><td>북큐브·애니툰 — 일반 라이브러리 오류</td></tr>
+  <tr><td><b>글자 인코딩(cp949) 상이</b></td><td>로망띠끄·신영미디어·에피루스 — Mac에서 한글 깨짐</td></tr>
+  <tr><td><b>깨진 HTML / zip 압축</b></td><td>피플앤스토리(태그 누락) · 리디(zip)</td></tr>
+</table>
+<p><b>해결.</b> 확장자를 믿지 않고 <b class="k">파일 첫 바이트(매직바이트)로 진짜 형식을 판별</b>하게 했습니다.
+HTML이면 HTML로, 깨진 xlsx는 깨진 부분을 갈아끼우는 관용 로더로, cp949는 자동 감지해 복원했습니다.
+결과적으로 <b>69개 파일 전부 한 가지 표준 표로 변환</b>에 성공했습니다.</p>
+
+<h2>2. 두 번째 벽 — 같은 정보를 다른 이름으로 (항목 통일)</h2>
+<p><b>문제.</b> "작가"를 어디는 <span class="small">작가명</span>, 어디는 <span class="small">저자</span>, 어디는 <span class="small">글작가</span>로 부르고,
+"정산액"도 <span class="small">정산금액·소득액·총지급액·공급대가</span>처럼 12가지로 제각각이었습니다.</p>
+<p><b>해결.</b> 유통사 25종 각각의 <b class="k">컬럼 이름을 표준 항목(작품명·작가·레이블·총매출·정산액·구분)으로 매핑</b>하는
+규칙표를 만들었습니다. 위치가 아니라 이름 기준이라 양식이 조금 바뀌어도 견딥니다.</p>
+<ul>
+  <li>합계행(합계·SUM·Total)은 제거하되, 그 합계로 <b>우리 계산이 맞는지 자동 검증</b>(합계 보유 40개 파일 전수 일치)에 재활용.</li>
+  <li>정산액을 안 주는 유통사는 산식으로 계산하고(예: 네이버 = (합계−수수료)×0.7), <b>"제공값/계산값" 꼬리표</b>를 붙여 추적 가능하게 함.</li>
+</ul>
+
+<h2 class="pagebreak">3. 핵심 벽 — "월야환담 28권"과 "29권"은 같은 작품인가? (자동 매칭)</h2>
+<p>이 프로젝트의 진짜 어려움이었습니다. <b>같은 작품·같은 작가인데 유통사마다 표기가 전부 달랐습니다.</b>
+원문을 그대로 비교하면 <b>15.8%만 일치</b>했습니다.</p>
+
+<h3>3-1. 작품명 통일 — 표기 차이를 기계적으로 제거(정규화)</h3>
+<table>
+  <tr><th style="width:46%">문제 표기 (유통사별)</th><th>제거 규칙</th><th>결과</th></tr>
+  <tr><td>보스 오빠, 살살! ↔ 보스오빠, 살살!</td><td><b class="k">띄어쓰기 제거</b></td><td>같은 작품</td></tr>
+  <tr><td>21세기 대마법사 10 / 회귀의 전설 3부 1222화</td><td><b class="k">권·화·부 번호 제거</b></td><td>21세기 대마법사 / 회귀의 전설</td></tr>
+  <tr><td>[e북] · [단행본] · (개정판) · *세트구매*</td><td><b class="k">태그·괄호 제거</b></td><td>본 제목만</td></tr>
+  <tr><td>술탄(Sultan) / 퇴마사(巫堂)</td><td><b class="k">괄호 병기 제거</b></td><td>술탄 / 퇴마사</td></tr>
+  <tr><td>월야환담 28권 : 광월야 / 29권 : 광월야</td><td><b class="k">제목 중간 권번호까지 제거</b></td><td>둘 다 = 월야환담 광월야</td></tr>
+</table>
+<div class="prog">
+  <div class="step">원문 그대로<b>15.8%</b></div><span class="arrow">→</span>
+  <div class="step">정규화 1차<b>65.6%</b></div><span class="arrow">→</span>
+  <div class="step">정규화 2차<b>78.8%</b></div>
+</div>
+<p class="small">※ 단, ‘월야환담’ 본편 / ‘광월야’ / ‘채월야’처럼 부제가 다르면 별개 작품으로 유지 — 무리하게 합치지 않습니다.</p>
+
+<h3>3-2. 작가명도 똑같이 — [정천] = 정천</h3>
+<p>작가명도 <b>[정천]</b>과 <b>정천</b>, <b>이윤정(탠저린)</b>과 <b>이윤정 (탠저린)</b>이 다른 작가로 잡혔습니다.
+→ <b class="k">대괄호·공백을 제거해 통일</b>. 작가 수가 4,310 → 4,251명으로 정리(중복 59명 병합)되었습니다.</p>
+
+<h3>3-3. 누락된 작가를 다른 유통사에서 끌어오기 — 당월 상호대조</h3>
+<p>작가를 <b>안 주는 유통사</b>(무툰·문피아·예스24 등)가 많았습니다. 핵심 아이디어는
+<b>"같은 작품을 작가까지 주는 다른 유통사가 있으면 거기서 끌어와 채운다"</b>입니다.</p>
+<div class="box">예: ‘월야환담’을 예스24는 작가 없이, 알라딘·노벨피아는 ‘홍정훈’으로 제공 → 알라딘 정보로 예스24 빈칸을 채워 완전 매칭.
+여기에 2022년 수작업 정리본(38,063행)을 초기 자산으로 승계 → 그동안의 수작업이 버려지지 않고 시스템의 시드가 됩니다.</div>
+<p><b>결과: 작가·레이블 자동 완전매칭 <b class="k">98.1%</b>.</b></p>
+
+<h2 class="pagebreak">4. 마지막 벽 — 미매칭 %를 계속 낮추기</h2>
+<table>
+  <tr><th style="width:18%">조치</th><th>무엇을 했나</th><th style="width:26%">효과</th></tr>
+  <tr><td>① 번들 분리</td><td>‘원스토리 패스’ 같은 구독 상품은 작품이 아니므로 분리 (단, ‘삼국지 싸이코<b>패스</b>’ 같은 실제 작품 오인 방지 위해 정밀 패턴만)</td><td>정산액 미매칭률 <b class="k">0.42% → 0.20%</b></td></tr>
+  <tr><td>② 권 번호 통합</td><td>월야환담 28권/29권 통합 → 한쪽에 있던 작가가 전체에 적용</td><td>미매칭 작품 <b class="k">151 → 119</b></td></tr>
+  <tr><td>③ AI 제안</td><td>유사 작품·시리즈 형제작(광월야↔채월야)·오타(바래↔바라)에서 작가를 찾아 신뢰도·근거와 함께 제안 → 승인</td><td>근거 있는 건 자동 제안</td></tr>
+  <tr><td>④ 알라딘 조회</td><td>단서가 전혀 없는 단독 유통작은 알라딘 도서 DB에서 작가·ISBN 조회 → 제안</td><td>신수의 주인→태선, 습기→마태 등 확보</td></tr>
+</table>
+<div class="box"><b>핵심 원칙.</b> AI·외부조회는 <b>근거 있는 것만 제안</b>하고, 단서 없는 건 추측하지 않고 담당자 승인으로 넘깁니다.
+틀린 작가에게 정산되는 것을 막기 위해 <b>무엇도 자동 적용하지 않으며</b>, 모든 승인·거절은 히스토리로 기록(감사 추적)됩니다.</div>
+
+<h2>5. 그래서 지금 무엇이 되나</h2>
+<ul>
+  <li>작가별 정산액 + <b>왜 그 금액인지</b>(어느 유통사·작품·산식) 근거 추적</li>
+  <li>작가별 <b>정산 명세서 발행</b>(원천징수·실지급액 포함)</li>
+  <li>유통사별·작품별·통계(차트) 분석, 통합 검색</li>
+  <li>미매칭은 AI·알라딘 제안 → 승인으로 <b>계속 줄어드는 구조</b> (한 번 등록하면 이후 자동)</li>
+</ul>
+
+<div class="lead" style="margin-top:18px">
+<b>미매칭 % 진행 요약.</b> 원문 그대로 15.8% → 정규화 78.8% → 당월 상호대조·시드로 완전매칭 98.1% →
+번들·권통합·AI·알라딘으로 미매칭 정산액 0.2%대까지 축소, 운영하며 계속 하락.</div>
+
+<footer>
+  <div>정산 프로그램 제작 과정 설명 · 하이브마인드 귀중</div>
+  <div>작성 최혜윤 · 2026. 6. 9.</div>
+</footer>
+
+</div>
+</body>
+</html>

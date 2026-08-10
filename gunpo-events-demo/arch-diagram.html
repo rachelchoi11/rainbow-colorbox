@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
+<style>
+  :root{--primary:#0A4747;--primary2:#0A7373;--accent:#FBBF24;--accent2:#D97706;--ink:#0F172A;--slate:#475569;--line:#E2E8F0}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Pretendard Variable',sans-serif;background:#fff;color:var(--ink);width:1320px;word-break:keep-all}
+  .wrap{padding:34px 44px 30px}
+  .htitle{font-size:13px;font-weight:800;letter-spacing:3px;color:var(--primary2)}
+  h1{font-size:31px;font-weight:900;letter-spacing:-1px;margin-top:6px}
+  h1 b{color:var(--primary2)}
+  .hsub{margin-top:7px;font-size:15px;color:var(--slate)}
+  h2{font-size:15px;font-weight:900;color:var(--primary);margin:26px 0 13px;display:flex;align-items:center;gap:8px}
+  h2 .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  /* 아키텍처 플로우 */
+  .arch{display:flex;align-items:stretch;gap:14px}
+  .tiers{display:flex;flex-direction:column;gap:10px;flex:0 0 360px}
+  .tier{border-radius:12px;padding:13px 16px;color:#fff;position:relative}
+  .tier .tn{font-size:12px;font-weight:800;opacity:.9}
+  .tier .tt{font-size:16px;font-weight:900;margin:2px 0 4px}
+  .tier .td{font-size:12px;line-height:1.5;opacity:.95}
+  .t1{background:linear-gradient(120deg,#0A4747,#0A7373)}
+  .t2{background:linear-gradient(120deg,#0A7373,#0891B2)}
+  .t3{background:linear-gradient(120deg,#B45309,#D97706)}
+  .flowarrow{align-self:center;font-size:26px;color:#CBD5E1;font-weight:900}
+  .pipe{flex:1;display:flex;flex-direction:column;justify-content:center;gap:9px}
+  .pstep{background:#ECFEFF;border:1px solid #A5F3FC;border-radius:10px;padding:11px 14px;font-size:13.5px;font-weight:800;color:var(--primary);text-align:center;position:relative}
+  .pstep.human{background:#FFFBEB;border-color:#FDE68A;color:#7C2D12}
+  .pstep small{display:block;font-weight:600;color:#64748b;font-size:11px;margin-top:2px}
+  .pstep .down{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);color:#CBD5E1;font-size:14px;font-weight:900}
+  .out{flex:0 0 230px;align-self:center;background:linear-gradient(135deg,#0A4747,#0A7373);border-radius:14px;padding:18px;color:#fff;box-shadow:0 8px 22px rgba(10,71,71,.25)}
+  .out .ot{font-size:13px;font-weight:800;color:var(--accent)}
+  .out .ob{font-size:19px;font-weight:900;line-height:1.35;margin:6px 0 8px}
+  .out .od{font-size:12px;opacity:.92;line-height:1.55}
+  /* 현재 실연동 */
+  .live{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{background:#F8FAFC;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:13px;font-weight:700;color:#334155}
+  .chip b{color:var(--primary2);font-size:16px;margin-right:4px}
+  .chip.scrape b{color:var(--accent2)}
+  .chip .lv{font-size:9.5px;font-weight:800;color:#16A34A;margin-left:5px;vertical-align:middle}
+  /* 로드맵 */
+  .road{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .ph{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .ph .phh{padding:10px 14px;font-weight:900;font-size:14px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+  .ph .phh small{font-weight:700;font-size:11px;opacity:.9}
+  .ph1 .phh{background:#0A7373}.ph2 .phh{background:#0891B2}.ph3 .phh{background:#D97706}.ph4 .phh{background:#0A4747}
+  .ph .phb{padding:12px 14px;font-size:12.5px;color:#334155;line-height:1.55}
+  .ph .tag{display:inline-block;margin-top:7px;font-size:10.5px;font-weight:800;color:#64748b;background:#F1F5F9;border-radius:5px;padding:2px 7px}
+  .star{background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:11px 15px;margin-top:11px;font-size:12.5px;color:#7C2D12;line-height:1.55}
+  .star b{color:#B45309}
+  .foot{margin-top:22px;border-top:1px solid var(--line);padding-top:12px;font-size:11.5px;color:#94A3B8;display:flex;justify-content:space-between}
+  .foot b{color:#64748b}
+</style></head><body>
+<div class="wrap">
+  <div class="htitle">GUNPO READING DATA · COLLECTION ARCHITECTURE</div>
+  <h1>군포 독서·문화행사 데이터 <b>수집 아키텍처</b></h1>
+  <div class="hsub">"전자동 크롤링은 환상, 전수동은 인건비 → <b>하이브리드(자동 수집 + 운영자 검수 + 기관 제휴)</b>가 정답"</div>
+
+  <h2><span class="dot"></span>3-Tier 하이브리드 수집 → 개인화</h2>
+  <div class="arch">
+    <div class="tiers">
+      <div class="tier t1"><div class="tn">TIER 1 · 안정적 뼈대</div><div class="tt">공공 API 자동 동기화</div><div class="td">공공데이터포털·경기데이터드림 · cron 주기 fetch · 구조 보장 (단 스냅샷 lag)</div></div>
+      <div class="tier t2"><div class="tn">TIER 2 · 최신·포스터</div><div class="tt">자동 스크래핑 / 크롤링</div><div class="td">API 없는 기관(문화재단·도서관공지·평생학습) · 신규 감지 · 모니터링 필수</div></div>
+      <div class="tier t3"><div class="tn">TIER 3 · 품질 보장</div><div class="tt">알림 → 운영자 수동 등록</div><div class="td">비정형·고신뢰 행사(공유학교 등) · 감지→알림→검수→등록</div></div>
+    </div>
+    <div class="flowarrow">→</div>
+    <div class="pipe">
+      <div class="pstep">정규화 · 중복제거 · 분류<span class="down">↓</span></div>
+      <div class="pstep human">운영자 검수 (Human-in-the-loop)<span class="down">↓</span></div>
+      <div class="pstep">게시 · 각 행사 신청 URL 연결</div>
+    </div>
+    <div class="flowarrow">→</div>
+    <div class="out">
+      <div class="ot">개인화 · 데이터 해자</div>
+      <div class="ob">신청 → 개인 독서은하<br>(북 포트폴리오)</div>
+      <div class="od">참여 데이터 누적 → 독서 이력·관심 기반 맞춤 행사·도서 AI 추천</div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>현재 실연동 (PoC 검증 완료)</h2>
+  <div class="live">
+    <span class="chip">공공데이터포털 군포 도서관 문화행사 <b>591</b>건<span class="lv">LIVE</span></span>
+    <span class="chip">추천도서 <b>156</b><span class="lv">LIVE</span></span>
+    <span class="chip">인기검색어 <b>1,932</b><span class="lv">LIVE</span></span>
+    <span class="chip">도서관 공지 <b>318</b><span class="lv">LIVE</span></span>
+    <span class="chip">장서 <b>82.8만</b>권<span class="lv">실데이터</span></span>
+    <span class="chip scrape">그림책꿈마루 스크래핑 <b>12</b>건 · 포스터+신청URL<span class="lv">LIVE</span></span>
+  </div>
+
+  <h2><span class="dot"></span>확장 로드맵</h2>
+  <div class="road">
+    <div class="ph ph1"><div class="phh"><span>Phase 1</span><small>현재 · PoC</small></div><div class="phb">공공 API 6종 + 그림책꿈마루 스크래핑 실연동<span class="tag">Tier 1·2</span></div></div>
+    <div class="ph ph2"><div class="phh"><span>Phase 2</span><small>1~2분기</small></div><div class="phb">자동 스크래핑 확장: 문화재단·도서관 공지·평생학습 + 신규감지 알림<span class="tag">Tier 2</span></div></div>
+    <div class="ph ph3"><div class="phh"><span>Phase 3</span><small>2~3분기</small></div><div class="phb">운영자 검수 워크플로우(알림→등록), 공유학교 등 비정형 편입<span class="tag">Tier 3</span></div></div>
+    <div class="ph ph4"><div class="phh"><span>Phase 4</span><small>3~4분기</small></div><div class="phb">기관 제휴: 군포시·도서관·문화재단 공식 피드/관리자 연동<span class="tag">제휴</span></div></div>
+  </div>
+  <div class="star">★ <b>제휴(Phase 4)가 장기 최강수</b> — 스크래핑 리스크(구조 변경·차단) 제거 + 데이터 독점성 확보. <b>사회적경제 창업팀 자격</b>이 군포시·기관 제휴의 명분.</div>
+
+  <div class="foot">
+    <span>데이터 정직성: 화면·피치에 「실연동 / 스크래핑 / 예정」 라벨 명시 · mock 금지</span>
+    <span><b>핏치 Pitch</b> · 군포 사회적경제 창업팀</span>
+  </div>
+</div>
+</body></html>

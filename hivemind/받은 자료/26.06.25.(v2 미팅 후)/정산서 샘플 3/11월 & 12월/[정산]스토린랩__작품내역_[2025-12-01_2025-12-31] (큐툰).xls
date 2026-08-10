@@ -1,0 +1,1108 @@
+
+<table width="100%"><tr><td>&nbsp;</td></tr></table>
+<table width="100%" border="1">
+	<tr>
+		<th width="500" colspan="3">작품정보</th>
+		<th width="160" colspan="6">코인정보</th>
+		<th width="160" colspan="5">정산정보</th>
+	</tr>
+	<tr>
+		<th width="50" rowspan="2">NO</th>
+		<th width="100" rowspan="2">작가</th>
+		<th width="220" rowspan="2">타이틀</th>
+		<th width="160" colspan="2">사용코인</th>
+		<th width="160" colspan="2">취소코인</th>
+		<th width="160" colspan="2">합계</th>
+		<th width="80" colspan="2">수수료</th>
+		<th width="80" rowspan="2">수수료<br/>공제액</th>
+		<th width="80" rowspan="2">정산비율</th>
+		<th width="80" rowspan="2">정산액</th>
+	</tr>
+	<tr>
+		<th width="80">코인</th>
+		<th width="80">금액</th>
+		<th width="80">코인</th>
+		<th width="80">금액</th>
+		<th width="80">코인</th>
+		<th width="80">금액</th>
+		<th width="80">결제</th>
+		<th width="80">이벤트</th>
+	</tr>
+
+	<tr>
+		<td align="center" style="background-color:#cdebfa;" colspan="3">SUM</td>
+			<td align="right" style="background-color:#cdebfa;">2,118</td>
+		<td align="right" style="background-color:#cdebfa;">211,800</td>
+		<td align="right" style="background-color:#cdebfa;">0</td>
+		<td align="right" style="background-color:#cdebfa;">0</td>
+		<td align="right" style="background-color:#cdebfa;color:red;">2,118</td>
+		<td align="right" style="background-color:#cdebfa;color:red;">211,800</td>
+		<td align="right" style="background-color:#cdebfa;color:red;">0</td>
+		<td align="right" style="background-color:#cdebfa;color:red;">0</td>
+		<td align="right" style="background-color:#cdebfa;color:red;">211,800</td>
+		<td align="center" style="background-color:#cdebfa;color:red;"></td>
+		<td align="right" style="background-color:#cdebfa;color:red;">148,260</td>
+			</tr>
+
+
+
+
+
+	<tr>
+	<tr>
+		<td align="right">1</td>
+		<td align="center">러브트릭</td>
+		<td align="center">저승차사 로맨스<br></td>
+		<td align="right">71</td>
+		<td align="right">7,100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">71</td>
+		<td align="right" style="color:red;">7,100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">7,100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">4,970</td>
+	</tr>
+		<tr>
+		<td align="right">2</td>
+		<td align="center">해번</td>
+		<td align="center">나를 요리해줘<br></td>
+		<td align="right">23</td>
+		<td align="right">2,300</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">23</td>
+		<td align="right" style="color:red;">2,300</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">2,300</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,610</td>
+	</tr>
+		<tr>
+		<td align="right">3</td>
+		<td align="center">해번</td>
+		<td align="center">어쩌다 S<br></td>
+		<td align="right">51</td>
+		<td align="right">5,100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">51</td>
+		<td align="right" style="color:red;">5,100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">5,100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">3,570</td>
+	</tr>
+		<tr>
+		<td align="right">4</td>
+		<td align="center">백아름</td>
+		<td align="center">과보호<br></td>
+		<td align="right">5</td>
+		<td align="right">500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">5</td>
+		<td align="right" style="color:red;">500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">350</td>
+	</tr>
+		<tr>
+		<td align="right">5</td>
+		<td align="center">라라진</td>
+		<td align="center">네 심장에 키스<br></td>
+		<td align="right">31</td>
+		<td align="right">3,100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">31</td>
+		<td align="right" style="color:red;">3,100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">3,100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">2,170</td>
+	</tr>
+		<tr>
+		<td align="right">6</td>
+		<td align="center">퀸틴</td>
+		<td align="center">이것도 사랑인데<br></td>
+		<td align="right">119</td>
+		<td align="right">11,900</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">119</td>
+		<td align="right" style="color:red;">11,900</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">11,900</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">8,330</td>
+	</tr>
+		<tr>
+		<td align="right">7</td>
+		<td align="center">클레어</td>
+		<td align="center">언제나 타인<br></td>
+		<td align="right">106</td>
+		<td align="right">10,600</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">106</td>
+		<td align="right" style="color:red;">10,600</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">10,600</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">7,420</td>
+	</tr>
+		<tr>
+		<td align="right">8</td>
+		<td align="center">미캉</td>
+		<td align="center">너를 흔들다 [외전포함]<br></td>
+		<td align="right">25</td>
+		<td align="right">2,500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">25</td>
+		<td align="right" style="color:red;">2,500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">2,500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,750</td>
+	</tr>
+		<tr>
+		<td align="right">9</td>
+		<td align="center">흰백</td>
+		<td align="center">흑막 대공의 아이를 주웠다 [단행본]<br></td>
+		<td align="right">23</td>
+		<td align="right">2,300</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">23</td>
+		<td align="right" style="color:red;">2,300</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">2,300</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,610</td>
+	</tr>
+		<tr>
+		<td align="right">10</td>
+		<td align="center">동그람이(손윤서)</td>
+		<td align="center">흔들리는 남편<br></td>
+		<td align="right">10</td>
+		<td align="right">1,000</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">10</td>
+		<td align="right" style="color:red;">1,000</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,000</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">700</td>
+	</tr>
+		<tr>
+		<td align="right">11</td>
+		<td align="center">김부끄</td>
+		<td align="center">실수로 들어간 XX에서 그만<br></td>
+		<td align="right">4</td>
+		<td align="right">400</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">4</td>
+		<td align="right" style="color:red;">400</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">400</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">280</td>
+	</tr>
+		<tr>
+		<td align="right">12</td>
+		<td align="center">스트라부</td>
+		<td align="center">검은 괴물이 자라는 숲<br></td>
+		<td align="right">2</td>
+		<td align="right">200</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">2</td>
+		<td align="right" style="color:red;">200</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">200</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">140</td>
+	</tr>
+		<tr>
+		<td align="right">13</td>
+		<td align="center">덕자쿵</td>
+		<td align="center">나를 위해 죽어줘<br></td>
+		<td align="right">38</td>
+		<td align="right">3,800</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">38</td>
+		<td align="right" style="color:red;">3,800</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">3,800</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">2,660</td>
+	</tr>
+		<tr>
+		<td align="right">14</td>
+		<td align="center">라라진</td>
+		<td align="center">계약 맺은 밤 [외전포함]<br></td>
+		<td align="right">15</td>
+		<td align="right">1,500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">15</td>
+		<td align="right" style="color:red;">1,500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,050</td>
+	</tr>
+		<tr>
+		<td align="right">15</td>
+		<td align="center">아열대</td>
+		<td align="center">네가 없는 내일<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">16</td>
+		<td align="center">금나루</td>
+		<td align="center">몸정<br></td>
+		<td align="right">7</td>
+		<td align="right">700</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">7</td>
+		<td align="right" style="color:red;">700</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">700</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">490</td>
+	</tr>
+		<tr>
+		<td align="right">17</td>
+		<td align="center">아열대</td>
+		<td align="center">소나기는 금방 지나간다<br></td>
+		<td align="right">66</td>
+		<td align="right">6,600</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">66</td>
+		<td align="right" style="color:red;">6,600</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">6,600</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">4,620</td>
+	</tr>
+		<tr>
+		<td align="right">18</td>
+		<td align="center">홍이영</td>
+		<td align="center">탐욕적인 덫<br></td>
+		<td align="right">78</td>
+		<td align="right">7,800</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">78</td>
+		<td align="right" style="color:red;">7,800</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">7,800</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">5,460</td>
+	</tr>
+		<tr>
+		<td align="right">19</td>
+		<td align="center">옥토버 쓰리</td>
+		<td align="center">서비서와 윤이사의 교환일기<br></td>
+		<td align="right">15</td>
+		<td align="right">1,500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">15</td>
+		<td align="right" style="color:red;">1,500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,050</td>
+	</tr>
+		<tr>
+		<td align="right">20</td>
+		<td align="center">이승희</td>
+		<td align="center">뜨겁게 리셋<br></td>
+		<td align="right">118</td>
+		<td align="right">11,800</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">118</td>
+		<td align="right" style="color:red;">11,800</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">11,800</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">8,260</td>
+	</tr>
+		<tr>
+		<td align="right">21</td>
+		<td align="center">오리안</td>
+		<td align="center">서로의 목록<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">22</td>
+		<td align="center">시월이</td>
+		<td align="center">사랑에 제대로 미치면<br></td>
+		<td align="right">72</td>
+		<td align="right">7,200</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">72</td>
+		<td align="right" style="color:red;">7,200</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">7,200</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">5,040</td>
+	</tr>
+		<tr>
+		<td align="right">23</td>
+		<td align="center">과줄</td>
+		<td align="center">작가의 스토커는 이복 오빠<br></td>
+		<td align="right">10</td>
+		<td align="right">1,000</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">10</td>
+		<td align="right" style="color:red;">1,000</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,000</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">700</td>
+	</tr>
+		<tr>
+		<td align="right">24</td>
+		<td align="center">빨간맛캔디</td>
+		<td align="center">오빠와 그런 짓<br></td>
+		<td align="right">10</td>
+		<td align="right">1,000</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">10</td>
+		<td align="right" style="color:red;">1,000</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,000</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">700</td>
+	</tr>
+		<tr>
+		<td align="right">25</td>
+		<td align="center">진주비</td>
+		<td align="center">남편 말고 남자 친구<br></td>
+		<td align="right">18</td>
+		<td align="right">1,800</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">18</td>
+		<td align="right" style="color:red;">1,800</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,800</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,260</td>
+	</tr>
+		<tr>
+		<td align="right">26</td>
+		<td align="center">샤랄릴리유</td>
+		<td align="center">이혼 후 연애?<br></td>
+		<td align="right">6</td>
+		<td align="right">600</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">6</td>
+		<td align="right" style="color:red;">600</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">600</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">420</td>
+	</tr>
+		<tr>
+		<td align="right">27</td>
+		<td align="center">태양맛사탕</td>
+		<td align="center">나의 악역이 집착남이 되었다<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">28</td>
+		<td align="center">로즈페이퍼</td>
+		<td align="center">불온한 탐닉<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">29</td>
+		<td align="center">이청린</td>
+		<td align="center">달콤한 나의 보호자<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">30</td>
+		<td align="center">꽃잠</td>
+		<td align="center">처음 뵙겠습니다, 남편입니다<br></td>
+		<td align="right">2</td>
+		<td align="right">200</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">2</td>
+		<td align="right" style="color:red;">200</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">200</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">140</td>
+	</tr>
+		<tr>
+		<td align="right">31</td>
+		<td align="center">김새턴</td>
+		<td align="center">유일의 향<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">32</td>
+		<td align="center">실버문</td>
+		<td align="center">사이코 트랩<br></td>
+		<td align="right">55</td>
+		<td align="right">5,500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">55</td>
+		<td align="right" style="color:red;">5,500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">5,500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">3,850</td>
+	</tr>
+		<tr>
+		<td align="right">33</td>
+		<td align="center">비단라</td>
+		<td align="center">상사에게 찍혔을 때 대처하는 법<br></td>
+		<td align="right">88</td>
+		<td align="right">8,800</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">88</td>
+		<td align="right" style="color:red;">8,800</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">8,800</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">6,160</td>
+	</tr>
+		<tr>
+		<td align="right">34</td>
+		<td align="center">리버 진</td>
+		<td align="center">틈 없이 맞닿은<br></td>
+		<td align="right">21</td>
+		<td align="right">2,100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">21</td>
+		<td align="right" style="color:red;">2,100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">2,100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,470</td>
+	</tr>
+		<tr>
+		<td align="right">35</td>
+		<td align="center">차미르</td>
+		<td align="center">이혼 합의 키스<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">36</td>
+		<td align="center">상림(메리J)</td>
+		<td align="center">옥탑방 벤츠남<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">37</td>
+		<td align="center">툼</td>
+		<td align="center">해링턴 공작가에서 유모를 구합니다<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">38</td>
+		<td align="center">아카DIA</td>
+		<td align="center">살아있는 인형의 밤<br></td>
+		<td align="right">60</td>
+		<td align="right">6,000</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">60</td>
+		<td align="right" style="color:red;">6,000</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">6,000</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">4,200</td>
+	</tr>
+		<tr>
+		<td align="right">39</td>
+		<td align="center">신팸</td>
+		<td align="center">소유 비서<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">40</td>
+		<td align="center">소년감성</td>
+		<td align="center">탐하는 관계<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">41</td>
+		<td align="center">윤산</td>
+		<td align="center">나의 삐딱한 피앙세<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">42</td>
+		<td align="center">유카</td>
+		<td align="center">치명적인 결혼<br></td>
+		<td align="right">17</td>
+		<td align="right">1,700</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">17</td>
+		<td align="right" style="color:red;">1,700</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,700</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,190</td>
+	</tr>
+		<tr>
+		<td align="right">43</td>
+		<td align="center">함흥이</td>
+		<td align="center">여동생의 은밀한 취미 생활<br></td>
+		<td align="right">50</td>
+		<td align="right">5,000</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">50</td>
+		<td align="right" style="color:red;">5,000</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">5,000</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">3,500</td>
+	</tr>
+		<tr>
+		<td align="right">44</td>
+		<td align="center">빨간달빛</td>
+		<td align="center">함입사, 물고 빠는 자<br></td>
+		<td align="right">13</td>
+		<td align="right">1,300</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">13</td>
+		<td align="right" style="color:red;">1,300</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,300</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">910</td>
+	</tr>
+		<tr>
+		<td align="right">45</td>
+		<td align="center">진숙</td>
+		<td align="center">오빠가 해줄게<br></td>
+		<td align="right">65</td>
+		<td align="right">6,500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">65</td>
+		<td align="right" style="color:red;">6,500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">6,500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">4,550</td>
+	</tr>
+		<tr>
+		<td align="right">46</td>
+		<td align="center">송성아</td>
+		<td align="center">상속 결혼<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">47</td>
+		<td align="center">고기</td>
+		<td align="center">부녀 사정<br></td>
+		<td align="right">5</td>
+		<td align="right">500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">5</td>
+		<td align="right" style="color:red;">500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">350</td>
+	</tr>
+		<tr>
+		<td align="right">48</td>
+		<td align="center">클레어</td>
+		<td align="center">뜨거운 안녕<br></td>
+		<td align="right">60</td>
+		<td align="right">6,000</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">60</td>
+		<td align="right" style="color:red;">6,000</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">6,000</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">4,200</td>
+	</tr>
+		<tr>
+		<td align="right">49</td>
+		<td align="center">하신</td>
+		<td align="center">만족할 때까지 [외전포함]<br></td>
+		<td align="right">43</td>
+		<td align="right">4,300</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">43</td>
+		<td align="right" style="color:red;">4,300</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">4,300</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">3,010</td>
+	</tr>
+		<tr>
+		<td align="right">50</td>
+		<td align="center">동그람이(손윤서)</td>
+		<td align="center">아찔한 너의 향기<br></td>
+		<td align="right">15</td>
+		<td align="right">1,500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">15</td>
+		<td align="right" style="color:red;">1,500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,050</td>
+	</tr>
+		<tr>
+		<td align="right">51</td>
+		<td align="center">느린돌</td>
+		<td align="center">뜨겁게 박히다<br></td>
+		<td align="right">153</td>
+		<td align="right">15,300</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">153</td>
+		<td align="right" style="color:red;">15,300</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">15,300</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">10,710</td>
+	</tr>
+		<tr>
+		<td align="right">52</td>
+		<td align="center">짙은</td>
+		<td align="center">결혼 사유<br></td>
+		<td align="right">35</td>
+		<td align="right">3,500</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">35</td>
+		<td align="right" style="color:red;">3,500</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">3,500</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">2,450</td>
+	</tr>
+		<tr>
+		<td align="right">53</td>
+		<td align="center">금나루</td>
+		<td align="center">형부, 들어와요<br></td>
+		<td align="right">10</td>
+		<td align="right">1,000</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">10</td>
+		<td align="right" style="color:red;">1,000</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,000</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">700</td>
+	</tr>
+		<tr>
+		<td align="right">54</td>
+		<td align="center">라이나</td>
+		<td align="center">금단을 탐하다<br></td>
+		<td align="right">3</td>
+		<td align="right">300</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">3</td>
+		<td align="right" style="color:red;">300</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">300</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">210</td>
+	</tr>
+		<tr>
+		<td align="right">55</td>
+		<td align="center">두드림</td>
+		<td align="center">빈틈없이 채워줄게<br></td>
+		<td align="right">28</td>
+		<td align="right">2,800</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">28</td>
+		<td align="right" style="color:red;">2,800</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">2,800</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">1,960</td>
+	</tr>
+		<tr>
+		<td align="right">56</td>
+		<td align="center">지아진</td>
+		<td align="center">뜨거운 그 남자의 유혹<br></td>
+		<td align="right">39</td>
+		<td align="right">3,900</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">39</td>
+		<td align="right" style="color:red;">3,900</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">3,900</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">2,730</td>
+	</tr>
+		<tr>
+		<td align="right">57</td>
+		<td align="center">박연필</td>
+		<td align="center">죽기 전에 꼭 불태워야 할 로맨스<br></td>
+		<td align="right">30</td>
+		<td align="right">3,000</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">30</td>
+		<td align="right" style="color:red;">3,000</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">3,000</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">2,100</td>
+	</tr>
+		<tr>
+		<td align="right">58</td>
+		<td align="center">별보라</td>
+		<td align="center">황리비가<br></td>
+		<td align="right">114</td>
+		<td align="right">11,400</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">114</td>
+		<td align="right" style="color:red;">11,400</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">11,400</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">7,980</td>
+	</tr>
+		<tr>
+		<td align="right">59</td>
+		<td align="center">해우</td>
+		<td align="center">너의 늪에 빠지다 [개정판]<br></td>
+		<td align="right">6</td>
+		<td align="right">600</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">6</td>
+		<td align="right" style="color:red;">600</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">600</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">420</td>
+	</tr>
+		<tr>
+		<td align="right">60</td>
+		<td align="center">은진</td>
+		<td align="center">유혹에 젖어드는 밤 [삽화본] - 원타임 005<br></td>
+		<td align="right">58</td>
+		<td align="right">5,800</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">58</td>
+		<td align="right" style="color:red;">5,800</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">5,800</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">4,060</td>
+	</tr>
+		<tr>
+		<td align="right">61</td>
+		<td align="center">보리식혜</td>
+		<td align="center">이혼 예정인 남편과 하룻밤을 보냈다<br></td>
+		<td align="right">12</td>
+		<td align="right">1,200</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">12</td>
+		<td align="right" style="color:red;">1,200</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">1,200</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">840</td>
+	</tr>
+		<tr>
+		<td align="right">62</td>
+		<td align="center">태리베어</td>
+		<td align="center">착한 아내는 오늘부로 그만둡니다<br></td>
+		<td align="right">141</td>
+		<td align="right">14,100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">141</td>
+		<td align="right" style="color:red;">14,100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">14,100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">9,870</td>
+	</tr>
+		<tr>
+		<td align="right">63</td>
+		<td align="center">라온미</td>
+		<td align="center">사랑 말고 결혼이 하고 싶어<br></td>
+		<td align="right">1</td>
+		<td align="right">100</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">1</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">100</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">70</td>
+	</tr>
+		<tr>
+		<td align="right">64</td>
+		<td align="center">박격</td>
+		<td align="center">사랑하는 나의 두부<br></td>
+		<td align="right">48</td>
+		<td align="right">4,800</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">48</td>
+		<td align="right" style="color:red;">4,800</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">4,800</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">3,360</td>
+	</tr>
+		<tr>
+		<td align="right">65</td>
+		<td align="center">농약같은가스나</td>
+		<td align="center">오만한 그 남자의 여비서<br></td>
+		<td align="right">4</td>
+		<td align="right">400</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">4</td>
+		<td align="right" style="color:red;">400</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">400</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">280</td>
+	</tr>
+		<tr>
+		<td align="right">66</td>
+		<td align="center">오카링</td>
+		<td align="center">이토록 위험한 사내 결혼<br></td>
+		<td align="right">6</td>
+		<td align="right">600</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+		<td align="right" style="color:red;">6</td>
+		<td align="right" style="color:red;">600</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">0</td>
+		<td align="right" style="color:red;">600</td>
+		<td align="center" style="color:red;">7:3</td>
+		<td align="right" style="color:red;">420</td>
+	</tr>
+	</table>

@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Distributors · v8 Report</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+       margin: 0; padding: 0; background: #f5f7fa; color: #1f2937; line-height: 1.55; }
+header { background: #1e3a8a; color: #fff; padding: 24px 32px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+header h1 { margin: 0; font-size: 24px; }
+header .meta { margin-top: 6px; font-size: 13px; opacity: 0.85; }
+nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0 32px; position: sticky; top: 0; z-index: 100;
+      overflow-x: auto; white-space: nowrap; }
+nav a { display: inline-block; padding: 14px 16px; color: #374151; text-decoration: none; font-size: 14px; border-bottom: 3px solid transparent; }
+nav a:hover, nav a.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+main { max-width: 1280px; margin: 0 auto; padding: 24px 32px 80px; }
+section { background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+section h2 { margin: 0 0 16px; font-size: 18px; color: #111827; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi-card { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 18px; border-radius: 8px; border-left: 4px solid #2563eb; }
+.kpi-card.positive { border-left-color: #059669; }
+.kpi-card.warning { border-left-color: #d97706; }
+.kpi-card.danger { border-left-color: #dc2626; }
+.kpi-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 22px; font-weight: 700; color: #111827; margin-top: 4px; }
+.kpi-sub { font-size: 12px; color: #6b7280; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+th { background: #f9fafb; text-align: left; padding: 10px 12px; font-weight: 600; border-bottom: 2px solid #e5e7eb; position: sticky; top: 56px; cursor: pointer; user-select: none; }
+th:hover { background: #f3f4f6; }
+th.num { text-align: right; }
+td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:hover td { background: #fefce8; }
+.search-input { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; width: 320px; margin-bottom: 12px; }
+.footer-note { text-align: center; color: #6b7280; font-size: 12px; padding: 24px; }
+.category-tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+.cat-normal { background: #dcfce7; color: #14532d; }
+.cat-unset { background: #fef3c7; color: #78350f; }
+.cat-multi { background: #dbeafe; color: #1e3a8a; }
+.cat-pen { background: #fce7f3; color: #831843; }
+.chart-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; font-size: 13px; }
+.chart-row .label { min-width: 140px; }
+.chart-row .bar-bg { flex: 1; background: #e5e7eb; height: 16px; border-radius: 3px; }
+.chart-row .bar-fg { background: #2563eb; height: 100%; border-radius: 3px; }
+.chart-row .value { min-width: 130px; text-align: right; font-variant-numeric: tabular-nums; color: #374151; }
+.hf-single { color: #14532d; font-weight: 600; }
+.hf-multi { color: #78350f; }
+.hf-offset { color: #1e3a8a; }
+.hf-unknown { color: #7f1d1d; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 정산내역 통합 리포트 v8 · Distributors</h1>
+  <div class="meta">유통사 라벨 분류 · 헤더형 (single-row / multi-section / report-offset / unknown)</div>
+</header>
+<nav><a href="index.html" class="">대시보드</a> <a href="publishers.html" class="">📚 Publishers</a> <a href="authors.html" class="">✍️ Authors</a> <a href="distributors.html" class="active">🏪 Distributors</a> <a href="anomaly.html" class="">⚠️ Anomaly</a> <a href="unresolved.html" class="">미매칭</a> <a href="skipped.html" class="">스킵 파일</a> <a href="duplicates.html" class="">중복 log</a> <a href="evolution.html" class="">라운드 진화</a> <a href="month-01.html" class="">1월</a> <a href="month-02.html" class="">2월</a> <a href="month-03.html" class="">3월</a> <a href="month-04.html" class="">4월</a> <a href="month-05.html" class="">5월</a> <a href="month-06.html" class="">6월</a> <a href="month-07.html" class="">7월</a> <a href="month-08.html" class="">8월</a> <a href="month-09.html" class="">9월</a> <a href="month-10.html" class="">10월</a> <a href="month-11.html" class="">11월</a> <a href="month-12.html" class="">12월</a></nav>
+<main>
+<section>
+<h2>🏪 Distributors (유통사) 분류 요약</h2>
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-label">전체 유통사</div><div class="kpi-value">48</div><div class="kpi-sub">R10 인식 카테고리</div></div>
+  <div class="kpi-card positive"><div class="kpi-label">총 행 수</div><div class="kpi-value">593,074</div><div class="kpi-sub">전체 raw 행</div></div>
+  <div class="kpi-card positive"><div class="kpi-label">single-row</div><div class="kpi-value">20</div><div class="kpi-sub">표준 헤더</div></div>
+  <div class="kpi-card warning"><div class="kpi-label">multi-section/report</div><div class="kpi-value">20</div><div class="kpi-sub">보고서형 멀티 섹션</div></div>
+  <div class="kpi-card warning"><div class="kpi-label">report-offset</div><div class="kpi-value">2</div><div class="kpi-sub">offset 헤더</div></div>
+  <div class="kpi-card danger"><div class="kpi-label">unknown</div><div class="kpi-value">6</div><div class="kpi-sub">헤더형 미파악</div></div>
+</div>
+</section>
+<section>
+<h2>🏆 Top 15 유통사 (행 수 기준)</h2>
+<div class="chart-row">
+  <div class="label">원스토어</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:100%"></div></div>
+  <div class="value">209,522 · 35.3% <small>(single-row)</small></div>
+</div><div class="chart-row">
+  <div class="label">리디</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:70%"></div></div>
+  <div class="value">148,462 · 25.0% <small>(unknown)</small></div>
+</div><div class="chart-row">
+  <div class="label">한아름</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:19%"></div></div>
+  <div class="value">40,207 · 6.8% <small>(single-row)</small></div>
+</div><div class="chart-row">
+  <div class="label">예스이십사</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:17%"></div></div>
+  <div class="value">36,570 · 6.2% <small>(multi-section/report)</small></div>
+</div><div class="chart-row">
+  <div class="label">에피루스</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:11%"></div></div>
+  <div class="value">25,087 · 4.2% <small>(single-row)</small></div>
+</div><div class="chart-row">
+  <div class="label">알라딘</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:10%"></div></div>
+  <div class="value">22,762 · 3.8% <small>(multi-section/report)</small></div>
+</div><div class="chart-row">
+  <div class="label">storywiz</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:7%"></div></div>
+  <div class="value">16,442 · 2.8% <small>(unknown)</small></div>
+</div><div class="chart-row">
+  <div class="label">카카오페이지</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:6%"></div></div>
+  <div class="value">14,603 · 2.5% <small>(multi-section/report)</small></div>
+</div><div class="chart-row">
+  <div class="label">e온누리_storywiz</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:6%"></div></div>
+  <div class="value">12,911 · 2.2% <small>(multi-section/report)</small></div>
+</div><div class="chart-row">
+  <div class="label">네이버</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:4%"></div></div>
+  <div class="value">9,599 · 1.6% <small>(multi-section/report)</small></div>
+</div><div class="chart-row">
+  <div class="label">북큐브</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:3%"></div></div>
+  <div class="value">8,158 · 1.4% <small>(single-row)</small></div>
+</div><div class="chart-row">
+  <div class="label">판무림</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:3%"></div></div>
+  <div class="value">7,156 · 1.2% <small>(single-row)</small></div>
+</div><div class="chart-row">
+  <div class="label">카카오</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:2%"></div></div>
+  <div class="value">5,654 · 1.0% <small>(multi-section/report)</small></div>
+</div><div class="chart-row">
+  <div class="label">미스터블루</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:2%"></div></div>
+  <div class="value">4,700 · 0.8% <small>(single-row)</small></div>
+</div><div class="chart-row">
+  <div class="label">네이버시리즈</div>
+  <div class="bar-bg"><div class="bar-fg" style="width:2%"></div></div>
+  <div class="value">4,402 · 0.7% <small>(multi-section/report)</small></div>
+</div>
+</section>
+<section>
+<h2>📋 전체 유통사 리스트 (48개)</h2>
+<p style="color:#6b7280;font-size:13px">유통사명 · 행 수 · 비중 · 헤더형 (codex-2 schema 기준)</p>
+<input type="text" class="search-input" data-target="#alldist" placeholder="🔍 유통사명·헤더형 검색">
+<table id="alldist" class="sortable">
+<thead><tr><th>유통사명</th><th class="num">행 수</th><th class="num">비중</th><th>헤더형 (codex-2)</th></tr></thead>
+<tbody><tr>
+  <td><strong>원스토어</strong></td>
+  <td class="num" data-sortkey="209522">209,522</td>
+  <td class="num">35.33%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>리디</strong></td>
+  <td class="num" data-sortkey="148462">148,462</td>
+  <td class="num">25.03%</td>
+  <td class="hf-unknown">unknown</td>
+</tr><tr>
+  <td><strong>한아름</strong></td>
+  <td class="num" data-sortkey="40207">40,207</td>
+  <td class="num">6.78%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>예스이십사</strong></td>
+  <td class="num" data-sortkey="36570">36,570</td>
+  <td class="num">6.17%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>에피루스</strong></td>
+  <td class="num" data-sortkey="25087">25,087</td>
+  <td class="num">4.23%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>알라딘</strong></td>
+  <td class="num" data-sortkey="22762">22,762</td>
+  <td class="num">3.84%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>storywiz</strong></td>
+  <td class="num" data-sortkey="16442">16,442</td>
+  <td class="num">2.77%</td>
+  <td class="hf-unknown">unknown</td>
+</tr><tr>
+  <td><strong>카카오페이지</strong></td>
+  <td class="num" data-sortkey="14603">14,603</td>
+  <td class="num">2.46%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>e온누리_storywiz</strong></td>
+  <td class="num" data-sortkey="12911">12,911</td>
+  <td class="num">2.18%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>네이버</strong></td>
+  <td class="num" data-sortkey="9599">9,599</td>
+  <td class="num">1.62%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>북큐브</strong></td>
+  <td class="num" data-sortkey="8158">8,158</td>
+  <td class="num">1.38%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>판무림</strong></td>
+  <td class="num" data-sortkey="7156">7,156</td>
+  <td class="num">1.21%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>카카오</strong></td>
+  <td class="num" data-sortkey="5654">5,654</td>
+  <td class="num">0.95%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>미스터블루</strong></td>
+  <td class="num" data-sortkey="4700">4,700</td>
+  <td class="num">0.79%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>네이버시리즈</strong></td>
+  <td class="num" data-sortkey="4402">4,402</td>
+  <td class="num">0.74%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>교보문고</strong></td>
+  <td class="num" data-sortkey="3540">3,540</td>
+  <td class="num">0.60%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>로망띠끄</strong></td>
+  <td class="num" data-sortkey="3163">3,163</td>
+  <td class="num">0.53%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>밀리의서재</strong></td>
+  <td class="num" data-sortkey="2614">2,614</td>
+  <td class="num">0.44%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>스토리이십사</strong></td>
+  <td class="num" data-sortkey="2522">2,522</td>
+  <td class="num">0.43%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>스토리숲</strong></td>
+  <td class="num" data-sortkey="1588">1,588</td>
+  <td class="num">0.27%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>톡소다</strong></td>
+  <td class="num" data-sortkey="1582">1,582</td>
+  <td class="num">0.27%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>신영미디어</strong></td>
+  <td class="num" data-sortkey="1449">1,449</td>
+  <td class="num">0.24%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>하이북</strong></td>
+  <td class="num" data-sortkey="1309">1,309</td>
+  <td class="num">0.22%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>애니툰</strong></td>
+  <td class="num" data-sortkey="1308">1,308</td>
+  <td class="num">0.22%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>조아라</strong></td>
+  <td class="num" data-sortkey="1299">1,299</td>
+  <td class="num">0.22%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>블라이스</strong></td>
+  <td class="num" data-sortkey="1091">1,091</td>
+  <td class="num">0.18%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>코미코</strong></td>
+  <td class="num" data-sortkey="920">920</td>
+  <td class="num">0.16%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>봄툰</strong></td>
+  <td class="num" data-sortkey="661">661</td>
+  <td class="num">0.11%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>만화가족</strong></td>
+  <td class="num" data-sortkey="648">648</td>
+  <td class="num">0.11%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>버프툰</strong></td>
+  <td class="num" data-sortkey="561">561</td>
+  <td class="num">0.09%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>노블코믹스</strong></td>
+  <td class="num" data-sortkey="383">383</td>
+  <td class="num">0.06%</td>
+  <td class="hf-unknown">unknown</td>
+</tr><tr>
+  <td><strong>카카오웹툰</strong></td>
+  <td class="num" data-sortkey="365">365</td>
+  <td class="num">0.06%</td>
+  <td class="hf-offset">report-offset</td>
+</tr><tr>
+  <td><strong>네이버웹툰</strong></td>
+  <td class="num" data-sortkey="297">297</td>
+  <td class="num">0.05%</td>
+  <td class="hf-unknown">unknown</td>
+</tr><tr>
+  <td><strong>탑툰</strong></td>
+  <td class="num" data-sortkey="216">216</td>
+  <td class="num">0.04%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>더점프이엔티</strong></td>
+  <td class="num" data-sortkey="202">202</td>
+  <td class="num">0.03%</td>
+  <td class="hf-unknown">unknown</td>
+</tr><tr>
+  <td><strong>레진</strong></td>
+  <td class="num" data-sortkey="179">179</td>
+  <td class="num">0.03%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>웹하드</strong></td>
+  <td class="num" data-sortkey="177">177</td>
+  <td class="num">0.03%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>델리툰</strong></td>
+  <td class="num" data-sortkey="177">177</td>
+  <td class="num">0.03%</td>
+  <td class="hf-offset">report-offset</td>
+</tr><tr>
+  <td><strong>누온</strong></td>
+  <td class="num" data-sortkey="156">156</td>
+  <td class="num">0.03%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>라라툰</strong></td>
+  <td class="num" data-sortkey="98">98</td>
+  <td class="num">0.02%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>스토리위즈</strong></td>
+  <td class="num" data-sortkey="87">87</td>
+  <td class="num">0.01%</td>
+  <td class="hf-unknown">unknown</td>
+</tr><tr>
+  <td><strong>컨텐츠헤라</strong></td>
+  <td class="num" data-sortkey="79">79</td>
+  <td class="num">0.01%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>태피툰</strong></td>
+  <td class="num" data-sortkey="79">79</td>
+  <td class="num">0.01%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>케이코믹스</strong></td>
+  <td class="num" data-sortkey="48">48</td>
+  <td class="num">0.01%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>피우리</strong></td>
+  <td class="num" data-sortkey="22">22</td>
+  <td class="num">0.00%</td>
+  <td class="hf-single">single-row</td>
+</tr><tr>
+  <td><strong>짱만화</strong></td>
+  <td class="num" data-sortkey="10">10</td>
+  <td class="num">0.00%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>플링</strong></td>
+  <td class="num" data-sortkey="6">6</td>
+  <td class="num">0.00%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr><tr>
+  <td><strong>울트라미디어</strong></td>
+  <td class="num" data-sortkey="3">3</td>
+  <td class="num">0.00%</td>
+  <td class="hf-multi">multi-section/report</td>
+</tr></tbody>
+</table>
+<p style="font-size:12px;color:#6b7280;margin-top:12px">
+  <strong>헤더형 의미:</strong>
+  <span class="hf-single">single-row</span> = 단일 행 헤더 (표준) /
+  <span class="hf-multi">multi-section/report</span> = 보고서형 멀티 섹션 /
+  <span class="hf-offset">report-offset</span> = offset 헤더 (R8 row 시작) /
+  <span class="hf-unknown">unknown</span> = 비정형 (라벨 부재 또는 단일 합계)
+</p>
+<p style="font-size:12px;color:#6b7280;margin-top:8px">
+  <strong>정산액 컬럼 부재:</strong> v8 메인 시트는 5컬럼(책·작가·raw 책명·출판사·정산액)만 표시하며 유통사는 별도 컬럼 아닌 내부 메타로만 사용. 따라서 유통사별 정산액 합계는 v8 메인 시트에서 직접 추출 불가. 추후 production v1의 <code>fact_sales</code>에 유통사 컬럼 추가 시 합계 분석 가능.
+</p>
+</section>
+</main>
+<div class="footer-note">데이터: R10 distributor_stats + codex-2 T014-platform-schema · PII 미포함</div>
+<script>
+document.querySelectorAll('table.sortable').forEach(tbl => {
+  const headers = tbl.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const tbody = tbl.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isNum = th.classList.contains('num');
+      const asc = th.dataset.sort !== 'asc';
+      rows.sort((a, b) => {
+        let va = a.cells[idx].dataset.sortkey || a.cells[idx].textContent;
+        let vb = b.cells[idx].dataset.sortkey || b.cells[idx].textContent;
+        if (isNum) { va = parseFloat(va) || 0; vb = parseFloat(vb) || 0; return asc ? va - vb : vb - va; }
+        return asc ? va.localeCompare(vb, 'ko') : vb.localeCompare(va, 'ko');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      headers.forEach(h => h.dataset.sort = '');
+      th.dataset.sort = asc ? 'asc' : 'desc';
+    });
+  });
+});
+document.querySelectorAll('.search-input').forEach(input => {
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    const tbl = document.querySelector(input.dataset.target || 'table');
+    const tbody = tbl ? tbl.querySelector('tbody') : null;
+    if (!tbody) return;
+    tbody.querySelectorAll('tr').forEach(tr => {
+      const text = tr.textContent.toLowerCase();
+      tr.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>스킵 파일 · v8 Report</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+       margin: 0; padding: 0; background: #f5f7fa; color: #1f2937; line-height: 1.55; }
+header { background: #1e3a8a; color: #fff; padding: 24px 32px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+header h1 { margin: 0; font-size: 24px; }
+header .meta { margin-top: 6px; font-size: 13px; opacity: 0.85; }
+nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0 32px; position: sticky; top: 0; z-index: 100;
+      overflow-x: auto; white-space: nowrap; }
+nav a { display: inline-block; padding: 14px 16px; color: #374151; text-decoration: none; font-size: 14px; border-bottom: 3px solid transparent; }
+nav a:hover, nav a.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+main { max-width: 1280px; margin: 0 auto; padding: 24px 32px 80px; }
+section { background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+section h2 { margin: 0 0 16px; font-size: 18px; color: #111827; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+section h3 { margin: 24px 0 12px; font-size: 15px; color: #374151; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi-card { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 18px; border-radius: 8px; border-left: 4px solid #2563eb; }
+.kpi-card.positive { border-left-color: #059669; }
+.kpi-card.warning { border-left-color: #d97706; }
+.kpi-card.danger { border-left-color: #dc2626; }
+.kpi-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 22px; font-weight: 700; color: #111827; margin-top: 4px; }
+.kpi-sub { font-size: 12px; color: #6b7280; margin-top: 4px; }
+.alert-grid { display: grid; gap: 12px; }
+.alert { padding: 16px 20px; border-radius: 6px; border-left: 4px solid; background: #fef2f2; }
+.alert.critical { border-color: #dc2626; background: #fee2e2; }
+.alert.high { border-color: #ea580c; background: #fed7aa; }
+.alert.medium { border-color: #ca8a04; background: #fef3c7; }
+.alert.fixed { border-color: #16a34a; background: #dcfce7; }
+.alert-title { font-weight: 700; font-size: 14px; color: #7f1d1d; }
+.alert.fixed .alert-title { color: #14532d; }
+.alert-body { font-size: 13px; color: #4b5563; margin-top: 6px; }
+.alert-meta { font-size: 11px; color: #6b7280; margin-top: 6px; font-family: monospace; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+th { background: #f9fafb; text-align: left; padding: 10px 12px; font-weight: 600; border-bottom: 2px solid #e5e7eb; position: sticky; top: 56px; cursor: pointer; user-select: none; }
+th:hover { background: #f3f4f6; }
+th.num { text-align: right; }
+td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:hover td { background: #fefce8; }
+.amount-pos { color: #111827; }
+.amount-neg { color: #dc2626; font-weight: 600; }
+.search-input { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; width: 320px; margin-bottom: 12px; }
+.month-summary { display: flex; gap: 24px; margin-bottom: 12px; font-size: 13px; color: #4b5563; flex-wrap: wrap; }
+.month-summary strong { color: #111827; }
+.chart-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; font-size: 13px; }
+.chart-row .label { min-width: 110px; }
+.chart-row .bar-bg { flex: 1; background: #e5e7eb; height: 16px; border-radius: 3px; position: relative; }
+.chart-row .bar-fg { background: #2563eb; height: 100%; border-radius: 3px; transition: width 0.3s; }
+.chart-row .bar-fg.warning { background: #d97706; }
+.chart-row .bar-fg.danger { background: #dc2626; }
+.chart-row .value { min-width: 140px; text-align: right; font-variant-numeric: tabular-nums; color: #374151; }
+.footer-note { text-align: center; color: #6b7280; font-size: 12px; padding: 24px; }
+.summary-list { list-style: disc; padding-left: 20px; font-size: 14px; line-height: 1.7; }
+.month-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 12px; }
+.month-card { background: #f9fafb; border-radius: 6px; padding: 12px; text-decoration: none; color: inherit; transition: all 0.15s; border: 1px solid #e5e7eb; }
+.month-card:hover { background: #eff6ff; border-color: #2563eb; }
+.month-card .m-label { font-size: 14px; font-weight: 700; color: #1e3a8a; }
+.month-card .m-amount { font-size: 13px; margin-top: 4px; }
+.month-card .m-count { font-size: 11px; color: #6b7280; margin-top: 2px; }
+.evolution-table th, .evolution-table td { text-align: center; }
+.evolution-table td.metric { text-align: left; font-weight: 600; }
+.row-count-info { font-size: 12px; color: #6b7280; margin-top: 8px; font-style: italic; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 정산내역 통합 리포트 v8 · 스킵 파일</h1>
+  <div class="meta">234 파일</div>
+</header>
+<nav><a href="index.html" class="">대시보드</a> <a href="anomaly.html" class="">⚠️ Anomaly</a> <a href="unresolved.html" class="">미매칭</a> <a href="skipped.html" class="active">스킵 파일</a> <a href="duplicates.html" class="">중복 log</a> <a href="evolution.html" class="">라운드 진화</a> <a href="month-01.html" class="">1월</a> <a href="month-02.html" class="">2월</a> <a href="month-03.html" class="">3월</a> <a href="month-04.html" class="">4월</a> <a href="month-05.html" class="">5월</a> <a href="month-06.html" class="">6월</a> <a href="month-07.html" class="">7월</a> <a href="month-08.html" class="">8월</a> <a href="month-09.html" class="">9월</a> <a href="month-10.html" class="">10월</a> <a href="month-11.html" class="">11월</a> <a href="month-12.html" class="">12월</a></nav>
+<main>
+<section>
+<h2>⏭️ 스킵 파일 (234건)</h2>
+<h3>사유별 분포 (Top 20)</h3>
+<table class="sortable" style="max-width:900px">
+<thead><tr><th>사유</th><th class="num">파일 수</th></tr></thead>
+<tbody><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; </small></td><td class="num">27</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td><td class="num">16</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td><td class="num">15</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td><td class="num">15</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td><td class="num">15</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td><td class="num">14</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td><td class="num">13</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; </small></td><td class="num">12</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td><td class="num">11</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; </small></td><td class="num">11</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td><td class="num">11</td></tr><tr><td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — x</small></td><td class="num">10</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td><td class="num">9</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td><td class="num">9</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td><td class="num">8</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td><td class="num">8</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates)</small></td><td class="num">6</td></tr><tr><td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates; </small></td><td class="num">4</td></tr><tr><td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: 암호화된 xls</small></td><td class="num">2</td></tr><tr><td><small>비-스프레드시트(.zip)</small></td><td class="num">2</td></tr></tbody>
+</table>
+<h3>전체 스킵 파일 목록</h3>
+<input type="text" class="search-input" data-target="#skiptbl" placeholder="🔍 파일·사유 검색">
+<table id="skiptbl" class="sortable">
+<thead><tr><th>월</th><th>파일 경로</th><th>사유</th></tr></thead>
+<tbody><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [스토리위즈] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [혜원] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [스토리위즈] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [권용찬] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [에필로그] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [에필로그] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [무장] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설매출내역_신영미디어(유통대행)_매출없음.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설매출내역_짱만화(엠유네트웍스).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산서] no header candidates; [소설(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹소설매출내역_큐툰(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [더컴퍼니] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹툰매출내역_라라툰(국내,외 통합)_매출없음.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [진엔터] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [진엔터] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/202201_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [이상윤] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/네이버/주식회사 스토리위즈_202101_Global_Sales_Report.xls</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: 암호화된 xls</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/미스터블루/202201_매출청구내역_미스터블루(통합).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/제휴사/케이코믹스_2022.01.zip</small></td>
+  <td><small>비-스프레드시트(.zip)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/제휴사/케이코믹스_2022.01/매출전자세금계산서목록(202201).xls</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([세금계산서] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/1. 월초청구(0131)/카카오/202201_매출청구내역_카카오웹툰(동시연재)_마딸.xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/2. 월중매출(0120)/202201_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates; [권용찬] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/3. 노블코믹스/2201_매출청구내역_갓 오브 블랙필드.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계표] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/3. 노블코믹스/2201_매출청구내역_라지에르의 서.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>1</td>
+  <td><small>01월/3. 노블코믹스/2201_매출청구내역_로드오브머니.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_매출청구내역_블라이스 셀렉트.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹소설매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹소설매출내역_피우리(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹툰매출내역_누온.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹툰매출내역_라라툰(국내,외 통합).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/1. 월초마감/202210_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/2. 월중마감/202210_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/2. 월중마감/202210_웹툰매출청구내역_피너툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/노블코믹스/2210_매출청구내역_갓 오브 블랙 필드_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202101] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/노블코믹스/2210_매출청구내역_라지에르의 서_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202107] no header candidates)</small></td>
+</tr><tr>
+  <td>10</td>
+  <td><small>10월/노블코믹스/2210_매출청구내역_로드 오브 머니_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202012] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_매출청구내역_블라이스 셀렉트.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_코미코(저스툰)_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_큐툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹소설매출내역_피우리(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹툰매출내역_무툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹툰매출내역_큐툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/1.월초마감/202211_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/2.월중마감/202211_웹소설,웹툰매출내역_봄툰(키다리).xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/2.월중마감/202211_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(10)] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/2.월중마감/202211_웹툰매출청구내역_피너툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산 보고서] no header candidates; [판매 세부내역] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/노블코믹스/2211_매출청구내역_갓 오브 블랙 필드_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202101] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/노블코믹스/2211_매출청구내역_라지에르의 서_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202107] no header candidates)</small></td>
+</tr><tr>
+  <td>11</td>
+  <td><small>11월/노블코믹스/2211_매출청구내역_로드 오브 머니_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202012] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_매출청구내역_블라이스 셀렉트.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(01)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹소설매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹소설매출내역_큐툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹툰매출내역_무툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹툰매출내역_큐툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(12)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/1. 월초마감/202212_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/2. 월중마감/202212_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(11)] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/2. 월중마감/202212_웹툰매출청구내역_피너툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산 보고서] no header candidates; [판매 세부내역] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/3. 노블코믹스/2212_매출청구내역_갓 오브 블랙 필드_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202101] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/3. 노블코믹스/2212_매출청구내역_라지에르의 서_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202107] no header candidates)</small></td>
+</tr><tr>
+  <td>12</td>
+  <td><small>12월/3. 노블코믹스/2212_매출청구내역_로드 오브 머니_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202012] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [스토리위즈] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [스토리위즈] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [스토리위즈] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [김광수] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [에필로그] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [에필로그] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [스토리위즈] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설매출내역_신영미디어(유통대행)_매출없음.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹소설매출내역_큐툰(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [더컴퍼니] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/202202_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [이상윤] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/미스터블루/202202_매출청구내역_미스터블루(통합).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/1. 월초청구(0228)/카카오/202202_매출청구내역_카카오웹툰(동시연재)_마딸.xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/2. 월중매출(0220)/202202_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(1)] no header candidates; [가람검] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/3. 노블코믹스/2202_매출청구내역_갓 오브 블랙필드.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계표] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/3. 노블코믹스/2202_매출청구내역_라지에르의 서.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계] no header candidates)</small></td>
+</tr><tr>
+  <td>2</td>
+  <td><small>02월/3. 노블코믹스/2202_매출청구내역_로드오브머니.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설매출내역_신영미디어(유통대행)_매출없음.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설매출내역_큐툰(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates; [더컴퍼니] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹소설매출내역_피우리(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/202203_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/1. 월초청구(0331)/미스터블루/202203_매출청구내역_미스터블루(통합).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/2. 월중청구(0317)/202203_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [구유] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/2. 월중청구(0317)/202203_웹툰매출청구내역_카카오페이지(마딸_카카오웹툰 동시연재).xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/3. 노블코믹스/2202_매출청구내역_갓 오브 블랙필드.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계표] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/3. 노블코믹스/2202_매출청구내역_라지에르의 서.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계] no header candidates)</small></td>
+</tr><tr>
+  <td>3</td>
+  <td><small>03월/3. 노블코믹스/2202_매출청구내역_로드오브머니.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [합계] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/10-1. 202204_웹소설매출내역_큐툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([Sheet1] no header candidates; [합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/10. 202204_웹소설매출내역_큐툰(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/16. 202204_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/19. 202204_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/2. 202204_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/2. 202204_웹소설,웹툰매출내역_교보문고(SW+유통대행+태랑).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/202204_매출청구내역_북팔.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates; [스토리위즈] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/202204_매출청구내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates; [Nisansui Ziquan] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/25. 202204_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/35. 202204_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/37. 202204_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/6. 202204_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/7. 202204_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/8. 202204_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/9. 202204_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/1.월초청구(0430)/미스터블루/202204_매출청구내역_미스터블루(통합).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/2 월중 청구/202204_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>4</td>
+  <td><small>04월/2 월중 청구/202204_웹툰매출청구내역_카카오페이지(마딸_카카오웹툰 동시연재).xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates; [김광수] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates; [제외] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates; [김광수] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates; [무장] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹소설매출내역_큐툰(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(3)] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(2)] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹툰매출내역_무툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/202205_웹툰매출내역_큐툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/1. 월초청구/미스터블루/스토리위즈_전체.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/2. 월중청구/202205_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates; [권용찬] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/2. 월중청구/202205_웹툰매출청구내역_카카오페이지(마딸_카카오웹툰 동시연재).xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/2. 월중청구/kakaopage_global/(page) 정산서_타파스(미국)_MG_사업자_스토리위즈_202204_최초 (1).xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/2. 월중청구/kakaopage_global/나. (page) 정산서_네오바자르(인도네시아 MCP)_CP_스토리위즈_202203.xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/2. 월중청구/kakaopage_global/다. (page) 정산서_네오바자르(인도네시아)_CP_RS_스토리위즈_202203.xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/2. 월중청구/네이버글로벌/[스토리위즈]네이버웹툰(글로벌)_내부 관리_pw3828601768.xlsx</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: CDF/BIFF — xlrd 실패 + libreoffice 변환 실패</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/2. 월중청구/네이버글로벌/주식회사 스토리위즈_202205_Global_Sales_Report.xls</small></td>
+  <td><small>파일 처리 에러: RuntimeError: 파일 열기 실패: RuntimeError: 암호화된 xls</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/202205_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(4)] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/노블코믹스/2205_매출청구내역_갓 오브 블랙 필드_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202101] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/노블코믹스/2205_매출청구내역_라지에르의 서_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202107] no header candidates)</small></td>
+</tr><tr>
+  <td>5</td>
+  <td><small>05월/노블코믹스/2205_매출청구내역_로드 오브 머니_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202012] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설매출내역_큐툰(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹소설매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹툰매출내역_무툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹툰매출내역_큐툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/202206_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(6)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/1. 월초청구/미스터블루/미스터블루_스토리위즈_전체.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/2. 월중청구/202206_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(5)] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/2. 월중청구/노블코믹스/2022.06.24 09.42_FW [투유드림] 스토리위즈 2022년 5월 정산서.zip</small></td>
+  <td><small>비-스프레드시트(.zip)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/2. 월중청구/노블코믹스/2206_매출청구내역_갓 오브 블랙 필드_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202101] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/2. 월중청구/노블코믹스/2206_매출청구내역_라지에르의 서_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202107] no header candidates)</small></td>
+</tr><tr>
+  <td>6</td>
+  <td><small>06월/2. 월중청구/노블코믹스/2206_매출청구내역_로드 오브 머니_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202012] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹소설매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹툰매출내역_무툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([스토리위즈 2022-07 __만화__작품내역__큐툰] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹툰매출내역_큐툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/202207_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/1. 월초마감/미스터블루/미스터블루_스토리위즈_전체.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/2. 월중마감/202207_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/2. 월중마감/202207_웹툰매출청구내역_피너툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(06)] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/2. 월중마감/노블코믹스/2207_매출청구내역_갓 오브 블랙 필드_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202101] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/2. 월중마감/노블코믹스/2207_매출청구내역_라지에르의 서_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202107] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/2. 월중마감/노블코믹스/2207_매출청구내역_로드 오브 머니_(투유드림).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([서비스현황] no header candidates; [202012] no header candidates)</small></td>
+</tr><tr>
+  <td>7</td>
+  <td><small>07월/2. 월중마감/노블코믹스/재담_Not Alone_위코믹스정산_22.07.jpg</small></td>
+  <td><small>비-스프레드시트(.jpg)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설,웹툰매출내역_블라이스 셀렉트.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([제안 요청 LIST] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹소설매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹툰매출내역_무툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹툰매출내역_큐툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/202208_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/1. 월초 마감/미스터블루/미스터블루_종합_8월 마감.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/2. 월중 마감/202208_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>8</td>
+  <td><small>08월/2. 월중 마감/202208_웹툰매출청구내역_피너툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(7)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설,웹툰매출내역_교보문고(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설,웹툰매출내역_북팔(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설,웹툰매출내역_블라이스 셀렉트.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([제안 요청 LIST] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설매출내역_구글북스(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설매출내역_무툰_계정1.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설매출내역_무툰_계정2(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설매출내역_미소설(유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설매출내역_스낵북(SW+유통대행).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹소설매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹툰매출내역_무툰(만화).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹툰매출내역_무툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹툰매출내역_큐툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹툰매출내역_큐툰_계정3(올콘).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/202209_웹툰매출내역_투믹스(글로벌).xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(9)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/1. 월초 마감/미스터블루/미스터블루_종합_9월 마감.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([정산내역서] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/2. 월중 마감/202209_웹소설매출청구내역_문피아.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/2. 월중 마감/202209_웹툰매출청구내역_피너툰.xlsx</small></td>
+  <td><small>헤더 미감지 (R10 일반+kv+머지셀 모두 실패) ([합계(8)] no header candidates)</small></td>
+</tr><tr>
+  <td>9</td>
+  <td><small>09월/2. 월중 마감/재담_Not Alone_위코믹스정산_22.09.jpg</small></td>
+  <td><small>비-스프레드시트(.jpg)</small></td>
+</tr></tbody>
+</table>
+</section>
+</main>
+<div class="footer-note">데이터: 2022_정산내역_통합_v8.xlsx · 정책: 5컬럼·raw 정산액·PII 미포함</div>
+<script>
+// 정렬 가능 테이블
+document.querySelectorAll('table.sortable').forEach(tbl => {
+  const headers = tbl.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const tbody = tbl.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isNum = th.classList.contains('num');
+      const asc = th.dataset.sort !== 'asc';
+      rows.sort((a, b) => {
+        let va = a.cells[idx].dataset.sortkey || a.cells[idx].textContent;
+        let vb = b.cells[idx].dataset.sortkey || b.cells[idx].textContent;
+        if (isNum) { va = parseFloat(va) || 0; vb = parseFloat(vb) || 0; return asc ? va - vb : vb - va; }
+        return asc ? va.localeCompare(vb, 'ko') : vb.localeCompare(va, 'ko');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      headers.forEach(h => h.dataset.sort = '');
+      th.dataset.sort = asc ? 'asc' : 'desc';
+    });
+  });
+});
+
+// 실시간 검색
+document.querySelectorAll('.search-input').forEach(input => {
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    const tbl = document.querySelector(input.dataset.target || 'table');
+    const tbody = tbl ? tbl.querySelector('tbody') : null;
+    if (!tbody) return;
+    tbody.querySelectorAll('tr').forEach(tr => {
+      const text = tr.textContent.toLowerCase();
+      tr.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

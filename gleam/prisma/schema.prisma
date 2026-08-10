@@ -1,0 +1,168 @@
+// 별의아이들 (gleam) — 단순화 스키마
+// 가벼운 로컬 데모용. SQLite. SaaS 골격(Organization·Subscription·Marketplace) 모두 제거.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────── 학생 (단일 역할, 인증 단순화) ───────────
+model Student {
+  id           String   @id @default(cuid())
+  name         String
+  ageGroup     String   // "ELEMENTARY_LOW" | "ELEMENTARY_HIGH" | "MIDDLE_SCHOOL" | "HIGH_SCHOOL"
+  schoolName   String?
+  schoolCode   String?  // NEIS SD_SCHUL_CODE
+  grade        Int?
+  region       String?  // 시·도
+  // 학교 시험 데이터 (이중특수성 분석용)
+  recentMath   Int?     // 최근 수학 점수 0~100
+  recentKorean Int?
+  recentScience Int?
+  // 강점 프로파일 — 8지능 × 0~10
+  ling         Float    @default(0)  // 언어
+  logi         Float    @default(0)  // 논리수학
+  visu         Float    @default(0)  // 시각공간
+  musi         Float    @default(0)  // 음악
+  body         Float    @default(0)  // 신체운동
+  intp         Float    @default(0)  // 대인관계
+  intr         Float    @default(0)  // 자기성찰
+  natu         Float    @default(0)  // 자연친화
+  // SOLO 4차원
+  depth        Float    @default(0)
+  creativity   Float    @default(0)
+  logic        Float    @default(0)
+  empathy      Float    @default(0)
+
+  diagnoses    Diagnosis[]
+  gameRuns     GameRun[]
+  reports      Report[]
+  essays       Essay[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ─────────── 5분 게임형 진단 ───────────
+model GameRun {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  gameType    String   // "WORD_ASSOC" | "STORY_COMPLETE" | "VISUAL_CHOICE" | "TIME_PATTERN"
+  rawData     String   // JSON: 사용자 행동 데이터 (단어 목록, 시간, 선택 등)
+  durationMs  Int
+  // 게임에서 추출한 지능 시그널
+  signals     String   // JSON: { ling: 7.5, logi: 4, ... }
+  aiNotes     String?  // Claude가 분석한 상세 노트
+  createdAt   DateTime @default(now())
+}
+
+// ─────────── 종합 진단 결과 (게임들을 합쳐 강점 프로파일 생성) ───────────
+model Diagnosis {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  // 8지능 점수
+  scores      String   // JSON: { ling: 7.5, logi: 4, visu: 9, ... }
+  // SOLO 4차원
+  soloScores  String   // JSON: { depth: 7, creativity: 8, logic: 5, empathy: 6 }
+  // 강점 TOP 3
+  topStrengths String  // JSON: ["VISU", "INTR", "LING"]
+  // 진로 추천 5개
+  careerSuggestions String // JSON: [{ name, reason }]
+  // 정책 의뢰 트리거
+  giftedReferral   Boolean @default(false)  // 영재교육원 추천 (이중특수성)
+  clinicReferral   Boolean @default(false)  // 학습클리닉 추천 (전 영역 약함)
+  unevennessIndex  Float   @default(0)      // 강점-약점 격차 (0~10) — 2e 시그널
+  // AI 종합 코멘트
+  summary     String   // Claude 생성 종합 코멘트 (학생용 따뜻한 메시지)
+  createdAt   DateTime @default(now())
+
+  reports     Report[]
+}
+
+// ─────────── 학부모/교사 리포트 (DOCX 생성) ───────────
+model Report {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  diagnosisId String?
+  diagnosis   Diagnosis? @relation(fields: [diagnosisId], references: [id])
+  audience    String   // "PARENT" | "TEACHER" | "GIFTED_REFERRAL" | "CLINIC_REFERRAL"
+  title       String
+  contentMd   String   // 마크다운 본문
+  docxPath    String?  // 생성된 DOCX 파일 경로
+  createdAt   DateTime @default(now())
+}
+
+// ─────────── 학생 자작물 (모드 B: 본문 미보유 케어) ───────────
+model Essay {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  bookIsbn    String?  // 도서관정보나루 ISBN (메타데이터만)
+  bookTitle   String?
+  text        String   // 학생이 쓴 글
+  // SOLO 채점
+  depth       Float?
+  creativity  Float?
+  logic       Float?
+  empathy     Float?
+  aiComment   String?
+  // 강점 시그널 (이 글에서 추출한 8지능 정보)
+  signals     String?  // JSON
+  createdAt   DateTime @default(now())
+}
+
+// ─────────── 도서관정보나루 도서 메타 캐시 ───────────
+model BookMeta {
+  isbn13      String   @id
+  title       String
+  author      String?
+  publisher   String?
+  pubYear     Int?
+  classNo     String?  // KDC 분류
+  // 도서관정보나루에서 가져온 또래 인기도 시그널
+  loanByAge   String?  // JSON: { "10s": rank, "20s": rank }
+  loanByGender String? // JSON: { M: rank, F: rank }
+  // 강점 영역 추정 (책 분류 → 8지능)
+  strengthHints String? // JSON: ["LING", "INTR"]
+  cachedAt    DateTime @default(now())
+}
+
+// ─────────── 학교 메타 캐시 (NEIS + 학교알리미) ───────────
+model SchoolMeta {
+  schoolCode  String   @id  // NEIS SD_SCHUL_CODE
+  name        String
+  region      String?
+  type        String?  // 초등/중/고
+  studentCount Int?
+  multiculturalRatio Float?  // 다문화 학생 비율
+  libraryBooks Int?    // 도서관 보유도서 수
+  perCapitaBooks Float? // 1인당 장서
+  cachedAt    DateTime @default(now())
+}
+
+// ─────────── 영재교육원 분포 (의뢰 매칭용) ───────────
+model GiftedCenter {
+  id          String   @id @default(cuid())
+  region      String
+  city        String
+  name        String
+  domain      String?  // "수학" | "과학" | "인문" | "예술" | "발명"
+  phone       String?
+  address     String?
+}
+
+// ─────────── 학습클리닉센터 분포 (의뢰 매칭용) ───────────
+model LearningClinic {
+  id          String   @id @default(cuid())
+  region      String
+  city        String
+  name        String
+  phone       String?
+  address     String?
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+<title>정산 명세서 · 문찐</title>
+<style>
+@page{size:A4;margin:18mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard','Malgun Gothic',sans-serif;color:#1a1d24;font-size:12px;line-height:1.6;padding:24px;max-width:780px;margin:0 auto}
+.bar{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #1a1d24;padding-bottom:12px;margin-bottom:6px}
+h1{font-size:24px;font-weight:800;letter-spacing:8px}
+.bar .meta{text-align:right;font-size:11px;color:#555}
+.parties{display:flex;gap:24px;margin:18px 0}
+.parties .box{flex:1;border:1px solid #e0e3e9;border-radius:8px;padding:12px 14px}
+.parties .k{font-size:10px;color:#8a909a;font-weight:700;letter-spacing:1px}
+.parties .v{font-size:14px;font-weight:700;margin-top:2px}
+.parties .s{font-size:11px;color:#6b727e;margin-top:3px}
+table{width:100%;border-collapse:collapse;margin:8px 0 0;font-size:11.5px}
+th{background:#1a1d24;color:#fff;padding:8px 10px;text-align:left;font-weight:700}
+th.r,td.r{text-align:right;font-variant-numeric:tabular-nums} th.c,td.c{text-align:center}
+td{padding:7px 10px;border-bottom:1px solid #e8ebf0}
+tbody tr:nth-child(even){background:#fafbfc}
+tfoot td{border-top:2px solid #1a1d24;font-weight:800;background:#f2f4f7}
+.calc{margin-top:18px;margin-left:auto;width:300px;font-size:12px}
+.calc .row{display:flex;justify-content:space-between;padding:6px 2px;border-bottom:1px solid #eef1f5}
+.calc .row.tot{border-top:2px solid #1a1d24;border-bottom:none;font-weight:800;font-size:15px;padding-top:10px;margin-top:2px}
+.calc .row.tot .v{color:#1f4fd0}
+.note{margin-top:24px;font-size:10.5px;color:#6b727e;border-top:1px solid #e0e3e9;padding-top:12px;line-height:1.8}
+.rate{color:#1f4fd0;font-weight:700}
+.actions{text-align:center;margin:0 0 18px}
+.actions button{background:#2f6bff;color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+@media print{.actions{display:none}body{padding:0}}
+</style></head><body>
+<div class="actions"><button onclick="window.print()">인쇄 / PDF 저장</button></div>
+<div class="bar"><h1>정 산 명 세 서</h1>
+  <div class="meta">발행일 2026년 08월 02일<br>정산 기간 2026-01 ~ 2026-04</div></div>
+<div class="parties">
+  <div class="box"><div class="k">발행처 (공급자)</div><div class="v">주식회사 스토린랩</div>
+    <div class="s">레이블 매드햇</div></div>
+  <div class="box"><div class="k">수신 (저작권자)</div><div class="v">문찐 귀하</div>
+    <div class="s">작품 1편 · 유통사 8곳</div></div>
+</div>
+<table>
+  <thead><tr><th>작품명</th><th>판매처(유통사)</th><th class="c">구분</th><th class="r">판매금액(원)</th><th class="r">정산액(원)</th></tr></thead>
+  <tbody><tr><td>망나니 PD 아이돌로 살아남기</td><td>리디</td><td class='c'>단행본</td><td class='r'>85,369,734</td><td class='r'>59,515,828</td></tr>
+<tr><td>망나니 PD 아이돌로 살아남기</td><td>카카오페이지</td><td class='c'>연재</td><td class='r'>73,073,988</td><td class='r'>40,532,545</td></tr>
+<tr><td>망나니 PD 아이돌로 살아남기</td><td>카카오페이지</td><td class='c'>단행본</td><td class='r'>4,034,238</td><td class='r'>2,231,920</td></tr>
+<tr><td>망나니 PD 아이돌로 살아남기</td><td>네이버시리즈</td><td class='c'>단행본</td><td class='r'>1,400,543</td><td class='r'>912,358</td></tr>
+<tr><td>망나니 PD 아이돌로 살아남기</td><td>알라딘</td><td class='c'>단행본</td><td class='r'>432,000</td><td class='r'>302,400</td></tr>
+<tr><td>망나니 PD 아이돌로 살아남기</td><td>교보문고</td><td class='c'>단행본</td><td class='r'>396,000</td><td class='r'>275,040</td></tr>
+<tr><td>망나니 PD 아이돌로 살아남기</td><td>예스24</td><td class='c'>단행본</td><td class='r'>187,200</td><td class='r'>131,040</td></tr>
+<tr><td>망나니 PD 아이돌로 살아남기</td><td>원스토리</td><td class='c'>단행본</td><td class='r'>14,400</td><td class='r'>10,080</td></tr>
+<tr><td>망나니 PD 아이돌로 살아남기</td><td>문피아</td><td class='c'>연재</td><td class='r'>7,200</td><td class='r'>4,536</td></tr></tbody>
+  <tfoot><tr><td colspan="3">합계</td><td class="r">164,915,303</td><td class="r">103,915,748</td></tr></tfoot>
+</table>
+<div class="calc">
+  <div class="row"><span>정산 대상액 (유통사 정산액)</span><span class="v">103,915,748원</span></div>
+  <div class="row"><span>작가 정산요율</span><span class="v rate">70%</span></div>
+  <div class="row"><span>작가 정산액</span><span class="v">72,741,023원</span></div>
+  <div class="row"><span>원천징수 (3.3%)</span><span class="v">− 2,400,454원</span></div>
+  <div class="row tot"><span>실지급액</span><span class="v">70,340,569원</span></div>
+</div>
+<div class="note">
+  · 본 명세서는 유통사가 출판사로 지급한 <b>정산액</b>을 기준으로 작성되었으며, 작가 정산액은 계약 정산요율(현재 <span class="rate">70%</span>)을 적용한 금액입니다. 실제 지급액은 개별 계약 조건에 따라 조정될 수 있습니다.<br>
+  · 원천징수세액은 사업소득 3.3% 기준 추정치이며, 부가세·기타 공제 항목은 반영되지 않았습니다.<br>
+  · 금액은 유통사 원본 정산서를 표준화·합산한 값으로, 원본 대사 검증을 거쳤습니다.
+</div>
+</body></html>

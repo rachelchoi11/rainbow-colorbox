@@ -1,0 +1,953 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>컨텐츠별 매출통계</title>
+<style type="text/css">
+td {font-size:12px}
+.title {background-color:#efefef;text-align:center}
+.amount {background-color:#efefef;text-align:right;font-weight: bold;}
+</style>
+</head>
+<body>
+	<table cellpadding="0" cellspacing="0" width="100%">
+		<tr valign="top">
+			<td style="padding-top: 4px;" height="26" colspan="4"><b> <font size="3"> 이용권 포함 컨텐츠별 매출 통계</font></b></td>
+		</tr>
+	</table>
+	<br/>
+	<div class="boxline01">
+		<table class="boxline02">
+			<thead>
+				<tr bgcolor="#e5e6e9">
+					<th rowspan="2" width="*">컨텐츠</th>
+					<th rowspan="2" width="60">컨텐츠No</th>
+					<td rowspan="2" width="80">공급자코드</td>
+					<th rowspan="2" width="100">CP명</th>
+					<th rowspan="2" width="160">작가명</th>
+					<th rowspan="2" width="100">출판사</th>
+					<td rowspan="2" width="80">나이제한</td>
+					<td rowspan="2" width="120">서비스일</td>
+
+					<th bgcolor="#e2efda" colspan="9" width="450">대여권</th>
+					<th bgcolor="#ddebf7" colspan="9" width="450">소장권</th>
+
+					<th bgcolor="#e2efda" colspan="3" width="250">쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">쿠키로 구매</th>
+					<th bgcolor="#e2efda" colspan="3" width="250">i쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">i쿠키로 구매</th>
+
+                    <th bgcolor="#e2efda" colspan="3" width="250">자동충전 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">자동충전 쿠키로 구매</th>
+					<th bgcolor="#e2efda" colspan="3" width="250">구글 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">구글 쿠키로 구매</th>
+					<th bgcolor="#e2efda" colspan="3" width="250">구글 외부 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">구글 외부 쿠키로 구매</th>
+
+					<th bgcolor="#e2efda" colspan="3" width="250">원스토어 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">원스토어 쿠키로 구매</th>
+
+					<th bgcolor="#e2efda" colspan="3" width="250">리딤 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">리딤 쿠키로 구매</th>
+
+					<th rowspan="2" width="100">유상 이용권 보정</th>
+					<th rowspan="2" width="100">마켓수수료(추정치)</th>
+					<th rowspan="2" width="160">합계</th>
+				</tr>
+				<tr bgcolor="#e5e6e9">
+					<th>건수</th>
+					<th>비정산</th>
+					<th>무료이용권</th>
+					<th>유상쿠키</th>
+					<th>무상쿠키</th>
+					<th>유상i쿠키</th>
+					<th>무상i쿠키</th>
+                    <th>유상자동충전쿠키</th>
+					<th>무상자동충전쿠키</th>
+
+					<th>건수</th>
+					<th>비정산</th>
+					<th>무료이용권</th>
+					<th>유상쿠키</th>
+					<th>무상쿠키</th>
+					<th>유상i쿠키</th>
+					<th>무상i쿠키</th>
+					<th>유상자동충전쿠키</th>
+					<th>무상자동충전쿠키</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+						<td style="text-align:left">망나니의 경제학 [독점]</td>
+						<td style="text-align:left">687641</td>
+						<td style="mso-number-format:'\@'">D226880</td>
+						<td style="text-align:left">스토린랩_장르소설_브랜드MG</td>
+						<td style="text-align:left">번파</td>
+						<td style="text-align:left">매드햇</td>
+						<td>전체이용가</td>
+						<td>2026.06.16</td>
+
+						<td>17,123</td>
+						<td>1,316</td>
+						<td>1,712,300</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>835</td>
+						<td>62,300</td>
+						<td>20,600</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>42</td>
+						<td>3,600</td>
+						<td>1,200</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>441</td>
+						<td>43,600</td>
+						<td>500</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>248</td>
+						<td>29,760</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>427</td>
+						<td>51,120</td>
+						<td>100</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>11,833.8</td>
+						<td><font color="red">1,925,080.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr>
+						<td style="text-align:left">천재 생도로 착각당했다 [독점]</td>
+						<td style="text-align:left">665501</td>
+						<td style="mso-number-format:'\@'">D144092</td>
+						<td style="text-align:left">스토린랩_장르소설_브랜드MG</td>
+						<td style="text-align:left">설연하</td>
+						<td style="text-align:left">매드햇</td>
+						<td>전체이용가</td>
+						<td>2026.06.16</td>
+
+						<td>30</td>
+						<td>4,564</td>
+						<td>3,000</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>5,162</td>
+						<td>372,900</td>
+						<td>137,030</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>279</td>
+						<td>24,720</td>
+						<td>7,300</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>1,962</td>
+						<td>192,900</td>
+						<td>3,300</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>889</td>
+						<td>105,260</td>
+						<td>1,100</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>1,325</td>
+						<td>153,960</td>
+						<td>4,200</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>251</td>
+						<td>25,100</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>52,537.4</td>
+						<td><font color="red">1,030,770.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr>
+						<td style="text-align:left">망장천: 천하의 주인이 되고픈 자 [독점]</td>
+						<td style="text-align:left">690822</td>
+						<td style="mso-number-format:'\@'">D236986</td>
+						<td style="text-align:left">스토린랩_장르소설_브랜드MG</td>
+						<td style="text-align:left">미천대하</td>
+						<td style="text-align:left">심월(心月)</td>
+						<td>전체이용가</td>
+						<td>2026.06.17</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>1,247</td>
+						<td>93,600</td>
+						<td>29,990</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>190</td>
+						<td>8,640</td>
+						<td>11,800</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>975</td>
+						<td>95,800</td>
+						<td>1,700</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>162</td>
+						<td>19,440</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>611</td>
+						<td>72,720</td>
+						<td>500</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>16,762.8</td>
+						<td><font color="red">334,190.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr>
+						<td style="text-align:left">이 문파는 하늘을 거스를 것이다 [독점]</td>
+						<td style="text-align:left">689689</td>
+						<td style="mso-number-format:'\@'">D236826</td>
+						<td style="text-align:left">스토린랩_장르소설_브랜드MG</td>
+						<td style="text-align:left">정창약마</td>
+						<td style="text-align:left">심월(心月)</td>
+						<td>전체이용가</td>
+						<td>2026.06.17</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>542</td>
+						<td>36,800</td>
+						<td>15,705</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>369</td>
+						<td>36,700</td>
+						<td>200</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>485</td>
+						<td>58,200</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>435</td>
+						<td>52,200</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>1</td>
+						<td>120</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>12,732.6</td>
+						<td><font color="red">199,925.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr>
+						<td style="text-align:left">나의 잔혹한 구원자 [독점]</td>
+						<td style="text-align:left">673130</td>
+						<td style="mso-number-format:'\@'">D170347</td>
+						<td style="text-align:left">스토린랩_장르소설_브랜드MG</td>
+						<td style="text-align:left">로사린</td>
+						<td style="text-align:left">앨리스</td>
+						<td>12세 이상 이용가능</td>
+						<td>2026.01.14</td>
+
+						<td>0</td>
+						<td>1,153</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>409</td>
+						<td>16,300</td>
+						<td>24,375</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>112</td>
+						<td>13,080</td>
+						<td>300</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>172</td>
+						<td>17,200</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>133</td>
+						<td>15,960</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>394</td>
+						<td>46,560</td>
+						<td>600</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>63</td>
+						<td>7,440</td>
+						<td>100</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>11,310.6</td>
+						<td><font color="red">141,915.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr>
+						<td style="text-align:left">탑에서 퇴근하는 회사원 [독점]</td>
+						<td style="text-align:left">681161</td>
+						<td style="mso-number-format:'\@'">D200984</td>
+						<td style="text-align:left">스토린랩_장르소설_브랜드MG</td>
+						<td style="text-align:left">Hubble</td>
+						<td style="text-align:left">매드햇</td>
+						<td>12세 이상 이용가능</td>
+						<td>2026.06.16</td>
+
+						<td>0</td>
+						<td>217</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>150</td>
+						<td>14,500</td>
+						<td>500</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>14</td>
+						<td>400</td>
+						<td>1,000</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>69</td>
+						<td>8,280</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>1,192.2</td>
+						<td><font color="red">24,680.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr>
+						<td style="text-align:left">메카 전선 속 고인물 단역 [독점]</td>
+						<td style="text-align:left">670694</td>
+						<td style="mso-number-format:'\@'">D163866</td>
+						<td style="text-align:left">스토린랩_장르소설_브랜드MG</td>
+						<td style="text-align:left">미니크라켄</td>
+						<td style="text-align:left">매드햇</td>
+						<td>전체이용가</td>
+						<td>2026.05.22</td>
+
+						<td>0</td>
+						<td>189</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>48</td>
+						<td>2,600</td>
+						<td>2,110</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>123</td>
+						<td>12,100</td>
+						<td>200</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>20</td>
+						<td>2,400</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>1</td>
+						<td>120</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>691.8</td>
+						<td><font color="red">19,530.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr>
+						<td style="text-align:left">미궁에서 나 혼자 드워프 쉘터 [독점]</td>
+						<td style="text-align:left">697422</td>
+						<td style="mso-number-format:'\@'">D285033</td>
+						<td style="text-align:left">스토린랩_장르소설_브랜드MG</td>
+						<td style="text-align:left">딥블랙</td>
+						<td style="text-align:left">매드햇</td>
+						<td>전체이용가</td>
+						<td>2026.06.17</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>12</td>
+						<td>1,200</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>10</td>
+						<td>1,200</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>144.0</td>
+						<td><font color="red">2,400.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr bgcolor="#e5e6e9">
+							<th class="item" colspan="8"><b>합계</b></th>
+							<th class="item" style="text-align:right;padding:6px 6px;">17,153</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">7,439</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">1,715,300</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">8,405</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">600,200</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">230,310</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">623</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">50,040</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">20,600</th>
+
+                            <th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">9,329</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">1,023,440</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">13,500</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">251</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">25,100</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0.0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">107,205.2</th>
+							<th class="item" style="text-align:right;padding:6px 6px;"><font color="red">3,678,490.0</font></th>
+
+						</tr>
+					</tbody>
+		</table>
+	</div>
+</body>
+</html>

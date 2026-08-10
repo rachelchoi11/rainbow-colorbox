@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>정산서 표준화 확인 요청서</title>
+<style>
+  @page { size: A4; margin: 24mm 20mm 22mm 20mm; @bottom-center { content: counter(page); } }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif;
+    color: #1a1a1a; font-size: 10.8pt; line-height: 1.7; margin: 0; letter-spacing: -0.01em;
+  }
+  .doc-title { font-size: 18pt; font-weight: 800; color: #14233d; text-align: center; margin: 0 0 4px; letter-spacing: -0.02em; }
+  .doc-sub { text-align: center; color: #5a6472; font-size: 10.5pt; margin-bottom: 22px; }
+  .head-rule { border: none; border-top: 2px solid #14233d; margin: 0 0 16px; }
+  .meta { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 10pt; }
+  .meta td { padding: 4px 0; vertical-align: top; }
+  .meta td:first-child { width: 56px; color: #6b7280; }
+  .intro { background: #f5f7fa; border-left: 3px solid #1a2a44; padding: 12px 16px; margin: 0 0 22px; font-size: 10.3pt; color: #2a3442; }
+  h2 { font-size: 12.5pt; font-weight: 800; color: #14233d; margin: 24px 0 10px; padding-bottom: 6px; border-bottom: 1.5px solid #c2cad6; page-break-after: avoid; }
+  .item { margin: 0 0 16px; page-break-inside: avoid; }
+  .item h3 { font-size: 11pt; font-weight: 700; color: #1f3354; margin: 0 0 6px; }
+  .item .row { margin: 3px 0; }
+  .label { display: inline-block; min-width: 64px; color: #6b7280; font-weight: 600; font-size: 9.6pt; vertical-align: top; }
+  .check { margin: 5px 0 0; padding: 9px 13px; background: #fafbfc; border: 1px solid #e3e7ed; border-radius: 6px; }
+  .check .opt { display: block; margin: 3px 0; }
+  .box { font-size: 12pt; }
+  strong { font-weight: 700; color: #14233d; }
+  .complete { background: #f2f7f3; border-left: 3px solid #1f6b3e; padding: 11px 15px; font-size: 10.2pt; color: #2a3442; }
+  .closing { margin-top: 26px; font-size: 10.5pt; }
+  .sign { margin-top: 18px; text-align: right; font-weight: 700; color: #14233d; }
+  .fill { border-bottom: 1px solid #9aa3b0; display: inline-block; min-width: 120px; }
+</style>
+</head>
+<body>
+
+<div class="doc-title">정산서 표준화 확인 요청서</div>
+<div class="doc-sub">유의사항 문서 확인 항목 및 네이버 수수료 기준</div>
+<hr class="head-rule">
+
+<table class="meta">
+  <tr><td>수신</td><td>하이브마인드 정형선 본부장님</td></tr>
+  <tr><td>발신</td><td>최혜윤</td></tr>
+  <tr><td>일자</td><td>2026년 6월 19일</td></tr>
+</table>
+
+<div class="intro">
+안녕하세요. 보내주신 신규 데이터(1·4월 및 교보문고·모픽·에이블리)까지 반영하여 2026년 1~4월 통합 작업을 완료했습니다(151개 파일, 약 43만 행, 원본 합계 대사 전수 통과). 진행 중 데이터로 자체 검증을 마친 부분과 본부장님 확인이 필요한 부분을 아래에 정리했습니다. 각 항목은 처리 방안을 제안드렸으니 맞는지만 표시해 주시면 됩니다.
+</div>
+
+<h2>A. 확인 완료 (참고 — 별도 회신 불필요)</h2>
+<div class="complete">
+다수 컬럼 합산 플랫폼(리디·미스터블루·애니툰·원스토리·카카오페이지·판무림): 판매유형별로 흩어진 정산액 컬럼을 합산한 결과가 원본 정산서의 자체 합계행과 ±1원 이내로 전수 일치함을 확인했습니다. 정산액 합산 기준 검증을 완료했습니다.
+</div>
+
+<h2>B. 확인 요청 (6건)</h2>
+
+<div class="item">
+  <h3>1. 문피아 — 작품명 말미 태그 [D] / [E]</h3>
+  <div class="row"><span class="label">데이터</span>작품명 끝에 [D] 178건, [E] 53건, 태그 없음 156건이 혼재합니다. 유의사항 문서의 "[단행본] 표기"와 실제 표기가 다릅니다.</div>
+  <div class="row"><span class="label">질문</span>[D]·[E]의 의미와 단행본/연재 구분 기준을 알려주십시오.</div>
+  <div class="check">
+    <span class="opt"><span class="box">☐</span> [D] = 단행본 / [E] = <span class="fill"></span> / 태그 없음 = <span class="fill"></span></span>
+    <span class="opt"><span class="box">☐</span> 기타: <span class="fill" style="min-width:320px"></span></span>
+  </div>
+</div>
+
+<div class="item">
+  <h3>2. 올툰 — 단행본/연재 구분</h3>
+  <div class="row"><span class="label">데이터</span>작품명 접두는 [소설]·[BL소설](장르 표시)뿐이고, 단행본/연재를 나누는 컬럼이나 표기가 없습니다(문서에는 "'타입' 항목으로 구분"으로 기재).</div>
+  <div class="row"><span class="label">제안</span>올툰 전 작품을 단행본으로 일괄 처리하겠습니다.</div>
+  <div class="check">
+    <span class="opt"><span class="box">☐</span> 맞음 (전부 단행본)</span>
+    <span class="opt"><span class="box">☐</span> 아래 기준으로 구분: <span class="fill" style="min-width:280px"></span></span>
+  </div>
+</div>
+
+<div class="item">
+  <h3>3. 판무림 — "단행본만"인지</h3>
+  <div class="row"><span class="label">데이터</span>대분류 컬럼에 연재 1,530건, 단행본 448건이 모두 있습니다(문서에는 "단행본만").</div>
+  <div class="row"><span class="label">제안</span>문서 기재와 달리 대분류 컬럼 값(연재/단행본)을 그대로 사용하겠습니다.</div>
+  <div class="check">
+    <span class="opt"><span class="box">☐</span> 맞음 (대분류 값 사용)</span>
+    <span class="opt"><span class="box">☐</span> 기타: <span class="fill" style="min-width:300px"></span></span>
+  </div>
+</div>
+
+<div class="item">
+  <h3>4. 피우리 — 판매형태 처리</h3>
+  <div class="row"><span class="label">데이터</span>판매형태가 단권 1,430건, 대여제 20건이며 연재 개념이 없습니다(이 플랫폼은 유의사항 문서에 항목이 없었습니다).</div>
+  <div class="row"><span class="label">제안</span>단권·대여제 모두 단행본으로 처리하겠습니다(대여제는 판매방식 차이).</div>
+  <div class="check">
+    <span class="opt"><span class="box">☐</span> 맞음</span>
+    <span class="opt"><span class="box">☐</span> 기타: <span class="fill" style="min-width:320px"></span></span>
+  </div>
+</div>
+
+<div class="item">
+  <h3>5. 구루컴퍼니 / 알라딘 — 문서 항목 확인</h3>
+  <div class="row"><span class="label">데이터</span>유의사항 문서의 두 번째 '구루컴퍼니' 항목("정가 100원 + 화수 표기 = 연재")은 형식·내용상 실제로는 알라딘에 대한 설명으로 보입니다.</div>
+  <div class="row"><span class="label">질문</span>해당 항목이 알라딘 설명이 맞습니까(현재 알라딘에 그 규칙을 적용 중입니다).</div>
+  <div class="check">
+    <span class="opt"><span class="box">☐</span> 맞음 (알라딘 설명)</span>
+    <span class="opt"><span class="box">☐</span> 아님: <span class="fill" style="min-width:300px"></span></span>
+  </div>
+</div>
+
+<div class="item">
+  <h3>6. 네이버시리즈 — 마켓수수료 추정 기준 (정산액에 직접 영향)</h3>
+  <div class="row"><span class="label">데이터</span>네이버시리즈는 정산금액을 직접 제공하지 않아 [합계 − 마켓수수료] × 0.7로 계산하고 있습니다. 이때 마켓수수료(앱 인앱결제 수수료 등)의 추정 기준이 필요합니다.</div>
+  <div class="row"><span class="label">질문</span>마켓수수료 산정 기준을 알려주십시오(예: 합계의 N%, 또는 별도 제공 자료).</div>
+  <div class="check">
+    <span class="opt"><span class="box">☐</span> 합계의 <span class="fill" style="min-width:50px"></span> % 차감</span>
+    <span class="opt"><span class="box">☐</span> 별도 자료 제공 예정</span>
+    <span class="opt"><span class="box">☐</span> 기타: <span class="fill" style="min-width:280px"></span></span>
+  </div>
+</div>
+
+<div class="closing">
+회신 주시면 해당 기준으로 즉시 반영하겠습니다. 추가로 필요한 자료나 문의가 있으시면 편하게 말씀해 주십시오. 감사합니다.
+</div>
+<div class="sign">최혜윤 드림</div>
+
+</body>
+</html>

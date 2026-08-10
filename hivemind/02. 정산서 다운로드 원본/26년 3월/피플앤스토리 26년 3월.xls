@@ -1,0 +1,1062 @@
+<table border='2px'><tr bgcolor='#87AFC6'>
+									<td width="10%">ISBN</td>
+					<td width="6%">관리코드</td>
+					<td width="*">작품명</td>
+					<td width="8%">작가명</td>
+					<td width="10%">CP사</td>
+					<td width="10%">출판사</td>
+					<td width="6%">판매사이트</td>
+					<td width="6%">단가(원)</td>
+					<td width="6%">건수(건)</td>
+					<td width="8%">판매금액(원)</td>
+					<td width="8%">정산금액(원)</td>
+				</tr>
+									<td style="mso-number-format:'\@'">761266</td>
+					<td>5188</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]우리집 아내는 큰 가지를 좋아해</td>
+					<td>대물가지</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">752824</td>
+					<td>5074</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]안돼요, 장모님</td>
+					<td>김봉철</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">10</td>
+					<td class="ali_r ellipsis col_40 bold">2,000</td>
+						<td class="ali_r ellipsis col_40 bold">840.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">749834</td>
+					<td>4990</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]달달한 이모들</td>
+					<td>정자홍</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">746319</td>
+					<td>4987</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]대물 사위</td>
+					<td>김종석</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">21</td>
+					<td class="ali_r ellipsis col_40 bold">4,200</td>
+						<td class="ali_r ellipsis col_40 bold">1,764.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">746084</td>
+					<td>4879</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]복지보살</td>
+					<td>철학원</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">9</td>
+					<td class="ali_r ellipsis col_40 bold">1,800</td>
+						<td class="ali_r ellipsis col_40 bold">756.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">742130</td>
+					<td>4788</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]새댁의 고민</td>
+					<td>착한 여자</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">6</td>
+					<td class="ali_r ellipsis col_40 bold">1,200</td>
+						<td class="ali_r ellipsis col_40 bold">504.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">738952</td>
+					<td>4724</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]엄마 친구 경자씨</td>
+					<td>대학생</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">4</td>
+					<td class="ali_r ellipsis col_40 bold">800</td>
+						<td class="ali_r ellipsis col_40 bold">336.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">736031</td>
+					<td>4676</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]부장님 제발</td>
+					<td>정실장</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">2</td>
+					<td class="ali_r ellipsis col_40 bold">400</td>
+						<td class="ali_r ellipsis col_40 bold">168.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">733968</td>
+					<td>4671</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]대물 아빠</td>
+					<td>음지왕</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">40</td>
+					<td class="ali_r ellipsis col_40 bold">8,000</td>
+						<td class="ali_r ellipsis col_40 bold">3,360.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">733212</td>
+					<td>4667</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]혜미의 비밀 연수</td>
+					<td>관찰자K</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">5</td>
+					<td class="ali_r ellipsis col_40 bold">1,000</td>
+						<td class="ali_r ellipsis col_40 bold">420.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">726868</td>
+					<td>4554</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]친한 엄마</td>
+					<td>이병락</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">9</td>
+					<td class="ali_r ellipsis col_40 bold">1,800</td>
+						<td class="ali_r ellipsis col_40 bold">756.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">722959</td>
+					<td>4516</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]할머니 냄새</td>
+					<td>옥탑방고양이</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">722516</td>
+					<td>4507</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]처제가 잠든 사이에</td>
+					<td>왕육봉</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">19</td>
+					<td class="ali_r ellipsis col_40 bold">3,800</td>
+						<td class="ali_r ellipsis col_40 bold">1,596.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">722177</td>
+					<td>4475</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]형수모녀</td>
+					<td>전국노예자랑</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">3</td>
+					<td class="ali_r ellipsis col_40 bold">600</td>
+						<td class="ali_r ellipsis col_40 bold">252.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">713435</td>
+					<td>4382</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]처제의 느낌</td>
+					<td>김석진</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">24</td>
+					<td class="ali_r ellipsis col_40 bold">4,800</td>
+						<td class="ali_r ellipsis col_40 bold">2,016.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">712278</td>
+					<td>4366</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]종갓집 애기 며느리 </td>
+					<td>심의전문가</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">7</td>
+					<td class="ali_r ellipsis col_40 bold">1,400</td>
+						<td class="ali_r ellipsis col_40 bold">588.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">709368</td>
+					<td>4357</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]주인과 노예</td>
+					<td>진카자마</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">5</td>
+					<td class="ali_r ellipsis col_40 bold">1,000</td>
+						<td class="ali_r ellipsis col_40 bold">420.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">705639</td>
+					<td>4355</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]사모님 정복하기</td>
+					<td>오이디푸스</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">20</td>
+					<td class="ali_r ellipsis col_40 bold">4,000</td>
+						<td class="ali_r ellipsis col_40 bold">1,680.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">702628</td>
+					<td>4347</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]나눠 먹는 형수님</td>
+					<td>큰도련님</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">4</td>
+					<td class="ali_r ellipsis col_40 bold">800</td>
+						<td class="ali_r ellipsis col_40 bold">336.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">702525</td>
+					<td>4346</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]너만이 내 안에</td>
+					<td>박지훈</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">697542</td>
+					<td>4321</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]조카 며느리</td>
+					<td>병마니</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">22</td>
+					<td class="ali_r ellipsis col_40 bold">4,400</td>
+						<td class="ali_r ellipsis col_40 bold">1,848.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">687727</td>
+					<td>4144</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]사위 사랑은 장모</td>
+					<td>박서방</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">46</td>
+					<td class="ali_r ellipsis col_40 bold">9,200</td>
+						<td class="ali_r ellipsis col_40 bold">3,864.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">686738</td>
+					<td>4120</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]남편의 두 얼굴</td>
+					<td>목화밭엽기전</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">3</td>
+					<td class="ali_r ellipsis col_40 bold">600</td>
+						<td class="ali_r ellipsis col_40 bold">252.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">682840</td>
+					<td>4095</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]사단장의 아내</td>
+					<td>말년병장</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">11</td>
+					<td class="ali_r ellipsis col_40 bold">2,200</td>
+						<td class="ali_r ellipsis col_40 bold">924.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">680979</td>
+					<td>4094</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]처형</td>
+					<td>김절개</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">6</td>
+					<td class="ali_r ellipsis col_40 bold">1,200</td>
+						<td class="ali_r ellipsis col_40 bold">504.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">678486</td>
+					<td>4067</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]씹생역전</td>
+					<td>오직로또</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">15</td>
+					<td class="ali_r ellipsis col_40 bold">3,000</td>
+						<td class="ali_r ellipsis col_40 bold">1,260.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">675583</td>
+					<td>4016</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]달콤한 친구 아들</td>
+					<td>성해윤</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">4</td>
+					<td class="ali_r ellipsis col_40 bold">800</td>
+						<td class="ali_r ellipsis col_40 bold">336.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">667532</td>
+					<td>3983</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]부부이야기</td>
+					<td>김인부</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">661802</td>
+					<td>3948</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]여비서 은혜</td>
+					<td>Oh My Boss</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">661253</td>
+					<td>3945</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]며느리의 모유</td>
+					<td>젖소부인</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">18</td>
+					<td class="ali_r ellipsis col_40 bold">3,600</td>
+						<td class="ali_r ellipsis col_40 bold">1,512.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">660472</td>
+					<td>3915</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]욕정의 헬스장</td>
+					<td>팬더회원</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">4</td>
+					<td class="ali_r ellipsis col_40 bold">800</td>
+						<td class="ali_r ellipsis col_40 bold">336.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">658304</td>
+					<td>3898</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]새빨간 고추의 맛</td>
+					<td>박광오</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">4</td>
+					<td class="ali_r ellipsis col_40 bold">800</td>
+						<td class="ali_r ellipsis col_40 bold">336.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">651842</td>
+					<td>3849</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]섹수무당</td>
+					<td>쌍수</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">18</td>
+					<td class="ali_r ellipsis col_40 bold">3,600</td>
+						<td class="ali_r ellipsis col_40 bold">1,512.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">650359</td>
+					<td>3827</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]만화방 이모</td>
+					<td>까치와엄지</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">13</td>
+					<td class="ali_r ellipsis col_40 bold">2,600</td>
+						<td class="ali_r ellipsis col_40 bold">1,092.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">648719</td>
+					<td>3799</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]내겐 너무 어린 신부</td>
+					<td>우현우</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">22</td>
+					<td class="ali_r ellipsis col_40 bold">4,400</td>
+						<td class="ali_r ellipsis col_40 bold">1,848.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">639257</td>
+					<td>3740</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]아들 친구 경인이</td>
+					<td>미망인</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">18</td>
+					<td class="ali_r ellipsis col_40 bold">3,600</td>
+						<td class="ali_r ellipsis col_40 bold">1,512.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">632225</td>
+					<td>3672</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]관록의 제수씨</td>
+					<td>정훈</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">11</td>
+					<td class="ali_r ellipsis col_40 bold">2,200</td>
+						<td class="ali_r ellipsis col_40 bold">924.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">627612</td>
+					<td>3646</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]잠깐만, 하반신의 상태가</td>
+					<td>불가항력</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">625348</td>
+					<td>3635</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]팬티로 태어난 대물</td>
+					<td>왕기두</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">6</td>
+					<td class="ali_r ellipsis col_40 bold">1,200</td>
+						<td class="ali_r ellipsis col_40 bold">504.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">618865</td>
+					<td>3582</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]노예 섬</td>
+					<td>교관 A</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">2</td>
+					<td class="ali_r ellipsis col_40 bold">400</td>
+						<td class="ali_r ellipsis col_40 bold">168.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">617892</td>
+					<td>3579</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]며느리의 유혹</td>
+					<td>박효중</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">8</td>
+					<td class="ali_r ellipsis col_40 bold">1,600</td>
+						<td class="ali_r ellipsis col_40 bold">672.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">598478</td>
+					<td>3478</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]그녀를 파괴한다</td>
+					<td>순둥이 v2</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">2</td>
+					<td class="ali_r ellipsis col_40 bold">400</td>
+						<td class="ali_r ellipsis col_40 bold">168.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">598477</td>
+					<td>3469</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]섹교주</td>
+					<td>딸딸교</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">593969</td>
+					<td>3434</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]후장리 할머니들의 새서방</td>
+					<td>노인공경</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">7</td>
+					<td class="ali_r ellipsis col_40 bold">1,400</td>
+						<td class="ali_r ellipsis col_40 bold">588.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">593968</td>
+					<td>3433</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]엄마의 냄새</td>
+					<td>장우경</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">31</td>
+					<td class="ali_r ellipsis col_40 bold">6,200</td>
+						<td class="ali_r ellipsis col_40 bold">2,604.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">593967</td>
+					<td>3430</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]음란한 자매</td>
+					<td>바기너스캐너</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">578186</td>
+					<td>3308</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]음란녀의 충격고백</td>
+					<td>이사나2</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">2</td>
+					<td class="ali_r ellipsis col_40 bold">400</td>
+						<td class="ali_r ellipsis col_40 bold">168.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">573632</td>
+					<td>3295</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]힘내라 색마과장</td>
+					<td>업진살</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">6</td>
+					<td class="ali_r ellipsis col_40 bold">1,200</td>
+						<td class="ali_r ellipsis col_40 bold">504.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">569900</td>
+					<td>3288</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]씨받이 며느리</td>
+					<td>천서방</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">18</td>
+					<td class="ali_r ellipsis col_40 bold">3,600</td>
+						<td class="ali_r ellipsis col_40 bold">1,512.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">567509</td>
+					<td>3241</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]해변의 여인</td>
+					<td>김조던</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">2</td>
+					<td class="ali_r ellipsis col_40 bold">400</td>
+						<td class="ali_r ellipsis col_40 bold">168.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">553864</td>
+					<td>3123</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]육보시</td>
+					<td>성불</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">4</td>
+					<td class="ali_r ellipsis col_40 bold">800</td>
+						<td class="ali_r ellipsis col_40 bold">336.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">548838</td>
+					<td>3093</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]교수님의 강의노트</td>
+					<td>실제실화기반</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">11</td>
+					<td class="ali_r ellipsis col_40 bold">2,200</td>
+						<td class="ali_r ellipsis col_40 bold">924.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">545735</td>
+					<td>3058</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]새댁아줌마</td>
+					<td>해구신</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">3</td>
+					<td class="ali_r ellipsis col_40 bold">600</td>
+						<td class="ali_r ellipsis col_40 bold">252.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">537201</td>
+					<td>3045</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]사랑스런 장모님</td>
+					<td>주사위</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">2</td>
+					<td class="ali_r ellipsis col_40 bold">400</td>
+						<td class="ali_r ellipsis col_40 bold">168.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">535167</td>
+					<td>3035</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]주부의 고백</td>
+					<td>김주부</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">31</td>
+					<td class="ali_r ellipsis col_40 bold">6,200</td>
+						<td class="ali_r ellipsis col_40 bold">2,604.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">521110</td>
+					<td>2897</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]마녀사냥</td>
+					<td>홀리스피릿</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">2</td>
+					<td class="ali_r ellipsis col_40 bold">400</td>
+						<td class="ali_r ellipsis col_40 bold">168.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">520256</td>
+					<td>2896</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]아빠는 여대 경비원</td>
+					<td>독고구검</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">519773</td>
+					<td>2895</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]소.라.넷</td>
+					<td>솔직한아재</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">89</td>
+					<td class="ali_r ellipsis col_40 bold">17,800</td>
+						<td class="ali_r ellipsis col_40 bold">7,476.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">519164</td>
+					<td>2894</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]이모의 비밀</td>
+					<td>기둥서방</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">3</td>
+					<td class="ali_r ellipsis col_40 bold">600</td>
+						<td class="ali_r ellipsis col_40 bold">252.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">512092</td>
+					<td>2873</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]노예교수 김상덕</td>
+					<td>김상덕</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">3</td>
+					<td class="ali_r ellipsis col_40 bold">600</td>
+						<td class="ali_r ellipsis col_40 bold">252.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">510403</td>
+					<td>3092</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]시아버지</td>
+					<td>착한며느리</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">30</td>
+					<td class="ali_r ellipsis col_40 bold">6,000</td>
+						<td class="ali_r ellipsis col_40 bold">2,520.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">510083</td>
+					<td>2632</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]아내와 처남</td>
+					<td>진짜남편</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">14</td>
+					<td class="ali_r ellipsis col_40 bold">2,800</td>
+						<td class="ali_r ellipsis col_40 bold">1,176.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">510081</td>
+					<td>2868</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]유부녀들</td>
+					<td>일반인</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">4</td>
+					<td class="ali_r ellipsis col_40 bold">800</td>
+						<td class="ali_r ellipsis col_40 bold">336.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">501974</td>
+					<td>2838</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]누나의 성교육</td>
+					<td>지후니</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">92</td>
+					<td class="ali_r ellipsis col_40 bold">18,400</td>
+						<td class="ali_r ellipsis col_40 bold">7,728.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">496733</td>
+					<td>2832</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]알몸알바</td>
+					<td>카라멜마끼아또</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">490496</td>
+					<td>2829</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]엄마는 창녀였다</td>
+					<td>분홍복숭아</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">2</td>
+					<td class="ali_r ellipsis col_40 bold">400</td>
+						<td class="ali_r ellipsis col_40 bold">168.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">484159</td>
+					<td>2678</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]딸바보</td>
+					<td>나코보프</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">482663</td>
+					<td>2677</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]천하무奀 박대리</td>
+					<td>김과장</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">87</td>
+					<td class="ali_r ellipsis col_40 bold">17,400</td>
+						<td class="ali_r ellipsis col_40 bold">7,308.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">481858</td>
+					<td>2676</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]아내 팬티</td>
+					<td>T팬티</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">46</td>
+					<td class="ali_r ellipsis col_40 bold">9,200</td>
+						<td class="ali_r ellipsis col_40 bold">3,864.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">427892</td>
+					<td>2664</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]새엄마</td>
+					<td>물티슈</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">15</td>
+					<td class="ali_r ellipsis col_40 bold">3,000</td>
+						<td class="ali_r ellipsis col_40 bold">1,260.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">427891</td>
+					<td>2624</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]친구 엄마</td>
+					<td>서지니</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">10</td>
+					<td class="ali_r ellipsis col_40 bold">2,000</td>
+						<td class="ali_r ellipsis col_40 bold">840.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">427884</td>
+					<td>2636</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]약빨</td>
+					<td>아그라</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">3</td>
+					<td class="ali_r ellipsis col_40 bold">600</td>
+						<td class="ali_r ellipsis col_40 bold">252.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">427883</td>
+					<td>2623</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]교미교미</td>
+					<td>긔요믜</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">35</td>
+					<td class="ali_r ellipsis col_40 bold">7,000</td>
+						<td class="ali_r ellipsis col_40 bold">2,940.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">427814</td>
+					<td>2634</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]그녀는 고통스럽다</td>
+					<td>순둥이</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">22</td>
+					<td class="ali_r ellipsis col_40 bold">4,400</td>
+						<td class="ali_r ellipsis col_40 bold">1,848.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">2017083001</td>
+					<td>2557</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]어린 형수</td>
+					<td>지훈</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">41</td>
+					<td class="ali_r ellipsis col_40 bold">8,200</td>
+						<td class="ali_r ellipsis col_40 bold">3,444.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">2017082904</td>
+					<td>2552</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]아내 노출</td>
+					<td>바바리맨</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">20</td>
+					<td class="ali_r ellipsis col_40 bold">4,000</td>
+						<td class="ali_r ellipsis col_40 bold">1,680.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">2017082802</td>
+					<td>2546</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]구멍 침입자</td>
+					<td>김철중</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">5</td>
+					<td class="ali_r ellipsis col_40 bold">1,000</td>
+						<td class="ali_r ellipsis col_40 bold">420.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">2017082404</td>
+					<td>2520</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]노예 학교</td>
+					<td>교도관 A</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">12</td>
+					<td class="ali_r ellipsis col_40 bold">2,400</td>
+						<td class="ali_r ellipsis col_40 bold">1,008.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">2017082403</td>
+					<td>2519</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]옆집딸</td>
+					<td>서진이</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">75</td>
+					<td class="ali_r ellipsis col_40 bold">15,000</td>
+						<td class="ali_r ellipsis col_40 bold">6,300.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">2017082303</td>
+					<td>2513</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]보여줘 아빠</td>
+					<td>의붓딸</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">2017082202</td>
+					<td>2506</td>
+					<td class="ali_l ellipsis col_40 bold">[연재]나쁜 친구</td>
+					<td>착한친구</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">4</td>
+					<td class="ali_r ellipsis col_40 bold">800</td>
+						<td class="ali_r ellipsis col_40 bold">336.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">01112017800000033209</td>
+					<td>1655</td>
+					<td class="ali_l ellipsis col_40 bold">여자인 내가 그녀를 탐한다</td>
+					<td>아오조라</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">6</td>
+					<td class="ali_r ellipsis col_40 bold">1,200</td>
+						<td class="ali_r ellipsis col_40 bold">504.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">01112017800000033087</td>
+					<td>1639</td>
+					<td class="ali_l ellipsis col_40 bold">파멸 자매</td>
+					<td>순둥이</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">5</td>
+					<td class="ali_r ellipsis col_40 bold">1,000</td>
+						<td class="ali_r ellipsis col_40 bold">420.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">01112017800000032999</td>
+					<td>1693</td>
+					<td class="ali_l ellipsis col_40 bold">아빠는 주인님</td>
+					<td>춘향이</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">5</td>
+					<td class="ali_r ellipsis col_40 bold">1,000</td>
+						<td class="ali_r ellipsis col_40 bold">420.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">01112017800000032888</td>
+					<td>1626</td>
+					<td class="ali_l ellipsis col_40 bold">남매의 조건</td>
+					<td>헤븐</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">01112017800000032868</td>
+					<td>1686</td>
+					<td class="ali_l ellipsis col_40 bold">사악한 첫경험</td>
+					<td>앙마</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">1</td>
+					<td class="ali_r ellipsis col_40 bold">200</td>
+						<td class="ali_r ellipsis col_40 bold">84.00</td>
+					</tr>
+									<td style="mso-number-format:'\@'">01112017800000032828</td>
+					<td>1667</td>
+					<td class="ali_l ellipsis col_40 bold">하녀학원</td>
+					<td>음란서생</td>
+					<td>(주)스토린랩</td>
+					<td>하이북</td>
+					<td>전체</td>
+					<td class="ali_r">200</td>
+					<td class="ali_r">3</td>
+					<td class="ali_r ellipsis col_40 bold">600</td>
+						<td class="ali_r ellipsis col_40 bold">252.00</td>
+					</tr>
+					<td colspan="8">합계</td>		
+					<td class="ali_r">1,186</td>
+					<td class="ali_r ellipsis col_40 bold">237,200</td>
+					<td class="ali_r ellipsis col_40 bold">99,624.00</td>
+			</tr></table>

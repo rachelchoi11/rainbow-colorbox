@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang=ko><head><meta charset=utf-8><style>@page{size:A4;margin:18mm}*{box-sizing:border-box}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#1a1a1a;font-size:10.5pt;line-height:1.62;max-width:820px;margin:0 auto;padding:10px}
+h1{font-size:20pt;font-weight:800;border-bottom:3px solid #222;padding-bottom:8px;margin:0 0 6px}
+h2{font-size:14pt;font-weight:800;margin:22px 0 8px;padding-bottom:6px;border-bottom:2px solid #161616}
+h3{font-size:11.5pt;font-weight:700;margin:14px 0 6px;color:#333}
+p,li{margin:5px 0} strong{color:#111} code{background:#f2f4f7;padding:1px 5px;border-radius:3px;font-size:9pt}
+pre{background:#f7f8fa;border:1px solid #e3e7ed;border-radius:5px;padding:10px;font-size:8.7pt;white-space:pre-wrap;overflow-x:auto}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:9.3pt}
+th{background:#eef1f5;border:1px solid #c2cad6;padding:6px 9px;text-align:left}
+td{border:1px solid #e3e7ed;padding:6px 9px;vertical-align:top}
+hr{border:none;border-top:1px solid #e3e7ed;margin:16px 0}
+</style></head><body><h1>이해 보고서 — 지금 무엇이 어떻게 동작하나 (확인·결정용)</h1>
+<ul>
+<li>작성일: 2026년 8월 2일 · 작성자: 최혜윤 · rachel@hive-mind.kr</li>
+<li>목적: 기술 몰라도 <strong>각 기능이 지금 어떻게 동작하는지</strong> 이해하고, <strong>맞는지 확인</strong>하고, 나중에 <strong>유지/수정/삭제</strong>를 결정하기 위한 문서.</li>
+<li>읽는 법: 각 절 = ①무엇 ②지금 이렇게 동작 ③왜 ④<strong>⚠️ 당신이 정할 것</strong>(현재 기본값이 마음에 드는지). 결정란에 ○(유지)/△(수정)/✕(삭제)를 표시하며 검토하세요.</li>
+</ul>
+<hr />
+<h2>1. 로그인 · 회원 · 권한</h2>
+<p><strong>무엇</strong>: 사람마다 계정으로 로그인하고, 역할에 따라 할 수 있는 일이 다름.</p>
+<p><strong>지금 이렇게 동작</strong>
+- 두 종류의 조직: <strong>운영사(하이브마인드)</strong> 와 <strong>계약사(출판사·유통대행사)</strong>.
+- 운영사 역할 3개: <strong>최고관리자</strong>(전부) / <strong>운영자</strong>(출판사·계약·정산 운영, 계정 발급) / <strong>뷰어</strong>(조회만).
+- 계약사 역할 2개: <strong>출판사관리자</strong>(자사 관리+자사 사용자 관리) / <strong>담당자</strong>(자사 조회).
+- 첫 가입자는 자동으로 최고관리자. 이후 운영사 가입자는 <strong>최고관리자 승인</strong>을 받아야 로그인됨.</p>
+<p><strong>왜</strong>: 여러 출판사가 한 시스템을 쓰되, 서로 남의 것을 못 보게 하고, 하이브마인드 내부에서도 권한을 나누기 위해.</p>
+<p><strong>⚠️ 당신이 정할 것</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>현재 기본값</th>
+<th>결정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>운영사 역할 이름·범위(최고관리자/운영자/뷰어)</td>
+<td>위와 같음</td>
+<td></td>
+</tr>
+<tr>
+<td>계약사 역할(출판사관리자/담당자) — 더 세분할지</td>
+<td>2단계</td>
+<td></td>
+</tr>
+<tr>
+<td>가입 시 승인 필요(운영사)</td>
+<td>필요(최초만 자동)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 계약사 계정 발급 · 최초 접속(동의·정보 입력)</h2>
+<p><strong>무엇</strong>: 출판사에게 계정을 주고, 처음 들어올 때 동의받고 정보를 입력받음.</p>
+<p><strong>지금 이렇게 동작</strong>
+- 운영자가 "계약사 계정 발급" → 이메일과 출판사를 지정 → <strong>초대 링크</strong>가 생성됨(현재는 링크를 복사해 수동 전달; 자동 이메일 발송은 미구현).
+- 초대 링크로 들어온 담당자가 이름·비밀번호 설정 → 계정 활성화. 그 출판사의 <strong>첫 계정은 자동으로 출판사관리자</strong>.
+- 첫 로그인 시: <strong>동의 화면</strong>(약관 3줄) → <strong>정보 입력</strong>(담당자 이름·연락처) → 워크스페이스 진입.
+- 초대는 <strong>14일</strong> 후 만료. 취소·재발송 가능.</p>
+<p><strong>왜</strong>: 출판사가 스스로 계정을 세팅하고, 동의·담당자 정보를 확보하기 위해.</p>
+<p><strong>⚠️ 당신이 정할 것</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>현재 기본값</th>
+<th>결정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>초대 만료 기간</td>
+<td>14일</td>
+<td></td>
+</tr>
+<tr>
+<td>약관 내용</td>
+<td><strong>임시 3줄</strong>(실제 약관·개인정보 처리방침 전문 필요)</td>
+<td></td>
+</tr>
+<tr>
+<td>최초 수집 정보 범위(현재 이름·연락처만)</td>
+<td>확대 필요(→ 8절 회사정보)</td>
+<td></td>
+</tr>
+<tr>
+<td>자동 이메일 발송</td>
+<td>미구현(링크 수동)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 출판사 · 레이블(임프린트) 관리와 매핑</h2>
+<p><strong>무엇</strong>: 정산 데이터의 최소 단위인 "레이블"을 그 위 "출판사"로 묶는 것.</p>
+<p><strong>지금 이렇게 동작</strong>
+- 예: 매드햇·브랜디 등 레이블 → 출판사 "스토린랩". 통합 매핑표로 <strong>458 레이블 → 158 출판사</strong> 정리됨. 현재 테넌트(출판사) <strong>128곳</strong>.
+- 정산 데이터를 올리면 레이블을 자동으로 출판사에 귀속(매핑+정규화로 표기 변형 흡수).
+- 특수 사례: 유통사 "에피루스"는 정산서에 출판사 칸이 없어 작품 제목이 레이블로 잘못 들어왔던 것 → "에피루스=블루마운틴소프트"로 교정.</p>
+<p><strong>왜</strong>: 한 출판사가 여러 임프린트를 두고, 유통사마다 표기가 달라서.</p>
+<p><strong>⚠️ 당신이 정할 것</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>현재</th>
+<th>결정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>미매핑 레이블(본부장 추가 회신분) 계속 반영</td>
+<td>수시 반영</td>
+<td></td>
+</tr>
+<tr>
+<td>매핑 편집을 화면에서(현재 파일 관리)</td>
+<td>화면 UI 없음</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 계약 관리 (핵심)</h2>
+<h3>4-1. 계약 번호</h3>
+<p><strong>무엇</strong>: 계약마다 고유번호. 번호만 보면 출판사·원작·매체·권리·형태를 알 수 있음.
+<strong>지금</strong>: <code>0001-AA001-N-1-00</code> = 출판사(4자리)-콘텐츠(AA001)-웹소설N/웹툰T-계약유형(1배타적발행권/2차저작물/3외주)-콘텐츠유형(2자리). 파생 계약(웹툰화 등)은 원작 번호(AA001)를 공유.
+<strong>⚠️ 정할 것</strong>: 콘텐츠 번호를 자동 연번(현재)으로 둘지, 실제 작품 코드에 맞춰 부여할지 / 단건 계약에서 번호 요소 미입력 시 "미부여"로 두는 현재 방식.</p>
+<h3>4-2. 계약 상태 (초안 / 확정 / 종료)</h3>
+<p><strong>지금</strong>: 정산 데이터로 <strong>일괄 생성한 계약은 "초안"</strong> → <strong>초안은 예상 지급액에 반영 안 됨</strong> → 검토 후 "확정"해야 반영. 수동으로 만든 계약은 기본 "확정".
+<strong>왜</strong>: 미검토 기본값(배분율 70% 등)이 지급액을 부풀리지 않게.
+<strong>⚠️ 정할 것</strong>: 초안→확정 단계를 유지할지, 수동 계약도 초안부터 시작할지.</p>
+<h3>4-3. 유효기간</h3>
+<p><strong>지금</strong>: 계약에 시작/종료(월)를 넣으면 <strong>그 기간 정산에만</strong> 배분율 적용. 비우면 전 기간.
+<strong>왜</strong>: 서명 이전 과거 정산까지 소급 적용되는 것을 막기 위해.</p>
+<h3>4-4. 지급 대상 (작가 / 출판사)</h3>
+<p><strong>지금</strong>: 보통은 작가에게 지급. <strong>유통대행사</strong>는 "출판사에게 지급"으로 설정 → 그 출판사 산하 레이블 정산액을 합쳐 배분.
+<strong>왜</strong>: 유통대행 구조(작가-출판사-관리자)에서 지급 상대가 출판사인 경우.</p>
+<h3>4-5. 작품 범위 · 중복 경고</h3>
+<p><strong>지금</strong>: 계약에 특정 작품 여러 개 지정 가능(하나라도 포함되면 매칭, 권차·외전 자동 포함). 같은 대상 계약이 <strong>같은 작품 정산액을 겹치게</strong> 잡으면 "⚠ 중복" 경고(이중 지급 방지).</p>
+<h3>4-6. 선인세(MG) · 원천징수</h3>
+<p><strong>지금</strong>: 지급액 = 정산액 × 배분율 − 선인세(MG) − 원천징수(기본 3.3%). MG는 <strong>한 번만 차감</strong>되도록 원장으로 이월 관리(→ 6절).</p>
+<h3>4-7. 계약서 첨부 · 변경 이력 · 소급 일괄 등록</h3>
+<p><strong>지금</strong>: 계약당 계약서 이미지/PDF 최대 3개. 모든 수정은 시간·변경내용·작성자 이력이 남음. 온보딩 시 정산 데이터의 작품으로 <strong>계약 초안을 대량 생성</strong> 후 개별 보정.</p>
+<p><strong>⚠️ 4장 전체에서 정할 것</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>현재 기본값</th>
+<th>결정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>원천징수율</td>
+<td>3.3%</td>
+<td></td>
+</tr>
+<tr>
+<td>배분율 기본값(일괄 생성 시)</td>
+<td>70%</td>
+<td></td>
+</tr>
+<tr>
+<td>계약서 첨부 개수</td>
+<td>최대 3개</td>
+<td></td>
+</tr>
+<tr>
+<td>초안 자동 반영 여부</td>
+<td>미반영(확정 후)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 정산 분석 (조회)</h2>
+<p><strong>무엇</strong>: 올린 정산서를 표준화해 유통사별·작가별·작품별로 보고, 미매칭을 검토.
+<strong>지금</strong>: 정산 요약(완전매칭 99.50%), 유통사/작가/작품/통계/검색, 미매칭 보드·연구소(오류 탐지)·유통사 설정. 계약사는 <strong>자기 데이터만</strong> 보임(서버에서 강제).
+<strong>⚠️ 정할 것</strong>: 계약사가 볼 수 있는 범위(현재 자사 전체). 특별히 뺄 화면 있는지.</p>
+<hr />
+<h2>6. 정산 마감 (새로 추가 — 중요)</h2>
+<p><strong>무엇</strong>: 그 달 지급액을 <strong>확정해서 고정(스냅샷)</strong>. 지금까지는 화면에 뜨는 "예상"이었는데, 마감하면 근거로 남는 "확정"이 됨.</p>
+<p><strong>지금 이렇게 동작</strong>
+- "정산 마감 생성"(초안) → 확정 계약들의 지급액을 계산해 라인별로 저장 → <strong>확정</strong>하면 금액 고정 → <strong>지급 완료</strong> 표시.
+- 확정 시 그 달 선인세(MG) 회수액이 <strong>원장에 기록</strong>되어, 다음 달에 같은 MG를 또 까지 않음.
+- 예: 1차 마감에서 MG 5천만 상계 → 확정 → 2차 마감엔 MG 이미 회수돼 상계 0.</p>
+<p><strong>왜</strong>: "정산 시스템"이 되려면 지급 금액이 재현 가능·불변이어야 함(매번 다시 계산되는 추정치는 지급 근거가 못 됨).</p>
+<p><strong>⚠️ 당신이 정할 것</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>현재 기본값</th>
+<th>결정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>마감 단위(월별/전체)</td>
+<td>선택 가능</td>
+<td></td>
+</tr>
+<tr>
+<td>확정 후 정정 허용 여부</td>
+<td>확정=고정(재마감 정책 미정)</td>
+<td></td>
+</tr>
+<tr>
+<td>지급 처리(계좌이체·세금계산서 연동)</td>
+<td>상태 표시만(연동 미구현)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. 보안 — 남의 데이터 차단</h2>
+<p><strong>무엇</strong>: 계약사가 다른 출판사의 매출·계약·계좌를 못 보게 서버가 막음.
+<strong>지금 이렇게 동작</strong>(실측 확인)
+- 계약사는 로그인해도 <strong>자기 출판사 데이터만</strong> 조회/내보내기(요청을 조작해도 서버가 자기 레이블로 강제).
+- 남의 계약·유통사·계약서 첨부 접근 → 차단(403). 전역 매칭 변경은 운영자만.
+- 초대로 운영사 최고관리자를 몰래 만드는 구멍 → 차단(초대는 계약사 계정만).
+- 동의·정보 입력 전에는 데이터 API 차단.</p>
+<p><strong>왜</strong>: 여러 출판사가 한 시스템을 쓰는데, 화면에서 안 보이는 것만으론 부족(요청 조작 가능) → <strong>서버에서 강제</strong>.</p>
+<p><strong>⚠️ 정할 것</strong>: 운영자/뷰어가 전 출판사를 보는 현재 정책(내부는 전부 열람) 유지 여부.</p>
+<hr />
+<h2>8. 회사 정보 · 삭제 (이번에 추가)</h2>
+<p><strong>무엇</strong>: 출판사가 자사 정보(사업자번호·대표자·주소·<strong>정산 입금계좌</strong>·세금계산서 이메일)를 직접 입력. 잘못 만든 계정/출판사를 삭제.
+<strong>지금</strong>
+- 계약사 "회사 정보" 화면에서 자사 프로필·정산 계좌를 스스로 저장(자사만).
+- 운영자는 회원/출판사를 <strong>삭제</strong> 가능(본인·마지막 최고관리자는 삭제 불가). 보존하려면 삭제 대신 "정지".
+<strong>⚠️ 정할 것</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>현재</th>
+<th>결정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>수집 항목(사업자번호·계좌·세금계산서 이메일)</td>
+<td>위 5종</td>
+<td></td>
+</tr>
+<tr>
+<td>삭제 vs 정지 기본 운영</td>
+<td>삭제 제공(경고 후)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>9. 데이터가 어디에 저장되나 (안심 포인트)</h2>
+<p><strong>지금</strong>: 예전엔 JSON 파일에 저장돼 <strong>재시작하면 사라지거나 동시에 쓰면 깨질</strong> 위험이 있었음. 지금은 <strong>SQLite(작은 DB 파일)</strong>로 바꿔서, 저장이 <strong>한 번에 안전하게(원자적) 반영</strong>되고 손상되지 않음.
+<strong>⚠️ 아직 남은 것(인프라)</strong>: 배포 서버(Railway)에 <strong>영속 볼륨</strong>을 붙여야 재배포 후에도 이 DB 파일이 유지됨(코드는 준비됨, 설정만 남음). 이걸 안 하면 배포 시 데이터가 날아갈 수 있음 → <strong>정식 오픈 전 필수</strong>.</p>
+<hr />
+<h2>10. 아직 안 된 것 (참고)</h2>
+<ul>
+<li>배포 서버 영속 볼륨(위 9절) · 자동 이메일 발송 · 로그인 시도 제한</li>
+<li>계약사 "내 몫(정산액−작가지급) / 이번 달 작가 지급 총액" 대시보드 지표</li>
+<li>목록 검색·페이지네이션(수백 규모), 계약 일괄 확정·일괄 배분율</li>
+<li>실제 약관 문서 · 작가에게 명세서 보내기 · 플랫폼 MG(정산률 조정)</li>
+</ul>
+<hr />
+<h2>어떻게 쓰면 되나</h2>
+<ol>
+<li>각 절의 <strong>⚠️ 표</strong>를 보며 현재 기본값이 맞는지 ○/△/✕ 표시.</li>
+<li>△(수정)·✕(삭제)로 표시한 것만 알려주시면, 그 부분만 바꾸거나 뺍니다.</li>
+<li>데모로 직접 보고 싶은 화면이 있으면 말해주세요(로그인해서 함께 확인).</li>
+</ol>
+<p>앱: http://127.0.0.1:8000 · 데모 계정 운영사 admin@hive-mind.kr / hivepw123 · 계약사 cp2@storinlab.com / cppw1234</p></body></html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>중복 / 멱등성(중복 차단) · v8 Report</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+       margin: 0; padding: 0; background: #f5f7fa; color: #1f2937; line-height: 1.55; }
+header { background: #1e3a8a; color: #fff; padding: 24px 32px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+header h1 { margin: 0; font-size: 24px; }
+header .meta { margin-top: 6px; font-size: 13px; opacity: 0.85; }
+nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0 32px; position: sticky; top: 0; z-index: 100;
+      overflow-x: auto; white-space: nowrap; }
+nav a { display: inline-block; padding: 14px 16px; color: #374151; text-decoration: none; font-size: 14px; border-bottom: 3px solid transparent; }
+nav a:hover, nav a.active { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+main { max-width: 1280px; margin: 0 auto; padding: 24px 32px 80px; }
+section { background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+section h2 { margin: 0 0 16px; font-size: 18px; color: #111827; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+section h3 { margin: 24px 0 12px; font-size: 15px; color: #374151; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi-card { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 18px; border-radius: 8px; border-left: 4px solid #2563eb; }
+.kpi-card.positive { border-left-color: #059669; }
+.kpi-card.warning { border-left-color: #d97706; }
+.kpi-card.danger { border-left-color: #dc2626; }
+.kpi-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 22px; font-weight: 700; color: #111827; margin-top: 4px; }
+.kpi-sub { font-size: 12px; color: #6b7280; margin-top: 4px; }
+.alert-grid { display: grid; gap: 12px; }
+.alert { padding: 16px 20px; border-radius: 6px; border-left: 4px solid; background: #fef2f2; }
+.alert.critical { border-color: #dc2626; background: #fee2e2; }
+.alert.high { border-color: #ea580c; background: #fed7aa; }
+.alert.medium { border-color: #ca8a04; background: #fef3c7; }
+.alert.fixed { border-color: #16a34a; background: #dcfce7; }
+.alert-title { font-weight: 700; font-size: 14px; color: #7f1d1d; }
+.alert.fixed .alert-title { color: #14532d; }
+.alert-body { font-size: 13px; color: #4b5563; margin-top: 6px; }
+.alert-meta { font-size: 11px; color: #6b7280; margin-top: 6px; font-family: monospace; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+th { background: #f9fafb; text-align: left; padding: 10px 12px; font-weight: 600; border-bottom: 2px solid #e5e7eb; position: sticky; top: 56px; cursor: pointer; user-select: none; }
+th:hover { background: #f3f4f6; }
+th.num { text-align: right; }
+td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:hover td { background: #fefce8; }
+.amount-pos { color: #111827; }
+.amount-neg { color: #dc2626; font-weight: 600; }
+.search-input { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; width: 320px; margin-bottom: 12px; }
+.month-summary { display: flex; gap: 24px; margin-bottom: 12px; font-size: 13px; color: #4b5563; flex-wrap: wrap; }
+.month-summary strong { color: #111827; }
+.chart-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; font-size: 13px; }
+.chart-row .label { min-width: 110px; }
+.chart-row .bar-bg { flex: 1; background: #e5e7eb; height: 16px; border-radius: 3px; position: relative; }
+.chart-row .bar-fg { background: #2563eb; height: 100%; border-radius: 3px; transition: width 0.3s; }
+.chart-row .bar-fg.warning { background: #d97706; }
+.chart-row .bar-fg.danger { background: #dc2626; }
+.chart-row .value { min-width: 140px; text-align: right; font-variant-numeric: tabular-nums; color: #374151; }
+.footer-note { text-align: center; color: #6b7280; font-size: 12px; padding: 24px; }
+.summary-list { list-style: disc; padding-left: 20px; font-size: 14px; line-height: 1.7; }
+.month-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 12px; }
+.month-card { background: #f9fafb; border-radius: 6px; padding: 12px; text-decoration: none; color: inherit; transition: all 0.15s; border: 1px solid #e5e7eb; }
+.month-card:hover { background: #eff6ff; border-color: #2563eb; }
+.month-card .m-label { font-size: 14px; font-weight: 700; color: #1e3a8a; }
+.month-card .m-amount { font-size: 13px; margin-top: 4px; }
+.month-card .m-count { font-size: 11px; color: #6b7280; margin-top: 2px; }
+.evolution-table th, .evolution-table td { text-align: center; }
+.evolution-table td.metric { text-align: left; font-weight: 600; }
+.row-count-info { font-size: 12px; color: #6b7280; margin-top: 8px; font-style: italic; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 정산내역 통합 리포트 v9 · 중복 / 멱등성(중복 차단)</h1>
+  <div class="meta">T015 결함 #2 R11 영역</div>
+</header>
+<nav><a href="index.html" class="">대시보드</a> <a href="anomaly.html" class="">⚠️ 이상치</a> <a href="unresolved.html" class="">미매칭</a> <a href="skipped.html" class="">스킵 파일</a> <a href="duplicates.html" class="active">중복 기록</a> <a href="evolution.html" class="">라운드 진화</a> <a href="month-01.html" class="">1월</a> <a href="month-02.html" class="">2월</a> <a href="month-03.html" class="">3월</a> <a href="month-04.html" class="">4월</a> <a href="month-05.html" class="">5월</a> <a href="month-06.html" class="">6월</a> <a href="month-07.html" class="">7월</a> <a href="month-08.html" class="">8월</a> <a href="month-09.html" class="">9월</a> <a href="month-10.html" class="">10월</a> <a href="month-11.html" class="">11월</a> <a href="month-12.html" class="">12월</a></nav>
+<main>
+<section>
+<h2>🔁 중복 / 멱등성(중복 차단) Log</h2>
+<div class="alert high">
+  <div class="alert-title">R10-4 raw 행 dedup 미적용 (보수적 결정)</div>
+  <div class="alert-body">
+    초기 시도 (book_norm, publisher_norm, distributor, month, amount) 키 dedup 시 <strong>460,907행 차단</strong> — 정상 매출 (같은 책 여러 회차 같은 금액)까지 제거됨. 채택 결정: <strong>raw 행 dedup 미적용</strong>, file-level dedup만 (현재 0건).
+  </div>
+  <div class="alert-meta">_duplicates_log 시트는 비어있음 (raw dedup 적용 안 됨)</div>
+</div>
+<h3>T015 결함 #2 — 동일 책 중복 그룹 113건 (PoC 한계)</h3>
+<div class="alert high">
+  <div class="alert-title">⚠️ 마스터 그루핑 차원의 통합은 R11+ 영역</div>
+  <div class="alert-body">
+    T015 분석에서 "같은 raw 책이 (a) 출판사명 매핑 변동 (b) 작가명 정규화 차이 (c) 사업자번호 vs 텍스트 출판사명으로 다른 마스터에 적재" 113건 / ₩3.27억 식별됨. R10 publisher 정규화(사업자번호 사전·(미상-사업자번호) 통합)는 라벨 통일에 기여하나 match_rows의 (book, author) 키 그루핑은 변동 없음. 진짜 fix는 match_rows 키에 publisher 추가 또는 마스터 단계 클러스터링 필요 (false-positive 통합 위험 존재 → 사용자 검증 단계 추가 권장).
+  </div>
+  <div class="alert-meta">예시 (T015): "회귀의 전설"·"디버프 마스터"·"갓 오브 블랙필드"·"혐오 만세" 등</div>
+</div>
+<h3>현재 적용된 정책</h3>
+<ul class="summary-list">
+<li><strong>file-level dedup</strong> — 같은 source_file이 여러 시트로 처리되는 정상 케이스 모두 유지</li>
+<li><strong>publisher 정규화</strong> — 사업자번호 라벨 (7-10자리 숫자) → 사업자번호 사전 또는 (미상-사업자번호) 표준화</li>
+<li><strong>normalize_book</strong> — 띄어쓰기·특수문자·권화·글로벌 접미사 제거 후 같은 (norm_book, norm_author) 키로 자연 통합</li>
+</ul>
+<h3>R11 권장</h3>
+<ul class="summary-list">
+<li>match_rows 키 확장 (publisher 포함) — 단 false-positive 통합 위험. 사용자 검증 큐 권장</li>
+<li>마스터 단계 후처리 클러스터링 (영문/한글 책명 매핑·사용자 매핑 사전)</li>
+<li>사업자번호 사전 확장 (사용자가 사업자번호↔회사명 매핑 제공)</li>
+</ul>
+</section>
+</main>
+<div class="footer-note">데이터: 2022_정산내역_통합_v8.xlsx · 정책: 5컬럼·raw 정산액·개인정보 미포함</div>
+<script>
+// 정렬 가능 테이블
+document.querySelectorAll('table.sortable').forEach(tbl => {
+  const headers = tbl.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const tbody = tbl.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isNum = th.classList.contains('num');
+      const asc = th.dataset.sort !== 'asc';
+      rows.sort((a, b) => {
+        let va = a.cells[idx].dataset.sortkey || a.cells[idx].textContent;
+        let vb = b.cells[idx].dataset.sortkey || b.cells[idx].textContent;
+        if (isNum) { va = parseFloat(va) || 0; vb = parseFloat(vb) || 0; return asc ? va - vb : vb - va; }
+        return asc ? va.localeCompare(vb, 'ko') : vb.localeCompare(va, 'ko');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      headers.forEach(h => h.dataset.sort = '');
+      th.dataset.sort = asc ? 'asc' : 'desc';
+    });
+  });
+});
+
+// 실시간 검색
+document.querySelectorAll('.search-input').forEach(input => {
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    const tbl = document.querySelector(input.dataset.target || 'table');
+    const tbody = tbl ? tbl.querySelector('tbody') : null;
+    if (!tbody) return;
+    tbody.querySelectorAll('tr').forEach(tr => {
+      const text = tr.textContent.toLowerCase();
+      tr.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

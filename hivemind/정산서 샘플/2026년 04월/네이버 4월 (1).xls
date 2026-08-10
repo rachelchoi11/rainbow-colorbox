@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>컨텐츠별 매출통계</title>
+<style type="text/css">
+td {font-size:12px}
+.title {background-color:#efefef;text-align:center}
+.amount {background-color:#efefef;text-align:right;font-weight: bold;}
+</style>
+</head>
+<body>
+	<table cellpadding="0" cellspacing="0" width="100%">
+		<tr valign="top">
+			<td style="padding-top: 4px;" height="26" colspan="4"><b> <font size="3"> 이용권 포함 컨텐츠별 매출 통계</font></b></td>
+		</tr>
+	</table>
+	<br/>
+	<div class="boxline01">
+		<table class="boxline02">
+			<thead>
+				<tr bgcolor="#e5e6e9">
+					<th rowspan="2" width="*">컨텐츠</th>
+					<th rowspan="2" width="60">컨텐츠No</th>
+					<td rowspan="2" width="80">공급자코드</td>
+					<th rowspan="2" width="100">CP명</th>
+					<th rowspan="2" width="160">작가명</th>
+					<th rowspan="2" width="100">출판사</th>
+					<td rowspan="2" width="80">나이제한</td>
+					<td rowspan="2" width="120">서비스일</td>
+
+					<th bgcolor="#e2efda" colspan="9" width="450">대여권</th>
+					<th bgcolor="#ddebf7" colspan="9" width="450">소장권</th>
+
+					<th bgcolor="#e2efda" colspan="3" width="250">쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">쿠키로 구매</th>
+					<th bgcolor="#e2efda" colspan="3" width="250">i쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">i쿠키로 구매</th>
+
+                    <th bgcolor="#e2efda" colspan="3" width="250">자동충전 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">자동충전 쿠키로 구매</th>
+					<th bgcolor="#e2efda" colspan="3" width="250">구글 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">구글 쿠키로 구매</th>
+					<th bgcolor="#e2efda" colspan="3" width="250">구글 외부 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">구글 외부 쿠키로 구매</th>
+
+					<th bgcolor="#e2efda" colspan="3" width="250">원스토어 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">원스토어 쿠키로 구매</th>
+
+					<th bgcolor="#e2efda" colspan="3" width="250">리딤 쿠키로 대여</th>
+					<th bgcolor="#ddebf7" colspan="3" width="250">리딤 쿠키로 구매</th>
+
+					<th rowspan="2" width="100">유상 이용권 보정</th>
+					<th rowspan="2" width="100">마켓수수료(추정치)</th>
+					<th rowspan="2" width="160">합계</th>
+				</tr>
+				<tr bgcolor="#e5e6e9">
+					<th>건수</th>
+					<th>비정산</th>
+					<th>무료이용권</th>
+					<th>유상쿠키</th>
+					<th>무상쿠키</th>
+					<th>유상i쿠키</th>
+					<th>무상i쿠키</th>
+                    <th>유상자동충전쿠키</th>
+					<th>무상자동충전쿠키</th>
+
+					<th>건수</th>
+					<th>비정산</th>
+					<th>무료이용권</th>
+					<th>유상쿠키</th>
+					<th>무상쿠키</th>
+					<th>유상i쿠키</th>
+					<th>무상i쿠키</th>
+					<th>유상자동충전쿠키</th>
+					<th>무상자동충전쿠키</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+					<th>건수</th>
+					<th>유상</th>
+					<th>무상</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+						<td style="text-align:left">국가대표 생존자 [독점]</td>
+						<td style="text-align:left">662625</td>
+						<td style="mso-number-format:'\@'">D132018</td>
+						<td style="text-align:left">스토린랩_국가대표생존자_MG</td>
+						<td style="text-align:left">월천</td>
+						<td style="text-align:left">매드햇</td>
+						<td>12세 이상 이용가능</td>
+						<td>2026.06.12</td>
+
+						<td>0</td>
+						<td>6,724</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<!-- 쿠키 매출 -->
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>3,602</td>
+						<td>211,000</td>
+						<td>142,840</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>463</td>
+						<td>26,921</td>
+						<td>23,600</td>
+
+                        <td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>1,816</td>
+						<td>172,500</td>
+						<td>9,100</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>400</td>
+						<td>48,154</td>
+						<td>600</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>2,247</td>
+						<td>269,040</td>
+						<td>500</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>118</td>
+						<td>13,560</td>
+						<td>500</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+
+						<td>0.0</td>
+						<td>49,695.1</td>
+						<td><font color="red">918,315.0</font></td>
+					</tr>
+
+					<!-- 날짜별 합 -->
+					<!-- 전체 합 -->
+					<tr bgcolor="#e5e6e9">
+							<th class="item" colspan="8"><b>합계</b></th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">6,724</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">3,602</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">211,000</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">142,840</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">463</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">26,921</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">23,600</th>
+
+                            <th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">4,581</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">503,254</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">10,700</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+							<th class="item" style="text-align:right;padding:6px 6px;"></th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">0</th>
+
+							<th class="item" style="text-align:right;padding:6px 6px;">0.0</th>
+							<th class="item" style="text-align:right;padding:6px 6px;">49,695.1</th>
+							<th class="item" style="text-align:right;padding:6px 6px;"><font color="red">918,315.0</font></th>
+
+						</tr>
+					</tbody>
+		</table>
+	</div>
+</body>
+</html>

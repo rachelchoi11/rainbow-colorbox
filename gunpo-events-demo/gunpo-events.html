@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
+<style>
+  :root{--primary:#0A4747;--primary2:#0A7373;--accent:#FBBF24;--accent2:#D97706;--ink:#0F172A;--slate:#475569;--line:#E2E8F0;--bg:#F1F5F9}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Pretendard Variable',sans-serif;background:var(--bg);color:var(--ink);width:1440px;word-break:keep-all}
+  .top{background:linear-gradient(120deg,#0A4747,#0A7373);color:#fff;padding:20px 40px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-size:22px;font-weight:900;letter-spacing:-.5px}.brand i{color:var(--accent);font-style:normal}
+  .nav{font-size:14px;opacity:.85;display:flex;gap:20px}.nav .on{color:var(--accent);font-weight:800;opacity:1}
+  .hero{padding:26px 40px 4px}
+  .hero h1{font-size:29px;font-weight:900;letter-spacing:-1px}.hero h1 b{color:var(--primary2)}
+  .hero p{margin-top:6px;color:var(--slate);font-size:15px}
+  .pipe{margin:16px 40px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .pstage .lbl{font-size:11px;font-weight:800;color:#94A3B8;letter-spacing:.5px;display:block;margin-bottom:5px}
+  .pchips{display:flex;gap:7px;flex-wrap:wrap}
+  .pchip{font-size:12px;font-weight:800;padding:6px 11px;border-radius:8px;color:#fff}
+  .pchip i{font-style:normal;font-size:9px;opacity:.85;margin-left:3px}
+  .pchip.api{background:#0A7373}.pchip.scrape{background:#D97706}
+  .arrow{font-size:19px;color:#CBD5E1;font-weight:900}
+  .pbox{font-size:13px;font-weight:800;color:var(--primary);background:#ECFEFF;border:1px solid #A5F3FC;padding:8px 13px;border-radius:10px}
+  .pbox.acc{color:#7C2D12;background:#FFFBEB;border-color:#FDE68A}
+  .pills{display:flex;gap:9px;margin:0 40px 6px;flex-wrap:wrap}
+  .pill{font-size:12.5px;font-weight:700;color:#334155;background:#fff;border:1px solid var(--line);padding:7px 12px;border-radius:999px}
+  .pill b{font-size:15px;color:var(--primary2)}.pill small{color:#94A3B8;font-weight:600}
+  .pill i{font-style:normal;font-size:9.5px;font-weight:800;color:#94A3B8;text-transform:uppercase;margin-left:3px}
+  .pill.scrape b{color:#D97706}
+  .bookstrip{margin:10px 40px;background:linear-gradient(120deg,#0A4747,#0A7373);border-radius:14px;padding:14px 18px;color:#fff;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .bookstrip .lab{font-size:13px;font-weight:900;color:var(--accent);white-space:nowrap}
+  .bookstrip .lab small{display:block;color:#cbeae8;font-weight:600;font-size:10.5px}
+  .book{font-size:12.5px;font-weight:700;background:rgba(255,255,255,.12);padding:6px 11px;border-radius:8px}
+  .book b{color:var(--accent)}.book i{font-style:normal;opacity:.7;font-size:11px;margin-left:3px}
+  .filters{display:flex;gap:8px;margin:14px 40px 4px}
+  .filters span{font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);color:#64748B}
+  .filters span.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .sec{margin:16px 40px 10px;font-size:16px;font-weight:900;color:var(--primary);display:flex;align-items:center;gap:8px}
+  .sec .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:0 40px 24px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;position:relative;display:flex;flex-direction:column;gap:7px;min-height:168px}
+  .card.rec{border:2px solid var(--accent);box-shadow:0 6px 18px rgba(251,191,36,.18)}
+  .recbadge{position:absolute;top:-10px;left:13px;background:var(--accent);color:#3a2a00;font-size:11px;font-weight:900;padding:3px 10px;border-radius:999px}
+  .cdate{font-size:13px;font-weight:900;color:var(--accent2);display:flex;align-items:center;gap:6px}
+  .kind{font-size:10px;font-weight:800;color:#0A7373;background:#E0F2F1;padding:2px 7px;border-radius:5px}
+  .ctitle{font-size:15.5px;font-weight:800;line-height:1.35}
+  .cmeta{font-size:12px;color:var(--slate)}
+  .crow{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+  .cat{font-size:11px;font-weight:800;color:var(--primary);background:#E0F2F1;padding:3px 9px;border-radius:6px}
+  .fee{font-size:12px;font-weight:700;color:#64748B}
+  .crow2{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .src{font-size:10px;font-weight:800;padding:4px 8px;border-radius:6px}
+  .apply{border:0;background:var(--primary);color:#fff;font-size:12px;font-weight:800;padding:7px 13px;border-radius:8px;cursor:pointer}
+  .apply[disabled]{background:#CBD5E1;color:#fff;cursor:default}
+  .st{font-size:10px;font-weight:800;padding:2px 7px;border-radius:5px}
+  .st.closed{background:#E2E8F0;color:#64748B}.st.open{background:#DCFCE7;color:#15803D}
+  .card.dim{opacity:.74}
+  .live{color:#16A34A;font-size:13px;font-weight:900}
+  .ssub{font-size:12px;font-weight:600;color:#94A3B8}
+  .foot{margin:0 40px;padding:14px 0 28px;border-top:1px solid var(--line);font-size:12px;color:#94A3B8;display:flex;justify-content:space-between}
+  .foot b{color:#64748B}
+</style></head><body>
+  <div class="top">
+    <div class="brand">핏치 <i>Pitch</i></div>
+    <div class="nav"><span>오늘의 질문</span><span>도서관</span><span>토론</span><span class="on">군포 독서통합</span><span>독서은하</span></div>
+  </div>
+  <div class="hero">
+    <h1>군포 독서교육·문화행사 <b>통합</b></h1>
+    <p>공공데이터포털 군포 도서관 문화행사(실데이터) + 그림책꿈마루 실시간 스크래핑 + 인기검색어·장서 82만권 — 분류·중복제거 후 개인 맞춤 AI 추천</p>
+  </div>
+  <div class="pipe">
+    <div class="pstage"><span class="lbl">다중 소스 수집</span><div class="pchips">
+      <span class="pchip api">경기데이터드림 <i>mock</i></span><span class="pchip api">군포 도서관 문화행사 <i>LIVE</i></span><span class="pchip scrape">군포문화재단 <i>mock</i></span><span class="pchip scrape">그림책꿈마루 <i>LIVE</i></span><span class="pchip scrape">경기공유학교 <i>mock</i></span>
+    </div></div>
+    <span class="arrow">→</span><div class="pbox">정규화 · 분류</div>
+    <span class="arrow">→</span><div class="pbox">중복제거</div>
+    <span class="arrow">→</span><div class="pbox acc">★ 개인 맞춤 AI 추천</div>
+  </div>
+  <div class="pills"><span class="pill api"><b>3</b> 경기데이터드림 <small>문화행사 API</small> <i>mock</i></span><span class="pill api"><b>591</b> 군포 도서관 문화행사 <small>공공데이터포털 실데이터</small> <i>LIVE</i></span><span class="pill scrape"><b>3</b> 군포문화재단 <small>공연·전시 스크래핑</small> <i>mock</i></span><span class="pill scrape"><b>12</b> 그림책꿈마루 <small>실시간 스크래핑</small> <i>LIVE</i></span><span class="pill scrape"><b>2</b> 경기공유학교 <small>지역연계 배움터</small> <i>mock</i></span><span class="pill api"><b>83만</b> 군포 장서 <small>전체 도서목록</small> <i>실데이터</i></span></div>
+  <div class="bookstrip"><span class="lab">🔎 군포 도서관 인기 검색어<small>공공데이터포털 실데이터 · 2026-02-25 기준</small></span><span class="book"><b>1</b> 흔한남매 <i>5,339회</i></span><span class="book"><b>2</b> 혼모노 <i>4,858회</i></span><span class="book"><b>3</b> javascript <i>2,805회</i></span><span class="book"><b>4</b> 절창 <i>2,656회</i></span><span class="book"><b>5</b> 모순 <i>1,737회</i></span><span class="book"><b>6</b> 삼국지 <i>1,647회</i></span><span class="book"><b>7</b> 괴테는 모든 것을 말했다 <i>1,498회</i></span><span class="book"><b>8</b> 안녕이라 그랬어 <i>1,476회</i></span><span class="book"><b>9</b> 급류 <i>1,378회</i></span><span class="book"><b>10</b> 박곰희 <i>1,244회</i></span><span class="book"><b>11</b> 해리포터 <i>1,047회</i></span><span class="book"><b>12</b> 긴긴밤 <i>1,027회</i></span></div>
+  <div class="filters"><span class="on">전체 36</span><span>독서교육 30</span><span>공연·전시</span><span>축제</span><span>가족</span><span>시니어</span></div>
+
+  <div class="sec"><span class="dot"></span>오늘의 AI 추천 — 다가오는 독서·문화 행사</div>
+  <div class="grid">
+    <div class="card rec">
+      <span class="recbadge">★ AI 추천</span>
+      <div class="cdate">06.25 <span class="kind">독서교육</span></div>
+      <div class="ctitle">마을 연계 독서놀이 (공유학교)</div>
+      <div class="cmeta">📍 군포 마을배움터 · 초등</div>
+      <div class="crow"><span class="cat">독서프로그램</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">경기공유학교</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card rec">
+      <span class="recbadge">★ AI 추천</span>
+      <div class="cdate">06.07 – 06.09 </div>
+      <div class="ctitle">군포 책의 도시 독서대전</div>
+      <div class="cmeta">📍 군포시청 광장</div>
+      <div class="crow"><span class="cat">독서축제</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#0A7373;color:#fff">경기데이터드림</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card rec">
+      <span class="recbadge">★ AI 추천</span>
+      <div class="cdate">06.14 – 07.19 <span class="kind">독서교육</span></div>
+      <div class="ctitle">경기공유학교 — 질문하는 인문독서 교실</div>
+      <div class="cmeta">📍 군포 공유학교 거점 · 초·중학생</div>
+      <div class="crow"><span class="cat">독서프로그램</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">경기공유학교</span><button class="apply">신청하기</button></div>
+    </div></div>
+
+  <div class="sec"><span class="dot"></span>그림책꿈마루 — 실시간 스크래핑 <span class="live">● LIVE</span> <small class="ssub">gunpo.go.kr/picturebook · 12건 수집</small></div>
+  <div class="grid">
+    <div class="card dim">
+      
+      <div class="cdate">01.24 <span class="kind">독서교육</span><span class="st closed">마감</span></div>
+      <div class="ctitle"><동네 책방> 전시연계강연 - 『생애 세 번 만나는 그림책』</div>
+      <div class="cmeta">📍 그림책꿈마루 상상피움1 · 그림책에 관심 있는 어른들</div>
+      <div class="crow"><span class="cat">그림책 교육</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">그림책꿈마루</span><button class="apply" disabled>마감</button></div>
+    </div>
+    <div class="card dim">
+      
+      <div class="cdate">01.27 <span class="kind">독서교육</span><span class="st closed">종료</span></div>
+      <div class="ctitle">책방연두 화요인문학함께읽기 - 『다정한 서술자』</div>
+      <div class="cmeta">📍 그림책꿈마루 기획전시실 · 성인 및 청소년 누구나</div>
+      <div class="crow"><span class="cat">그림책 교육</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">그림책꿈마루</span><button class="apply" disabled>마감</button></div>
+    </div>
+    <div class="card dim">
+      
+      <div class="cdate">02.07 <span class="kind">독서교육</span><span class="st closed">마감</span></div>
+      <div class="ctitle"><동네책방> 전시연계강연 - 어린이낭독극과 함께 하는 책 읽는 즐거움</div>
+      <div class="cmeta">📍 그림책꿈마루 기획전시실 · 책 읽기에 관심 있는 어린이와 어른</div>
+      <div class="crow"><span class="cat">그림책 교육</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">그림책꿈마루</span><button class="apply" disabled>마감</button></div>
+    </div>
+    <div class="card dim">
+      
+      <div class="cdate">02.12 <span class="kind">독서교육</span><span class="st closed">마감</span></div>
+      <div class="ctitle"><동네 책방> 전시연계강연 - 『사유하는 것과 살아 있는 것』</div>
+      <div class="cmeta">📍 그림책꿈마루 기획전시실 · 성인 및 청소년</div>
+      <div class="crow"><span class="cat">그림책 교육</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">그림책꿈마루</span><button class="apply" disabled>마감</button></div>
+    </div></div>
+
+  <div class="sec"><span class="dot"></span>전체 통합 (다가오는 행사 우선 · 날짜순)</div>
+  <div class="grid">
+    <div class="card rec">
+      <span class="recbadge">★ AI 추천</span>
+      <div class="cdate">06.14 – 07.19 <span class="kind">독서교육</span></div>
+      <div class="ctitle">경기공유학교 — 질문하는 인문독서 교실</div>
+      <div class="cmeta">📍 군포 공유학교 거점 · 초·중학생</div>
+      <div class="crow"><span class="cat">독서프로그램</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">경기공유학교</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card rec">
+      <span class="recbadge">★ AI 추천</span>
+      <div class="cdate">06.25 <span class="kind">독서교육</span></div>
+      <div class="ctitle">마을 연계 독서놀이 (공유학교)</div>
+      <div class="cmeta">📍 군포 마을배움터 · 초등</div>
+      <div class="crow"><span class="cat">독서프로그램</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">경기공유학교</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card rec">
+      <span class="recbadge">★ AI 추천</span>
+      <div class="cdate">06.07 – 06.09 </div>
+      <div class="ctitle">군포 책의 도시 독서대전</div>
+      <div class="cmeta">📍 군포시청 광장</div>
+      <div class="crow"><span class="cat">독서축제</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#0A7373;color:#fff">경기데이터드림</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card">
+      
+      <div class="cdate">06.13 </div>
+      <div class="ctitle">군포프라임필하모닉 정기연주회</div>
+      <div class="cmeta">📍 군포문화예술회관 대공연장</div>
+      <div class="crow"><span class="cat">공연/전시</span><span class="fee">1만원~</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">군포문화재단</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card">
+      
+      <div class="cdate">06.14 </div>
+      <div class="ctitle">당정근린공원 숲속 음악회</div>
+      <div class="cmeta">📍 당정근린공원</div>
+      <div class="crow"><span class="cat">공연</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#0A7373;color:#fff">경기데이터드림</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card">
+      
+      <div class="cdate">06.22 </div>
+      <div class="ctitle">어린이 뮤지컬 「책 읽어주는 로봇」</div>
+      <div class="cmeta">📍 군포문화예술회관 소공연장 · 가족</div>
+      <div class="crow"><span class="cat">공연/전시</span><span class="fee">2만원</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">군포문화재단</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card">
+      
+      <div class="cdate">06.27 </div>
+      <div class="ctitle">지역작가 초청 북토크 — 군포에서 쓰다</div>
+      <div class="cmeta">📍 군포문화예술회관 세미나실</div>
+      <div class="crow"><span class="cat">강연</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#D97706;color:#fff">군포문화재단</span><button class="apply">신청하기</button></div>
+    </div>
+    <div class="card">
+      
+      <div class="cdate">06.28 </div>
+      <div class="ctitle">철쭉축제 거리 공연</div>
+      <div class="cmeta">📍 군포 철쭉동산 · 가족</div>
+      <div class="crow"><span class="cat">공연</span><span class="fee">무료</span></div>
+      <div class="crow2"><span class="src" style="background:#0A7373;color:#fff">경기데이터드림</span><button class="apply">신청하기</button></div>
+    </div></div>
+
+  <div class="foot">
+    <span>출처: 공공데이터포털 군포 도서관 문화행사·인기검색어·도서목록(실데이터) · 그림책꿈마루(gunpo.go.kr/picturebook) · 경기데이터드림</span>
+    <span><b>핏치 PoC</b> · 통합 36건 + 독서도서 6권 · 2026. 5. 27. 오후 8:26:56</span>
+  </div>
+</body></html>

@@ -1,0 +1,46 @@
+{
+  "name": "gleam",
+  "version": "0.1.0",
+  "private": true,
+  "description": "별의아이들 — 부진학생 안에 숨은 강점을 발견하는 AI 등대 (제8회 교육공공데이터 AI활용대회 출품작)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "ingest:wikisource": "tsx scripts/ingest-wikisource.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0",
+    "@prisma/client": "^6.19.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "d3-force": "^3.0.0",
+    "docx": "^9.6.1",
+    "dotenv": "^16.6.1",
+    "lucide-react": "^0.577.0",
+    "next": "^15.5.0",
+    "prisma": "^6.19.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/d3-force": "^3.0.10",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.0",
+    "postcss": "^8.5.0",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
