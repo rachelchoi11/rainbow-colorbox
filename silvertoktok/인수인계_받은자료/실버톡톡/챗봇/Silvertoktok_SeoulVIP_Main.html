@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390, initial-scale=1.0">
+<title>실버톡톡 – 서울VIP요양병원 메인</title>
+<style>
+  /* ===== DESIGN SYSTEM ===== */
+  :root {
+    --primary-green: #00945F;
+    --primary-navy: #283C86;
+    --bg: #F6F8FB;
+    --surface: #FFFFFF;
+    --border: #E6EAF0;
+    --text-primary: #0B1220;
+    --text-secondary: #5B667A;
+    --green-light: rgba(0,148,95,0.12);
+    --navy-light: rgba(40,60,134,0.10);
+  }
+
+  @font-face {
+    font-family: 'Pretendard';
+    src: local('Pretendard'), local('Apple SD Gothic Neo'), local('Malgun Gothic');
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 0;
+  }
+
+  /* ===== DEVICE FRAME ===== */
+  .device-frame {
+    width: 390px;
+    height: 844px;
+    background: var(--bg);
+    border-radius: 44px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 0 0 12px #1a1a2e,
+      0 0 0 14px #333,
+      0 40px 80px rgba(0,0,0,0.5);
+  }
+
+  .screen {
+    width: 390px;
+    height: 844px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    scrollbar-width: none;
+  }
+  .screen::-webkit-scrollbar { display: none; }
+
+  /* ===== STATUS BAR ===== */
+  .status-bar {
+    width: 390px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .status-bar .time { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+  .status-bar .icons { display: flex; gap: 6px; align-items: center; }
+  .status-bar .icons svg { width: 18px; height: 12px; }
+
+  /* ===== HEADER ===== */
+  .header {
+    width: 390px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .header-main {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .partner-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-green), #00b371);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,148,95,0.2);
+    overflow: hidden;
+  }
+  .partner-logo .logo-text {
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .header-title { flex: 1; }
+  .header-title .app-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  .header-title .hospital-name {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.3;
+  }
+
+  .header-buttons { display: flex; gap: 8px; }
+
+  .btn-outline {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--primary-navy);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: none;
+    background: var(--primary-green);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+
+  .header-notice {
+    padding: 8px 16px 10px;
+    background: #FFF8F0;
+    border-top: 1px solid #F0E6D8;
+  }
+  .header-notice p {
+    font-size: 11px;
+    color: #B8860B;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  /* ===== SCROLLABLE CONTENT ===== */
+  .content {
+    padding: 12px 15px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ===== PARTNER INFO CARD ===== */
+  .partner-info-card {
+    width: 360px;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    position: relative;
+  }
+
+  .hero-image {
+    width: 360px;
+    height: 180px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 50%, #f3e5f5 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(0,148,95,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 40%, rgba(40,60,134,0.06) 0%, transparent 50%);
+  }
+
+  /* Hospital building illustration */
+  .hero-illustration {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+
+  .building-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .building {
+    background: rgba(255,255,255,0.7);
+    border-radius: 4px 4px 0 0;
+    border: 1px solid rgba(0,148,95,0.15);
+    position: relative;
+  }
+  .building-main {
+    width: 80px;
+    height: 90px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(0,148,95,0.2);
+  }
+  .building-left { width: 40px; height: 60px; }
+  .building-right { width: 50px; height: 70px; }
+
+  .building-windows {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 8px 6px;
+  }
+  .building-window {
+    width: 100%;
+    aspect-ratio: 1;
+    background: rgba(0,148,95,0.12);
+    border-radius: 2px;
+  }
+
+  .cross-mark {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--primary-green);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .tree {
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tree-top {
+    width: 18px;
+    height: 24px;
+    background: rgba(0,148,95,0.25);
+    border-radius: 50%;
+  }
+  .tree-trunk {
+    width: 4px;
+    height: 8px;
+    background: rgba(139,90,43,0.3);
+  }
+
+  .hero-overlay-text {
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
+    font-size: 11px;
+    color: rgba(0,0,0,0.35);
+    font-weight: 500;
+  }
+
+  .ai-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--navy-light);
+    color: var(--primary-navy);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    z-index: 2;
+  }
+
+  .card-body { padding: 14px 16px 16px; }
+
+  .partner-label {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--primary-green);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+
+  .card-hospital-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .card-description {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .info-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+  .info-label {
+    color: var(--text-secondary);
+    min-width: 56px;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .info-value {
+    color: var(--text-primary);
+    font-weight: 400;
+    word-break: keep-all;
+  }
+  .info-value a {
+    color: var(--primary-navy);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* ===== CHAT AREA ===== */
+  .chat-area {
+    width: 360px;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+  .chat-label .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary-green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .bubble-row {
+    display: flex;
+    gap: 8px;
+    max-width: 100%;
+  }
+  .bubble-row.ai { justify-content: flex-start; }
+  .bubble-row.user { justify-content: flex-end; }
+
+  .bot-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-green), #00b371);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .bot-avatar svg { width: 14px; height: 14px; }
+
+  .bubble {
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 260px;
+    word-break: keep-all;
+  }
+  .bubble.ai-bubble {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    border-top-left-radius: 4px;
+  }
+  .bubble.user-bubble {
+    background: var(--primary-navy);
+    color: white;
+    border-top-right-radius: 4px;
+  }
+
+  .bubble .note {
+    display: block;
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+  }
+
+  .bubble-time {
+    font-size: 10px;
+    color: #aab0bc;
+    margin-top: 4px;
+    align-self: flex-end;
+  }
+  .bubble-row.ai .bubble-time { margin-left: 36px; }
+  .bubble-row.user .bubble-time { text-align: right; }
+
+  /* ===== BOTTOM INPUT ===== */
+  .bottom-input {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 390px;
+    height: 60px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .btn-menu {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .btn-menu svg { width: 14px; height: 14px; }
+
+  .input-field {
+    flex: 1;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0 14px;
+    font-size: 13px;
+    color: var(--text-primary);
+    background: var(--bg);
+    font-family: inherit;
+    outline: none;
+  }
+  .input-field::placeholder { color: #aab0bc; }
+  .input-field:focus { border-color: var(--primary-green); }
+
+  .btn-send {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-green);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .btn-send svg { width: 16px; height: 16px; }
+
+  /* ===== QUICK MENU SHEET ===== */
+  .quick-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 390px;
+    height: 844px;
+    background: rgba(0,0,0,0.35);
+    z-index: 200;
+    display: none;
+  }
+  .quick-menu-overlay.show { display: block; }
+
+  .quick-menu-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 390px;
+    background: var(--surface);
+    border-radius: 20px 20px 0 0;
+    padding: 12px 20px 24px;
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.12);
+  }
+
+  .sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: #D1D5DB;
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+
+  .sheet-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .sheet-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .menu-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .menu-card:hover {
+    border-color: var(--primary-green);
+    background: rgba(0,148,95,0.04);
+  }
+  .menu-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .menu-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .menu-card-icon.green { background: var(--green-light); }
+  .menu-card-icon.navy { background: var(--navy-light); }
+  .menu-card-icon.orange { background: rgba(255,152,0,0.12); }
+  .menu-card-icon.purple { background: rgba(156,39,176,0.10); }
+  .menu-card-icon.teal { background: rgba(0,150,136,0.10); }
+
+  .menu-card-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .menu-card-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .sheet-notice {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-secondary);
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    line-height: 1.4;
+  }
+
+  /* ===== FRAME LABEL ===== */
+  .frame-label {
+    position: absolute;
+    top: -28px;
+    left: 0;
+    font-size: 12px;
+    color: #888;
+    font-family: 'SF Mono', 'Consolas', monospace;
+    white-space: nowrap;
+  }
+  .wrapper {
+    position: relative;
+    margin-top: 40px;
+  }
+
+  /* Toggle button for quick menu demo */
+  .toggle-sheet {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 300;
+    background: var(--primary-navy);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 16px rgba(40,60,134,0.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- Toggle for Quick Menu demo -->
+<button class="toggle-sheet" onclick="toggleSheet()">빠른 메뉴 미리보기</button>
+
+<div class="wrapper">
+  <span class="frame-label">Silvertoktok_SeoulVIP_Main (390 × 844)</span>
+
+  <div class="device-frame">
+    <div class="screen" id="screen">
+
+      <!-- ===== HEADER ===== -->
+      <div class="header" data-layer="Header">
+
+        <div class="header-main">
+          <!-- Partner Logo -->
+          <div class="partner-logo" data-layer="Partner_Logo">
+            <div class="logo-text">서울<br>VIP</div>
+          </div>
+
+          <!-- Header Title -->
+          <div class="header-title" data-layer="Header_Title">
+            <div class="app-name">실버톡톡</div>
+            <div class="hospital-name">서울VIP요양병원</div>
+          </div>
+
+          <!-- Header Buttons -->
+          <div class="header-buttons" data-layer="Header_Buttons">
+            <button class="btn-outline">병원 정보</button>
+            <button class="btn-primary">메뉴</button>
+          </div>
+        </div>
+
+        <!-- Notice -->
+        <div class="header-notice">
+          <p>※ 안내를 위한 채널입니다. 응급 상황은 병원 대표번호로 즉��� 연락해 주세요.</p>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <!-- ===== PARTNER INFO CARD ===== -->
+        <div class="partner-info-card" data-layer="Partner_Info_Card">
+
+          <!-- AI Badge -->
+          <span class="ai-badge" data-layer="AI_Badge">AI 안내 포함</span>
+
+          <!-- Hero Image -->
+          <div class="hero-image" data-layer="Hero_Image">
+            <div class="hero-illustration">
+              <div class="tree" style="margin-right:8px">
+                <div class="tree-top"></div>
+                <div class="tree-trunk"></div>
+              </div>
+              <div class="building-group">
+                <div class="building building-left">
+                  <div class="building-windows">
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                  </div>
+                </div>
+                <div class="building building-main">
+                  <span class="cross-mark">+</span>
+                  <div class="building-windows">
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                  </div>
+                </div>
+                <div class="building building-right">
+                  <div class="building-windows">
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                    <div class="building-window"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tree" style="margin-left:8px">
+                <div class="tree-top"></div>
+                <div class="tree-trunk"></div>
+              </div>
+            </div>
+            <span class="hero-overlay-text">서울VIP요양병원 전경</span>
+          </div>
+
+          <!-- Card Body -->
+          <div class="card-body">
+            <span class="partner-label" data-layer="Partner_Label">파트너 병원</span>
+            <div class="card-hospital-name" data-layer="Hospital_Name">서울VIP요양병원</div>
+            <p class="card-description" data-layer="Hospital_Description">
+              치매·뇌질환·재활 전문 요양병원으로,<br>
+              의료진 중심의 체계적인 치료와<br>
+              보호자 소통을 강화한 프리미엄 케어를 제공합니다.
+            </p>
+
+            <div class="info-list" data-layer="Info_List">
+              <div class="info-item">
+                <span class="info-icon">📞</span>
+                <span class="info-label">대표번호</span>
+                <span class="info-value">02-1588-xxxx</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">📍</span>
+                <span class="info-label">주소</span>
+                <span class="info-value">서울특별시 강남구 언주로 857</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🏥</span>
+                <span class="info-label">진료분야</span>
+                <span class="info-value">치매, 뇌질환, 재활, 요양</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🕐</span>
+                <span class="info-label">면회시간</span>
+                <span class="info-value">평일 14:00–17:00 (사전 예약 권장)</span>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🌐</span>
+                <span class="info-label">웹사이트</span>
+                <span class="info-value"><a href="https://www.seoulvip.co.kr/" target="_blank">www.seoulvip.co.kr</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== CHAT AREA ===== -->
+        <div class="chat-area" data-layer="Chat_Area">
+
+          <div class="chat-label">
+            <span class="dot"></span>
+            AI 안내 채팅
+          </div>
+
+          <!-- AI Bubble 1 -->
+          <div class="bubble-row ai" data-layer="AI_Bubble_1">
+            <div class="bot-avatar">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="white"/>
+              </svg>
+            </div>
+            <div>
+              <div class="bubble ai-bubble">
+                안녕하세요, 실버톡톡 AI 안내봇입니다.<br>
+                서울VIP요양병원 보호자 전용 안내를 도와드립니다.<br>
+                메뉴를 선택하거나 질문을 입력해 주세요.
+                <span class="note">※ AI는 참고용 안내입니다.</span>
+              </div>
+              <div class="bubble-time">오전 10:00</div>
+            </div>
+          </div>
+
+          <!-- User Bubble -->
+          <div class="bubble-row user" data-layer="User_Bubble">
+            <div>
+              <div class="bubble user-bubble">
+                오늘 면회 가능한가요?
+              </div>
+              <div class="bubble-time">오전 10:02</div>
+            </div>
+          </div>
+
+          <!-- AI Bubble 2 -->
+          <div class="bubble-row ai" data-layer="AI_Bubble_2">
+            <div class="bot-avatar">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="white"/>
+              </svg>
+            </div>
+            <div>
+              <div class="bubble ai-bubble">
+                면회는 평일 14:00–17:00이며,<br>
+                사전 예약을 권장드립니다.<br>
+                원하시면 예약 방법을 안내해 드릴게요.
+              </div>
+              <div class="bubble-time">오전 10:02</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- /content -->
+
+      <!-- ===== BOTTOM INPUT ===== -->
+      <div class="bottom-input" data-layer="Bottom_Input">
+        <button class="btn-menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          자주 메뉴
+        </button>
+        <input type="text" class="input-field" placeholder="궁금한 내용을 입력해 주세요…">
+        <button class="btn-send">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="white"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- ===== QUICK MENU SHEET OVERLAY ===== -->
+      <div class="quick-menu-overlay" id="quickMenuOverlay" data-layer="Quick_Menu_Sheet" onclick="toggleSheet()">
+        <div class="quick-menu-sheet" onclick="event.stopPropagation()">
+          <div class="sheet-handle"></div>
+          <div class="sheet-title">자주 찾는 메뉴</div>
+          <div class="sheet-subtitle">원하시는 안내 항목을 선택해 주세요</div>
+
+          <div class="menu-grid">
+            <div class="menu-card">
+              <div class="menu-card-icon green">💚</div>
+              <div class="menu-card-label">오늘 컨디션 확인</div>
+              <div class="menu-card-desc">환자 상태 요약 확인</div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-icon orange">🍽️</div>
+              <div class="menu-card-label">식사/복약 정보</div>
+              <div class="menu-card-desc">오늘의 식사·복약 현황</div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-icon navy">🏥</div>
+              <div class="menu-card-label">면회 안내</div>
+              <div class="menu-card-desc">면회 시간 및 예약</div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-icon purple">💰</div>
+              <div class="menu-card-label">진료/비용 문의</div>
+              <div class="menu-card-desc">진료 일정, 비용 안내</div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-icon teal">📋</div>
+              <div class="menu-card-label">병원 공지 확인</div>
+              <div class="menu-card-desc">최신 공지사항 및 안내문 확인</div>
+            </div>
+          </div>
+
+          <div class="sheet-notice">
+            ※ AI 안내는 참고용입니다. 응급은 병원으로 바로 연락하세요.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /screen -->
+  </div><!-- /device-frame -->
+</div>
+
+<script>
+function toggleSheet() {
+  const overlay = document.getElementById('quickMenuOverlay');
+  overlay.classList.toggle('show');
+}
+</script>
+
+</body>
+</html>
