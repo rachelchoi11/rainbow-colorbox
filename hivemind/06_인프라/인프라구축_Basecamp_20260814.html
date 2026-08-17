@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang=ko><head><meta charset=utf-8><style>@page{size:A4;margin:15mm}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#1a1a1a;font-size:10.3pt;line-height:1.62;max-width:840px;margin:0 auto;padding:8px}
+h1{font-size:19pt;font-weight:800;border-bottom:3px solid #222;padding-bottom:8px;margin-bottom:10px}
+h2{font-size:13.5pt;font-weight:800;margin:20px 0 8px;border-bottom:2px solid #161616;padding-bottom:5px}
+h3{font-size:11.5pt;font-weight:700;margin:14px 0 6px}
+ul{margin:6px 0 6px 2px;padding-left:20px}li{margin:3px 0}
+table{border-collapse:collapse;width:100%;margin:9px 0;font-size:9.3pt}
+th{background:#eef1f5;border:1px solid #c2cad6;padding:6px 9px;text-align:left}
+td{border:1px solid #e3e7ed;padding:6px 9px;vertical-align:top}
+strong{color:#0f1115}code{background:#f2f4f7;padding:1px 5px;border-radius:3px;font-size:9pt}
+hr{border:none;border-top:1px solid #e3e7ed;margin:14px 0}
+a{color:#0B5CFF;text-decoration:none}
+blockquote{background:#f4f8ff;border-left:3px solid #0B5CFF;margin:7px 0;padding:8px 13px;font-size:9.7pt;color:#2a3340;border-radius:0 4px 4px 0}
+blockquote strong{color:#0B5CFF}
+</style></head><body>
+<h1>하이브마인드 — 인프라 구축 프로젝트 (Basecamp)</h1>
+<blockquote>작성 2026-08-14 · PM/오너 최혜윤(Rachel) · 실행 강수아(suahkang)<br>이 문서는 Basecamp의 <strong>Message(개요)</strong> + <strong>To-do 리스트(할 일)</strong> 로 옮겨 쓰도록 구성했습니다.</blockquote>
+<hr>
+<h2>📌 Message Board — 프로젝트 개요 (그대로 붙여넣기)</h2>
+<p><strong>목표:</strong> 지금까지 Rachel이 임시로 운영해 온 정산 솔루션을, 출판사에 정식 오픈 가능한 <strong>운영급 인프라</strong>로 세우고, 인프라 운영을 강수아에게 이관한다.</p>
+<p><strong>현재 상태:</strong></p>
+<ul><li>앱: FastAPI(Python) + 자체 프론트(바닐라 JS) + SQLite(Railway 볼륨). 라이브 배포 중, 매일 진화 중.</li><li>리포: github.com/rachelchoi11/hivemind (강수아 협업자 등록 완료).</li></ul>
+<p><strong>원칙:</strong></p>
+<p>1. <strong>스택은 Python 유지</strong> — 재작성 안 함. 핵심 자산(정산서 28종 파서·40만 행 처리)은 pandas(Python)가 최적이고, 이 규모의 B2B에선 서버 성능이 병목이 아님. 성능 벽이 실제로 오면 그때 뜨거운 부분만 최적화(파이프라인은 Python 유지).</p>
+<p>2. <strong>결정은 Rachel, 실행은 강수아.</strong> 블랙박스 금지 — 모든 변경은 PR + 무엇을/왜 설명 + Rachel 승인.</p>
+<p>3. <strong>출시 전 필수부터.</strong> 나머지는 백로그.</p>
+<p><strong>협업 도구:</strong> 이 Basecamp로 일원화(기존 디스코드 대체). 할 일·결정·논의는 여기서.</p>
+<hr>
+<h2>✅ To-do 리스트 1 — [먼저] Rachel 결정 (구현 전 선행)</h2>
+<blockquote>아래 5개가 정해져야 강수아가 실행에 들어감. 각 항목에 권장안 표기.</blockquote>
+<ul><li>☐ <strong>스택 유지 확정</strong> — Python 유지(권장) vs 재작성. → 권장: 유지. <code>담당: Rachel</code></li><li>☐ <strong>호스팅 확정</strong> — Railway 유지(권장) / Render·Fly / AWS. → 권장: Railway 유지(관리 쉬움). <code>담당: Rachel</code></li><li>☐ <strong>DB 이전 시점</strong> — 정식 오픈 전 Postgres 이전(권장). → 권장: 오픈 전 실행. <code>담당: Rachel</code></li><li>☐ <strong>도메인 결정</strong> — <code>app.hive-mind.kr</code>(권장, 기존 이메일 도메인 재사용) vs 신규. <code>담당: Rachel</code></li><li>☐ <strong>이메일 서비스 선택</strong> — Postmark/SendGrid(연동 쉬움, 권장) / AWS SES(저렴·설정 복잡). <code>담당: Rachel</code></li></ul>
+<hr>
+<h2>✅ To-do 리스트 2 — 도메인 · 접속</h2>
+<ul><li>☐ 도메인 구입/확인 (<code>hive-mind.kr</code> 보유 시 서브도메인 사용) <code>담당: 강수아</code></li><li>☐ DNS에서 <code>app.hive-mind.kr</code> → Railway 연결(CNAME) <code>담당: 강수아</code></li><li>☐ HTTPS 인증서 자동 적용 확인(Railway 자동) <code>담당: 강수아</code></li><li><strong>완료조건:</strong> <code><a href="https://app.hive-mind.kr">https://app.hive-mind.kr</a></code> 로 정상 접속·자물쇠(HTTPS) 확인.</li></ul>
+<hr>
+<h2>✅ To-do 리스트 3 — 데이터베이스 (SQLite → Postgres)</h2>
+<blockquote>설계 문서 있음: <code>내부_Rachel/DB이전설계_SQLite→Postgres_20260806.md</code> (db.py가 KV 추상화라 백엔드 교체만).</blockquote>
+<ul><li>☐ Railway에 <strong>Postgres 플러그인</strong> 추가 → <code>DATABASE_URL</code> 발급 <code>담당: 강수아</code></li><li>☐ <code>db.py</code>에 Postgres 백엔드 추가(현 read/write 인터페이스 유지, <code>DATABASE_URL</code> 있으면 Postgres) <code>담당: 강수아</code></li><li>☐ 기존 <code>app.db</code>(SQLite) → Postgres <strong>1회 이관 스크립트</strong>(컬렉션 1:1 복사) <code>담당: 강수아</code></li><li>☐ 이관 검증: 회원·테넌트(128)·계약·정산런 카운트 대조 + 회귀 스크립트 통과 <code>담당: 강수아</code> → <code>검토: Rachel</code></li><li><strong>완료조건:</strong> 재배포·검증 후 회원/계약/정산 데이터 정상, 롤백 경로(SQLite 스냅샷) 보관.</li></ul>
+<hr>
+<h2>✅ To-do 리스트 4 — 이메일 발송 (초대·알림)</h2>
+<blockquote>현재 초대는 링크 수동 전달. 정식 오픈엔 자동 발송 필요.</blockquote>
+<ul><li>☐ 이메일 서비스 계정 생성(선택안) + 발신 도메인 인증(SPF/DKIM) <code>담당: 강수아</code></li><li>☐ 앱에 SMTP/API 연동 — 계약사 초대 메일 자동 발송 <code>담당: 강수아</code></li><li>☐ (후속) 정산 완료·마감 리마인더 알림 메일 <code>담당: 강수아</code></li><li><strong>완료조건:</strong> 초대 발급 시 실제 메일 수신 확인, 스팸함 아님.</li></ul>
+<hr>
+<h2>✅ To-do 리스트 5 — 보안 · 안정성</h2>
+<ul><li>☐ <strong>로그인 시도 제한(레이트리밋)</strong> 추가 — 공개 URL 무차별 대입 방어 <code>담당: 강수아</code></li><li>☐ 시크릿(세션키·API키) 전부 환경변수 확인, 코드/리포 미포함 재점검 <code>담당: 강수아</code></li><li>☐ 백업 점검 — DB 자동 백업(구현됨) + Postgres 관리형 백업 확인 <code>담당: 강수아</code></li><li>☐ (권장) 취약점 1차 점검(권한·테넌트 격리 재확인) <code>담당: 강수아</code> → <code>검토: Rachel</code></li><li><strong>완료조건:</strong> 레이트리밋 동작, 시크릿 노출 0, 백업 복구 테스트 1회.</li></ul>
+<hr>
+<h2>✅ To-do 리스트 6 — 배포 · 협업 흐름</h2>
+<ul><li>☐ <strong>main 브랜치 보호</strong> + <strong>PR 필수</strong>(강수아 push 대비, 리뷰 강제) <code>담당: Rachel(설정)</code></li><li>☐ <strong>스테이징(dev) 환경 분리</strong> — dev 배포 ↔ prod 배포 별도 <code>담당: 강수아</code></li><li>☐ 배포 절차 문서화(누가·어떻게 배포하는지) <code>담당: 강수아</code></li><li><strong>완료조건:</strong> main 직접 push 차단, PR→리뷰→머지→자동배포 흐름 확립, dev에서 먼저 검증.</li></ul>
+<hr>
+<h2>✅ To-do 리스트 7 — 모니터링 · 에러추적</h2>
+<ul><li>☐ <strong>에러 추적</strong>(Sentry 등) 연동 — 장애 즉시 인지 <code>담당: 강수아</code></li><li>☐ <strong>업타임 모니터</strong>(다운 시 알림) <code>담당: 강수아</code></li><li><strong>완료조건:</strong> 앱 에러/다운 발생 시 알림 수신.</li></ul>
+<hr>
+<h2>🗂️ 백로그 (나중 · 성장하면)</h2>
+<ul><li>멀티 인스턴스 확장(수평 확장) · 오브젝트 스토리지(S3) 전환</li><li>세무·지급 연동(팝빌 등) · 회계 연동</li><li>(선택) 프론트 Next.js 전환 — 백엔드 엔진은 Python 유지. <strong>출시 후 검토.</strong></li><li>B4 정산 세션 영속(업로드 정산 데이터 재배포 생존) — 제품 백로그와 연동</li></ul>
+<hr>
+<h2>🔑 요약 — 지금 Rachel이 정할 5가지</h2>
+<table><thead><tr><th>결정</th><th>권장</th></tr></thead><tbody><tr><td>스택</td><td>Python 유지</td></tr><tr><td>호스팅</td><td>Railway 유지</td></tr><tr><td>DB</td><td>오픈 전 Postgres 이전</td></tr><tr><td>도메인</td><td>app.hive-mind.kr</td></tr><tr><td>이메일</td><td>Postmark/SendGrid</td></tr></tbody></table>
+<p>이 5개 확정 → 강수아가 리스트 2~7 실행 착수.</p>
+</body></html>

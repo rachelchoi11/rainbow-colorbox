@@ -269,7 +269,7 @@
 - ✅ **상담 정리** — 병원 필터 누락(RLS는 볼 수 있는 병원 전부를 준다) · 연관 환자 드롭다운이 목 환자 36명을 실제 명단처럼 노출 ·
   「같은 보호자의 다른 상담」이 목만 뒤져 실 DB 이력을 못 찾음 · 불만/민원 카드에도 「신규 입원 문의」 오표기
 - ✅ **역할 변경·정지/복구 UI**, **확인 대화상자**, `/sys` 인덱스(부모 메뉴 404), `/api/health`
-- ⚠️ **남음(사람 작업)**: Supabase Site URL(대시보드 2필드) · SMTP(시간당 메일 2통 한도) · Sentry 계정
+- ⚠️ **남음(사람 작업)**: SMTP(시간당 메일 2통 한도) · Sentry 계정  ※ Site URL은 8/17 완료
 
 ## ▶️ 다음 액션
 
@@ -277,7 +277,7 @@
 > 브랜치 `feat/beta-backend`(push 완료). 설계 `docs/beta-backend-design.md` · 운영 `docs/beta-backend-runbook.md`
 - [x] ~~**Supabase 서울 프로젝트 생성·마이그레이션·시드**~~ ✅ 8/11
 - [x] ~~**Pro 플랜 확인**~~ ✅ 8/14 — Supabase 조직 `silvertoktok` **PRO**(컴퓨트 MICRO, AWS ap-northeast-2) · Vercel도 **Pro**. 자동 정지 위험 해소
-- [ ] Supabase **Site URL / Redirect URLs**를 배포 도메인으로 갱신
+- [x] ~~Supabase **Site URL / Redirect URLs**~~ ✅ 8/17 적용·확인 완료
 - [ ] **계정 140개 배포** — 부서별로 나눠 전달(같은 사무실 동시 로그인은 Auth IP 레이트리밋에 걸린다)
 - [x] ~~**O-1 확정**~~ ✅ 8/15 — 격리로 확정(0011). 예외는 기능 권한으로 관리
 - [ ] **O-2 확정** 파일럿 1주차 가명 데이터 경로 수용 여부 (§7)

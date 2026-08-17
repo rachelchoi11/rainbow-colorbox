@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang=ko><head><meta charset=utf-8><style>@page{size:A4;margin:15mm}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#1a1a1a;font-size:10.3pt;line-height:1.62;max-width:840px;margin:0 auto;padding:8px}
+h1{font-size:19pt;font-weight:800;border-bottom:3px solid #222;padding-bottom:8px;margin-bottom:10px}
+h2{font-size:13.5pt;font-weight:800;margin:20px 0 8px;border-bottom:2px solid #161616;padding-bottom:5px}
+h3{font-size:11.5pt;font-weight:700;margin:14px 0 6px}
+ul{margin:6px 0 6px 2px;padding-left:20px}li{margin:3px 0}
+table{border-collapse:collapse;width:100%;margin:9px 0;font-size:9.3pt}
+th{background:#eef1f5;border:1px solid #c2cad6;padding:6px 9px;text-align:left}
+td{border:1px solid #e3e7ed;padding:6px 9px;vertical-align:top}
+strong{color:#0f1115}code{background:#f2f4f7;padding:1px 5px;border-radius:3px;font-size:9pt}
+hr{border:none;border-top:1px solid #e3e7ed;margin:14px 0}
+a{color:#0B5CFF;text-decoration:none}
+blockquote{background:#f4f8ff;border-left:3px solid #0B5CFF;margin:7px 0;padding:8px 13px;font-size:9.7pt;color:#2a3340;border-radius:0 4px 4px 0}
+blockquote strong{color:#0B5CFF}
+</style></head><body>
+<h1>인프라 결정 상세 보고서 — 정식 오픈 준비</h1>
+<ul><li>작성일: 2026년 8월 17일 · 작성: 최혜윤(기획·PO 총괄) · rachel@hive-mind.kr</li><li>용도: 인프라 9개 결정 항목의 현재·이유·권장·선택안(장단점) 정리 — 결정 및 강수아 제안 검증용</li><li>원칙: 스택 Python 유지(재작성 X) · 결정=Rachel / 실행=강수아 · 출시 전 필수부터</li></ul>
+<hr>
+<h2>1. 스택 (언어 · 프레임워크)</h2>
+<ul><li><strong>현재:</strong> FastAPI(Python) 백엔드 + 바닐라 JS 프론트 + pandas 데이터 파이프라인. 라이브·매일 진화.</li><li><strong>이유:</strong> 강수아가 Kotlin+Vert.x / Next.js 제안 → 유지 vs 재작성 판단 필요.</li><li><strong>권장:</strong> Python 유지. 이 규모(B2B·동시접속 수백 이하)에선 성능이 병목이 아니고, 핵심 자산인 정산서 28종 파서·40만 행 처리는 pandas가 최적.</li><li><strong>선택안</strong></li><li>👍 Python 유지 — 작동 중·개발 빠름·파이프라인 최적 / 👎 원시 서버 성능 낮음(이 규모엔 무의미)</li><li>👍 Kotlin+Vert.x — 초고성능·고동시성 / 👎 전면 재작성·개발 느림·파이프라인 재구현 리스크</li><li>👍 Next.js(+Node) — JS팀 개발 빠름·프론트 강력 / 👎 백엔드·데이터처리 재작성, Python보다 데이터 불리</li></ul>
+<h2>2. 호스팅</h2>
+<ul><li><strong>현재:</strong> Railway(PaaS, 관리형).</li><li><strong>이유:</strong> 정식 운영 안정성·리전·비용 관점 확정 필요.</li><li><strong>권장:</strong> Railway 유지. 단 6번(리전) 필요성 먼저 확인 — 서울 필수면 재검토.</li><li><strong>선택안</strong></li><li>👍 Railway/Render/Fly(PaaS) — 관리 쉬움·자동배포·빠른 셋업 / 👎 세밀 제어·리전 제한, 대규모 시 비용</li><li>👍 AWS/GCP(클라우드) — 완전 제어·서울 리전·확장성 / 👎 운영 부담 큼(강수아 시간)·셋업 복잡</li></ul>
+<h2>3. 데이터베이스</h2>
+<ul><li><strong>현재:</strong> SQLite(파일, 볼륨). 단일 서버 전제.</li><li><strong>이유:</strong> 다중 인스턴스·외부 연동·표준 백업 필요.</li><li><strong>권장:</strong> 정식 오픈 전 관리형 Postgres 이전(db.py가 추상화돼 있어 저비용 이전).</li><li><strong>선택안</strong></li><li>👍 SQLite 유지 — 단순·무비용 / 👎 단일 서버 묶임·외부 연결 불가·동시 쓰기 제약</li><li>👍 관리형 Postgres(Railway/Supabase/RDS) — 표준·확장·자동 백업·외부 연동 / 👎 접속정보 관리·소액 비용·이전 작업</li></ul>
+<h2>4. 도메인</h2>
+<ul><li><strong>현재:</strong> Railway 임시 주소(…up.railway.app).</li><li><strong>이유:</strong> 신뢰·브랜딩.</li><li><strong>권장:</strong> app.hive-mind.kr (기존 이메일 도메인 서브도메인 재사용).</li><li><strong>선택안</strong></li><li>👍 서브도메인 재사용 — 무료·브랜드 일관 / 👎 (거의 없음)</li><li>👍 신규 도메인 — 독립 브랜드 / 👎 추가 비용·브랜드 분산</li></ul>
+<h2>5. 이메일 서비스</h2>
+<ul><li><strong>현재:</strong> 없음(초대 링크 수동 전달).</li><li><strong>이유:</strong> 초대·비밀번호 재설정·알림 자동화 — 온보딩 필수 채널.</li><li><strong>권장:</strong> Postmark(도달률·연동 최고) 또는 SendGrid(무료 티어).</li><li><strong>선택안</strong></li><li>👍 Postmark — 트랜잭션 메일 도달률 최고·연동 간단 / 👎 무료 없음(유료만)</li><li>👍 SendGrid — 무료 티어·범용 / 👎 설정 다소 복잡</li><li>👍 AWS SES — 최저 비용 / 👎 설정 복잡·초기 샌드박스 해제 필요</li></ul>
+<h2>6. 리전 (서버 · DB 위치)</h2>
+<ul><li><strong>현재:</strong> Railway 기본 리전(해외일 수 있음).</li><li><strong>이유:</strong> 한국 사용자 응답 속도·데이터 소재(개인정보 국내 보관 관점).</li><li><strong>권장:</strong> 서울/근접. ⚠️ PaaS가 서울 미지원이면 2번(호스팅) 재검토(AWS 서울) 사유.</li><li><strong>선택안</strong></li><li>👍 현 리전 유지 — 간단 / 👎 지연·데이터 소재 이슈</li><li>👍 서울 리전 — 빠름·규제 안전 / 👎 호스팅 선택 제약(서울 지원처로 한정)</li></ul>
+<h2>7. 환경 구성</h2>
+<ul><li><strong>현재:</strong> prod 하나(dev는 로컬에서만).</li><li><strong>이유:</strong> 위험 없는 테스트 → 배포 흐름.</li><li><strong>권장:</strong> dev(스테이징) + prod 2단계.</li><li><strong>선택안</strong></li><li>👍 prod만 — 단순 / 👎 실서비스에서 바로 터짐</li><li>👍 dev + prod — 안전 / 👎 소액 비용·관리</li><li>👍 preview까지 — 완전 격리 / 👎 지금은 과함</li></ul>
+<h2>8. ★ 정산 데이터 영속 (가장 중요)</h2>
+<ul><li><strong>현재:</strong> 업로드한 정산 데이터가 메모리 세션에만 존재 → 재배포·재시작 시 소멸. 계약사가 로그인해도 운영자가 다시 안 올리면 빈 화면.</li><li><strong>이유:</strong> 실서비스는 상시 조회돼야 함. 지금 구조면 매번 재업로드 필요 = 서비스 불가.</li><li><strong>권장:</strong> 표준화 결과를 테넌트·월 단위로 영속.</li><li><strong>선택안</strong></li><li>👍 DB(Postgres) 정규화 저장 — 쿼리·집계 유리 / 👎 40만+행 설계·부하 고려</li><li>👍 오브젝트 스토리지(파케이/JSON) — 대용량 저렴·단순 / 👎 세밀 쿼리 불리(집계는 로드 후)</li><li>👍 하이브리드(요약=DB, 원천행=스토리지) — 균형 / 👎 구현 복잡</li></ul>
+<h2>9. 파일 저장 (첨부)</h2>
+<ul><li><strong>현재:</strong> Railway 볼륨.</li><li><strong>이유:</strong> 다중 인스턴스·확장 대비.</li><li><strong>권장:</strong> 지금 볼륨 유지, 확장 시 S3/R2.</li><li><strong>선택안</strong></li><li>👍 볼륨 — 단순 / 👎 단일 서버 묶임</li><li>👍 S3·R2(오브젝트 스토리지) — 확장·백업·CDN / 👎 셋업·소액 비용</li></ul>
+<hr>
+<h2>요약 — 결정 9개 · 권장</h2>
+<table><thead><tr><th>항목</th><th>권장</th></tr></thead><tbody><tr><td>1 스택</td><td>Python 유지</td></tr><tr><td>2 호스팅</td><td>Railway 유지(리전 확인 후)</td></tr><tr><td>3 DB</td><td>오픈 전 Postgres 이전</td></tr><tr><td>4 도메인</td><td>app.hive-mind.kr</td></tr><tr><td>5 이메일</td><td>Postmark / SendGrid</td></tr><tr><td>6 리전</td><td>서울(근접)</td></tr><tr><td>7 환경</td><td>dev + prod</td></tr><tr><td>8 정산 데이터 영속</td><td>테넌트·월 단위 영속(하이브리드 권장)</td></tr><tr><td>9 파일 저장</td><td>볼륨 유지 → 확장 시 S3</td></tr></tbody></table>
+<p><strong>최우선 결정 = 8번(정산 데이터 영속).</strong> 미결정 시 &quot;출판사 로그인했는데 정산 안 보임&quot;이 실서비스에서 발생.</p>
+</body></html>
