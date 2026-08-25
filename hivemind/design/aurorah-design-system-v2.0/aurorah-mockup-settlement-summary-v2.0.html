@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>목업 · 정산 요약 — Aurorah 정산 콘솔 (v2.0)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* ===== 토큰: hivemind-theme-v1.8.css 발췌 ===== */
+:root{
+  --hm-canvas:#F4F8F7; --hm-surface:#FFFFFF; --hm-inset:#E8F0EF;
+  --hm-border:#DDE7E5; --hm-border-strong:#C1D2CF;
+  --hm-text:#152220; --hm-text-2:#586B68; --hm-text-3:#89A09C;
+  --hm-primary:#009999; --hm-primary-hover:#007070;
+  --hm-primary-soft:#DEF3F2; --hm-primary-deep:#007272;
+  --hm-success:#33913D; --hm-success-soft:#E5F3E1;
+  --hm-warning:#C77700; --hm-warning-soft:#FAF0DC;
+  --hm-danger:#D23F3F; --hm-danger-soft:#FBE9E9;
+  --hm-neutral-chip:#E6EEEC;
+  --hm-ch-1:#009999; --hm-ch-2:#E8A013; --hm-ch-3:#5B67D8; --hm-ch-6:#7C8B8A;
+  --hm-ch-muted:#D6E2E0;
+  --hm-font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --sh-card:0 1px 2px rgba(13,36,34,.05);
+  --dur-micro:120ms; --dur-base:200ms; --ease:cubic-bezier(.2,0,0,1);
+  --rad-s:6px; --rad-m:10px; --rad-l:14px; --rad-full:999px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--hm-font);background:var(--hm-canvas);color:var(--hm-text);
+  font-size:14px;line-height:22px;-webkit-font-smoothing:antialiased}
+.hm-num{font-variant-numeric:tabular-nums lining-nums;letter-spacing:-.01em}
+button{font-family:var(--hm-font)}
+
+/* ===== 앱 셸 ===== */
+.app{display:flex;min-height:100vh}
+
+/* --- 다크 사이드바 --- */
+.sbar{width:248px;flex-shrink:0;background:#0A2022;color:#CFC8B4;font-size:13px;
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.sbar-logo{display:flex;gap:10px;align-items:center;padding:16px 16px 12px}
+.sbar-logo .mark{width:34px;height:34px;flex-shrink:0;display:block}
+.sbar-logo b{color:#EAF4F3;font-size:14px;display:block;line-height:1.2;margin-bottom:1px}
+.sbar-logo small{font-size:10.5px;color:#7C9693;display:block;line-height:1.35}
+.sbar-seg{display:flex;gap:2px;background:#051314;margin:2px 12px 8px;padding:3px;border-radius:10px}
+.sbar-seg button{flex:1;font-size:12px;font-weight:600;padding:7px 4px;border:none;border-radius:8px;
+  background:transparent;color:#9BB3B0;cursor:pointer;transition:all var(--dur-micro) var(--ease)}
+.sbar-seg button.on{background:#008585;color:#FFFFFF}
+.sbar-seg button.on2{background:#124042;color:#F0FFFD;font-weight:700}
+.sbar-group{font-size:10.5px;letter-spacing:.07em;color:#7C9693;padding:14px 18px 6px}
+.sbar-item{display:flex;align-items:center;gap:11px;padding:12px 13px;margin:2px 8px;border-radius:10px;
+  color:#CFE0DD;font-size:14px;font-weight:500;cursor:pointer;transition:all var(--dur-micro) var(--ease)}
+.sbar-item:hover{background:#113133;color:#ECF6F4}
+.sbar-item.on{background:#124042;color:#F0FFFD;font-weight:700}
+.sbar-item.on .ic{color:var(--hm-primary);opacity:1}
+.sbar-item .ic{width:20px;display:inline-flex;align-items:center;justify-content:center;opacity:.9;flex-shrink:0}
+.sbar-acct{margin-top:auto;display:flex;align-items:center;gap:10px;padding:12px 14px;
+  border-top:1px solid #143537;cursor:pointer;transition:background var(--dur-micro) var(--ease)}
+.sbar-acct:hover{background:#0E2B2D}
+.sbar-acct .avt{width:34px;height:34px;border-radius:10px;background:var(--hm-primary);color:#FFFFFF;
+  display:grid;place-items:center;font-size:14px;font-weight:700;flex-shrink:0}
+.sbar-acct .nm{display:block;font-size:13px;font-weight:600;color:#EAF4F3;line-height:1.3}
+.sbar-acct .rl{display:block;font-size:11px;color:#7C9693;line-height:1.35}
+.sbar-acct .mr{margin-left:auto;color:#547170;display:inline-flex;align-items:center}
+
+/* --- 메인 --- */
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.topbar{background:var(--hm-surface);border-bottom:1px solid var(--hm-border);
+  padding:14px 28px;position:sticky;top:0;z-index:20}
+.topbar .pgh{max-width:1360px;margin:0 auto;width:100%}
+.body{flex:1;padding:24px 28px 48px;display:flex;justify-content:center}
+.content{width:100%;max-width:1360px}
+/* READ 아키타입 헤더: eyebrow + 제목 + 우측 컨트롤 */
+.pgh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pgh .eyebrow{font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--hm-text-3)}
+.pgh h1{font-size:22px;font-weight:800;letter-spacing:-.01em;line-height:1.3}
+.pgh-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-left:auto}
+.pgh-controls .hm-select,.pgh-controls .hm-btn,.pgh-controls .period{height:46px}
+/* 자연 낙하: 641–1180px에서는 공간이 실제로 부족할 때만 그룹 전체가 줄바꿈(우측 정렬 유지).
+   강제 전폭 낙하는 640px 이하에서만 — 컴팩트 축소가 이미 대부분의 폭을 감당함 */
+@media(max-width:640px){.pgh-controls{margin-left:0;width:100%}}
+.hm-select{font-family:var(--hm-font);font-size:13px;font-weight:600;padding:0 28px 0 13px;
+  border:1px solid var(--hm-border-strong);border-radius:var(--rad-m);background-color:#fff;color:var(--hm-text);
+  appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23586B68' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center}
+.period{display:inline-flex;align-items:center;gap:2px;background:#fff;border:1px solid var(--hm-border-strong);
+  border-radius:10px;overflow:hidden}
+.period button{border:none;background:transparent;padding:0 12px;font-size:14px;color:var(--hm-text-2);cursor:pointer;align-self:stretch}
+.period button:hover{background:var(--hm-inset)}
+.period .lbl{padding:0 8px;min-width:96px;text-align:center;font-size:13px;font-weight:700;line-height:1.2}
+.period .lbl small{display:block;font-size:10.5px;font-weight:500;color:var(--hm-text-3);margin-top:2px}
+/* 컴팩트 1단계: 1180px 이하 — 사이드바 248px 감안, 제목 옆 한 줄 유지 위해 먼저 축소 */
+@media(max-width:1180px){
+  .pgh-controls{gap:8px}
+  .pgh-controls .hm-select,.pgh-controls .hm-btn,.pgh-controls .period{height:42px}
+  .pgh-controls .hm-select{padding:0 26px 0 11px;background-position:right 9px center;font-size:12.5px}
+  .period button{padding:0 8px}
+  .period .lbl{min-width:0;padding:0 6px;font-size:12.5px}
+  .period .lbl small{font-size:10px}
+  .pgh-controls .hm-btn{padding:0 12px;font-size:12.5px}
+}
+/* 컴팩트 3단계: 430px 이하 — 최소 사양, 이후에만 줄바꿈 */
+@media(max-width:430px){
+  .pgh-controls{gap:6px}
+  .pgh-controls .hm-select,.pgh-controls .hm-btn,.pgh-controls .period{height:40px}
+  .pgh-controls .hm-select{padding:0 21px 0 9px;background-position:right 7px center}
+  .period button{padding:0 6px}
+  .period .lbl{min-width:0;padding:0 4px}
+  .pgh-controls .hm-btn{padding:0 10px}
+}
+
+.hm-btn{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;
+  font-size:13px;font-weight:600;border-radius:10px;padding:0 16px;border:1px solid transparent;
+  cursor:pointer;transition:all var(--dur-micro) var(--ease)}
+.hm-btn--sec{background:#fff;color:var(--hm-text);border-color:var(--hm-border-strong)}
+.hm-btn--sec:hover{background:var(--hm-inset)}
+
+/* --- 레이아웃 그리드 --- */
+.grid{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
+@media(min-width:1180px){.grid{grid-template-columns:1fr 464px}.kpis{grid-template-columns:1fr 1fr}}
+.card{background:var(--hm-surface);border:1px solid var(--hm-border);border-radius:var(--rad-l);
+  box-shadow:var(--sh-card);padding:22px 24px}
+.card h3{font-size:15px;font-weight:700}
+
+/* --- 히어로: 디스플레이 숫자 + 추세 차트 (분석 아키타입의 히어로 요소) --- */
+.hero-label{font-size:13px;color:var(--hm-text-2);font-weight:600}
+.hero-num{font-size:34px;line-height:44px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+.hero-num small{font-size:16px;font-weight:600;color:var(--hm-text-2);margin-left:2px}
+.hero-sub{font-size:12.5px;color:var(--hm-text-3);margin-top:4px}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--hm-text-2);margin:18px 0 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.bars{display:flex;align-items:flex-end;gap:20px;height:190px;padding:26px 4px 0}
+.bar-g{display:flex;align-items:flex-end;gap:6px;flex:1;height:100%}
+.bar{flex:1;border-radius:5px 5px 2px 2px;min-width:18px;position:relative;
+  transition:opacity var(--dur-micro) var(--ease)}
+.bars:hover .bar{opacity:.4}
+.bars .bar-g:hover .bar{opacity:1}
+.bar--muted{background:var(--hm-ch-muted)}
+.bar--main{background:var(--hm-primary)}
+.bar--main::after{content:attr(data-v);position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+  font-size:12px;font-weight:700;color:var(--hm-primary-deep);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.bar-x{display:flex;gap:20px;margin-top:10px}
+.bar-x span{flex:1;text-align:center;font-size:12px;color:var(--hm-text-3)}
+
+/* --- KPI 카드 --- */
+.kpis{display:grid;gap:12px}
+.kpi{background:var(--hm-surface);border:1px solid var(--hm-border);border-radius:var(--rad-l);
+  padding:16px 18px;box-shadow:var(--sh-card)}
+.kpi .k-top{display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;font-weight:600;color:var(--hm-text-2)}
+.kpi .k-ico{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:13px;
+  background:var(--hm-primary-soft);color:var(--hm-primary-deep)}
+.kpi--ok .k-ico{background:var(--hm-success-soft);color:var(--hm-success)}
+.kpi--warn .k-ico{background:var(--hm-warning-soft);color:var(--hm-warning)}
+.kpi .k-val{font-size:26px;line-height:34px;font-weight:800;letter-spacing:-.02em;margin-top:6px}
+.kpi .k-val small{font-size:13px;font-weight:600;color:var(--hm-text-2);margin-left:2px}
+.kpi .k-sub{font-size:12px;color:var(--hm-text-3);margin-top:3px}
+
+/* --- 구성비 스택 바 --- */
+.stack{display:flex;height:14px;border-radius:var(--rad-full);overflow:hidden;gap:2px;margin-top:16px}
+.stack div{transition:opacity var(--dur-micro) var(--ease)}
+.stack div:hover{opacity:.82}
+
+/* --- 고객사 표 --- */
+.tblwrap{overflow-x:auto;margin:10px -24px -22px}
+.hm-table{width:100%;border-collapse:collapse;font-size:13px;line-height:20px}
+.hm-table thead th{text-align:left;font-size:11px;font-weight:600;letter-spacing:.04em;
+  color:var(--hm-text-3);text-transform:uppercase;padding:8px 12px 10px;
+  border-bottom:1px solid var(--hm-border);white-space:nowrap;background:transparent}
+.hm-table th:first-child,.hm-table td:first-child{padding-left:24px}
+.hm-table th:last-child,.hm-table td:last-child{padding-right:24px}
+.hm-table td{padding:17px 12px;border-bottom:1px solid var(--hm-border);vertical-align:middle}
+.hm-table tbody tr:last-child td{border-bottom:none}
+.hm-table thead th.r,.hm-table td.r{text-align:right}
+.hm-table tbody tr{transition:background var(--dur-micro) var(--ease);cursor:pointer}
+.hm-table tbody tr:hover{background:#EFF6F5}
+.co{display:flex;align-items:center;gap:10px;font-weight:600}
+.avt{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.hm-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+  padding:2px 10px;border-radius:var(--rad-full);line-height:18px}
+.hm-chip--ok{background:var(--hm-success-soft);color:var(--hm-success)}
+.hm-chip--info{background:var(--hm-primary-soft);color:var(--hm-primary-deep)}
+.hm-chip--warn{background:var(--hm-warning-soft);color:var(--hm-warning)}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;align-items:start}
+@media(max-width:1020px){.grid2{grid-template-columns:1fr}}
+.hm-table--dual td{padding-top:12px;padding-bottom:12px}
+.amt b{display:block;font-weight:600}
+.amt small{display:block;font-size:11.5px;line-height:14px;color:var(--hm-text-3);font-weight:400;margin-top:2px}
+.link{font-size:13px;font-weight:600;color:var(--hm-primary-deep);text-decoration:none}
+.link:hover{text-decoration:underline}
+
+@media(max-width:1020px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.kpis{grid-template-columns:1fr}}
+@media(max-width:760px){
+  .sbar{display:none} /* 모바일: 사이드바는 햄버거 드로어로 대체(목업에서는 생략) */
+  .topbar{padding:12px 16px}
+  .body{padding:16px 16px 40px}
+  .hero-num{font-size:27px;line-height:36px}
+  .bars{gap:12px}.bar-x{gap:12px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ===== 사이드바 (분석 워크스페이스 활성) ===== -->
+  <aside class="sbar">
+    <div class="sbar-logo"><span class="mark" style="color:#17BFBF;display:block"><svg role="img" aria-label="Aurorah 로고" width="34" height="34" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2.66487,11.1775)">
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        <g transform="matrix(-1,1.22298e-16,-1.22298e-16,-1,517.33,489.645)">
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        </g>
+    </g>
+</svg>
+</span><span><b>Aurorah</b><small>정산 콘솔 · Settlement Console</small></span></div>
+    <div class="sbar-seg"><button class="on">운영자 콘솔</button><button>고객사 화면</button></div>
+    <div class="sbar-seg"><button>솔루션</button><button>관리</button><button class="on2">분석</button></div>
+    <div class="sbar-group">분석 · 현황</div>
+    <div class="sbar-item on"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span>정산 요약</div>
+    <div class="sbar-item"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span>성과 분석</div>
+    <div class="sbar-item"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></span>레이블별 정산</div>
+    <div class="sbar-item"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>통합 검색</div>
+    <div class="sbar-acct"><span class="avt">엘</span><span><span class="nm">엘다</span><span class="rl">운영사 · 최고관리자</span></span><span class="mr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></span></div>
+  </aside>
+
+  <!-- ===== 메인 ===== -->
+  <main class="main">
+    <!-- READ 아키타입 헤더 · 스티키 톱바 밴드 -->
+    <header class="topbar"><div class="pgh">
+      <div><div class="eyebrow">분석 · 현황</div><h1>정산 요약</h1></div>
+      <div class="pgh-controls">
+        <select class="hm-select" aria-label="유통사 필터"><option>전체 유통사</option><option>네이버시리즈</option><option>카카오페이지</option><option>리디</option></select>
+        <span class="period"><button aria-label="이전 기간">‹</button><span class="lbl">전체 기간<small>4개월 합산</small></span><button aria-label="다음 기간">›</button></span>
+        <button class="hm-btn hm-btn--sec"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg> 엑셀 내보내기</button>
+      </div>
+    </div></header>
+
+    <div class="body"><div class="content">
+    <div class="grid">
+      <!-- 히어로: 핵심 정산액 + 추세 -->
+      <section class="card">
+        <div class="hero-label">작가 지급 대상 정산액 · 전체 기간</div>
+        <div class="hero-num hm-num">1,197,001,377<small>원</small></div>
+        <div class="hero-sub hm-num">총매출 1,794,396,879원 · 작가 6,068명 · 작품 18,201편 · 매출대비 67%</div>
+        <div class="legend"><span><i style="background:var(--hm-ch-muted)"></i>총매출</span><span><i style="background:var(--hm-primary)"></i>정산액</span></div>
+        <div class="bars">
+          <div class="bar-g"><div class="bar bar--muted" style="height:82%"></div><div class="bar bar--main" data-v="2.8억" style="height:55%"></div></div>
+          <div class="bar-g"><div class="bar bar--muted" style="height:100%"></div><div class="bar bar--main" data-v="3.4억" style="height:67%"></div></div>
+          <div class="bar-g"><div class="bar bar--muted" style="height:82%"></div><div class="bar bar--main" data-v="2.8억" style="height:55%"></div></div>
+          <div class="bar-g"><div class="bar bar--muted" style="height:86%"></div><div class="bar bar--main" data-v="2.9억" style="height:57%"></div></div>
+        </div>
+        <div class="bar-x hm-num"><span>2026년 1월</span><span>2026년 2월</span><span>2026년 3월</span><span>2026년 4월</span></div>
+      </section>
+
+      <!-- KPI 열 -->
+      <div class="kpis">
+        <div class="kpi"><div class="k-top">유통사 <span class="k-ico">▦</span></div><div class="k-val hm-num">31<small>개 플랫폼</small></div></div>
+        <div class="kpi kpi--ok"><div class="k-top">자동 매칭 <span class="k-ico">✓</span></div><div class="k-val hm-num">99.5<small>%</small></div><div class="k-sub hm-num">완전 429,123건 · 작가만 1,907건 (0.44%·레이블만 없음)</div></div>
+        <div class="kpi kpi--warn"><div class="k-top">미매칭 <span class="k-ico">!</span></div><div class="k-val hm-num">0.06<small>%</small></div><div class="k-sub hm-num">246건 · 정산액 0.08% · 작가만 제외 시 합계 100%</div></div>
+        <div class="kpi kpi--ok"><div class="k-top">원본 검증 <span class="k-ico">✓</span></div><div class="k-val hm-num">86<small>/86</small></div><div class="k-sub">합계 대사 100% 일치</div></div>
+      </div>
+    </div>
+
+    <!-- 구성비 -->
+    <section class="card" style="margin-top:16px">
+      <h3>정산 구성 · 단행본 vs 연재 <span style="font-weight:500;color:var(--hm-text-3);font-size:13px">(정산액 기준)</span></h3>
+      <div class="stack">
+        <div style="flex:57;background:var(--hm-ch-1)" title="단행본 57%"></div>
+        <div style="flex:41.3;background:var(--hm-ch-2)" title="연재 41.3%"></div>
+        <div style="flex:0.8;background:var(--hm-ch-3)" title="구독제 0.8%"></div>
+        <div style="flex:0.9;background:var(--hm-ch-6)" title="기타 0.9%"></div>
+      </div>
+      <div class="legend hm-num" style="margin:12px 0 0">
+        <span><i style="background:var(--hm-ch-1)"></i>단행본 57%</span>
+        <span><i style="background:var(--hm-ch-2)"></i>연재 41.3%</span>
+        <span><i style="background:var(--hm-ch-3)"></i>구독제 0.8%</span>
+        <span><i style="background:var(--hm-ch-6)"></i>기타 0.9%</span>
+      </div>
+    </section>
+
+    <!-- 고객사별 정산 -->
+    <section class="card" style="margin-top:16px">
+      <div class="card-head"><h3>고객사(출판사)별 정산</h3><a class="link" href="#">전체 보기</a></div>
+      <div class="tblwrap">
+        <table class="hm-table">
+          <thead><tr><th>출판사(고객사)</th><th>상태</th><th class="r">정산액</th><th class="r">작가</th><th class="r">작품</th></tr></thead>
+          <tbody>
+            <tr><td><span class="co"><span class="avt" style="background:#009999;color:#FFFFFF">스</span>스토린랩</span></td><td><span class="hm-chip hm-chip--ok">마감</span></td><td class="r hm-num" style="font-weight:600">604,388,622</td><td class="r hm-num">532</td><td class="r hm-num">1,241</td></tr>
+            <tr><td><span class="co"><span class="avt" style="background:#E8A013;color:#152220">도</span>도서출판청어람</span></td><td><span class="hm-chip hm-chip--info">검토 중</span></td><td class="r hm-num" style="font-weight:600">109,731,226</td><td class="r hm-num">403</td><td class="r hm-num">849</td></tr>
+            <tr><td><span class="co"><span class="avt" style="background:#9C5BB8">마</span>마야마루</span></td><td><span class="hm-chip hm-chip--ok">마감</span></td><td class="r hm-num" style="font-weight:600">62,750,141</td><td class="r hm-num">262</td><td class="r hm-num">508</td></tr>
+            <tr><td><span class="co"><span class="avt" style="background:#5B67D8">에</span>에필로그</span></td><td><span class="hm-chip hm-chip--warn">미수신 2</span></td><td class="r hm-num" style="font-weight:600">55,265,712</td><td class="r hm-num">55</td><td class="r hm-num">279</td></tr>
+            <tr><td><span class="co"><span class="avt" style="background:#9C5BB8">뿔</span>뿔미디어</span></td><td><span class="hm-chip hm-chip--ok">마감</span></td><td class="r hm-num" style="font-weight:600">51,543,224</td><td class="r hm-num">440</td><td class="r hm-num">731</td></tr>
+            <tr><td><span class="co"><span class="avt" style="background:#D95B4A">작</span>작가컴퍼니</span></td><td><span class="hm-chip hm-chip--ok">마감</span></td><td class="r hm-num" style="font-weight:600">36,346,983</td><td class="r hm-num">239</td><td class="r hm-num">392</td></tr>
+            <tr><td><span class="co"><span class="avt" style="background:#E8A013;color:#152220">삼</span>삼양씨앤씨</span></td><td><span class="hm-chip hm-chip--info">검토 중</span></td><td class="r hm-num" style="font-weight:600">35,369,119</td><td class="r hm-num">165</td><td class="r hm-num">268</td></tr>
+            <tr><td><span class="co"><span class="avt" style="background:#7C8B8A">스</span>스토리야</span></td><td><span class="hm-chip hm-chip--ok">마감</span></td><td class="r hm-num" style="font-weight:600">23,334,635</td><td class="r hm-num">240</td><td class="r hm-num">347</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 유통사별 정산 · 정산액 상위 작가 -->
+    <div class="grid2">
+      <section class="card">
+        <div class="card-head"><h3>유통사별 정산</h3><a class="link" href="#">전체 보기</a></div>
+        <div class="tblwrap">
+          <table class="hm-table">
+            <thead><tr><th>유통사</th><th class="r">정산액</th><th class="r">총매출</th><th class="r">작가</th></tr></thead>
+            <tbody>
+              <tr><td><span class="co"><span class="avt" style="background:#009999;color:#FFFFFF">리</span>리디</span></td><td class="r hm-num" style="font-weight:600">250,613,735</td><td class="r hm-num" style="color:var(--hm-text-3)">366,919,373</td><td class="r hm-num">474</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#D95B4A">모</span>모픽</span></td><td class="r hm-num" style="font-weight:600">186,761,420</td><td class="r hm-num" style="color:var(--hm-text-3)">296,446,770</td><td class="r hm-num">1,717</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#9C5BB8">무</span>무툰</span></td><td class="r hm-num" style="font-weight:600">169,994,860</td><td class="r hm-num" style="color:var(--hm-text-3)">242,849,800</td><td class="r hm-num">787</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#5B67D8">원</span>원스토리</span></td><td class="r hm-num" style="font-weight:600">153,212,996</td><td class="r hm-num" style="color:var(--hm-text-3)">237,478,978</td><td class="r hm-num">1,908</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#E8A013;color:#152220">네</span>네이버시리즈</span></td><td class="r hm-num" style="font-weight:600">141,132,090</td><td class="r hm-num" style="color:var(--hm-text-3)">213,955,684</td><td class="r hm-num">490</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#7C8B8A">카</span>카카오페이지</span></td><td class="r hm-num" style="font-weight:600">104,244,729</td><td class="r hm-num" style="color:var(--hm-text-3)">175,137,494</td><td class="r hm-num">235</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="card">
+        <div class="card-head"><h3>정산액 상위 작가</h3><a class="link" href="#">전체 보기</a></div>
+        <div class="tblwrap">
+          <table class="hm-table hm-table--dual">
+            <thead><tr><th>작가</th><th class="r">정산액</th><th class="r">작품</th><th class="r">유통사</th></tr></thead>
+            <tbody>
+              <tr><td><span class="co"><span class="avt" style="background:#E8A013;color:#152220">문</span>문찐</span></td><td class="r hm-num amt"><b>103,915,748</b><small>총매출 164,915,303</small></td><td class="r hm-num">1</td><td class="r hm-num">8</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#009999;color:#FFFFFF">썬</span>썬터다운</span></td><td class="r hm-num amt"><b>51,775,969</b><small>총매출 75,974,048</small></td><td class="r hm-num">1</td><td class="r hm-num">2</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#9C5BB8">뚜</span>뚜근남</span></td><td class="r hm-num amt"><b>27,852,954</b><small>총매출 41,995,805</small></td><td class="r hm-num">4</td><td class="r hm-num">7</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#5B67D8">목</span>목수유</span></td><td class="r hm-num amt"><b>23,892,160</b><small>총매출 35,408,027</small></td><td class="r hm-num">1</td><td class="r hm-num">10</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#D95B4A">글</span>글작소</span></td><td class="r hm-num amt"><b>22,413,044</b><small>총매출 32,599,468</small></td><td class="r hm-num">7</td><td class="r hm-num">7</td></tr>
+              <tr><td><span class="co"><span class="avt" style="background:#7C8B8A">설</span>설윤영</span></td><td class="r hm-num amt"><b>20,564,776</b><small>총매출 31,354,097</small></td><td class="r hm-num">1</td><td class="r hm-num">12</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div></div></main>
+</div>
+</body>
+</html>

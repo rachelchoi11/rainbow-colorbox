@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurorah 정산 콘솔 · 디자인 가이드 v2.0</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* ============================================================
+   HIVEMIND SETTLEMENT CONSOLE — AURORAH DESIGN TOKENS v2.0
+   개발 적용 시 이 :root 블록을 그대로 복사해 사용하세요.
+   ============================================================ */
+:root{
+  /* -- Color · Light (업무 화면 기본) -- */
+  --hm-canvas:#F4F8F7;          /* 백자 · 페이지 배경 */
+  --hm-surface:#FFFFFF;         /* 카드/표 배경 */
+  --hm-inset:#E8F0EF;           /* 인풋·인셋 배경 */
+  --hm-border:#DDE7E5;          /* 기본 보더 */
+  --hm-border-strong:#C1D2CF;   /* 강조 보더 */
+  --hm-text:#152220;            /* 먹 · 본문 */
+  --hm-text-2:#586B68;          /* 보조 텍스트 */
+  --hm-text-3:#89A09C;          /* 캡션·비활성 */
+
+  --hm-primary:#009999;         /* 옥 Gold · 브랜드/액션 */
+  --hm-primary-hover:#007070;
+  --hm-primary-active:#006060;
+  --hm-primary-strong:#008080;  /* 인터랙티브 면 · 흰 글자 (AA 4.8:1) */
+  --hm-primary-soft:#DEF3F2;    /* 선택 배경 */
+  --hm-primary-deep:#007272;    /* 금 텍스트용 (흰 배경 위 틸 텍스트 금지) */
+  --hm-primary-soft-line:#ABE0DE;
+
+  /* -- Semantic -- */
+  --hm-success:#33913D;         /* 초록 · 완료/수신/일치 */
+  --hm-success-soft:#E5F3E1;
+  --hm-warning:#C77700;         /* 호박 · 검토 필요 */
+  --hm-warning-soft:#FAF0DC;
+  --hm-danger:#D23F3F;          /* 다홍 · 오류/미수신 */
+  --hm-danger-soft:#FBE9E9;
+  --hm-neutral-chip:#E6EEEC;    /* 대기/기타 */
+
+  /* -- Chart (범주형, 순서 고정) -- */
+  --hm-ch-1:#009999;  /* 옥 */
+  --hm-ch-2:#E8A013;  /* 호박 */
+  --hm-ch-3:#5B67D8;  /* 청람 */
+  --hm-ch-4:#9C5BB8;  /* 자주 */
+  --hm-ch-5:#D95B4A;  /* 단풍 */
+  --hm-ch-6:#7C8B8A;  /* 회청 */
+  --hm-ch-muted:#D6E2E0; /* 비교 기준(총매출 등) */
+
+  /* -- Color · Dark (로그인/첫인상 전용) -- */
+  --hm-dk-bg:#07181A;
+  --hm-dk-surface:#0D292B;
+  --hm-dk-inset:#0A2123;
+  --hm-dk-border:#1B4547;
+  --hm-dk-text:#EAF4F3;
+  --hm-dk-text-2:#92ACAA;
+  --hm-dk-primary:#17BFBF;
+  --hm-dk-primary-hover:#2FC8C6;
+
+  /* -- Typography -- */
+  --hm-font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --hm-mono:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;
+  --fs-display:32px; --lh-display:40px;   /* 핵심 숫자 */
+  --fs-h1:24px;      --lh-h1:32px;        /* 페이지 제목 */
+  --fs-h2:18px;      --lh-h2:26px;        /* 섹션 제목 */
+  --fs-h3:16px;      --lh-h3:24px;        /* 카드 제목 */
+  --fs-body:14px;    --lh-body:22px;      /* 본문 기본 */
+  --fs-data:13px;    --lh-data:20px;      /* 표·고밀도 */
+  --fs-caption:12px; --lh-caption:18px;   /* 캡션·칩 */
+
+  /* -- Spacing (4px 그리드) -- */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+  --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px;
+
+  /* -- Radius -- */
+  --rad-s:6px;   /* 칩·인풋 */
+  --rad-m:10px;  /* 버튼·셀렉트 */
+  --rad-l:14px;  /* 카드·모달 */
+  --rad-full:999px;
+
+  /* -- Shadow (장식이 아닌 '층위' 표현) -- */
+  --sh-card:0 1px 2px rgba(13,36,34,.05);
+  --sh-raised:0 1px 3px rgba(13,36,34,.06),0 4px 12px rgba(13,36,34,.06);
+  --sh-overlay:0 4px 16px rgba(13,36,34,.10),0 12px 40px rgba(13,36,34,.14);
+
+  /* -- Motion -- */
+  --dur-micro:120ms;   /* hover·체크 */
+  --dur-base:200ms;    /* 상태 전환 */
+  --dur-panel:320ms;   /* 드로어·모달 */
+  --ease:cubic-bezier(.2,0,0,1);
+}
+
+/* ============================================================
+   가이드 문서 자체 스타일 (아래부터는 문서 레이아웃)
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--hm-font);background:var(--hm-canvas);color:var(--hm-text);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased}
+.num{font-variant-numeric:tabular-nums lining-nums;letter-spacing:-.01em}
+
+/* --- 상단 고정 내비 --- */
+.gnav{position:sticky;top:0;z-index:50;background:rgba(244,248,247,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--hm-border)}
+.gnav-in{max-width:1120px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;gap:20px}
+.gnav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+.gnav-logo .mark{width:22px;height:22px;border-radius:6px;background:var(--hm-primary);display:grid;place-items:center;color:var(--hm-text);font-size:11px;font-weight:800}
+.gnav-links{display:flex;gap:2px;margin-left:auto;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.gnav-links::-webkit-scrollbar{display:none}
+.gnav-links a{font-size:13px;color:var(--hm-text-2);text-decoration:none;padding:6px 10px;border-radius:8px;white-space:nowrap;transition:all var(--dur-micro) var(--ease)}
+.gnav-links a:hover{background:#fff;color:var(--hm-text)}
+
+/* --- 히어로 (다크 = 로그인 첫인상 무드) --- */
+.hero{background:var(--hm-dk-bg);color:var(--hm-dk-text);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 70% -8%,rgba(0,215,205,.20),transparent 62%),radial-gradient(45% 45% at 28% -5%,rgba(80,225,210,.13),transparent 60%),radial-gradient(90% 60% at 50% -20%,rgba(0,153,153,.12),transparent 70%)}.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 80% at 78% 30%,rgba(0,183,183,.10),transparent 65%)}
+.hero-in{max-width:1120px;margin:0 auto;padding:72px 24px 64px;position:relative;z-index:1}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--hm-dk-primary);text-transform:uppercase;margin-bottom:16px}
+.hero .eyebrow::before{content:"";width:20px;height:2px;background:var(--hm-dk-primary)}
+.hero h1{font-size:40px;line-height:1.25;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.hero p{color:var(--hm-dk-text-2);max-width:560px;font-size:15px;line-height:1.7}
+.hero-meta{display:flex;gap:24px;margin-top:28px;font-size:12px;color:var(--hm-dk-text-2)}
+.hero-meta b{display:block;color:var(--hm-dk-text);font-size:13px;margin-bottom:2px}
+
+/* --- 섹션 공통 --- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section.gsec{padding:56px 0 8px}
+.sec-head{margin-bottom:24px}
+.sec-no{font-size:12px;font-weight:700;color:var(--hm-primary-deep);letter-spacing:.06em;margin-bottom:6px}
+.sec-head h2{font-size:24px;font-weight:800;letter-spacing:-.01em}
+.sec-head p{color:var(--hm-text-2);margin-top:6px;max-width:680px}
+.panel{background:var(--hm-surface);border:1px solid var(--hm-border);border-radius:var(--rad-l);box-shadow:var(--sh-card);padding:24px;margin-bottom:16px}
+.panel h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.panel .desc{font-size:13px;color:var(--hm-text-2);margin-bottom:16px}
+.note{font-size:12px;color:var(--hm-text-3);margin-top:12px}
+.note b{color:var(--hm-text-2)}
+
+/* --- 원칙 카드 --- */
+.prin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.prin{background:var(--hm-surface);border:1px solid var(--hm-border);border-radius:var(--rad-l);padding:20px}
+.prin h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.prin p{font-size:13px;color:var(--hm-text-2);line-height:1.6}
+
+/* --- 컬러 스와치 --- */
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(156px,1fr));gap:10px}
+.sw{border:1px solid var(--hm-border);border-radius:10px;overflow:hidden;background:#fff;cursor:pointer;transition:transform var(--dur-micro) var(--ease),box-shadow var(--dur-micro) var(--ease)}
+.sw:hover{transform:translateY(-1px);box-shadow:var(--sh-raised)}
+.sw .chip{height:56px}
+.sw .info{padding:8px 10px}
+.sw .nm{font-size:12px;font-weight:700}
+.sw .kn{font-size:11px;color:var(--hm-text-3)}
+.sw .hx{font-size:11px;color:var(--hm-text-2);font-family:var(--hm-mono);margin-top:2px}
+.copied-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--hm-text);color:#fff;font-size:13px;padding:9px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:all var(--dur-base) var(--ease);z-index:99}
+.copied-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* --- 타입 스케일 표 --- */
+.type-row{display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--hm-border)}
+.type-row:last-child{border-bottom:none}
+.type-spec{width:190px;flex-shrink:0;font-size:12px;color:var(--hm-text-3);font-family:var(--hm-mono)}
+.type-spec b{display:block;font-family:var(--hm-font);font-size:12px;color:var(--hm-text-2);font-weight:600}
+
+/* --- 코드 블록 --- */
+.codebox{position:relative;background:#1D1810;border-radius:12px;overflow:hidden;margin-top:8px}
+.codebox pre{padding:18px 20px;overflow-x:auto;font-family:var(--hm-mono);font-size:12px;line-height:1.7;color:#DAD3BE;max-height:380px}
+.codebox .copybtn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#E7E0C9;font-size:12px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:var(--hm-font);transition:background var(--dur-micro) var(--ease)}
+.codebox .copybtn:hover{background:rgba(255,255,255,.16)}
+</style>
+<style>
+/* --- 컴포넌트 데모 공통 --- */
+.demo-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.demo-col{display:flex;flex-direction:column;gap:12px}
+.demo-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.demo-grid-2{grid-template-columns:1fr}}
+.demo-label{font-size:11px;font-weight:600;color:var(--hm-text-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;font-family:var(--hm-font);font-size:14px;font-weight:600;border-radius:var(--rad-m);padding:9px 16px;border:1px solid transparent;cursor:pointer;transition:all var(--dur-micro) var(--ease)}
+.btn:focus-visible{outline:2px solid var(--hm-primary);outline-offset:2px}
+.btn-pri{background:var(--hm-primary-strong);color:#fff}
+.btn-pri:hover{background:var(--hm-primary-hover)}
+.btn-pri:active{background:var(--hm-primary-active)}
+.btn-sec{background:#fff;color:var(--hm-text);border-color:var(--hm-border-strong)}
+.btn-sec:hover{background:var(--hm-inset)}
+.btn-ghost{background:transparent;color:var(--hm-text-2)}
+.btn-ghost:hover{background:var(--hm-inset);color:var(--hm-text)}
+.btn-danger{background:#fff;color:var(--hm-danger);border-color:#EFC5C5}
+.btn-danger:hover{background:var(--hm-danger-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-sm{font-size:13px;padding:6px 12px;border-radius:8px}
+
+/* 상태 칩 */
+.chp{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:var(--rad-full);line-height:18px}
+.chp .dot{width:6px;height:6px;border-radius:99px;background:currentColor}
+.chp-ok{background:var(--hm-success-soft);color:var(--hm-success)}
+.chp-warn{background:var(--hm-warning-soft);color:var(--hm-warning)}
+.chp-bad{background:var(--hm-danger-soft);color:var(--hm-danger)}
+.chp-info{background:var(--hm-primary-soft);color:var(--hm-primary-deep)}
+.chp-mute{background:var(--hm-neutral-chip);color:var(--hm-text-2)}
+
+/* KPI 카드 */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.kpi{background:var(--hm-surface);border:1px solid var(--hm-border);border-radius:var(--rad-l);padding:18px 20px;box-shadow:var(--sh-card)}
+.kpi .k-label{font-size:12px;font-weight:600;color:var(--hm-text-2);display:flex;justify-content:space-between;align-items:center}
+.kpi .k-val{font-size:28px;line-height:36px;font-weight:800;letter-spacing:-.02em;margin-top:6px}
+.kpi .k-val small{font-size:14px;font-weight:600;color:var(--hm-text-2);margin-left:2px}
+.kpi .k-sub{font-size:12px;color:var(--hm-text-3);margin-top:4px}
+.kpi .k-ico{width:30px;height:30px;border-radius:9px;background:var(--hm-primary-soft);color:var(--hm-primary-deep);display:grid;place-items:center;font-size:14px}
+.kpi.ok .k-ico{background:var(--hm-success-soft);color:var(--hm-success)}
+.kpi.warn .k-ico{background:var(--hm-warning-soft);color:var(--hm-warning)}
+
+/* 고밀도 표 */
+.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-data);line-height:var(--lh-data)}
+.tbl thead th{text-align:left;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--hm-text-3);text-transform:uppercase;padding:8px 12px;border-bottom:1px solid var(--hm-border-strong);white-space:nowrap;background:#F6FAF9}
+.tbl thead th.r,.tbl td.r{text-align:right}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--hm-border);vertical-align:middle}
+.tbl tbody tr{transition:background var(--dur-micro) var(--ease);cursor:pointer}
+.tbl tbody tr:hover{background:#EFF6F5}
+.tbl tbody tr.sel{background:var(--hm-primary-soft)}
+.tbl .co{display:flex;align-items:center;gap:10px;font-weight:600;font-size:13px}
+.avt{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+
+/* 폼 */
+.fld{display:flex;flex-direction:column;gap:6px;max-width:340px}
+.fld label{font-size:13px;font-weight:600}
+.fld .hint{font-size:12px;color:var(--hm-text-3)}
+.fld .err-msg{font-size:12px;color:var(--hm-danger)}
+.inp{font-family:var(--hm-font);font-size:14px;padding:9px 12px;border:1px solid var(--hm-border-strong);border-radius:var(--rad-m);background:#fff;color:var(--hm-text);transition:border-color var(--dur-micro) var(--ease),box-shadow var(--dur-micro) var(--ease);width:100%}
+.inp::placeholder{color:var(--hm-text-3)}
+.inp:hover{border-color:#A3BAB7}
+.inp:focus{outline:none;border-color:var(--hm-primary);box-shadow:0 0 0 3px var(--hm-primary-soft)}
+.inp.err{border-color:var(--hm-danger);box-shadow:0 0 0 3px var(--hm-danger-soft)}
+.inp:disabled{background:var(--hm-inset);color:var(--hm-text-3);cursor:not-allowed}
+select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23586B68' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+
+/* 토글 */
+.tgl{position:relative;width:40px;height:22px;border-radius:99px;background:#BFD1CE;cursor:pointer;transition:background var(--dur-base) var(--ease);border:none;flex-shrink:0}
+.tgl::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:99px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:transform var(--dur-base) var(--ease)}
+.tgl.on{background:var(--hm-primary)}
+.tgl.on::after{transform:translateX(18px)}
+
+/* 세그먼트 토글 */
+.seg{display:inline-flex;background:var(--hm-inset);border-radius:var(--rad-m);padding:3px;gap:2px}
+.seg button{font-family:var(--hm-font);font-size:13px;font-weight:600;color:var(--hm-text-2);background:transparent;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;transition:all var(--dur-micro) var(--ease)}
+.seg button.on{background:#fff;color:var(--hm-text);box-shadow:var(--sh-card)}
+
+/* 탭 */
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--hm-border);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{font-family:var(--hm-font);font-size:14px;font-weight:600;color:var(--hm-text-2);background:none;border:none;padding:10px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color var(--dur-micro) var(--ease)}
+.tabs button:hover{color:var(--hm-text)}
+.tabs button.on{color:var(--hm-text);border-bottom-color:var(--hm-primary)}
+
+/* 단계 인디케이터 */
+.steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:8px}
+.step .bub{width:26px;height:26px;border-radius:99px;display:grid;place-items:center;font-size:12px;font-weight:700;border:1.5px solid var(--hm-border-strong);color:var(--hm-text-3);background:#fff;transition:all var(--dur-base) var(--ease)}
+.step.done .bub{background:var(--hm-success);border-color:var(--hm-success);color:#fff}
+.step.now .bub{background:var(--hm-primary-strong);border-color:var(--hm-primary-strong);color:#fff;box-shadow:0 0 0 4px var(--hm-primary-soft)}
+.step .st-label{font-size:13px;font-weight:600;color:var(--hm-text-3)}
+.step.done .st-label{color:var(--hm-text-2)}
+.step.now .st-label{color:var(--hm-text)}
+.step-line{width:36px;height:1.5px;background:var(--hm-border-strong)}
+.step-line.done{background:var(--hm-success)}
+
+/* 스켈레톤 */
+.skel{border-radius:8px;background:linear-gradient(90deg,#E5EEED 25%,#F2F8F7 50%,#E5EEED 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+
+/* 토스트/알럿 데모 */
+.toast-demo{display:inline-flex;align-items:center;gap:10px;background:var(--hm-text);color:#fff;font-size:13px;font-weight:500;padding:11px 16px;border-radius:12px;box-shadow:var(--sh-overlay)}
+.toast-demo .t-ic{width:18px;height:18px;border-radius:99px;background:var(--hm-success);display:grid;place-items:center;font-size:11px}
+.alert-demo{display:flex;gap:10px;border:1px solid;border-radius:12px;padding:12px 14px;font-size:13px;max-width:440px}
+.alert-warn{background:var(--hm-warning-soft);border-color:#EFD9AC;color:#8A5600}
+.alert-bad{background:var(--hm-danger-soft);border-color:#EFC5C5;color:#A32E2E}
+.alert-demo b{font-weight:700}
+
+/* 빈 상태 */
+.empty{border:1.5px dashed var(--hm-border-strong);border-radius:var(--rad-l);padding:40px 20px;text-align:center;background:#F6FAF9}
+.empty .e-ic{width:44px;height:44px;border-radius:12px;background:var(--hm-primary-soft);color:var(--hm-primary-deep);display:grid;place-items:center;font-size:20px;margin:0 auto 12px}
+.empty h4{font-size:14px;font-weight:700}
+.empty p{font-size:13px;color:var(--hm-text-2);margin:4px 0 14px}
+
+/* 드로어 데모 */
+.drawer-stage{position:relative;height:300px;border:1px solid var(--hm-border);border-radius:12px;overflow:hidden;background:var(--hm-canvas)}
+.drawer-scrim{position:absolute;inset:0;background:rgba(4,22,22,.35);opacity:0;pointer-events:none;transition:opacity var(--dur-panel) var(--ease)}
+.drawer{position:absolute;top:0;right:0;bottom:0;width:min(320px,86%);background:#fff;border-left:1px solid var(--hm-border);box-shadow:var(--sh-overlay);transform:translateX(105%);transition:transform var(--dur-panel) var(--ease);padding:18px;display:flex;flex-direction:column;gap:10px}
+.drawer-stage.open .drawer{transform:translateX(0)}
+.drawer-stage.open .drawer-scrim{opacity:1}
+.drawer h4{font-size:14px;font-weight:700;display:flex;justify-content:space-between}
+.evi{border:1px solid var(--hm-border);border-radius:10px;padding:10px 12px;font-size:12px;background:#F6FAF9}
+.evi b{display:block;font-size:11px;color:var(--hm-text-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+
+/* 미니 차트 데모 */
+.mini-bars{display:flex;align-items:flex-end;gap:14px;height:170px;padding:26px 4px 0;box-sizing:border-box}
+.mb-group{display:flex;align-items:flex-end;gap:5px;flex:1;height:100%}
+.mb{flex:1;border-radius:5px 5px 2px 2px;min-width:16px;position:relative;transition:opacity var(--dur-micro) var(--ease)}
+.mb.settle::after{content:attr(data-v);position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:700;color:#007272;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mb:hover{opacity:.82}
+.mb.total{background:var(--hm-ch-muted)}
+.mb.settle{background:var(--hm-primary)}
+.mb-x{display:flex;gap:14px;margin-top:8px}
+.mb-x span{flex:1;text-align:center;font-size:11px;color:var(--hm-text-3)}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--hm-text-2);margin-bottom:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.stackbar{display:flex;height:14px;border-radius:99px;overflow:hidden;gap:2px}
+.donut{width:120px;height:120px;border-radius:99px;background:conic-gradient(var(--hm-ch-1) 0 57%,var(--hm-ch-2) 57% 98.3%,var(--hm-ch-3) 98.3% 99.1%,var(--hm-ch-6) 99.1% 100%);position:relative;flex-shrink:0}
+.donut::after{content:"";position:absolute;inset:18px;background:#fff;border-radius:99px}
+
+/* 다크 로그인 목업 */
+.login-stage{background:radial-gradient(ellipse 90% 70% at 50% 0%,#1D1809 0%,var(--hm-dk-bg) 55%);border-radius:16px;padding:64px 24px 56px;position:relative;overflow:hidden}
+.login-stage::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 70% -8%,rgba(0,215,205,.20),transparent 62%),radial-gradient(45% 45% at 28% -5%,rgba(80,225,210,.13),transparent 60%),radial-gradient(90% 60% at 50% -20%,rgba(0,153,153,.12),transparent 70%)}.login-stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 50% 18%,rgba(0,183,183,.14),transparent 65%),radial-gradient(ellipse 45% 35% at 50% 100%,rgba(0,183,183,.05),transparent 70%)}
+.login-card{position:relative;z-index:1;max-width:360px;margin:0 auto;background:var(--hm-dk-surface);border:1px solid var(--hm-dk-border);border-radius:16px;padding:28px;color:var(--hm-dk-text)}
+.login-card .lg-mark{width:36px;height:36px;border-radius:10px;background:var(--hm-dk-primary);display:grid;place-items:center;color:#FFFFFF;font-weight:800;font-size:15px;margin-bottom:16px}
+.login-card h4{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.login-card .lg-sub{font-size:13px;color:var(--hm-dk-text-2);margin:4px 0 20px}
+.login-card label{display:block;font-size:12px;font-weight:600;color:var(--hm-dk-text-2);margin:12px 0 6px}
+.dk-inp{width:100%;font-family:var(--hm-font);font-size:14px;padding:10px 12px;background:var(--hm-dk-inset);border:1px solid var(--hm-dk-border);border-radius:10px;color:var(--hm-dk-text);transition:border-color var(--dur-micro) var(--ease),box-shadow var(--dur-micro) var(--ease)}
+.dk-inp::placeholder{color:#5E7C7A}
+.dk-inp:focus{outline:none;border-color:var(--hm-dk-primary);box-shadow:0 0 0 3px rgba(0,183,183,.18)}
+.dk-btn{width:100%;margin-top:18px;font-family:var(--hm-font);font-size:14px;font-weight:700;padding:11px;border:none;border-radius:10px;background:#008080;color:#FFFFFF;cursor:pointer;transition:background var(--dur-micro) var(--ease)}
+.dk-btn:hover{background:#009494}
+.login-foot{position:relative;z-index:1;text-align:center;font-size:11px;color:#3F6765;margin-top:20px;font-family:var(--hm-mono)}
+
+
+/* --- 다크 사이드바 셸 --- */
+.shell-stage{display:flex;border:1px solid var(--hm-border);border-radius:14px;overflow:hidden;height:530px;background:var(--hm-canvas)}
+.sbar{width:248px;flex-shrink:0;background:#0A2022;color:#CFC8B4;display:flex;flex-direction:column;font-size:13px}
+.sbar-logo{display:flex;gap:10px;align-items:center;padding:16px 16px 12px}
+.sbar-logo .hexmark{width:30px;height:30px;border-radius:9px;background:var(--hm-primary);display:grid;place-items:center;color:#FFFFFF;font-weight:800;font-size:14px;flex-shrink:0}
+.sbar-logo b{color:#EAF4F3;font-size:14px;display:block;line-height:1.2}
+.sbar-logo small{font-size:10.5px;color:#7C9693;display:block}
+.sbar-seg{display:flex;gap:2px;background:#051314;margin:2px 12px 8px;padding:3px;border-radius:10px}
+.sbar-seg button{flex:1;font-family:var(--hm-font);font-size:12px;font-weight:600;padding:7px 4px;border:none;border-radius:8px;background:transparent;color:#9BB3B0;cursor:pointer;transition:all var(--dur-micro) var(--ease)}
+.sbar-seg button.on{background:#008585;color:#FFFFFF}
+.sbar-seg button.on2{background:#124042;color:#F0FFFD;font-weight:700}
+.sbar-group{font-size:10.5px;letter-spacing:.07em;color:#7C9693;padding:14px 18px 6px}
+.sbar-item{display:flex;align-items:center;gap:11px;padding:12px 13px;margin:2px 8px;border-radius:10px;color:#CFE0DD;font-size:14px;font-weight:500;cursor:pointer;position:relative;transition:all var(--dur-micro) var(--ease)}
+.sbar-item:hover{background:#113133;color:#ECF6F4}
+.sbar-item.on{background:#124042;color:#F0FFFD;font-weight:700}
+.sbar-item.on .ic{color:var(--hm-primary);opacity:1}
+.sbar-item .ic{width:20px;font-size:16px;text-align:center;opacity:.9;flex-shrink:0}
+.sbar-badge{margin-left:auto;background:#008080;color:#FFFFFF;font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;font-variant-numeric:tabular-nums}
+.sbar-acct{margin-top:auto;display:flex;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid #143537;cursor:pointer;transition:background var(--dur-micro) var(--ease)}
+.sbar-acct:hover{background:#0E2B2D}
+.sbar-acct .nm{font-size:13px;font-weight:600;color:#EAF4F3;line-height:1.25}
+.sbar-acct .rl{font-size:11px;color:#7C9693}
+.sbar-acct .mr{margin-left:auto;color:#547170;font-size:14px}
+.shell-main{flex:1;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+@media(max-width:700px){.shell-stage{overflow-x:auto}.shell-main{min-width:300px}}
+.shell-topbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--hm-border);border-radius:12px;padding:9px 14px;font-size:13px}
+.shell-ph{flex:1;border:1.5px dashed var(--hm-border-strong);border-radius:12px;display:grid;place-items:center;color:var(--hm-text-3);font-size:12px}
+
+/* --- 수집 매트릭스 --- */
+.mx{width:100%;border-collapse:collapse;font-size:12px}
+.mx th{text-align:center;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--hm-text-3);padding:8px 10px;border-bottom:1px solid var(--hm-border-strong);background:#F6FAF9}
+.mx th.name,.mx td.name{text-align:left}
+.mx td{padding:7px 10px;border-bottom:1px solid var(--hm-border);text-align:center}
+.mx td.name{font-weight:600;font-size:13px}
+.mx tbody tr:hover{background:#EFF6F5}
+.cellchip{display:inline-block;min-width:52px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px}
+.cs-ok{background:var(--hm-success-soft);color:var(--hm-success)}
+.cs-un{background:var(--hm-warning-soft);color:var(--hm-warning)}
+.cs-mis{background:var(--hm-danger-soft);color:var(--hm-danger)}
+.cs-err{background:var(--hm-danger);color:#fff}
+.cs-none{background:var(--hm-neutral-chip);color:var(--hm-text-3)}
+
+/* --- 미매칭 제안 카드 · 일괄 선택 바 --- */
+.bulkbar{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--hm-border);border-radius:12px;padding:10px 14px;font-size:13px;margin-bottom:12px;flex-wrap:wrap}
+.bulkbar .hint-t{font-size:12px;color:var(--hm-text-3)}
+.ckb{width:16px;height:16px;border:1.5px solid var(--hm-border-strong);border-radius:5px;flex-shrink:0;background:#fff}
+.ckb.on{background:var(--hm-primary);border-color:var(--hm-primary);display:grid;place-items:center;color:#FFFFFF;font-size:11px;font-weight:800}
+.band-head{font-size:13px;font-weight:700;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+.mm-card{border:1px solid var(--hm-border);border-radius:14px;padding:16px 18px;background:#fff;box-shadow:var(--sh-card)}
+.mm-top{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.mm-title{font-weight:700;font-size:14px}
+.mm-meta{font-size:12px;color:var(--hm-text-3);margin-top:2px}
+.mm-conf{margin-left:auto;text-align:right;flex-shrink:0}
+.mm-conf .cl{font-size:10.5px;color:var(--hm-text-3)}
+.mm-conf .pct{font-size:20px;font-weight:800;color:var(--hm-primary-deep);font-variant-numeric:tabular-nums}
+.mm-prop{background:#F6FAF9;border:1px solid var(--hm-border);border-radius:10px;padding:10px 12px;margin:12px 0 8px;font-size:13px}
+.mm-prop .pl{font-size:10.5px;color:var(--hm-text-3);margin-bottom:2px}
+.mm-evi{font-size:12px;color:var(--hm-text-2);margin-bottom:12px;line-height:1.6}
+.mm-acts{display:flex;gap:8px;flex-wrap:wrap}
+
+/* --- 태그 입력 --- */
+.tagwrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{display:inline-flex;align-items:center;gap:6px;background:var(--hm-primary-soft);color:#005E5C;font-size:12px;font-weight:600;padding:4px 6px 4px 10px;border-radius:7px}
+.tag button{border:none;background:transparent;color:#3FA6A4;font-size:12px;cursor:pointer;padding:0 2px;border-radius:4px;line-height:1;transition:all var(--dur-micro) var(--ease)}
+.tag button:hover{color:var(--hm-danger);background:#fff}
+.tagrow{display:flex;gap:8px;max-width:420px}
+
+
+/* --- 화면 아키타입 헤더 데모 --- */
+.arch-stage{border:1px solid var(--hm-border);border-radius:12px;padding:14px 18px;background:#fff;margin-top:10px}
+.arch-tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--hm-primary-deep);background:var(--hm-primary-soft);padding:2px 8px;border-radius:5px;margin-bottom:8px}
+.pgh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pgh .eyebrow{font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--hm-text-3)}
+.pgh h4{font-size:18px;font-weight:800;letter-spacing:-.01em}
+.pgh .sp{margin-left:auto}
+.pgh .bignum{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-top:8px}
+.pgh .bignum small{font-size:14px;font-weight:600;color:var(--hm-text-2)}
+
+/* 모션 표 */
+.motion-tbl td:first-child{font-family:var(--hm-mono);font-size:12px}
+footer.gfoot{border-top:1px solid var(--hm-border);margin-top:56px;padding:28px 0 48px;font-size:12px;color:var(--hm-text-3)}
+
+/* --- 반응형 · 태블릿/모바일 --- */
+@media(max-width:760px){
+  .wrap{padding:0 16px}
+  .gnav-in{padding:0 16px;gap:12px}
+  .hero-in{padding:52px 16px 44px}
+  .hero h1{font-size:29px;line-height:1.3}
+  .hero p{font-size:14px}
+  .hero-meta{flex-wrap:wrap;gap:14px 22px}
+  section.gsec{padding:44px 0 6px}
+  .sec-head h2{font-size:21px}
+  .panel{padding:18px 16px}
+  .type-row{flex-direction:column;align-items:flex-start;gap:6px}
+  .type-spec{width:auto}
+  .login-stage{padding:44px 16px 40px}
+  .legend{flex-wrap:wrap;gap:8px 16px}
+  .kpi .k-val{font-size:24px;line-height:32px}
+  .mini-bars{gap:10px}
+  .mb-x{gap:10px}
+}
+@media(max-width:480px){
+  .gnav-sub{display:none}
+  .hero h1{font-size:25px}
+  .hero .eyebrow{font-size:11px}
+  .btn{padding:9px 13px;font-size:13px}
+  .btn-sm{padding:6px 10px}
+  .pgh h4{font-size:16px}
+  .pgh .bignum{font-size:24px}
+  .arch-stage{padding:12px 14px}
+  .drawer{width:min(300px,92%)}
+  .sw-grid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
+  .codebox pre{padding:14px 14px;font-size:11px}
+  .steps{gap:6px}
+  .step-line{width:20px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="copied-toast" id="copyToast">복사되었습니다</div>
+
+<nav class="gnav">
+  <div class="gnav-in">
+    <div class="gnav-logo"><span class="mark" style="background:transparent;color:var(--hm-primary)"><svg role="img" aria-label="Aurorah 로고" width="22" height="22" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2.66487,11.1775)">
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        <g transform="matrix(-1,1.22298e-16,-1.22298e-16,-1,517.33,489.645)">
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        </g>
+    </g>
+</svg>
+</span><span>Aurorah<span class="gnav-sub"> · 디자인 가이드</span></span></div>
+    <div class="gnav-links">
+      <a href="#principles">원칙</a><a href="#color">컬러</a><a href="#type">타이포</a><a href="#tokens">토큰</a><a href="#components">컴포넌트</a><a href="#archetypes">아키타입</a><a href="#charts">차트</a><a href="#motion">모션</a><a href="#login">다크 로그인</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">Hivemind Settlement Console · Design Guide v2.0</div>
+    <h1>숫자가 신뢰를 만드는<br>정산 콘솔의 디자인 언어</h1>
+    <p>출판사 웹소설 정산을 표준화·산출하는 B2B SaaS를 위한 디자인 시스템입니다. 브랜드 틸 #009999를 축으로, 업무 화면은 라이트·로그인은 다크. 장식을 덜어내고 정보 위계와 숫자의 정확한 표기에 집중합니다. 이 문서의 토큰과 컴포넌트를 그대로 복사해 개발에 적용할 수 있습니다.</p>
+    <div class="hero-meta">
+      <div><b>브랜드 컬러</b>옥 Gold #009999</div>
+      <div><b>레퍼런스 미감</b>Linear · Stripe 계열</div>
+      <div><b>본문 서체</b>Pretendard Variable</div>
+      <div><b>기준 그리드</b>4px · 데이터 밀도 우선</div>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= 01 원칙 ======================= -->
+<section class="gsec" id="principles"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">01</div>
+    <h2>디자인 원칙</h2>
+    <p>정산은 금융입니다. 모든 화면·컴포넌트 판단은 아래 네 가지 기준으로 내립니다.</p>
+  </div>
+  <div class="prin-grid">
+    <div class="prin"><h3>숫자가 주인공</h3><p>금액·건수는 항상 고정폭 숫자(tabular numerals)로, 우측 정렬로. 색과 장식은 숫자를 읽는 데 방해되지 않는 선까지만 사용합니다.</p></div>
+    <div class="prin"><h3>상태는 한눈에</h3><p>수신/미수신, 매칭/미매칭, 신뢰도 밴드 등 모든 상태는 색 + 텍스트 칩으로 이중 표기합니다. 색만으로 의미를 전달하지 않습니다.</p></div>
+    <div class="prin"><h3>층위는 그림자보다 보더로</h3><p>데이터 밀도가 높으므로 무거운 그림자·그라데이션 대신 1px 보더와 배경 단차(백자 → 흰색)로 위계를 만듭니다.</p></div>
+    <div class="prin"><h3>움직임은 확인용</h3><p>애니메이션은 '무슨 일이 일어났는지' 확인시켜 주는 역할만 합니다. 120–320ms, 한 화면에 동시 모션은 하나만.</p></div>
+  </div>
+  <p class="note"><b>시그니처 · 오로라 글로우</b> — 심해빛 다크 배경 상단에서 옥빛 광휘가 커튼처럼 번지는 그라데이션. 브랜드명 Aurorah의 오로라를 그대로 시각화한 장치로, 다크 로그인 배경(그리고 분석 홈 히어로)에만 사용합니다. 그 외의 장식 요소는 두지 않습니다 — 선택·활성 상태는 항상 <b>옥 Soft 배경 + 짙은 텍스트</b>로, 상태 성격은 아이콘 칩과 상태 칩의 색으로 전달합니다.</p>
+</div></section>
+
+<!-- ======================= 02 컬러 ======================= -->
+<section class="gsec" id="color"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">02</div>
+    <h2>컬러 팔레트</h2>
+    <p>브랜드 틸 <b>옥 #009999</b>(Aurorah 브랜드 색)를 축으로, 나머지는 틸와 어울리는 따뜻한 회색과 의미색만 사용합니다. 팔레트 이름은 한국 전통색에서 가져왔습니다 — K-콘텐츠를 다루는 브랜드다운 정체성이자, 토큰을 기억하기 쉽게 하는 장치입니다. 스와치를 클릭하면 HEX가 복사됩니다.<br><b>틸 사용 규칙:</b> 브랜드 옥(#009999)은 정체성·차트·장식 면에 사용합니다. 버튼 등 <b>인터랙티브 면은 한 단계 짙은 옥 Strong <span style="font-family:var(--hm-mono);font-size:13px">#008080</span></b>을 쓰고, <b>틸 면 위 글자는 항상 흰색</b>입니다(#008080 위 흰색 = 4.8:1, AA 통과 — #009999 위 흰색은 3.9:1로 미달). 흰 배경 위 틸 텍스트는 옥 Deep <span style="font-family:var(--hm-mono);font-size:13px">#007272</span>만 사용합니다.</p>
+  </div>
+
+  <div class="panel">
+    <h3>브랜드 · 텍스트 · 배경 (라이트)</h3>
+    <div class="desc">업무 화면 기본 모드. 배경 '백자' 위에 흰색 서피스를 얹어 층위를 만듭니다.</div>
+    <div class="sw-grid">
+      <div class="sw" data-hex="#009999"><div class="chip" style="background:#009999"></div><div class="info"><div class="nm">옥 Primary</div><div class="kn">브랜드 · 버튼 · 선택</div><div class="hx">#009999</div></div></div>
+      <div class="sw" data-hex="#007070"><div class="chip" style="background:#007070"></div><div class="info"><div class="nm">옥 Hover</div><div class="kn">호버 상태</div><div class="hx">#007070</div></div></div>
+      <div class="sw" data-hex="#DEF3F2"><div class="chip" style="background:#DEF3F2"></div><div class="info"><div class="nm">옥 Soft</div><div class="kn">선택 배경 · 포커스 링</div><div class="hx">#DEF3F2</div></div></div>
+      <div class="sw" data-hex="#007272"><div class="chip" style="background:#007272"></div><div class="info"><div class="nm">옥 Deep</div><div class="kn">흰 배경 위 틸 텍스트용</div><div class="hx">#007272</div></div></div>
+      <div class="sw" data-hex="#152220"><div class="chip" style="background:#152220"></div><div class="info"><div class="nm">먹 Text</div><div class="kn">본문 텍스트</div><div class="hx">#152220</div></div></div>
+      <div class="sw" data-hex="#586B68"><div class="chip" style="background:#586B68"></div><div class="info"><div class="nm">Text 2</div><div class="kn">보조 텍스트</div><div class="hx">#586B68</div></div></div>
+      <div class="sw" data-hex="#89A09C"><div class="chip" style="background:#89A09C"></div><div class="info"><div class="nm">Text 3</div><div class="kn">캡션 · 비활성</div><div class="hx">#89A09C</div></div></div>
+      <div class="sw" data-hex="#F4F8F7"><div class="chip" style="background:#F4F8F7;border-bottom:1px solid #DDE7E5"></div><div class="info"><div class="nm">백자 Canvas</div><div class="kn">페이지 배경</div><div class="hx">#F4F8F7</div></div></div>
+      <div class="sw" data-hex="#DDE7E5"><div class="chip" style="background:#DDE7E5"></div><div class="info"><div class="nm">Border</div><div class="kn">기본 보더</div><div class="hx">#DDE7E5</div></div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>의미색 Semantic</h3>
+    <div class="desc">각 색은 짙은 톤(텍스트·아이콘)과 연한 톤(칩 배경) 페어로만 사용합니다. 브랜드가 틸이 되면서 경고는 관례적인 <b>호박(앰버)</b>으로 복귀했고(충돌 없음), 성공은 틸과의 색상 근접을 피해 <b>잎녹색(초록)</b>으로 조정했습니다.</div>
+    <div class="sw-grid">
+      <div class="sw" data-hex="#33913D"><div class="chip" style="background:#33913D"></div><div class="info"><div class="nm">초록 Success</div><div class="kn">완료 · 수신 · 일치</div><div class="hx">#33913D</div></div></div>
+      <div class="sw" data-hex="#E5F3E1"><div class="chip" style="background:#E5F3E1"></div><div class="info"><div class="nm">초록 Soft</div><div class="kn">성공 칩 배경</div><div class="hx">#E5F3E1</div></div></div>
+      <div class="sw" data-hex="#C77700"><div class="chip" style="background:#C77700"></div><div class="info"><div class="nm">호박 Warning</div><div class="kn">검토 필요 · 대기</div><div class="hx">#C77700</div></div></div>
+      <div class="sw" data-hex="#FAF0DC"><div class="chip" style="background:#FAF0DC"></div><div class="info"><div class="nm">호박 Soft</div><div class="kn">경고 칩 배경</div><div class="hx">#FAF0DC</div></div></div>
+      <div class="sw" data-hex="#D23F3F"><div class="chip" style="background:#D23F3F"></div><div class="info"><div class="nm">다홍 Danger</div><div class="kn">오류 · 미수신</div><div class="hx">#D23F3F</div></div></div>
+      <div class="sw" data-hex="#FBE9E9"><div class="chip" style="background:#FBE9E9"></div><div class="info"><div class="nm">다홍 Soft</div><div class="kn">오류 칩 배경</div><div class="hx">#FBE9E9</div></div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>차트 범주색 (순서 고정)</h3>
+    <div class="desc">범주형 데이터는 항상 이 순서로 색을 배정합니다. 1번은 언제나 브랜드 옥(틸), 2번은 보색 계열 호박(앰버)이라 두 계열 비교가 가장 또렷합니다. 비교 기준(총매출 등)은 항상 '회백 Muted'을 사용해 정산액(옥)이 앞에 서도록 합니다.</div>
+    <div class="sw-grid">
+      <div class="sw" data-hex="#009999"><div class="chip" style="background:#009999"></div><div class="info"><div class="nm">1 · 옥</div><div class="hx">#009999</div></div></div>
+      <div class="sw" data-hex="#E8A013"><div class="chip" style="background:#E8A013"></div><div class="info"><div class="nm">2 · 호박</div><div class="hx">#E8A013</div></div></div>
+      <div class="sw" data-hex="#5B67D8"><div class="chip" style="background:#5B67D8"></div><div class="info"><div class="nm">3 · 청람</div><div class="hx">#5B67D8</div></div></div>
+      <div class="sw" data-hex="#9C5BB8"><div class="chip" style="background:#9C5BB8"></div><div class="info"><div class="nm">4 · 자주</div><div class="hx">#9C5BB8</div></div></div>
+      <div class="sw" data-hex="#D95B4A"><div class="chip" style="background:#D95B4A"></div><div class="info"><div class="nm">5 · 단풍</div><div class="hx">#D95B4A</div></div></div>
+      <div class="sw" data-hex="#7C8B8A"><div class="chip" style="background:#7C8B8A"></div><div class="info"><div class="nm">6 · 회청</div><div class="hx">#7C8B8A</div></div></div>
+      <div class="sw" data-hex="#D6E2E0"><div class="chip" style="background:#D6E2E0"></div><div class="info"><div class="nm">비교 기준 Muted</div><div class="hx">#D6E2E0</div></div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>다크 팔레트 (로그인 전용)</h3>
+    <div class="desc">첫인상을 담당하는 로그인 화면에만 사용합니다. 심해처럼 어두운 청록조 배경 위에서 옥빛 오로라가 가장 아름답게 발광합니다. 업무 화면에는 다크 모드를 적용하지 않습니다.</div>
+    <div class="sw-grid">
+      <div class="sw" data-hex="#07181A"><div class="chip" style="background:#07181A"></div><div class="info"><div class="nm">심해 BG</div><div class="hx">#07181A</div></div></div>
+      <div class="sw" data-hex="#0D292B"><div class="chip" style="background:#0D292B"></div><div class="info"><div class="nm">Surface</div><div class="hx">#0D292B</div></div></div>
+      <div class="sw" data-hex="#1B4547"><div class="chip" style="background:#1B4547"></div><div class="info"><div class="nm">Border</div><div class="hx">#1B4547</div></div></div>
+      <div class="sw" data-hex="#17BFBF"><div class="chip" style="background:#17BFBF"></div><div class="info"><div class="nm">옥 (다크 공용)</div><div class="hx">#17BFBF</div></div></div>
+      <div class="sw" data-hex="#EAF4F3"><div class="chip" style="background:#EAF4F3"></div><div class="info"><div class="nm">Text</div><div class="hx">#EAF4F3</div></div></div>
+      <div class="sw" data-hex="#92ACAA"><div class="chip" style="background:#92ACAA"></div><div class="info"><div class="nm">Text 2</div><div class="hx">#92ACAA</div></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ======================= 03 타이포 ======================= -->
+<section class="gsec" id="type"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">03</div>
+    <h2>타이포그래피</h2>
+    <p>서체는 Pretendard Variable 하나로 통일합니다(국문·영문·숫자 모두). 핵심 규칙: <b>숫자가 놓이는 모든 자리에는 <code style="font-family:var(--hm-mono);font-size:13px;background:var(--hm-inset);padding:1px 6px;border-radius:5px">font-variant-numeric: tabular-nums</code>를 적용</b>해 자릿수가 흔들리지 않게 합니다.</p>
+  </div>
+  <div class="panel">
+    <div class="type-row"><div class="type-spec"><b>Display · 핵심 숫자</b>32/40 · 800 · -0.02em</div><div class="num" style="font-size:32px;line-height:40px;font-weight:800;letter-spacing:-.02em">1,197,001,377<span style="font-size:16px;font-weight:600;color:var(--hm-text-2)"> 원</span></div></div>
+    <div class="type-row"><div class="type-spec"><b>H1 · 페이지 제목</b>24/32 · 800</div><div style="font-size:24px;line-height:32px;font-weight:800">정산 요약</div></div>
+    <div class="type-row"><div class="type-spec"><b>H2 · 섹션 제목</b>18/26 · 700</div><div style="font-size:18px;line-height:26px;font-weight:700">고객사(출판사)별 정산</div></div>
+    <div class="type-row"><div class="type-spec"><b>H3 · 카드 제목</b>16/24 · 700</div><div style="font-size:16px;line-height:24px;font-weight:700">자동 매칭 현황</div></div>
+    <div class="type-row"><div class="type-spec"><b>Body · 본문</b>14/22 · 400–600</div><div style="font-size:14px;line-height:22px">유통사 정산서를 업로드하면 표준 양식으로 자동 변환됩니다.</div></div>
+    <div class="type-row"><div class="type-spec"><b>Data · 표/고밀도</b>13/20 · 400–600 · tnum</div><div class="num" style="font-size:13px;line-height:20px">스토린랩 · 정산액 604,388,622 · 작가 532 · 작품 1,241</div></div>
+    <div class="type-row"><div class="type-spec"><b>Caption · 캡션/칩</b>12/18 · 500–600</div><div style="font-size:12px;line-height:18px;color:var(--hm-text-2)">246건 · 정산액 0.08% · 작가만 제외 시 합계 100%</div></div>
+  </div>
+  <p class="note"><b>표기 규칙</b> — 금액은 천 단위 콤마 + '원'을 작게(60% 크기, Text 2 색). 표 안 금액·건수는 우측 정렬. 억 단위 축약(2.8억)은 차트 라벨에서만 허용, 표에서는 전체 자릿수를 표기합니다.</p>
+</div></section>
+<!-- ======================= 04 토큰 ======================= -->
+<section class="gsec" id="tokens"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">04</div>
+    <h2>디자인 토큰 (개발용 CSS)</h2>
+    <p>아래 블록을 전역 CSS에 붙여 넣으면 이 가이드의 모든 값이 변수로 들어갑니다. 간격은 4px 그리드, 라운드는 6/10/14px 세 단계만 사용합니다.</p>
+  </div>
+  <div class="panel">
+    <div class="codebox">
+      <button class="copybtn" onclick="copyTokens(this)">토큰 복사</button>
+      <pre id="tokenBlock">:root{
+  /* Color · Light */
+  --hm-canvas:#F4F8F7;  --hm-surface:#FFFFFF;  --hm-inset:#E8F0EF;
+  --hm-border:#DDE7E5;  --hm-border-strong:#C1D2CF;
+  --hm-text:#152220;  --hm-text-2:#586B68;  --hm-text-3:#89A09C;
+  --hm-primary:#009999;  --hm-primary-hover:#007070;  --hm-primary-active:#006060;
+  --hm-primary-strong:#008080; /* 인터랙티브 면·흰 글자 */  --hm-primary-soft:#DEF3F2;  --hm-primary-deep:#007272; /* 틸 텍스트용 */
+  /* Semantic */
+  --hm-success:#33913D;  --hm-success-soft:#E5F3E1;
+  --hm-warning:#C77700;  --hm-warning-soft:#FAF0DC;
+  --hm-danger:#D23F3F;   --hm-danger-soft:#FBE9E9;
+  /* Chart */
+  --hm-ch-1:#009999; --hm-ch-2:#E8A013; --hm-ch-3:#5B67D8;
+  --hm-ch-4:#9C5BB8; --hm-ch-5:#D95B4A; --hm-ch-6:#7C8B8A;
+  --hm-ch-muted:#D6E2E0;
+  /* Dark (login only) */
+  --hm-dk-bg:#07181A; --hm-dk-surface:#0D292B; --hm-dk-inset:#0A2123;
+  --hm-dk-border:#1B4547; --hm-dk-text:#EAF4F3; --hm-dk-text-2:#92ACAA;
+  --hm-dk-primary:#17BFBF; --hm-dk-primary-hover:#2FC8C6;
+  /* Type */
+  --hm-font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --fs-display:32px; --fs-h1:24px; --fs-h2:18px; --fs-h3:16px;
+  --fs-body:14px; --fs-data:13px; --fs-caption:12px;
+  /* Spacing · 4px grid */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+  --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px;
+  /* Radius */
+  --rad-s:6px; --rad-m:10px; --rad-l:14px; --rad-full:999px;
+  /* Shadow */
+  --sh-card:0 1px 2px rgba(13,36,34,.05);
+  --sh-raised:0 1px 3px rgba(13,36,34,.06),0 4px 12px rgba(13,36,34,.06);
+  --sh-overlay:0 4px 16px rgba(13,36,34,.10),0 12px 40px rgba(13,36,34,.14);
+  /* Motion */
+  --dur-micro:120ms; --dur-base:200ms; --dur-panel:320ms;
+  --ease:cubic-bezier(.2,0,0,1);
+}
+/* 숫자 공통 클래스 — 금액·건수가 놓이는 모든 곳에 적용 */
+.num{font-variant-numeric:tabular-nums lining-nums;letter-spacing:-.01em}</pre>
+    </div>
+    <p class="note"><b>사용 규칙</b> — 그림자는 3단계(카드/부양/오버레이)만, 라운드는 3단계만. 새 값이 필요하면 토큰을 추가하지 말고 기존 단계로 되돌아옵니다.</p>
+  </div>
+</div></section>
+
+<!-- ======================= 05 컴포넌트 ======================= -->
+<section class="gsec" id="components"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">05</div>
+    <h2>컴포넌트</h2>
+    <p>정산 콘솔에서 반복 사용되는 모듈입니다. 실제 배포본 화면(업로드, 수집·점검, 미매칭 보드, 출판사·계약 관리, CP 대시보드)을 기준으로 작성했으며, 모든 상태(기본/호버/선택/비활성)는 실제 CSS로 구현되어 있으니 개발 시 이 문서의 소스를 그대로 참고하세요.</p>
+  </div>
+
+  <div class="panel">
+    <h3>버튼</h3>
+    <div class="desc">한 화면의 Primary 버튼은 1개가 원칙. 파괴적 동작(삭제·마감 취소)은 Danger 아웃라인.</div>
+    <div class="demo-row">
+      <button class="btn btn-pri">엑셀 내보내기</button>
+      <button class="btn btn-sec">기간 변경</button>
+      <button class="btn btn-ghost">전체 보기</button>
+      <button class="btn btn-danger">마감 취소</button>
+      <button class="btn btn-pri" disabled>승인 대기</button>
+      <button class="btn btn-pri btn-sm">Small</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>상태 칩 · 배지</h3>
+    <div class="desc">상태 의미와 색의 매핑은 제품 전체에서 고정입니다. 색 + 텍스트 이중 표기, 신뢰도 밴드는 점(dot)을 추가해 구분합니다.</div>
+    <div class="demo-col">
+      <div class="demo-row"><span class="demo-label" style="margin:0;width:90px">수집 상태</span>
+        <span class="chp chp-ok">수신</span><span class="chp chp-bad">미수신</span><span class="chp chp-mute">대기</span><span class="chp chp-info">처리 중</span>
+      </div>
+      <div class="demo-row"><span class="demo-label" style="margin:0;width:90px">신뢰도 밴드</span>
+        <span class="chp chp-ok"><span class="dot"></span>높음</span><span class="chp chp-warn"><span class="dot"></span>검토</span><span class="chp chp-bad"><span class="dot"></span>낮음</span>
+      </div>
+      <div class="demo-row"><span class="demo-label" style="margin:0;width:90px">계정 상태</span>
+        <span class="chp chp-ok">활성</span><span class="chp chp-mute">대기</span><span class="chp chp-bad">정지</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>KPI 카드</h3>
+    <div class="desc">상태 성격은 우측 아이콘 칩의 색으로 전달합니다(구조는 동일, 색만 교체). 카드에 별도의 장식 선은 두지 않습니다.</div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="k-label">작가 지급 대상 정산액 <span class="k-ico">₩</span></div><div class="k-val num">11.9<small>억 원</small></div><div class="k-sub num">총매출 대비 67% · 작가 6,068명</div></div>
+      <div class="kpi ok"><div class="k-label">자동 매칭 <span class="k-ico">✓</span></div><div class="k-val num">99.5<small>%</small></div><div class="k-sub num">완전 429,123건 · 작가만 1,907건</div></div>
+      <div class="kpi warn"><div class="k-label">미매칭 <span class="k-ico">!</span></div><div class="k-val num">0.06<small>%</small></div><div class="k-sub num">246건 · 검토 대기 12건</div></div>
+      <div class="kpi ok"><div class="k-label">원본 검증 <span class="k-ico">✓</span></div><div class="k-val num">86<small>/86</small></div><div class="k-sub">합계 대사 100% 일치</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>고밀도 표</h3>
+    <div class="desc">행 높이 40px, 폰트 13px. 금액·수치는 우측 정렬 + tnum. 행 전체가 클릭 영역이며, 선택 행은 옥 Soft 배경으로 표시됩니다. (두 번째 행이 선택 상태 예시) <b>v1.9 추가:</b> ① 관리·점검 화면 = 컨테인드 밀집형(행 40px, 헤더 배경 밴드) / 분석 카드 = 전폭(full-bleed) 여유형(행 60px, 헤더 투명, 마지막 행 구분선 제거, 첫·끝 셀 24px 패딩). ② <b>행 높이는 상수, 패딩은 변수</b> — 2줄 셀(정산액+총매출)은 행을 키우지 않고 패딩을 12px로 줄여 60px을 유지하며(.hm-table--dual), 셀 내부 모든 줄의 line-height를 고정값으로 지정합니다(상속 line-height가 높이 오차의 주범).</div>
+    <div style="overflow-x:auto">
+    <table class="tbl">
+      <thead><tr><th>출판사(고객사)</th><th>상태</th><th class="r">정산액</th><th class="r">작가</th><th class="r">작품</th><th class="r">미매칭</th></tr></thead>
+      <tbody>
+        <tr><td><span class="co"><span class="avt" style="background:#009999;color:#FFFFFF">스</span>스토린랩</span></td><td><span class="chp chp-ok">마감</span></td><td class="r num" style="font-weight:600">604,388,622</td><td class="r num">532</td><td class="r num">1,241</td><td class="r num">31</td></tr>
+        <tr class="sel"><td><span class="co"><span class="avt" style="background:#5B67D8">도</span>도서출판청어람</span></td><td><span class="chp chp-info">검토 중</span></td><td class="r num" style="font-weight:600">109,731,226</td><td class="r num">403</td><td class="r num">849</td><td class="r num">104</td></tr>
+        <tr><td><span class="co"><span class="avt" style="background:#9C5BB8">마</span>마야마루</span></td><td><span class="chp chp-ok">마감</span></td><td class="r num" style="font-weight:600">62,750,141</td><td class="r num">262</td><td class="r num">508</td><td class="r num">0</td></tr>
+        <tr><td><span class="co"><span class="avt" style="background:#E8A013;color:#152220">에</span>에필로그</span></td><td><span class="chp chp-warn">미수신 2</span></td><td class="r num" style="font-weight:600">55,265,712</td><td class="r num">55</td><td class="r num">279</td><td class="r num">88</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="demo-grid-2">
+    <div class="panel" style="margin-bottom:0">
+      <h3>폼 · 입력</h3>
+      <div class="desc">포커스는 틸 링, 오류는 다홍 링 + 메시지. 라벨은 항상 인풋 위.</div>
+      <div class="demo-col">
+        <div class="fld"><label>정산 담당자 이메일</label><input class="inp" type="text" placeholder="name@publisher.co.kr"><span class="hint">승인 알림이 이 주소로 발송됩니다.</span></div>
+        <div class="fld"><label>유통사</label><select class="inp"><option>전체 유통사</option><option>네이버시리즈</option><option>카카오페이지</option><option>리디</option></select></div>
+        <div class="fld"><label>정산 월</label><input class="inp err" type="text" value="2026-13"><span class="err-msg">존재하지 않는 월입니다. YYYY-MM 형식으로 입력해 주세요.</span></div>
+        <div class="demo-row"><button class="tgl on" onclick="this.classList.toggle('on')" aria-label="자동 마감 알림"></button><span style="font-size:13px;font-weight:600">자동 마감 알림</span><span style="font-size:12px;color:var(--hm-text-3)">(클릭해 보세요)</span></div>
+      </div>
+    </div>
+    <div class="panel" style="margin-bottom:0">
+      <h3>탭 · 세그먼트 · 아바타</h3>
+      <div class="desc">뷰 전환은 세그먼트(운영자/고객사), 페이지 내 구획은 언더라인 탭. 아바타는 이니셜 모노그램이 기본, 로고 등록 시 대체.</div>
+      <div class="demo-col">
+        <div class="seg" id="segDemo"><button class="on">운영자 콘솔</button><button>고객사 화면</button></div>
+        <div class="tabs" id="tabDemo"><button class="on">전체</button><button>단행본</button><button>연재</button><button>구독제</button></div>
+        <div class="demo-row">
+          <span class="avt" style="background:#009999;color:#FFFFFF;width:32px;height:32px;border-radius:10px;font-size:13px">스</span>
+          <span class="avt" style="background:#5B67D8;width:32px;height:32px;border-radius:10px;font-size:13px">도</span>
+          <span class="avt" style="background:#9C5BB8;width:32px;height:32px;border-radius:10px;font-size:13px">마</span>
+          <span class="avt" style="background:#7C8B8A;width:32px;height:32px;border-radius:10px;font-size:13px">엘</span>
+          <span style="font-size:12px;color:var(--hm-text-3)">배경색은 이름 해시로 차트 팔레트에서 자동 배정 · 옥색 배경일 땐 먹색 이니셜</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height:16px"></div>
+
+  <div class="panel">
+    <h3>단계 인디케이터 (표준화 진행)</h3>
+    <div class="desc">업로드 → 표준화 → 검증 → 결과. 완료는 초록 체크, 현재 단계는 옥색 + 소프트 링.</div>
+    <div class="steps">
+      <div class="step done"><span class="bub">✓</span><span class="st-label">업로드</span></div><span class="step-line done"></span>
+      <div class="step done"><span class="bub">✓</span><span class="st-label">표준화</span></div><span class="step-line done"></span>
+      <div class="step now"><span class="bub">3</span><span class="st-label">검증</span></div><span class="step-line"></span>
+      <div class="step"><span class="bub">4</span><span class="st-label">결과</span></div>
+    </div>
+  </div>
+
+  <div class="demo-grid-2">
+    <div class="panel" style="margin-bottom:0">
+      <h3>토스트 · 알럿</h3>
+      <div class="desc">토스트는 하단 중앙 3초, 알럿은 화면 내 고정. 문구는 원인 + 해결 방법을 함께.</div>
+      <div class="demo-col">
+        <div class="toast-demo"><span class="t-ic">✓</span>2026년 4월 정산이 마감되었습니다</div>
+        <div class="alert-demo alert-warn"><span>⚠︎</span><span><b>미수신 정산서 2건</b> — 에필로그의 리디·조아라 정산서가 아직 수신되지 않았습니다. 수집 현황에서 확인하세요.</span></div>
+        <div class="alert-demo alert-bad"><span>✕</span><span><b>업로드 실패</b> — 파일 형식을 인식할 수 없습니다. XLSX 또는 CSV로 다시 업로드해 주세요.</span></div>
+      </div>
+    </div>
+    <div class="panel" style="margin-bottom:0">
+      <h3>빈 상태 · 스켈레톤</h3>
+      <div class="desc">빈 화면은 다음 행동을 안내합니다. 로딩은 스피너 대신 실제 레이아웃 모양의 스켈레톤.</div>
+      <div class="demo-col">
+        <div class="empty"><div class="e-ic">↑</div><h4>아직 업로드된 정산서가 없습니다</h4><p>유통사 정산서를 끌어다 놓거나, 샘플 데이터로 먼저 둘러보세요.</p><button class="btn btn-pri btn-sm">샘플로 둘러보기</button></div>
+        <div class="demo-col" style="gap:8px">
+          <div class="skel" style="height:14px;width:40%"></div>
+          <div class="skel" style="height:28px;width:65%"></div>
+          <div class="skel" style="height:14px;width:85%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height:16px"></div>
+
+  <div class="panel">
+    <h3>드로어 (미매칭 근거)</h3>
+    <div class="desc">미매칭 카드 클릭 시 우측에서 320ms로 슬라이드. 근거(원본 표기 vs 표준 표기)를 나란히 보여줍니다. 버튼을 눌러 실제 동작을 확인하세요.</div>
+    <button class="btn btn-sec btn-sm" onclick="document.getElementById('drwStage').classList.toggle('open')" style="margin-bottom:12px">드로어 열기 / 닫기</button>
+    <div class="drawer-stage" id="drwStage">
+      <div style="padding:16px;font-size:12px;color:var(--hm-text-3)">(미매칭 보드 영역)</div>
+      <div class="drawer-scrim" onclick="document.getElementById('drwStage').classList.remove('open')"></div>
+      <div class="drawer">
+        <h4>매칭 근거 <span class="chp chp-warn"><span class="dot"></span>검토</span></h4>
+        <div class="evi"><b>원본 표기 (유통사)</b>달빛조각사 외전 (完)</div>
+        <div class="evi"><b>표준 표기 (아우로라)</b>달빛조각사 외전</div>
+        <div class="evi"><b>유사도</b><span class="num">0.87 · 제목 일치, 완결 표기 차이</span></div>
+        <div style="display:flex;gap:8px;margin-top:auto"><button class="btn btn-pri btn-sm" style="flex:1">매칭 승인</button><button class="btn btn-sec btn-sm" style="flex:1">보류</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>애플리케이션 셸 · 다크 사이드바</h3>
+    <div class="desc">실제 제품 구조(콘솔 토글 → 워크스페이스 → 그룹 내비)를 틸 시스템으로 옮긴 사양입니다. 활성 항목은 웜 서피스 + 밝은 텍스트, 카운트 배지는 틸 면 + 먹 숫자. 틸는 "현재 위치"와 "주의 카운트" 두 곳에만 허용 — 사이드바 전체가 노랗게 물들지 않게 합니다.</div>
+    <div class="shell-stage">
+      <div class="sbar">
+        <div class="sbar-logo"><span class="hexmark" style="background:transparent;color:#17BFBF"><svg role="img" aria-label="Aurorah 로고" width="30" height="30" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2.66487,11.1775)">
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        <g transform="matrix(-1,1.22298e-16,-1.22298e-16,-1,517.33,489.645)">
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        </g>
+    </g>
+</svg>
+</span><span><b>Aurorah</b><small>정산 콘솔 · Settlement Console</small></span></div>
+        <div class="sbar-seg"><button class="on">운영자 콘솔</button><button>고객사 화면</button></div>
+        <div class="sbar-seg"><button class="on2">솔루션</button><button>관리</button><button>분석</button></div>
+        <div class="sbar-group">정산 솔루션 (엔진)</div>
+        <div class="sbar-item"><span class="ic">↑</span>정산서 업로드</div>
+        <div class="sbar-item"><span class="ic">⚙</span>수집·점검</div>
+        <div class="sbar-item on"><span class="ic">⧉</span>미매칭<span class="sbar-badge">246</span></div>
+        <div class="sbar-item"><span class="ic">△</span>연구소</div>
+        <div class="sbar-item"><span class="ic">✓</span>마감 현황</div>
+        <div class="sbar-acct"><span class="avt" style="background:#009999;color:#FFFFFF;width:30px;height:30px;border-radius:9px;font-size:13px">엘</span><span><span class="nm">엘다</span><br><span class="rl">운영사 · 최고관리자</span></span><span class="mr">⌃</span></div>
+      </div>
+      <div class="shell-main">
+        <div class="shell-topbar"><b style="font-size:14px">미매칭 보드</b><span style="margin-left:auto"></span><button class="btn btn-sec btn-sm">엑셀 내보내기</button></div>
+        <div class="shell-ph">콘텐츠 영역 (백자 캔버스 위 흰색 서피스)</div>
+      </div>
+    </div>
+    <p class="note"><b>가독성 규칙 (v1.9)</b> — 다크 서피스에서 분위기는 가독성을 이기지 못합니다. 항목 텍스트는 14px/500 고대비 웜화이트, 활성 상태는 최소 2개 채널(서피스+볼드, 또는 서피스+틸 아이콘)로 구분합니다. 아이콘은 Lucide 18px stroke 2 — 유니코드 글리프·이모지 금지. <b>사양</b> — 사이드바 배경 <span style="font-family:var(--hm-mono);font-size:12px">#0A2022</span>(다크 팔레트 연장), 항목 텍스트는 웜 그레이, 호버 시 한 단계 밝게. 콘솔 토글(운영자/고객사)의 활성만 틸 필, 워크스페이스 세그먼트 활성은 웜 서피스(틸 중복 방지). 고객사 화면 모드에서는 토글 아래에 테넌트 셀렉트(스토린랩 ▾)가 추가됩니다. <b>계정 셀</b> — 사용자 아바타·이름·역할은 상단바가 아닌 <b>사이드바 최하단</b>에 상주합니다(Linear·Slack·Notion 관례). 클릭 시 위로 열리는 팝오버에 프로필·비밀번호 변경·로그아웃을 담고, 상단바에는 로그아웃 아이콘을 두지 않습니다. 역할 라벨이 항상 보이므로 운영자/고객사 모드 혼동을 줄여 줍니다. 기존 하단 태그라인(솔루션 소개 문구)은 로그인 화면 서브카피로만 유지하고 앱 내부에서는 제거합니다.</p>
+  </div>
+
+  <div class="panel">
+    <h3>아이콘 · Lucide</h3>
+    <div class="desc">제품 아이콘 라이브러리는 <b>Lucide</b>(lucide.dev, MIT)로 확정합니다 — 현재 배포본이 사용 중인 계열과 동일해, 교체가 아닌 표준화입니다. 24px 그리드 라인 아이콘, stroke 2.</div>
+    <p class="note"><b>사이즈</b> — 사이드바·내비 18px / 텍스트 인라인·버튼 16px / KPI 칩 14–15px. <b>색</b> — 항상 currentColor 상속(별도 색 지정 금지, 활성 틸는 부모 색으로 전달). <b>금지</b> — 유니코드 기호(▦ ✓ ⌕)나 이모지를 UI 아이콘으로 사용하지 않습니다. AI 코딩 지침에도 동일 규칙이 포함됩니다.</p>
+  </div>
+
+  <div class="panel">
+    <h3>수집·점검 매트릭스 (유통사 × 월)</h3>
+    <div class="desc">셀 상태 5종을 확정합니다: 검증(초록) / 미검증(호박) / 불일치(다홍 소프트) / 오류(다홍 필) / 미수신(중립 + ✕). 색은 셀 단위로만 — 현재 배포본처럼 행 전체를 물들이면 31행 화면에서 눈이 피로해집니다.</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+      <span class="chp chp-ok">검증 76</span><span class="chp chp-bad">불일치 1</span><span class="chp chp-warn">미검증 48</span><span class="chp chp-bad" style="background:var(--hm-danger);color:#fff">오류 1</span><span class="chp chp-mute">미수신 1</span>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="mx">
+      <thead><tr><th class="name">유통사</th><th>01월</th><th>02월</th><th>03월</th><th>04월</th></tr></thead>
+      <tbody>
+        <tr><td class="name">교보문고</td><td><span class="cellchip cs-ok">검증</span></td><td><span class="cellchip cs-ok">검증</span></td><td><span class="cellchip cs-ok">검증</span></td><td><span class="cellchip cs-ok">검증</span></td></tr>
+        <tr><td class="name">구루컴퍼니</td><td><span class="cellchip cs-un">미검증</span></td><td><span class="cellchip cs-un">미검증</span></td><td><span class="cellchip cs-un">미검증</span></td><td><span class="cellchip cs-un">미검증</span></td></tr>
+        <tr><td class="name">네이버시리즈</td><td><span class="cellchip cs-ok">검증</span></td><td><span class="cellchip cs-mis">불일치</span></td><td><span class="cellchip cs-ok">검증</span></td><td><span class="cellchip cs-ok">검증</span></td></tr>
+        <tr><td class="name">리디</td><td><span class="cellchip cs-ok">검증</span></td><td><span class="cellchip cs-ok">검증</span></td><td><span class="cellchip cs-err">오류</span></td><td><span class="cellchip cs-none">✕ 미수신</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note"><b>사양</b> — 첫 열은 스크롤 시 고정(sticky), 상단 요약은 상태 칩으로 집계(클릭 시 해당 상태만 필터). '미수신'(파일 없음)과 '0원'(값 있음)은 반드시 구분 — 미수신은 ✕ 아이콘 병기. 히트맵형(농도) 표현이 필요한 화면은 틸 단색 스케일을 사용합니다.</p>
+  </div>
+
+  <div class="panel">
+    <h3>미매칭 제안 카드 · 일괄 선택 바</h3>
+    <div class="desc">AI 제안의 핵심 화면. 신뢰도 %는 옥 Deep으로(틸 = "AI가 여기를 봐 달라"는 신호), 신뢰도 밴드 칩과 함께 이중 표기. 승인은 카드당 하나뿐인 Primary입니다.</div>
+    <div class="bulkbar"><span class="ckb"></span>전체 선택<button class="btn btn-pri btn-sm">선택 승인 (14)</button><span class="hint-t">확인한 항목만 체크 후 '선택 승인' · 자동 일괄 승인은 없습니다</span></div>
+    <div class="band-head" style="color:var(--hm-success)">신뢰 높음 · 우선 검토 6</div>
+    <div class="mm-card">
+      <div class="mm-top">
+        <span class="ckb on">✓</span>
+        <div><div class="mm-title">씨도둑 3권 (완결)</div><div class="mm-meta num">유통사 1곳 · 1행 · 정산액 700원</div></div>
+        <div class="mm-conf"><div class="cl">AI 신뢰도</div><div class="pct">75%</div><span class="chp chp-ok" style="margin-top:4px"><span class="dot"></span>동일 작가 3건</span></div>
+      </div>
+      <div class="mm-prop"><div class="pl">제안</div><b>작가 홍단아</b> · 레이블 레드라인</div>
+      <div class="mm-evi">유사 작품 '씨도둑 1/'(이)가 작가 '홍단아', 레이블 '레드라인'으로 등록되어 있습니다. 유사 작품 3건이 동일 작가를 가리킵니다. <b>근거 작품: 씨도둑 1/</b></div>
+      <div class="mm-acts"><button class="btn btn-pri btn-sm">승인 — 작가·레이블 등록</button><button class="btn btn-sec btn-sm">거절</button><button class="btn btn-sec btn-sm">제안 근거 보기</button><button class="btn btn-ghost btn-sm">직접 수정</button></div>
+    </div>
+    <p class="note"><b>사양</b> — 밴드 헤더 색: 높음=초록, 검토=호박, 낮음=다홍. '제안 근거 보기'는 우측 드로어(위 드로어 컴포넌트)로 열립니다. 카드 호버 시 보더가 <span style="font-family:var(--hm-mono);font-size:12px">--hm-border-strong</span>으로 한 단계 짙어지고, 승인 완료 시 카드가 200ms 페이드 후 목록에서 제거되며 토스트로 확인.</p>
+  </div>
+
+  <div class="panel">
+    <h3>태그 입력 (산하 레이블 · 작품 범위)</h3>
+    <div class="desc">출판사 상세의 레이블 관리, 계약 폼의 작품 범위에 공통 사용. 칩은 옥 Soft 배경 + 짙은 옥 텍스트, 삭제 ×는 호버에서만 다홍.</div>
+    <div class="tagwrap">
+      <span class="tag">LACE<button aria-label="삭제">✕</button></span>
+      <span class="tag">레드라인<button aria-label="삭제">✕</button></span>
+      <span class="tag">드림북스<button aria-label="삭제">✕</button></span>
+      <span class="tag">화월(花月)<button aria-label="삭제">✕</button></span>
+    </div>
+    <div class="tagrow"><input class="inp" type="text" placeholder="레이블명 입력 후 Enter 또는 추가"><button class="btn btn-sec">추가</button></div>
+    <p class="note"><b>폼 라벨 힌트 패턴</b> — 실제 제품의 <b>라벨 — 짧은 힌트</b> 형식(예: "배분율 (%) — 제공 정산액 중 작가 몫")을 표준으로 채택합니다. 라벨 700, 힌트는 em dash 뒤 Caption 크기 Text 3. 계약 폼처럼 긴 폼은 관련 필드를 섹션 제목 없이 이 라벨 힌트로 묶고, 자동 생성 값(계약번호)은 읽기 전용 텍스트로 폼 흐름 안에 표시합니다.</p>
+  </div>
+</div></section>
+
+<!-- ======================= 06 화면 아키타입 ======================= -->
+<section class="gsec" id="archetypes"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">06</div>
+    <h2>화면 아키타입 · 페이지마다 다른 표정</h2>
+    <p>하나의 시스템 안에서도 화면의 '성격'에 따라 레이아웃 시그니처를 다르게 갑니다. 모든 화면이 같은 밀도의 흰 카드로 보이면 랜드마크가 사라져 제품이 실제보다 복잡하게 느껴집니다. 규칙: <b>모든 화면은 네 아키타입 중 하나에 속하고, 화면당 히어로 요소는 하나</b>입니다 — 그 화면을 기억하게 만드는 요소를 하나 정하고 나머지는 뒤로 물립니다.</p>
+  </div>
+
+  <div class="panel">
+    <h3>아키타입 매핑</h3>
+    <div style="overflow-x:auto">
+    <table class="tbl">
+      <thead><tr><th>아키타입</th><th>해당 화면</th><th>레이아웃 시그니처</th><th>히어로 요소</th><th>틸가 놓이는 곳</th></tr></thead>
+      <tbody>
+        <tr style="cursor:default"><td><b>작업 Do</b></td><td>정산서 업로드 · 미매칭</td><td>좁은 단일 컬럼 · 넉넉한 여백 · 단계 인디케이터 상시 노출</td><td>드롭존 / 제안 카드</td><td>Primary 버튼 · 진행 단계 · AI 신뢰도</td></tr>
+        <tr style="cursor:default"><td><b>점검 Monitor</b></td><td>수집·점검 · 마감 현황</td><td>풀폭 고밀도 매트릭스 · 헤더에 상태 칩 집계 내장 · 행 36px</td><td>상태 매트릭스</td><td>없음 — 의미색만 (틸 침묵)</td></tr>
+        <tr style="cursor:default"><td><b>관리 Manage</b></td><td>출판사·계약·유통사·회원</td><td>리스트 + 우측 드로어 · 검색 상단 고정 · 행 40px</td><td>표 그 자체</td><td>등록 버튼 · 선택 행 옥 Soft</td></tr>
+        <tr style="cursor:default"><td><b>분석 Read</b></td><td>정산 요약 · 성과 분석 · CP 대시보드</td><td>디스플레이 숫자가 주인공 · 카드 여백 24px · 차트 위주</td><td>핵심 정산액 숫자</td><td>차트 1번 시리즈 · KPI 아이콘 칩</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>페이지 헤더가 아키타입을 선언합니다</h3>
+    <div class="desc">같은 상단바 자리에서, 아키타입마다 헤더 구성이 다릅니다 — 화면에 들어서는 순간 "여기서 뭘 하는 곳인지"가 제목을 읽기 전에 전달됩니다.</div>
+
+    <div class="arch-stage"><span class="arch-tag">분석 READ</span>
+      <div class="pgh"><div><div class="eyebrow">분석 · 현황</div><h4>정산 요약</h4></div><span class="sp"></span><div class="seg"><button class="on">전체 기간</button><button>월별</button></div><button class="btn btn-sec btn-sm">엑셀 내보내기</button></div>
+      <div class="pgh bignum num">1,197,001,377<small> 원 · 작가 지급 대상</small></div>
+    </div>
+
+    <div class="arch-stage"><span class="arch-tag">작업 DO</span>
+      <div class="pgh"><div><div class="eyebrow">정산 솔루션</div><h4>정산서 업로드</h4></div><span class="sp"></span>
+      <div class="steps" style="gap:6px"><div class="step done"><span class="bub" style="width:22px;height:22px;font-size:11px">✓</span></div><span class="step-line done" style="width:20px"></span><div class="step now"><span class="bub" style="width:22px;height:22px;font-size:11px">2</span><span class="st-label" style="font-size:12px">표준화</span></div><span class="step-line" style="width:20px"></span><div class="step"><span class="bub" style="width:22px;height:22px;font-size:11px">3</span></div><span class="step-line" style="width:20px"></span><div class="step"><span class="bub" style="width:22px;height:22px;font-size:11px">4</span></div></div></div>
+    </div>
+
+    <div class="arch-stage"><span class="arch-tag">점검 MONITOR</span>
+      <div class="pgh"><div><div class="eyebrow">정산 솔루션</div><h4>정산서 수집·점검</h4></div><span class="sp"></span><span class="chp chp-ok">검증 76</span><span class="chp chp-warn">미검증 48</span><span class="chp chp-bad">불일치 1</span><span class="chp chp-mute">미수신 1</span></div>
+    </div>
+
+    <div class="arch-stage"><span class="arch-tag">관리 MANAGE</span>
+      <div class="pgh"><div><div class="eyebrow">고객 · 계약 관리</div><h4>출판사 관리 <span style="color:var(--hm-text-3);font-weight:600;font-size:14px">· 128곳</span></h4></div><span class="sp"></span><input class="inp" type="text" placeholder="출판사 검색" style="width:180px;padding:7px 12px;font-size:13px"><button class="btn btn-pri btn-sm">+ 출판사 등록</button></div>
+    </div>
+
+    <p class="note"><b>추가 구분 장치</b> — ① 밀도 2단계: 점검·관리는 dense(행 36–40px·폰트 13px), 작업·분석은 comfortable(여백 1.5배). ② 틸 총량: 작업 화면에서 가장 많고 점검 화면에서 0 — "틸가 보이면 내 행동이 필요한 곳"이라는 학습이 생깁니다. ③ 오로라 글로우는 다크 로그인과 분석 홈 히어로 배경에만 허용(희미하게, 콘텐츠 뒤). ④ 사이드바 그룹과 헤더 eyebrow 문구를 일치시켜 현재 위치를 이중 표기합니다. <b>⑤ (v1.9) 분석 콘텐츠 최대 폭</b> — 분석 Read 화면 본문은 최대 1360px 중앙 정렬(무한 확장 금지), KPI는 광폭에서 2×2. <b>⑥ 헤더 = 스티키 톱바 밴드</b> — 흰 서피스 + 하단 1px 보더가 메인 전폭을 채우고, 내용물은 본문과 같은 1360px 컬럼에 정렬, 스크롤 시 상단 고정. <b>⑦ 헤더 컨트롤 규칙</b> — 컨트롤은 항상 하나의 그룹(필터→기간→액션 순), 공유 고정 높이 46px. 반응형은 '축소 → 이동 → 축소' 순서: 가용 폭 기준 42px 컴팩트(내부 여백·최소폭 먼저 붕괴) → 자연 줄바꿈(그룹 단위 우측 정렬) → 640px 이하 전폭 낙하 → 40px 최소 사양. 브레이크포인트는 뷰포트가 아닌 <b>가용 콘텐츠 폭</b>(사이드바 248px 차감) 기준으로 산정합니다.</p>
+  </div>
+</div></section>
+
+<!-- ======================= 06 차트 ======================= -->
+<section class="gsec" id="charts"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">07</div>
+    <h2>차트 스타일</h2>
+    <p>차트는 장식이 아니라 표의 요약입니다. 격자선 최소화, 라벨은 축 대신 값 위에 직접, 비교 기준은 항상 회백으로 뒤에 세웁니다.</p>
+  </div>
+  <div class="demo-grid-2">
+    <div class="panel" style="margin-bottom:0">
+      <h3>월별 추세 (총매출 vs 정산액)</h3>
+      <div class="desc">기준(총매출)은 Muted, 주인공(정산액)은 옥색. 막대 위 라벨은 주인공에만.</div>
+      <div class="legend"><span><i style="background:var(--hm-ch-muted)"></i>총매출</span><span><i style="background:var(--hm-primary)"></i>정산액</span></div>
+      <div class="mini-bars">
+        <div class="mb-group"><div class="mb total" style="height:82%"></div><div class="mb settle" data-v="2.8억" style="height:55%"></div></div>
+        <div class="mb-group"><div class="mb total" style="height:100%"></div><div class="mb settle" data-v="3.4억" style="height:67%"></div></div>
+        <div class="mb-group"><div class="mb total" style="height:82%"></div><div class="mb settle" data-v="2.8억" style="height:55%"></div></div>
+        <div class="mb-group"><div class="mb total" style="height:86%"></div><div class="mb settle" data-v="2.9억" style="height:57%"></div></div>
+      </div>
+      <div class="mb-x num"><span>1월</span><span>2월</span><span>3월</span><span>4월</span></div>
+    </div>
+    <div class="panel" style="margin-bottom:0">
+      <h3>구성비 (스택 바 · 도넛)</h3>
+      <div class="desc">구성비 4개 이하는 스택 바 우선(도넛보다 비교가 쉬움). 도넛은 대표 화면 요약용으로만.</div>
+      <div class="stackbar" style="margin-bottom:10px">
+        <div style="flex:57;background:var(--hm-ch-1)"></div>
+        <div style="flex:41.3;background:var(--hm-ch-2)"></div>
+        <div style="flex:0.8;background:var(--hm-ch-3)"></div>
+        <div style="flex:0.9;background:var(--hm-ch-6)"></div>
+      </div>
+      <div class="legend num" style="margin-bottom:18px"><span><i style="background:var(--hm-ch-1)"></i>단행본 57%</span><span><i style="background:var(--hm-ch-2)"></i>연재 41.3%</span><span><i style="background:var(--hm-ch-3)"></i>구독제 0.8%</span><span><i style="background:var(--hm-ch-6)"></i>기타 0.9%</span></div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <div class="donut"></div>
+        <div style="font-size:12px;color:var(--hm-text-2);line-height:1.7">격자선: 수평선만, <span style="font-family:var(--hm-mono);font-size:11px">#E8F0EF</span> 1px<br>축 라벨: 12px Text 3<br>툴팁: 다크 배경(먹) + 흰 텍스트<br>호버: 해당 시리즈만 100%, 나머지 40% 감쇠</div>
+      </div>
+    </div>
+  </div>
+  <p class="note"><b>히트맵·수집 매트릭스</b> — 값의 농도는 틸 단색 스케일(#DEF3F2 → #006060)로, 결측·미수신 셀은 다홍 소프트 배경 + ✕ 아이콘으로 표기해 "없음"과 "0"을 구분합니다.</p>
+</div></section>
+
+<!-- ======================= 07 모션 ======================= -->
+<section class="gsec" id="motion"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">08</div>
+    <h2>모션 · 인터랙션</h2>
+    <p>이징은 전 제품 공통 <span style="font-family:var(--hm-mono);font-size:13px">cubic-bezier(.2, 0, 0, 1)</span> 하나만 사용합니다. 속도는 세 단계.</p>
+  </div>
+  <div class="panel">
+    <div style="overflow-x:auto">
+    <table class="tbl motion-tbl">
+      <thead><tr><th>토큰</th><th>속도</th><th>적용 대상</th></tr></thead>
+      <tbody>
+        <tr style="cursor:default"><td>--dur-micro</td><td class="num">120ms</td><td>호버, 포커스 링, 체크박스, 칩 상태 변경</td></tr>
+        <tr style="cursor:default"><td>--dur-base</td><td class="num">200ms</td><td>토글, 탭 전환, 행 선택, 토스트 등장</td></tr>
+        <tr style="cursor:default"><td>--dur-panel</td><td class="num">320ms</td><td>드로어·모달 슬라이드, 표준화 단계 전환</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note"><b>로그인 진입</b> — 다크 배경의 모눈 점이 먼저 그려지고(400ms 페이드), 카드가 8px 아래에서 떠오릅니다(320ms). 로그인 성공 시 카드가 옥색으로 잠깐 물들며 라이트 업무 화면으로 크로스페이드 — 다크에서 라이트로 "출근"하는 전환입니다. <b>표준화 진행</b> — 단계 인디케이터의 원이 채워질 때 소프트 링이 한 번 퍼집니다(pulse 1회, 반복 금지). <b>공통</b> — <span style="font-family:var(--hm-mono);font-size:12px">prefers-reduced-motion</span> 설정 시 모든 모션을 비활성화합니다.</p>
+  </div>
+</div></section>
+
+<!-- ======================= 08 다크 로그인 ======================= -->
+<section class="gsec" id="login"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no">09</div>
+    <h2>다크 로그인 컨셉</h2>
+    <p>제품의 유일한 다크 화면. 심해빛 배경 위로 오로라 글로우가 상단에서 번지고, 로그인 버튼은 옥 Strong(#008080) + 흰 글자의 플랫 스타일(그라데이션 지양), 인풋 포커스는 옥 링입니다. 아래에서 실제 입력해 보세요.</p>
+  </div>
+  <div class="login-stage">
+    <div class="login-card">
+      <div class="lg-mark" style="background:transparent;color:#17BFBF"><svg role="img" aria-label="Aurorah 로고" width="36" height="36" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2.66487,11.1775)">
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        <g transform="matrix(-1,1.22298e-16,-1.22298e-16,-1,517.33,489.645)">
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        </g>
+    </g>
+</svg>
+</div>
+      <h4>Aurorah 정산 콘솔</h4>
+      <div class="lg-sub">유통사 정산서 표준화 · 작가 정산 산출</div>
+      <label>이메일</label>
+      <input class="dk-inp" type="text" placeholder="name@hive-mind.kr">
+      <label>비밀번호</label>
+      <input class="dk-inp" type="password" placeholder="••••••••">
+      <button class="dk-btn">로그인</button>
+      <div style="display:flex;justify-content:space-between;margin-top:14px;font-size:12px"><span style="color:var(--hm-dk-text-2)">비밀번호 재설정</span><span style="color:var(--hm-dk-primary);font-weight:600">운영사 가입 요청</span></div>
+    </div>
+    <div class="login-foot">AURORAH · A HIVEMIND BRAND</div>
+  </div>
+</div></section>
+
+<footer class="gfoot"><div class="wrap">
+  Aurorah 정산 콘솔 디자인 가이드 v2.0 · 2026.08 · Aurorah 브랜드 · 틸 #009999 기반 · 이 파일 하나가 곧 스타일 소스입니다 — 토큰·컴포넌트 CSS를 소스에서 직접 복사해 사용하세요.
+</div></footer>
+
+<script>
+// 스와치 클릭 → HEX 복사
+const toast=document.getElementById('copyToast');let toastTimer;
+function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),1600)}
+document.querySelectorAll('.sw').forEach(sw=>{sw.addEventListener('click',()=>{const hex=sw.dataset.hex;navigator.clipboard&&navigator.clipboard.writeText(hex).then(()=>showToast(hex+' 복사되었습니다')).catch(()=>showToast(hex))})});
+// 토큰 블록 복사
+function copyTokens(btn){const t=document.getElementById('tokenBlock').innerText;navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>{btn.textContent='복사 완료';setTimeout(()=>btn.textContent='토큰 복사',1500)})}
+// 세그먼트/탭 데모
+document.querySelectorAll('.seg, .tabs, .sbar-seg').forEach(gr=>{const cls=gr.querySelector('.on2')?'on2':'on';gr.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{gr.querySelectorAll('button').forEach(x=>x.classList.remove(cls));b.classList.add(cls)}))});
+</script>
+</body>
+</html>

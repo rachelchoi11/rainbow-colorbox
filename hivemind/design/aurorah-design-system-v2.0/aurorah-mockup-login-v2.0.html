@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>목업 · 로그인 — Aurorah 정산 콘솔 (v2.0)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 토큰: hivemind-theme-v1.8.css 발췌 (다크 로그인에 필요한 부분) */
+:root{
+  --hm-primary:#009999; --hm-primary-hover:#007070; --hm-primary-active:#006060;
+  --hm-dk-bg:#07181A; --hm-dk-surface:#0D292B; --hm-dk-inset:#0A2123;
+  --hm-dk-border:#1B4547; --hm-dk-text:#EAF4F3; --hm-dk-text-2:#92ACAA;
+  --hm-dk-primary:#17BFBF; --hm-dk-primary-hover:#2FC8C6;
+  --hm-font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --dur-micro:120ms; --dur-base:200ms; --dur-panel:320ms; --ease:cubic-bezier(.2,0,0,1);
+  --rad-m:10px; --rad-l:14px;
+  --sh-overlay:0 4px 16px rgba(0,0,0,.25),0 12px 48px rgba(0,0,0,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--hm-font);min-height:100vh;color:var(--hm-dk-text);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse 90% 70% at 50% 0%,#0E3133 0%,var(--hm-dk-bg) 55%);
+  position:relative;overflow-x:hidden;padding:48px 20px;
+}
+/* 시그니처 · 오로라 글로우 (상단 커튼) */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 70% -8%,rgba(0,215,205,.20),transparent 62%),radial-gradient(45% 45% at 28% -5%,rgba(80,225,210,.13),transparent 60%),radial-gradient(90% 60% at 50% -20%,rgba(0,153,153,.12),transparent 70%)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 45% at 50% 22%,rgba(0,183,183,.13),transparent 65%),
+             radial-gradient(ellipse 45% 30% at 50% 100%,rgba(0,183,183,.05),transparent 70%);
+}
+.brand{position:relative;z-index:1;text-align:center;margin-bottom:28px;
+  animation:rise var(--dur-panel) var(--ease) both}
+.brand .mark{width:56px;height:56px;display:inline-block;filter:drop-shadow(0 6px 24px rgba(0,190,190,.35))}
+.brand h1{font-size:20px;font-weight:800;letter-spacing:.01em;margin-top:16px}
+.brand p{font-size:12.5px;color:var(--hm-dk-text-2);margin-top:4px;letter-spacing:.02em}
+.card{position:relative;z-index:1;width:min(380px,100%);
+  background:var(--hm-dk-surface);border:1px solid var(--hm-dk-border);
+  border-radius:16px;padding:28px;box-shadow:var(--sh-overlay);
+  animation:rise var(--dur-panel) var(--ease) 60ms both}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card h2{font-size:17px;font-weight:700}
+.card .sub{font-size:12.5px;color:var(--hm-dk-text-2);margin:3px 0 20px}
+label{display:block;font-size:12px;font-weight:600;color:var(--hm-dk-text-2);margin:14px 0 6px}
+.inp{width:100%;font-family:var(--hm-font);font-size:14px;padding:10px 12px;
+  background:var(--hm-dk-inset);border:1px solid var(--hm-dk-border);border-radius:var(--rad-m);
+  color:var(--hm-dk-text);transition:border-color var(--dur-micro) var(--ease),box-shadow var(--dur-micro) var(--ease)}
+.inp::placeholder{color:#5E7C7A}
+.inp:hover{border-color:#1F4C4E}
+.inp:focus{outline:none;border-color:var(--hm-dk-primary);box-shadow:0 0 0 3px rgba(0,183,183,.16)}
+/* 플랫 옥 Strong 버튼 — 흰 글자(AA 4.8:1), 호버 시 한 단계 밝게 */
+.btn-login{width:100%;margin-top:20px;font-family:var(--hm-font);font-size:14px;font-weight:700;
+  padding:12px;border:none;border-radius:var(--rad-m);cursor:pointer;
+  background:#008080;color:#FFFFFF;
+  transition:background var(--dur-micro) var(--ease),transform var(--dur-micro) var(--ease)}
+.btn-login:hover{background:#009494}
+.btn-login:active{transform:translateY(1px)}
+.btn-login:focus-visible{outline:2px solid var(--hm-dk-primary-hover);outline-offset:2px}
+.links{display:flex;justify-content:space-between;margin-top:16px;font-size:12px}
+.links a{color:var(--hm-dk-text-2);text-decoration:none;transition:color var(--dur-micro) var(--ease)}
+.links a:hover{color:var(--hm-dk-text)}
+.links a.pri{color:var(--hm-dk-primary);font-weight:600}
+.links a.pri:hover{color:var(--hm-dk-primary-hover)}
+.invite{margin-top:14px;padding-top:14px;border-top:1px solid var(--hm-dk-border);
+  font-size:11.5px;color:#5E7C7A;text-align:center;line-height:1.6}
+footer{position:relative;z-index:1;margin-top:32px;font-size:10.5px;letter-spacing:.22em;
+  color:#5E5535;text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){.brand,.card{animation:none}}
+</style>
+</head>
+<body>
+  <div class="brand">
+    <span class="mark" style="color:#17BFBF"><svg role="img" aria-label="Aurorah 로고" width="56" height="56" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2.66487,11.1775)">
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+        <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        <g transform="matrix(-1,1.22298e-16,-1.22298e-16,-1,517.33,489.645)">
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:none;stroke:currentColor;stroke-width:1px;"/>
+            <path d="M35.51,74.522C171.689,13.009 290.781,1.648 373.206,23.508C458.373,46.095 501.757,111.542 490.606,182.373C478.866,256.94 447.345,307.738 393.471,356.152C377.487,370.516 361.037,384.626 317.91,401.283C314.454,402.618 288.972,411.688 264.306,412.572C242.543,413.352 222.636,407.686 214.691,404.942C161.833,386.689 146.594,303.486 186.568,227.48M186.568,227.48C171.453,308.551 215.297,346.956 248.405,343.202C261.48,341.719 275.106,339.307 285.336,333.592C326.626,310.524 339.776,284.677 351.598,265.576C371.25,233.827 394.259,144.691 365.286,107.128C350.704,88.222 337.709,75.761 308.647,64.682C284.936,55.643 243.54,54.095 225.949,52.894C183.739,50.011 119.737,57.706 35.577,74.572" style="fill:currentColor;"/>
+        </g>
+    </g>
+</svg>
+</span>
+    <h1>Aurorah 정산 콘솔</h1>
+    <p>유통사 정산서 표준화 · 작가 정산 산출</p>
+  </div>
+
+  <div class="card">
+    <h2>로그인</h2>
+    <div class="sub">운영사 / 계약사 통합</div>
+    <label for="email">이메일</label>
+    <input class="inp" id="email" type="email" placeholder="name@company.com" autocomplete="username">
+    <label for="pw">비밀번호</label>
+    <input class="inp" id="pw" type="password" placeholder="••••••••" autocomplete="current-password">
+    <button class="btn-login" type="button">로그인</button>
+    <div class="links">
+      <a href="#">비밀번호 재설정</a>
+      <a href="#" class="pri">운영사 가입 요청</a>
+    </div>
+    <div class="invite">계약사는 발급받은 초대 링크로 접속하세요</div>
+  </div>
+
+  <footer>AURORAH · A HIVEMIND BRAND</footer>
+</body>
+</html>
