@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang=ko><head><meta charset=utf-8><style>@page{size:A4;margin:15mm}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#152220;font-size:10.3pt;line-height:1.62;max-width:840px;margin:0 auto;padding:8px}
+h1{font-size:19pt;font-weight:800;border-bottom:3px solid #009999;padding-bottom:8px;margin-bottom:10px}
+h2{font-size:13.5pt;font-weight:800;margin:20px 0 8px;border-bottom:2px solid #152220;padding-bottom:5px;color:#152220}
+h3{font-size:11.5pt;font-weight:700;margin:14px 0 6px}
+ul{margin:6px 0 6px 2px;padding-left:20px}li{margin:3px 0}
+table{border-collapse:collapse;width:100%;margin:9px 0;font-size:9.3pt}
+th{background:#DEF3F2;border:1px solid #C1D2CF;padding:6px 9px;text-align:left}
+td{border:1px solid #DDE7E5;padding:6px 9px;vertical-align:top}
+strong{color:#007272}code{background:#E8F0EF;padding:1px 5px;border-radius:3px;font-size:9pt}
+hr{border:none;border-top:1px solid #DDE7E5;margin:14px 0}
+a{color:#007272;text-decoration:none}
+blockquote{background:#DEF3F2;border-left:3px solid #009999;margin:7px 0;padding:8px 13px;font-size:9.7pt;color:#152220;border-radius:0 4px 4px 0}
+</style></head><body>
+<h1>하이브마인드 정산 솔루션 — 베타 오픈 미팅 로드맵</h1>
+<p><strong>작성일:</strong> 2026.08.20</p>
+<p><strong>목표:</strong> 2026년 10월 26일 베타 오픈</p>
+<p>본 로드맵은 정식 베타 오픈을 목표로 인프라 구축 → 제품 완성 → QA 및 온보딩 준비 → 베타 오픈까지의 주요 의사결정과 개발 진행 상황을 단계별로 점검하기 위한 기준안입니다.</p>
+<p>미팅 일정은 현재 계획을 기준으로 하며, 개발 진행 상황 및 참여자 일정에 따라 일부 조정될 수 있습니다.</p>
+<h2>1. 주요 미팅 일정</h2>
+<table><thead><tr><th>회차</th><th>일정</th><th>주요 목적</th></tr></thead><tbody><tr><td>M0</td><td>8/20</td><td>인프라 구축 방향 확정 · 비대면 미팅</td></tr><tr><td>M1</td><td>8/26</td><td>인프라 구축 진행상황 공유 · 주요 정책 결정</td></tr><tr><td>M2</td><td>9/1</td><td>인프라 구축 점검 · 제품 완성 단계 착수</td></tr><tr><td>M3</td><td>9/29</td><td>주요 기능 완성 · QA · 온보딩 준비</td></tr><tr><td>M4</td><td>10/12</td><td>베타 오픈 프리플라이트 · 최종 리허설</td></tr><tr><td>M5</td><td>10/26</td><td>베타 오픈</td></tr></tbody></table>
+<hr>
+<h2>M0 — 8/20</h2>
+<h3>인프라 구축 방향 확정 · 비대면 미팅</h3>
+<p><strong>주요 안건</strong></p>
+<ul><li>정식 베타 오픈을 위한 전체 인프라 구축 방향 확정</li><li><strong>Stack: 프론트엔드 Next.js / 백엔드 Kotlin + Vert.x</strong> — 기존 Python 백엔드는 성능·확장성을 위해 Kotlin으로 전면 포팅</li><li>Hosting: AWS 서울 리전</li><li>Database: SQLite → PostgreSQL 이전</li><li>Domain: <code>app.hive-mind.kr</code> (브랜드명 확정시까지 임시 유지)</li><li>이메일 발송 서비스 및 인증 방식 결정</li><li>dev/prod 개발·운영 환경 분리</li><li>정산 데이터 영속화(B4) 방향 결정</li><li>파일 저장 방식 및 운영 리전 결정</li><li>기존 데이터 이관 범위 및 방식 확인 — <code>app.db</code> 기준 데이터 이전, AWS PostgreSQL 이관 및 검증 방식, 기획·개발 간 역할 분담</li><li>개발 R&amp;R 및 Basecamp 기반 협업·보고 방식 정리</li><li>제품 소개 랜딩 페이지 구축 방향 및 기획 착수 논의</li><li><strong>베타 오픈 목표일 10월 26일 설정</strong></li></ul>
+<hr>
+<h2>M1 — 8/26</h2>
+<h3>인프라 구축 진행상황 공유 · 주요 정책 결정</h3>
+<p><strong>주요 안건</strong></p>
+<ul><li>현재까지의 인프라 구축 및 개발 진행상황 공유</li><li>확정된 기술 구조 및 데이터 이전 설계 검토</li><li>AWS 구축 및 PostgreSQL 이전 진행상황 확인</li><li>서비스 운영을 위해 필요한 주요 정책 협의 — 원천징수율 및 정산 기준, 서비스 이용약관, 정산 마감 이후 수정·정정 정책, 기타 개발 전 확정이 필요한 미결 정책</li><li>향후 제품 개발 및 베타 오픈 일정 점검</li></ul>
+<hr>
+<h2>M2 — 9/1</h2>
+<h3>인프라 구축 점검 · 제품 완성 단계 착수</h3>
+<p><strong>주요 안건</strong></p>
+<ul><li>AWS 및 운영 인프라 구축 현황 점검</li><li>도메인·HTTPS 적용 상태 확인</li><li>SQLite → PostgreSQL 데이터 이전 및 정합성 검증 현황 확인</li><li>이메일 발송 환경 및 초대·비밀번호 재설정 기능 점검</li><li>dev/prod 환경 분리 및 배포 구조 확인</li><li>잔여 인프라 구축 항목 점검 — Rate Limit, Monitoring, Backup</li><li>정산 데이터 영속화(B4) 설계 및 구현 방향 확정</li><li>디자인 v2.0 전체 적용 방향 및 잔여 화면 확인</li><li>데이터 정규화 및 표준화 보강 범위 점검</li><li>베타 대상 출판사 선정 및 실제 데이터 검증 계획 논의</li><li>계약사 온보딩 플로우 검토</li><li>제품 소개 랜딩 페이지 기획 방향 리뷰</li></ul>
+<hr>
+<h2>M3 — 9/29</h2>
+<h3>주요 기능 완성 · QA · 온보딩 준비</h3>
+<p><strong>주요 안건</strong></p>
+<ul><li>주요 제품 기능 구현 완료 상태 리뷰</li><li>B4 정산 데이터 영속화 결과 확인</li><li>Kotlin 포팅 정산 로직 검증 — 기존 Python 결과와 정산값 대조(회귀 일치 확인)</li><li>디자인 v2.0 전체 적용 상태 확인</li><li>데이터 정규화·표준화 개선 결과 점검</li><li>실제 출판사 데이터를 활용한 표준화 정확도 교차검증 결과 확인</li><li>QA 테스트 결과 리뷰 및 주요 버그 우선순위 결정</li><li>보안·성능 및 운영 안정성 점검</li><li>계약사 온보딩 리허설 — 계약사 초대, 약관 및 동의, 회사정보 등록, 정산 데이터 확인</li><li>베타 운영 가이드·FAQ 등 운영 준비 상태 확인</li><li>랜딩 페이지 디자인 및 개발 진행상황 리뷰</li></ul>
+<hr>
+<h2>M4 — 10/12</h2>
+<h3>베타 오픈 프리플라이트 · 최종 리허설</h3>
+<p><strong>주요 안건</strong></p>
+<ul><li>베타 오픈 전 전체 시스템 최종 점검 — 정산 데이터 영속성, 테넌트 데이터 격리, 이메일 발송, 데이터 및 시스템 백업, 장애·에러 모니터링, 서비스 성능, 장애 발생 시 롤백 계획</li><li>실제 베타 출판사 계정을 이용한 End-to-End 테스트</li><li>출판사 초대 및 온보딩 전체 과정 최종 리허설</li><li>잔여 Critical Issue 확인 및 오픈 전 처리 여부 결정</li><li>운영 가이드·FAQ·알림 메일 최종 확인</li><li>랜딩 페이지 및 오픈 안내 준비 상태 확인</li><li><strong>10월 26일 베타 오픈 여부 최종 확정</strong></li></ul>
+<hr>
+<h2>M5 — 10/26</h2>
+<h3>베타 오픈</h3>
+<p><strong>주요 안건</strong></p>
+<ul><li>베타 서비스 오픈</li><li>베타 참여 출판사 계정 활성화 및 온보딩</li><li>실제 운영 환경 및 정산 데이터 정상 작동 확인</li><li>초기 서비스 모니터링</li><li>장애 및 주요 오류 발생 시 Hotfix 대응</li><li>랜딩 페이지 라이브</li><li>베타 운영 결과 및 초기 사용자 피드백 수집</li><li>이후 주간 단위 운영·개선 체계로 전환</li></ul>
+<hr>
+<h2>2. 핵심 관리 포인트</h2>
+<p>베타 오픈 일정에 직접 영향을 줄 수 있는 핵심 항목은 다음과 같습니다.</p>
+<p><strong>① AWS 운영 인프라 및 PostgreSQL 이전</strong></p>
+<p>향후 제품 개발·QA·실서비스 운영의 기반이 되는 선행 작업으로, 데이터 이전 및 정합성 검증까지 포함하여 관리합니다.</p>
+<p><strong>② 정산 데이터 영속화(B4)</strong></p>
+<p>사용자가 재접속하거나 서비스가 재배포된 이후에도 기존 정산 데이터를 지속적으로 확인할 수 있도록 하는 베타 운영 필수 기능입니다.</p>
+<p><strong>③ 실제 출판사 데이터 기반 표준화 정확도 검증</strong></p>
+<p>실제 출판사의 정산 데이터를 기준으로 정규화·표준화 결과를 교차검증하여 정산 솔루션의 핵심 기능 품질을 확인합니다.</p>
+<p><strong>④ QA 및 실제 사용자 온보딩 검증</strong></p>
+<p>베타 오픈 전 실제 출판사 계정을 기준으로 초대부터 데이터 확인까지 전체 사용 흐름을 검증하고, 운영상 치명적인 오류가 없는지 최종 확인합니다.</p>
+</body></html>
