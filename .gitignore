@@ -1,0 +1,5 @@
+
+# 100MB 를 넘는 파일은 GitHub 이 거부한다. 실제로 8/10 부터 3주간 푸시가 막혀 있었다.
+# 큰 원본은 저장소에 두지 않고 별도 보관한다(~/workspace/work-dashboard-대용량백업 등).
+*.zip
+hivemind/analysis_2026/output/records.json
