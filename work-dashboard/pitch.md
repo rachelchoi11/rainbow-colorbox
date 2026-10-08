@@ -11,7 +11,7 @@
 - **콘텐츠 2계층**: Tier1 PD 공개도서 전문 보유(캐릭터 대화까지) / Tier2 현행도서 메타데이터+PDF 업로드+출판사 라이선스.
 
 ## 🔴 다음 액션 (최우선) — 10/8 갱신, 설계서: bookbot/docs/핏치-앱전환-설계서-2026-10-08.html
-- **P-0** 🔴 **운영 DB 소실**: Supabase `nqmrkwwyioamyjnhgbop` DNS 없음 → prod 전 API 500. 대시보드에서 복원 확인 or 신규 생성+스키마+PD34권 재적재. *사용자 확인 필요*
+- **P-0** 🟡 **운영 DB 재개 완료(10/8)** — 무료플랜 일시정지였음(소실 아님, 재개기한 2027-07-23). 재개 직후 덤프 백업: `~/workspace/bookbot-backups/supabase-prod-2026-10-08/` (복원 검증·행수 일치, README 참조). 다음: 스키마 diff(3월→main) → 보안PR 머지 → preview 배포 → prod. 재발방지(Pro $25 vs keep-alive cron) *사용자 결정 대기*
 - **P-0b** 🔴 보안수정 `fix/apple-signin-verify` 머지 대기 (Apple 위조 계정탈취·proxy 가짜쿠키). Vercel env에 JWT_SECRET 추가.
 - **P-6** 🔲 공개 전 필수: 회원탈퇴·약관·14세미만 보호자동의·무인증 AI 라우트·빠른로그인 제거·연령별 도서필터·모델명 중앙화
 - **P-7** 🔲 앱 전환: Expo 4탭(오늘/책/대화/나) + 디자인 "별빛 서재". 결정 대기 5건(DB·주색·범위·계정명의·결제)
