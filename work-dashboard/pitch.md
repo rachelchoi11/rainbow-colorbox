@@ -3,7 +3,7 @@
 > **트랙**: 개인 프로젝트 | **역할**: 대표·기획·개발·디자인 일체
 > **경로**: `~/workspace/bookbot`(웹, 이 레포) · `~/workspace/bookbot-app`(React Native 모바일 — 오늘의 질문 독립 앱)
 > **원격**: github.com/rachelchoi11/bookbot.git | **프로덕션**: https://bookbot-mu.vercel.app (Vercel + Supabase 도쿄)
-> **현 단계(7/17)**: 프로덕션 AI 장애 복구 진행 중 + 웹 무료 제한베타 스코프 확정 대기.
+> **현 단계(10/8)**: ✅ 프로덕션 복구 완료(Opus 4.8·보안수정 반영). 다음: 공개 전 필수(탈퇴·약관·보호자동의) → 앱 전환.
 
 ## 🎯 현재 상태
 - **제품**: K-12 초등 최우선 AI 독서토론 교육 플랫폼(질문→사고→토론→표현→분석→성장). 45+ 모델, 90+ API, 47 페이지, 4개 포털(학생/교사/출판사/관리자).
@@ -12,7 +12,7 @@
 
 ## 🔴 다음 액션 (최우선) — 10/8 갱신, 설계서: bookbot/docs/핏치-앱전환-설계서-2026-10-08.html
 - **P-0** 🟡 **운영 DB 재개 완료(10/8)** — 무료플랜 일시정지였음(소실 아님, 재개기한 2027-07-23). 재개 직후 덤프 백업: `~/workspace/bookbot-backups/supabase-prod-2026-10-08/` (복원 검증·행수 일치, README 참조). 다음: 스키마 diff(3월→main) → 보안PR 머지 → preview 배포 → prod. 재발방지: 무료 유지 + GitHub Actions `db-keepalive.yml` 매일 03:00 KST (PR #3 머지, 테스트 성공). 앱 배포 시점에 Pro 전환 예정 → 그때 워크플로 삭제
-- **P-0b** 🔴 보안수정 `fix/apple-signin-verify` 머지 대기 (Apple 위조 계정탈취·proxy 가짜쿠키). Vercel env에 JWT_SECRET 추가.
+- **P-0b** ✅ 보안수정 머지·운영 반영 완료 (PR #4)
 - **P-6** 🔲 공개 전 필수: 회원탈퇴·약관·14세미만 보호자동의·무인증 AI 라우트·빠른로그인 제거·연령별 도서필터·모델명 중앙화
 - **P-7** 🔲 앱 전환: Expo 4탭(오늘/책/대화/나) + 디자인 "별빛 서재". 결정 대기 5건(DB·주색·범위·계정명의·결제)
 - **P-1** 🔴 **PR #1은 머지됨(main=795965b) — 그러나 Vercel 프로덕션 마지막 배포가 212일 전**(git 자동배포 미연동). 프로덕션은 여전히 은퇴 모델 → AI 404 상태로 추정. `npx vercel --prod` 수동 배포 필요 — *사용자 승인 대기*.
@@ -26,7 +26,13 @@
 - **작업 보고서**: `bookbot/docs/작업보고서-2026-07-15.md`+`.pdf`(15p). 변환기 `scripts/md2pdf-report.py`(A4 세로, 한글).
 - **내구성 복구 구조**: CLAUDE.md/AGENTS.md 복귀 앵커 + 이 파일 + 자동리콜 메모리 2건.
 
-## ✅ 완료 (10/8)
+## ✅ 완료 (10/8) — 프로덕션 복구
+- 운영 DB 재개 + 덤프 백업(복원 검증) · 스키마 diff 빈 마이그레이션(변경 불필요)
+- PR #4 머지 → `vercel deploy --prod` (25d9c63). 검증: 로그인·me·books·daily·portfolio 200, 인물대화 AI 200(3.6s), 무토큰/가짜쿠키 401, 위조 Apple 토큰 401, /admin 비로그인 → /login
+- Vercel env 7개 끝 `\n` 제거 재등록(Prod+Preview), ALADIN_TTB_KEY·AIFRAME_API_KEY 추가, Preview env 신설
+- DB keep-alive GitHub Actions(PR #3)
+- 남은 것: Vercel↔GitHub 자동배포 미연결(배포는 `npx vercel deploy --prod` 수동), PR #2(docs·베타스위치) 오픈, INVITE_CODE 기본값 PITCH2026, Apiframe 크레딧 0
+
 - WIP 백업(`wip/backup-2026-09-16`)을 `chore/recovery-anchors`에 3커밋으로 정리·푸시(PR #2): docs·PD 파이프라인 / 베타 스코프 스위치(기본 OFF) / RLS SQL(미적용). tsc 통과.
 - P-2 해소: `launch/web-beta-scope`는 이미 main(795965b)과 동일.
 
